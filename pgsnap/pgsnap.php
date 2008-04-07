@@ -52,6 +52,7 @@ $image['f'] = '<img src="check-off.png" title="Off" alt="Off"/>';
 $image['t'] = '<img src="check-on.png" title="On" alt="On"/>';
 
 echo "Getting Misc informations...\n";
+include 'lib/getmodules.php';
 include 'lib/navigate.php';
 include 'lib/links.php';
 
@@ -69,7 +70,9 @@ if ($g_version > '74') {
 
 echo "Getting Global Informations...\n";
 include 'lib/bases.php';
-include 'lib/databasesincache.php';
+if ($g_pgbuffercache) {
+  include 'lib/databasesincache.php';
+}
 include 'lib/roles.php';
 include 'lib/user1.php';
 include 'lib/user2.php';
@@ -79,7 +82,9 @@ include 'lib/tblspc1.php';
 echo "Getting Database Informations...\n";
 include 'lib/schemas.php';
 include 'lib/tables.php';
-include 'lib/tablesincache.php';
+if ($g_pgbuffercache) {
+  include 'lib/tablesincache.php';
+}
 include 'lib/tableswithoutpkey.php';
 include 'lib/tableswith5+indexes.php';
 include 'lib/fkconstraints.php';
@@ -111,45 +116,5 @@ echo "Getting Tools Informations...\n";
 include 'lib/pgpool.php';
 
 pg_close($connection);
-
-/*
-en fait, j'aime pas trop la fa�on dont c'est partitionn�
-il faut trouver un meilleur classement
-on pourrait faire
- * G�n�ral
-   * produits install�s
-   * pg_config (et indiquer la version du cluster)
-   * configuration de PG
- * Syst�me d'exploitation
-   * Syst�me install� (distrib linux)
-   * Processus (sp�cifiques PostgreSQL + Slony + Pgpool + ?)
- * M�moire
-   * RAM (quantit� utilis�, libre)
-   * pg_buffercache
-   * pg_freespacemap
- * Syst�me disque
-   * Disques (nom + espace utilis� + pourcentage libre)
-   * Partitions (nom + espace utilis� + pourcentage libre)
-   * Bases de donn�es (nom + espace utilis�)
-   * Tablespaces (nom + espace utilis� + pourcentage libre)
-   * Tables (nom + espace utilis� + pgstattuple)
-   * Index (nom + espace utilis� + pgstatindex)
-   * XLOG (nombre, taille du r�pertoire, nombre de ready)
-   * Log applicatifs
- * Database
-   * Liste (pg_database)
-   * % base de donn�es en m�moire (si pg_buffercache)
- * Sch�ma
- * Tables
-   * Liste (pg_database)
-   * 
- * Index
- * Statistiques
- * Pgpool
- * Pgpool II
- * pgBouncer
- * Slony
-   
-*/
 
 ?>

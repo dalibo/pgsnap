@@ -1,3 +1,4 @@
-2007-03-30  Guillaume Lelarge <guillaume@lelarge.info>
+2008-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 
 	* First CVS import
+	* Check pgstattuple availability

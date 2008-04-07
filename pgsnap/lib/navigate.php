@@ -41,8 +41,13 @@ $buffer .= '
 <div>
 <h2>Global Objects</h2>
 <ul>
-<li><a href="bases.html" target="content">Databases</a></li>
-<li><a href="databasesincache.html" target="content">Databases in cache</a></li>
+<li><a href="bases.html" target="content">Databases</a></li>';
+
+if ($g_pgbuffercache) {
+  $buffer .= '
+<li><a href="databasesincache.html" target="content">Databases in cache</a></li>';
+}
+$buffer.= '
 <li><a href="roles.html" target="content">Roles</a></li>
 <li><a href="user1.html" target="content">Users\' Objects</a></li>
 <li><a href="user2.html" target="content">Users Space allocated</a></li>
@@ -56,8 +61,14 @@ $buffer .= '
 <h2>Database Objects</h2>
 <ul>
 <li><a href="schemas.html" target="content">Schemas</a></li>
-<li><a href="tables.html" target="content">Tables</a></li>
-<li><a href="tablesincache.html" target="content">Tables in cache</a></li>
+<li><a href="tables.html" target="content">Tables</a></li>';
+
+if ($g_pgbuffercache) {
+  $buffer .= '
+<li><a href="tablesincache.html" target="content">Tables in cache</a></li>';
+}
+
+$buffer.= '
 <li><a href="tableswithoutpkey.html" target="content">Tables Without PKEY</a></li>
 <li><a href="tableswith5+indexes.html" target="content">Tables With 5+ indexes</a></li>
 <li><a href="fkconstraints.html" target="content">Tables With FKEY constraints</a></li>
