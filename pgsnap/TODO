@@ -1,0 +1,20 @@
+TODO
+===
+
+ * add a licence (BSD) to all files
+
+ * PostgreSQL 7.4 compatibility
+ * pgstattuple support
+ * pg_freespacemap support
+ * jQuery support : sort in tables, filtering, showing/hiding SQL source
+ * graph on database size and usage
+ * graph on tablespace size
+ * graph on table and index size and usage
+
+ * specific orasnap
+  * Database primary options : autovac, stat collector, pitr
+  * Tablespace : list default tablespace for each user
+  * Disabled constraints : owner, table, constraint, type, status
+  * FK without indexes : owner, constraint name, column name
+  * cached tables (pg_buffercache)
+  * Buffer Hit Ratio (Consistent Gets  DB Blk Gets  Physical Reads  Hit Ratio)

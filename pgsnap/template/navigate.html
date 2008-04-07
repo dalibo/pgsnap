@@ -1,0 +1,301 @@
+<html>
+<head>
+  <title>PGSnap Results (Navigation Frame)</title>
+  <style type="text/css" media="all">@import "screenstyle.css";</style>
+</head>
+
+<body>
+
+<h1>PGSnap 0.01.00</h1>
+
+<p><a href="links.html" target="content">Home</a></p>
+
+<div>
+<h2>General</h2>
+<ul>
+<li><a href="ver.html" target="content">Installed products</a></li>
+<li><a href="pgconfig.html" target="content">pg_config</a></li>
+<li><a href="param.html" target="content">General configuration</a>
+<li><a href="paramautovac.html" target="content">Autovacuum configuration</a>
+</div>
+
+<!--
+ * Système d'exploitation
+   * Système installé (distrib linux)
+   * Processus (spécifiques PostgreSQL + Slony + Pgpool + ?)
+ * Mémoire
+   * RAM (quantité utilisé, libre)
+   * pg_buffercache
+   * pg_freespacemap
+ * Système disque
+   * Disques (nom + espace utilisé + pourcentage libre)
+   * Partitions (nom + espace utilisé + pourcentage libre)
+   * Bases de données (nom + espace utilisé)
+   * Tablespaces (nom + espace utilisé + pourcentage libre)
+   * Tables (nom + espace utilisé + pgstattuple)
+   * Index (nom + espace utilisé + pgstatindex)
+   * XLOG (nombre, taille du répertoire, nombre de ready)
+   * Log applicatifs
+-->
+
+<div>
+<h2>Global Objects</h2>
+<ul>
+<li><a href="bases.html" target="content">Databases</a></li>
+<li><a href="roles.html" target="content">Roles</a></li>
+<li><a href="tablespaces.html" target="content">Tablespaces</a></li>
+<li>Large Objects</li>
+</ul>
+</div>
+
+<div>
+<h2>Database Objects</h2>
+<ul>
+<li><a href="schemas.html" target="content">Schemas</a></li>
+<li><a href="tables.html" target="content">Tables</a></li>
+<li><a href="views.html" target="content">Views</a></li>
+<li><a href="sequences.html" target="content">Sequences</a></li>
+<li><a href="indexes.html" target="content">Indexes</a></li>
+<li>Functions</li>
+<li><a href="languages.html" target="content">Languages</a></li>
+</ul>
+</div>
+
+<div>
+<h2>Statistics</h2>
+<ul>
+<li><a href="activities.html" target="content">Process</a></li>
+<li><a href="bgwriter.html" target="content">bgwriter</a></li>
+<li><a href="stat_databases.html" target="content">Databases</a></li>
+<li><a href="stat_tables.html" target="content">Tables</a></li>
+<li><a href="stat_indexes.html" target="content">Indexes</a></li>
+</ul>
+</div>
+
+<div>
+<h2>pgPool</h2>
+<ul>
+<li><a href="pgpool.html" target="content">pgPool</a></li>
+</ul>
+</div>
+
+<div>
+<h2>pgPool-II</h2>
+<ul>
+</ul>
+</div>
+
+<div>
+<h2>pgBouncer</h2>
+<ul>
+</ul>
+</div>
+
+<div>
+<h2>Slony-I</h2>
+<ul>
+</ul>
+</div>
+
+<!--
+
+<font size="2" face="Arial">
+<b>General</b><br>
+<li><a href="dbi.html" target="content">Database Information</a>
+<li><a href="ver.html" target="content">Product Versions</a>
+<li><a href="lib/options.htm" target="content">Database Options</a>
+<li><a href="lib/license.htm" target="content">License Information</a>
+<li><a href="lib/initora.htm" target="content">Init.ora Params</a>
+<li><a href="lib/undoc.htm" target="content">Undoc'd Init.ora Params</a>
+<li><a href="lib/allinitora.htm" target="content">All Init.ora Params</a>
+<li><a href="lib/sga.htm" target="content">SGA Information</a>
+<li><a href="lib/datafiles.htm" target="content">Datafiles / Database Size</a>
+<li><a href="lib/dbfiles.htm" target="content">Database File Listing</a>
+<P>
+
+<B>Tablespaces</B><BR>
+(snap7/8/9/10ts.sql)<BR>
+<li><a href="lib/tsinfo.htm" target="content">Tablespace Information</a>
+<li><a href="lib/tsquota.htm" target="content">Tablespace Quotas</a>
+<li><a href="lib/tscoal.htm" target="content">Tablespace Coalesced Exts</a>
+<li><a href="lib/tsusage.htm" target="content">Tablespace Usage</a>
+<li><a href="lib/tssys.htm" target="content">Users Default (SYSTEM)</a>
+<li><a href="lib/objsys.htm" target="content">Objects in SYSTEM TS</a>
+<li><a href="lib/addextent.htm" target="content">Freespace &amp; Largest Ext</a>
+<li><a href="lib/autoext.htm" target="content">AutoExtend Information</a>
+<P>
+
+<B>Rollbacks</B><BR>
+(snap7/8/9/10rbs.sql)<BR>
+<li><a href="lib/rollback.htm" target="content">Rollback Segments</a>
+<li><a href="lib/rbscont.htm" target="content">Rollback Contention</a>
+<li><a href="lib/rbsgrowth.htm" target="content">Rollback Growth</a>
+<li><a href="lib/rbsuser.htm" target="content">Rollback Users</a>
+<li><a href="lib/rbsxaction.htm" target="content">Rollback Transactions</a>
+<P>
+
+<B>Users</B><BR>
+(snap7/8/9/10user.sql)<BR>
+<li><a href="lib/userobjs.htm" target="content">User Objects</a>
+<li><a href="lib/spacealloc.htm" target="content">User Space Allocated</a>
+<li><a href="lib/invalid.htm" target="content">Invalid Objects</a>
+<li><a href="lib/usermod.htm" target="content">Object Modification</a>
+<li><a href="lib/userprivs.htm" target="content">User Privileges</a>
+<li><a href="lib/useraccess.htm" target="content">User Accessing</a>
+<li><a href="lib/usersess.htm" target="content">User Session Count</a>
+<li><a href="lib/userhit1.htm" target="content">User Hit Ratios</a>
+<li><a href="lib/datatypes.htm" target="content">Datatypes</a>
+<li><a href="lib/defpass.htm" target="content">Default Passwords</a>
+<P>
+
+<B>Tables &amp; Indexes</B><BR>
+(snap7/8/9/10ti.sql)<BR>
+<li><a href="lib/tiloc.htm" target="content">Table / Index Locations</a>
+<li><a href="lib/unsureidx.htm" target="content">Questionable Indexes</a>
+<li><a href="lib/index5.htm" target="content">Tables With &gt; 5 Indexes</a>
+<li><a href="lib/noindex.htm" target="content">Tables Without Indexes</a>
+<li><a href="lib/nopk.htm" target="content">Tables Without PK</a>
+<li><a href="lib/chained.htm" target="content">Table Chaining</a>
+<li><a href="lib/discons.htm" target="content">Disabled Constraints</a>
+<li><a href="lib/fkcons.htm" target="content">FK Constraints</a>
+<li><a href="lib/fkindex.htm" target="content">FK Index Problems</a>
+<li><a href="lib/inconsistent.htm" target="content">Inconsistent Datatypes</a>
+<li><a href="lib/noextend.htm" target="content">Object Extent Warning</a>
+<li><a href="lib/large_objs.htm" target="content">Large Objects</a>
+<li><a href="lib/segfrag.htm" target="content">Segs &gt; 50% Of MaxExts</a>
+<li><a href="lib/segmax.htm" target="content">Segment MaxExtents</a>
+<li><a href="lib/analyzed.htm" target="content">Analyzed Tables</a>
+<li><a href="lib/analrecent.htm" target="content">Recently Analyzed Tables</a>
+<li><a href="lib/tabcache.htm" target="content">Cached Tables</a>
+<P>
+
+<B>Partitions</B><BR>
+(snap8/9/10part)<BR>
+<li><a href="lib/part_tabs.htm" target="content">Partitioned Tables</a>
+<li><a href="lib/part_inds.htm" target="content">Partitioned Indexes</a>
+<li><a href="lib/part_key.htm" target="content">Partition Key Columns</a>
+<li><a href="lib/part_tabs2.htm" target="content">Table Level Partitioning</a>
+<li><a href="lib/part_inds2.htm" target="content">Index Level Partitioning</a>
+<P>
+
+<B>Objects</B><BR>
+(snap7/8/9/10obj.sql)<BR>
+<li><a href="lib/dbclusters.htm" target="content">Database Clusters</a>
+<li><a href="lib/dbjobs.htm" target="content">Database Jobs</a>
+<li><a href="lib/dblinks.htm" target="content">Database Links</a>
+<li><a href="lib/dbprocs.htm" target="content">Database Procs &amp; Pkgs</a>
+<li><a href="lib/dbseqs.htm" target="content">Database Sequences</a>
+<li><a href="lib/dbsnaps.htm" target="content">Database Snapshots</a>
+<li><a href="lib/dbsyns.htm" target="content">Database Synonyms</a>
+<li><a href="lib/dbtrigs.htm" target="content">Database Triggers</a>
+<li><a href="lib/dbviews.htm" target="content">Database Views</a>
+<P>
+
+<B>Hit &amp; Miss Ratios</B><BR>
+(snap7/8/9/10hmr.sql)<BR>
+<li><a href="lib/buffhit.htm" target="content">Buffer Hit Ratio</a>
+<li><a href="lib/libhit.htm" target="content">Library Cache Hit Ratio</a>
+<li><a href="lib/ddhit.htm" target="content">Data Dict Hit Ratio</a>
+
+<P>
+
+<B>Disk I/O, Events &amp; Waits</B><BR>
+(snap7/8/9/10dew.sql)<BR>
+<li><a href="lib/sysstata.htm" target="content">System Statistics (All)</a>
+<li><a href="lib/sysevents.htm" target="content">System Events (All)</a>
+<li><a href="lib/sgastat.htm" target="content">SGA Statistics</a>
+<li><a href="lib/waitstat.htm" target="content">Wait Statistics</a>
+<li><a href="lib/sorts.htm" target="content">Sort Statistics</a>
+<li><a href="lib/datafileio.htm" target="content">Datafile I/O</a>
+<P>
+
+<B>Full Table Scans</B><BR>
+(snap7/8/9/10fts.sql)<BR>
+<li><a href="lib/sysstatt.htm" target="content">System Statistics (Table)</a>
+<li><a href="lib/pts.htm" target="content">Process Table Scans</a>
+<li><a href="lib/ptsavg.htm" target="content">Process Table Scans (Avg)</a>
+<P>
+
+<B>Data Dictionary</B><BR>
+(snap7/8/9/10dd.sql)<BR>
+<li><a href="lib/dictcache.htm" target="content">Dictionary Cache</a>
+<li><a href="lib/latch.htm" target="content">Latch Gets &amp; Misses</a>
+<P>
+
+<B>Cursor &amp; SQL Processing</B><BR>
+(snap7/8/9/10csp.sql)<BR>
+<li><a href="lib/listsql1.htm" target="content">Disk Intensive SQL</a>
+<li><a href="lib/listsql2.htm" target="content">Buffer Intensive SQL</a>
+<li><a href="lib/listsql3.htm" target="content">Buffer SQL w/ Most Loads</a>
+<li><a href="lib/resource2.htm" target="content">Open Cursors By User</a>
+<li><a href="lib/resource3.htm" target="content">Running Cursors By User</a>
+<li><a href="lib/userhit3.htm" target="content">Low Ratio Open Cursors</a>
+<li><a href="lib/userhit4.htm" target="content">Low Ratio Running Cursors</a>
+<li><a href="lib/userhit2.htm" target="content">Low Ratio Objects Access</a>
+<P>
+
+<B>Locks</B><BR>
+(snap7/8/9/10lock.sql)<BR>
+<li><a href="lib/locks.htm" target="content">Lock Information</a>
+<li><a href="lib/locksql.htm" target="content">SQL Assoc'd With Lock(s)</a>
+<P>
+
+<B>Session Statistics</B><BR>
+(snap7/8/9/10sess.sql)<BR>
+<li><a href="lib/sesstime.htm" target="content">Session Time</a>
+<li><a href="lib/sessio.htm" target="content">Session I/O By User</a>
+<li><a href="lib/sescpu.htm" target="content">CPU Usage By Session</a>
+<li><a href="lib/resource1.htm" target="content">Resource Usage By User</a>
+<li><a href="lib/sesstat.htm" target="content">Session Stats By Session</a>
+<li><a href="lib/curusage.htm" target="content">Cursor Usage By Session</a>
+<P>
+
+<B>Shared Pool</B><BR>
+(snap7/8/9/10sp.sql)<BR>
+<li><a href="lib/shpool1.htm" target="content">Library Cache Statistics</a>
+<li><a href="lib/shpool2.htm" target="content">Shared Pool Memory Usage</a>
+<li><a href="lib/shpool3.htm" target="content">Shared Pool Loads</a>
+<li><a href="lib/shpool4.htm" target="content">Shared Pool Executions</a>
+<li><a href="lib/shpool5.htm" target="content">Shared Pool Details</a>
+<li><a href="lib/reservepool.htm" target="content">Reserve Pool Settings</a>
+<li><a href="lib/pinned.htm" target="content">Pinned Objects</a>
+<P>
+
+<B>Redo Logs</B><BR>
+(snap7/8/9/10redo.sql)<BR>
+<li><a href="lib/redoinfo.htm" target="content">Redo Log Information</a>
+<li><a href="lib/redoswitch.htm" target="content">Redo Log Switches</a>
+<li><a href="lib/redostat.htm" target="content">Redo Buffer Statistics</a>
+<li><a href="lib/redocont.htm" target="content">Redo Log Buffer Contention</a>
+<P>
+
+<B>Two Phase Commits</B><BR>
+(snap7/8/9/10tpc.sql)<BR>
+<li><a href="lib/tpcpending.htm" target="content">Two Phase Pending</a>
+<li><a href="lib/tpcneighbor.htm" target="content">Two Phase Neighbors</a>
+<P>
+
+<B>Miscellaneous</B><BR>
+(snap7/8/9/10misc.sql)<BR>
+<li><a href="lib/dbgrowth.htm" target="content">Database Growth</a>
+<li><a href="lib/cpinterval.htm" target="content">Checkpoint Interval</a>
+<li><a href="lib/avgwrque.htm" target="content">Write Request Queue</a>
+<li><a href="lib/dbwrlazy.htm" target="content">Lazy DBWR Indicators</a>
+<P>
+<HR>
+<P>
+<A HREF="readme.txt" target="_blank">Readme</a><BR>
+<A HREF="changes.txt" target="_blank">Revision History</a><BR>
+<A HREF="http://www.oracle-books.com/orasnap" target="_blank">Homepage</a><BR>
+<A HREF="http://tech.groups.yahoo.com/group/orasnap/files" target="_blank">Updates</a><BR>
+<A HREF="http://tech.groups.yahoo.com/group/orasnap" target="_blank">Yahoo! Group</a>
+<P>
+<HR>
+<P>
+<I>Stewart McGlaughlin<BR>
+Oracle DBA</I>
+</FONT>
+-->
+
+</BODY>
+</HTML>

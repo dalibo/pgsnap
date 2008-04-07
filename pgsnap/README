@@ -1,0 +1,8 @@
+pgsnap is a PostgreSQL report tool. It creates a few HTML files
+that you can read afterwards on any browser.
+
+Example:
+pgsnap.php mydbase
+
+For comprehensive usage information, just run:
+pgsnap.php --help
