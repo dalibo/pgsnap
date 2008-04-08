@@ -43,4 +43,12 @@ if (!$rows) {
 }
 $g_pgstatindex = pg_num_rows($rows) > 0;
 
+$query = "show pool_status";
+
+$rows = @pg_query($connection, $query);
+if ($rows)
+  $g_pgpool = true;
+else
+  $g_pgpool = false;
+
 ?>

@@ -7,6 +7,7 @@
 	* Support for pgstattuple contrib module
 	* Show/hide SQL statements for each report
 	* Bugfix : sequence relkind is 'S', not 's'
+	* Add some contrib modules to "Installed products" report
 
 2008-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 

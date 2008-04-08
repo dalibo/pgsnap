@@ -28,7 +28,6 @@ $buffer .= "<table>
 <tbody>\n";
 
 $query = "SELECT 'PostgreSQL' AS product, version() AS version;";
-$queries = $query;
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -43,14 +42,22 @@ $buffer .= "<tr>
 </tr>";
 }
 
-$query = "SHOW pool_status;";
-$queries .= '<br/>'.$query;
-
-$rows = @pg_query($connection, $query);
-if ($rows) {
+if ($g_pgpool) {
   $buffer .= "<tr>
   <td>pgPool</td>
-  <td>&nbsp;</td>
+  <td><i>Tool</i></td>
+</tr>";
+}
+if ($g_pgbuffercache) {
+  $buffer .= "<tr>
+  <td>pg_buffercache</td>
+  <td><i>Contrib module</i></td>
+</tr>";
+}
+if ($g_pgstattuple) {
+  $buffer .= "<tr>
+  <td>pgstattuple</td>
+  <td><i>Contrib module</i></td>
 </tr>";
 }
 
@@ -59,7 +66,7 @@ $buffer .= "</tbody>
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">
-<p>'.$queries.'</p>
+<p>'.$query.'</p>
 </div>';
 
 $filename = $outputdir.'/ver.html';
