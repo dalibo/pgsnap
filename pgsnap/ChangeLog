@@ -5,7 +5,8 @@
 	* Support for -W commandline option (per Olivier "dup" Delhomme)
 	* Support for .pgpass password file (suggested by Claude Castello)
 	* Support for pgstattuple contrib module
-        * Show/hide SQL statements for each report
+	* Show/hide SQL statements for each report
+	* Bugfix : sequence relkind is 'S', not 's'
 
 2008-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 

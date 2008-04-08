@@ -56,7 +56,7 @@ $query .= "
 $query .= "
   pg_size_pretty(pg_relation_size(pg_class.oid)) AS size
 FROM pg_class, pg_roles, pg_namespace
-WHERE relkind = 's'
+WHERE relkind = 'S'
   AND relowner = pg_roles.oid
   AND relnamespace = pg_namespace.oid
   AND nspname <> 'pg_catalog'
