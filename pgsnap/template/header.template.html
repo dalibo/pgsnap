@@ -2,6 +2,19 @@
 <head>
   <title>PGSnap Results (Datas Frame)</title>
   <style type="text/css" media="all">@import "screenstyle.css";</style>
+  <script type="text/javascript" src="jquery-1.2.3.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {     
+    $("#source").hide();                   
+    $("button#showthesource").toggle(function(){
+      $("button#showthesource").text('Hide SQL commands!');
+      $("#source").show();
+    },function(){
+      $("button#showthesource").text('Show SQL commands!');
+      $("#source").hide();
+    });
+  });
+  </script>
 </head>
 
 <body>

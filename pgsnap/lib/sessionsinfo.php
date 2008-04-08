@@ -20,6 +20,7 @@ $buffer = "<h1>Sessions</h1>";
 
 $query = "SELECT name, setting FROM pg_settings
   WHERE name IN ('max_connections', 'autovacuum_max_workers');";
+$queries = $query;
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -37,6 +38,7 @@ $buffer .= "<tr>
 </tr>";
 
 $query = "SELECT COUNT(*) FROM pg_stat_activity";
+$queries .= "<br/>".$query;
 
 $rows = @pg_query($connection, $query);
 if ($rows) {
@@ -68,6 +70,11 @@ $buffer .= "</td>
 </tr>
 </tbody>
 </table>\n";
+
+$buffer .= '<button id="showthesource">Show SQL commands!</button>
+<div id="source">
+<p>'.$queries.'</p>
+</div>';
 
 $filename = $outputdir.'/sessionsinfo.html';
 include 'lib/fileoperations.php';

@@ -28,6 +28,7 @@ $buffer .= "<table>
 <tbody>\n";
 
 $query = "SELECT 'PostgreSQL' AS product, version() AS version;";
+$queries = $query;
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -43,6 +44,7 @@ $buffer .= "<tr>
 }
 
 $query = "SHOW pool_status;";
+$queries .= '<br/>'.$query;
 
 $rows = @pg_query($connection, $query);
 if ($rows) {
@@ -54,6 +56,11 @@ if ($rows) {
 
 $buffer .= "</tbody>
 </table>";
+
+$buffer .= '<button id="showthesource">Show SQL commands!</button>
+<div id="source">
+<p>'.$queries.'</p>
+</div>';
 
 $filename = $outputdir.'/ver.html';
 include 'lib/fileoperations.php';

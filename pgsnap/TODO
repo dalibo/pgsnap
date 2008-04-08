@@ -14,7 +14,7 @@ TODO
   * Buffer Hit Ratio (Consistent Gets  DB Blk Gets  Physical Reads  Hit Ratio)
 
  * HTML interface
-  * jQuery support : sort in tables, filtering, showing/hiding SQL source
+  * jQuery support : sort in tables, filtering
   * graph on database size and usage
   * graph on tablespace size
   * graph on table and index size and usage

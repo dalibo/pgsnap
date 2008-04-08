@@ -23,6 +23,7 @@ $query = "SELECT oid, relname
 FROM pg_class
 WHERE relkind IN ('r', 't')
 ORDER BY relname";
+$queries = $query;
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -86,6 +87,13 @@ WHERE table_len>0";
 }
 $buffer .= "</tbody>
 </table>";
+
+$queries .= "<br/>".$query;
+
+$buffer .= '<button id="showthesource">Show SQL commands!</button>
+<div id="source">
+<p>'.$query.'</p>
+</div>';
 
 $filename = $outputdir.'/fragmentedtables.html';
 include 'lib/fileoperations.php';

@@ -56,6 +56,11 @@ $buffer .= "<tr>
 $buffer .= "</tbody>
 </table>";
 
+$buffer .= '<button id="showthesource">Show SQL commands!</button>
+<div id="source">
+<p>'.$query.'</p>
+</div>';
+
 $filename = $outputdir.'/preparedstatements.html';
 include 'lib/fileoperations.php';
 

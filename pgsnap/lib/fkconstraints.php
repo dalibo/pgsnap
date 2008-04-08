@@ -68,6 +68,11 @@ while ($row = pg_fetch_array($rows)) {
 $buffer .= "</tbody>
 </table>";
 
+$buffer .= '<button id="showthesource">Show SQL commands!</button>
+<div id="source">
+<p>'.$query.'</p>
+</div>';
+
 $filename = $outputdir.'/fkconstraints.html';
 include 'lib/fileoperations.php';
 

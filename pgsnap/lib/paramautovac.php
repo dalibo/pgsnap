@@ -102,6 +102,11 @@ $buffer .= "
 </table>";
 }
 
+$buffer .= '<button id="showthesource">Show SQL commands!</button>
+<div id="source">
+<p>'.$query.'</p>
+</div>';
+
 $filename = $outputdir.'/paramautovac.html';
 include 'lib/fileoperations.php';
 

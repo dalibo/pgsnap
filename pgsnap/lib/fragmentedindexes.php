@@ -23,6 +23,7 @@ $query = "SELECT nspname, relname
 FROM pg_class, pg_namespace
 WHERE relkind = 'i' and  relnamespace=pg_namespace.oid
 ORDER BY relname";
+$queries = $query;
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -88,6 +89,12 @@ WHERE index_size>0";
 }
 $buffer .= "</tbody>
 </table>";
+$queries .= "<br/>".$query;
+
+$buffer .= '<button id="showthesource">Show SQL commands!</button>
+<div id="source">
+<p>'.$queries.'</p>
+</div>';
 
 $filename = $outputdir.'/fragmentedindexes.html';
 include 'lib/fileoperations.php';
