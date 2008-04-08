@@ -38,6 +38,8 @@ if (strlen("$PGDATABASE") == 0) {
   $PGDATABASE = $PGUSER;
 }
 
+$PGPASSWORD = getenv('PGPASSWORD');
+
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
   switch($_SERVER["argv"][$i]) {
     case "-v":
@@ -61,6 +63,9 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
     case "--database":
       $PGDATABASE = $_SERVER['argv'][++$i];
       break;
+    case "-W":
+      $g_passwordrequired = true;
+      break;
     case "-?":
     case "-h":
     case "--help":
@@ -81,7 +86,7 @@ Connection options:
                   (default: "<?= $PGHOST ?>")
   -p PORT         database server port (default: "<?= $PGPORT ?>")
   -U NAME         database user name (default: "<?= $PGUSER ?>")
-
+  -W PASSWORD     prompt for password
 
 <?php
       exit;

@@ -1,6 +1,9 @@
 2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
 
 	* Bugfix : last_vacuum/last_analyze columns are first available on 8.2
+	(report from Olivier "dup" Delhomme)
+	* Support for -W commandline option (per Olivier "dup" Delhomme)
+	* Support for .pgpass password file (suggested by Claude Castello)
 
 2008-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 

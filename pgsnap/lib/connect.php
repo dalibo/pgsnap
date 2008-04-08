@@ -16,12 +16,49 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+// password checks
+if ($g_passwordrequired and strlen($PGPASSWORD) == 0) {
+  // check pgpass first
+  $pgpassfilename = getenv('HOME').'/.pgpass';
+  if (file_exists($pgpassfilename)) {
+    $permissions = substr(decoct(fileperms($pgpassfilename)), 3);
+    if (!strcmp($permissions, '600')) {
+      $pgpassfile = fopen($pgpassfilename, 'r');
+      $found = false;
+      while (!$found and $line = fgets($pgpassfile)) {
+        list($host, $port, $database, $user, $password) = split (":", trim($line), 5);
+        if ((!strcmp($PGHOST, $host) or !strcmp('*', $host)) and
+            (!strcmp($PGPORT, $port) or !strcmp('*', $port)) and
+            (!strcmp($PGDATABASE, $database) or !strcmp('*', $database)) and
+            (!strcmp($PGUSER, $user) or !strcmp('*', $user))) {
+          $found = true;
+          $PGPASSWORD = $password;
+        }
+      }
+    }
+  }
+  // if still no password
+  if (strlen($PGPASSWORD) == 0) {
+    // Be careful, password will appear in clear text on the terminal...
+    // At least, it won't show up in ps output :-/
+    echo "Password: ";
+    $stdin = fopen('php://stdin', 'r');
+    $PGPASSWORD = fgets(STDIN);
+  }
+}
+
 // Connects to database via the usual environnement variables
 // actually, connects to a specific one
 
-$connection = pg_connect('host='.$PGHOST.' '.
-                         'port='.$PGPORT.' '.' '.
-                         'dbname='.$PGDATABASE.' '.
-                         'user='.$PGUSER);
+$DSN = 'host='.$PGHOST.' '.
+       'port='.$PGPORT.' '.' '.
+       'dbname='.$PGDATABASE.' '.
+       'user='.$PGUSER;
+
+if (strlen("$PGPASSWORD") > 0) {
+  $DSN .= ' password='.$PGPASSWORD;
+}
+
+$connection = pg_connect($DSN);
 
 ?>
