@@ -105,9 +105,13 @@ if ($g_version == '83') {
 }
 $buffer .= '
 <li><a href="stat_databases.html" target="content">Databases</a></li>
-<li><a href="stat_tables.html" target="content">Tables</a></li>
+<li><a href="stat_tables.html" target="content">Tables</a></li>';
+if ($g_version >= '82') {
+  $buffer .= '
 <li><a href="lastvacuumtables.html" target="content">Last vacuumed Tables</a></li>
-<li><a href="lastanalyzetables.html" target="content">Last analyzed Tables</a></li>
+<li><a href="lastanalyzetables.html" target="content">Last analyzed Tables</a></li>';
+}
+$buffer .= '
 <li><a href="stat_indexes.html" target="content">Indexes</a></li>
 </ul>
 </div>

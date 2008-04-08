@@ -1,4 +1,8 @@
+2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
+
+	* Bugfix : last_vacuum/last_analyze columns are first available on 8.2
+
 2008-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 
 	* First CVS import
-	* Check pgstattuple availability
+	* Check pg_buffercache availability
