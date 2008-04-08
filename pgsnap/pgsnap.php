@@ -85,12 +85,18 @@ include 'lib/tables.php';
 if ($g_pgbuffercache) {
   include 'lib/tablesincache.php';
 }
+if ($g_pgstattuple) {
+  include 'lib/fragmentedtables.php';
+}
 include 'lib/tableswithoutpkey.php';
 include 'lib/tableswith5+indexes.php';
 include 'lib/fkconstraints.php';
 include 'lib/views.php';
 include 'lib/sequences.php';
 include 'lib/indexes.php';
+if ($g_pgstatindex) {
+  include 'lib/fragmentedindexes.php';
+}
 include 'lib/languages.php';
 
 echo "Getting Current Activities Informations...\n";

@@ -3,7 +3,6 @@ TODO
 
  * PostgreSQL support
   * PostgreSQL 7.4 compatibility
-  * pgstattuple support
   * pg_freespacemap support
 
  * specific orasnap

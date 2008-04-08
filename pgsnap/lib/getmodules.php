@@ -25,4 +25,22 @@ if (!$rows) {
 }
 $g_pgbuffercache = pg_num_rows($rows) > 0;
 
+$query = "SELECT 1 FROM pg_proc WHERE proname LIKE '%stattuple%'";
+
+$rows = pg_query($connection, $query);
+if (!$rows) {
+  echo "An error occured.\n";
+  exit;
+}
+$g_pgstattuple = pg_num_rows($rows) > 0;
+
+$query = "SELECT 1 FROM pg_proc WHERE proname LIKE '%statindex%'";
+
+$rows = pg_query($connection, $query);
+if (!$rows) {
+  echo "An error occured.\n";
+  exit;
+}
+$g_pgstatindex = pg_num_rows($rows) > 0;
+
 ?>

@@ -68,13 +68,25 @@ if ($g_pgbuffercache) {
 <li><a href="tablesincache.html" target="content">Tables in cache</a></li>';
 }
 
+if ($g_pgstattuple) {
+  $buffer .= '
+<li><a href="fragmentedtables.html" target="content">Fragmented Tables</a></li>';
+}
+
 $buffer.= '
 <li><a href="tableswithoutpkey.html" target="content">Tables Without PKEY</a></li>
 <li><a href="tableswith5+indexes.html" target="content">Tables With 5+ indexes</a></li>
 <li><a href="fkconstraints.html" target="content">Tables With FKEY constraints</a></li>
 <li><a href="views.html" target="content">Views</a></li>
 <li><a href="sequences.html" target="content">Sequences</a></li>
-<li><a href="indexes.html" target="content">Indexes</a></li>
+<li><a href="indexes.html" target="content">Indexes</a></li>';
+
+if ($g_pgstatindex) {
+  $buffer .= '
+<li><a href="fragmentedindexes.html" target="content">Fragmented Indexes</a></li>';
+}
+
+$buffer.= '
 <li>Functions</li>
 <li><a href="languages.html" target="content">Languages</a></li>
 </ul>
