@@ -86,7 +86,7 @@ Connection options:
                   (default: "<?= $PGHOST ?>")
   -p PORT         database server port (default: "<?= $PGPORT ?>")
   -U NAME         database user name (default: "<?= $PGUSER ?>")
-  -W PASSWORD     prompt for password
+  -W              prompt for password
 
 <?php
       exit;

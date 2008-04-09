@@ -1,5 +1,6 @@
 2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
 	* Get last log file
+	* Bugfix : command usage was wrong
 
 2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
 
