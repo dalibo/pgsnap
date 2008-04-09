@@ -23,7 +23,7 @@ $query = "show pool_status";
 
 $rows = @pg_query($connection, $query);
 if (!$rows) {
-  echo "  pgPool not installed.\n";
+  echo "An error occured.\n";
   exit;
 }
 

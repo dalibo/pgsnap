@@ -1,6 +1,8 @@
 2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
 	* Get last log file
-	* Bugfix : command usage was wrong
+	* Bugfix : command usage was wrong (report from Olivier "dup" Delhomme)
+	* Bugfix : reports for pgPool and other tools are not always available
+	(report from Olivier "dup" Delhomme)
 
 2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
 

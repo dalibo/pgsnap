@@ -138,8 +138,14 @@ $buffer .= '
 
 <div>
 <h2>Other tools</h2>
-<ul>
-<li><a href="pgpool.html" target="content">pgPool</a></li>
+<ul>';
+
+if ($g_pgpool) {
+  $buffer .= '
+<li><a href="pgpool.html" target="content">pgPool</a></li>';
+}
+
+$buffer .= '
 <li>pgPool-II</li>
 <li>pgBouncer</li>
 <li>Slony</li>

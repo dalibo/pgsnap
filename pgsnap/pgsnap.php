@@ -80,6 +80,8 @@ echo "Getting Global Informations...\n";
 include 'lib/bases.php';
 if ($g_pgbuffercache) {
   include 'lib/databasesincache.php';
+} else {
+  echo "  pg_buffercache unavailable!\n";
 }
 include 'lib/roles.php';
 include 'lib/user1.php';
@@ -92,9 +94,13 @@ include 'lib/schemas.php';
 include 'lib/tables.php';
 if ($g_pgbuffercache) {
   include 'lib/tablesincache.php';
+} else {
+  echo "  pg_buffercache unavailable!\n";
 }
 if ($g_pgstattuple) {
   include 'lib/fragmentedtables.php';
+} else {
+  echo "  pgstattuple unavailable!\n";
 }
 include 'lib/tableswithoutpkey.php';
 include 'lib/tableswith5+indexes.php';
@@ -104,6 +110,8 @@ include 'lib/sequences.php';
 include 'lib/indexes.php';
 if ($g_pgstatindex) {
   include 'lib/fragmentedindexes.php';
+} else {
+  echo "  pgstattuple on indexes unavailable!\n";
 }
 include 'lib/languages.php';
 
@@ -129,7 +137,11 @@ if ($g_version >= '82') {
 include 'lib/stat_indexes.php';
 
 echo "Getting Tools Informations...\n";
-include 'lib/pgpool.php';
+if ($g_pgpool) {
+  include 'lib/pgpool.php';
+} else {
+  echo "  pgPool unavailable!\n";
+}
 
 pg_close($connection);
 
