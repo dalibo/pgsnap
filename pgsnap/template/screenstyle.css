@@ -1,6 +1,6 @@
 h1          { font-size: 14px; }
 h2          { font-size: 12px; }
-p, li, td, button   { font-size: 10px; }
+p, li, td, button, pre   { font-size: 10px; }
 a:link      { text-decoration:none; }
 a:visited   { text-decoration:none; }
 a:active    { text-decoration:none; }

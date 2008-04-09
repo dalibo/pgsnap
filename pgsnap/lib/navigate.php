@@ -35,6 +35,14 @@ if ($g_version > '74') {
   $buffer .= '
 <li><a href="paramautovac.html" target="content">Autovacuum configuration</a>';
 }
+if ($g_version > '74'
+    and (!strcmp($g_settings['log_destination'], 'stderr')
+         or !strcmp($g_settings['log_destination'], 'csvlog'))
+    and (!strcmp($g_settings['redirect_stderr'], 'on')
+         or !strcmp($g_settings['logging_collector'], 'on')) ) {
+  $buffer .= '
+<li><a href="lastlogfile.html" target="content">Last log file</a>';
+}
 $buffer .= '
 </div>
 

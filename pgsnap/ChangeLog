@@ -1,4 +1,7 @@
 2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
+	* Get last log file
+
+2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
 
 	* Bugfix : last_vacuum/last_analyze columns are first available on 8.2
 	(report from Olivier "dup" Delhomme)

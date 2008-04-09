@@ -68,6 +68,13 @@ include 'lib/param.php';
 if ($g_version > '74') {
   include 'lib/paramautovac.php';
 }
+if ($g_version > '74'
+    and (!strcmp($g_settings['log_destination'], 'stderr')
+         or !strcmp($g_settings['log_destination'], 'csvlog'))
+    and (!strcmp($g_settings['redirect_stderr'], 'on')
+         or !strcmp($g_settings['logging_collector'], 'on')) ) {
+  include 'lib/lastlogfile.php';
+}
 
 echo "Getting Global Informations...\n";
 include 'lib/bases.php';

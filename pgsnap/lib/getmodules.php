@@ -51,4 +51,15 @@ if ($rows)
 else
   $g_pgpool = false;
 
+$query = "SELECT name, setting FROM pg_settings";
+
+$rows = pg_query($connection, $query);
+if (!$rows) {
+  echo "An error occured.\n";
+  exit;
+}
+while ($row = pg_fetch_array($rows)) {
+  $g_settings[$row['name']] = $row['setting'];
+}
+
 ?>
