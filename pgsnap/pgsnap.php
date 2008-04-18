@@ -128,6 +128,7 @@ echo "Getting Statistical Informations...\n";
 if ($g_version == '83') {
   include 'lib/bgwriter.php';
 }
+include 'lib/cachehitratio.php';
 include 'lib/stat_databases.php';
 include 'lib/stat_tables.php';
 if ($g_version >= '82') {

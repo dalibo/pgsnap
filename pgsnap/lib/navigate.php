@@ -124,6 +124,7 @@ if ($g_version == '83') {
 <li><a href="bgwriter.html" target="content">bgwriter</a></li>';
 }
 $buffer .= '
+<li><a href="cachehitratio.html" target="content">Cache hit ratio</a></li>
 <li><a href="stat_databases.html" target="content">Databases</a></li>
 <li><a href="stat_tables.html" target="content">Tables</a></li>';
 if ($g_version >= '82') {

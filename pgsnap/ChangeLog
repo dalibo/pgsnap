@@ -1,4 +1,7 @@
-2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
+2008-04-18  Guillaume Lelarge <guillaume@lelarge.info>
+	* Get cache hit ratio
+
+2008-04-09  Guillaume Lelarge <guillaume@lelarge.info>
 	* Get last log file
 	* Bugfix : command usage was wrong (report from Olivier "dup" Delhomme)
 	* Bugfix : reports for pgPool and other tools are not always available
