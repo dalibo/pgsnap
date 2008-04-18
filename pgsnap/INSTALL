@@ -1,1 +1,4 @@
 To install pgsnap, you can untar the pgsnap tarball anywhere you want.
+
+You'll need the CLI release of PHP. For example, on Debian/Ubuntu, you should
+have : php5-pgsql and php5-cli.
