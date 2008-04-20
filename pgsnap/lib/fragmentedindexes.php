@@ -18,10 +18,10 @@
 
 $buffer = "<h1>Fragmented Indexes</h1>";
 
-
+// relam 403 is btree index
 $query = "SELECT nspname, relname
 FROM pg_class, pg_namespace
-WHERE relkind = 'i' and  relnamespace=pg_namespace.oid
+WHERE relkind = 'i' and  relnamespace=pg_namespace.oid and relam=403
 ORDER BY relname";
 $queries = $query;
 
