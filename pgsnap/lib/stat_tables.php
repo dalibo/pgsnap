@@ -18,6 +18,8 @@
 
 $buffer = "<h1>Statistical tables list</h1>";
 
+$buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
+$buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
 
 $query = "SELECT
   schemaname,
@@ -83,7 +85,7 @@ $buffer .= "
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
+$buffer .= tr($row['schemaname'])."
   <td>".$row['schemaname']."</td>
   <td>".$row['relname']."</td>
   <td>".$row['seq_scan']."</td>

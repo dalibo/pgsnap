@@ -18,14 +18,17 @@
 
 $buffer = "<h1>Tables with 5+ indexes list</h1>";
 
+$buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
+$buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
 
 $query = "SELECT
-  schemaname || '.' || tablename AS tbl,
+  schemaname,
+  tablename,
   count(*) as total
 FROM pg_indexes
-GROUP BY 1
+GROUP BY 1, 2
 HAVING count(*)>=5
-ORDER BY 1";
+ORDER BY 1, 2";
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -43,8 +46,8 @@ $buffer .= "<table>
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td>".$row['tbl']."</td>
+$buffer .= tr($row['schemaname'])."
+  <td>".$row['schemaname'].".".$row['tablename']."</td>
   <td>".$row['total']."</td>
 </tr>";
 }

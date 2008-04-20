@@ -18,6 +18,9 @@
 
 $buffer = "<h1>Fragmented Indexes</h1>";
 
+$buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
+$buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
+
 // relam 403 is btree index
 $query = "SELECT nspname, relname
 FROM pg_class, pg_namespace
@@ -72,7 +75,7 @@ WHERE index_size>0";
   if (pg_num_rows($rows_statindex) > 0) {
     $row_statindex = pg_fetch_array($rows_statindex);
 
-    $buffer .= tr()."
+    $buffer .= tr($row['nspname'])."
   <td>".$row['relname']."</td>
   <td>".$row_statindex['version']."</td>
   <td>".$row_statindex['tree_level']."</td>

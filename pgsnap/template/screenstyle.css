@@ -93,6 +93,16 @@ tbody tr.odd th, tbody tr.odd td {
   background: #f9f9fb;
 }
 
+tbody tr.usr_odd th, tbody tr.usr_odd td {
+  border-color: #deded8; 
+  background: #f9f9fb;
+}
+
+tbody tr.sys_odd th, tbody tr.sys_odd td {
+  border-color: #deded8; 
+  background: #f9f9fb;
+}
+
 tbody tr:hover td, tbody tr:hover th {
   background: #fbfbf8;
 }

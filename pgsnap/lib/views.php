@@ -18,6 +18,8 @@
 
 $buffer = "<h1>Views list</h1>";
 
+$buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
+$buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
 
 $query = "SELECT
   relname,
@@ -59,8 +61,6 @@ FROM pg_class, pg_roles, pg_namespace
 WHERE relkind = 'v'
   AND relowner = pg_roles.oid
   AND relnamespace = pg_namespace.oid
-  AND nspname <> 'pg_catalog'
-  AND nspname !~ '^pg_toast'
   AND pg_table_is_visible(pg_class.oid)
 ORDER BY relname";
 
@@ -113,7 +113,7 @@ $buffer .= "
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
+$buffer .= tr($row['schema'])."
   <td>".$row['relname']."</td>
   <td>".$row['schema']."</td>
   <td>".$row['owner']."</td>

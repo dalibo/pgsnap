@@ -18,10 +18,13 @@
 
 $buffer = "<h1>Fragmented Tables</h1>";
 
+$buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
+$buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
 
-$query = "SELECT oid, relname
-FROM pg_class
+$query = "SELECT pg_class.oid, nspname, relname
+FROM pg_class, pg_namespace
 WHERE relkind IN ('r', 't')
+  AND relnamespace = pg_namespace.oid
 ORDER BY relname";
 $queries = $query;
 
@@ -71,7 +74,7 @@ WHERE table_len>0";
   if (pg_num_rows($rows_stattuple) > 0) {
     $row_stattuple = pg_fetch_array($rows_stattuple);
 
-    $buffer .= tr()."
+    $buffer .= tr($row['nspname'])."
   <td>".$row['relname']."</td>
   <td>".$row_stattuple['table_len']."</td>
   <td>".$row_stattuple['tuple_count']."</td>

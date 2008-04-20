@@ -18,15 +18,19 @@
 
 $buffer = "<h1>FK constraints list</h1>";
 
+$buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
+$buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
 
 $query = "SELECT
   rolname AS tableowner,
+  nspname,
   relname AS tablename,
   conname,
   pg_get_constraintdef(pg_constraint.oid, true) as condef
-FROM pg_constraint, pg_class, pg_roles
+FROM pg_constraint, pg_class, pg_roles, pg_namespace
 WHERE conrelid=pg_class.oid
   AND relowner=pg_roles.oid
+  AND relnamespace=pg_namespace.oid
   AND contype = 'f'
 ORDER BY 1, 2, 3";
 
@@ -56,9 +60,9 @@ while ($row = pg_fetch_array($rows)) {
   $replacement = '${1}|${2}|${3}';
   $tmp = preg_replace($pattern, $replacement, $row['condef']);
   $def = split("\|", $tmp);
-  $buffer .= tr()."
+  $buffer .= tr($row['nspname'])."
   <td>".$row['tableowner']."</td>
-  <td>".$row['tablename']."</td>
+  <td>".$row['nspname'].".".$row['tablename']."</td>
   <td>".$row['conname']."</td>
   <td>".$def[0]."</td>
   <td>".$def[1]."</td>
