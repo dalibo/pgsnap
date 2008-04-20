@@ -56,6 +56,8 @@ copy('images/tip.png', $outputdir.'/tip.png');
 copy('images/warning.png', $outputdir.'/warning.png');
 $image['f'] = '<img src="check-off.png" title="Off" alt="Off"/>';
 $image['t'] = '<img src="check-on.png" title="On" alt="On"/>';
+$image['off'] = '<img src="check-off.png" title="Off" alt="Off"/>';
+$image['on'] = '<img src="check-on.png" title="On" alt="On"/>';
 
 echo "Getting Misc informations...\n";
 include 'lib/getmodules.php';

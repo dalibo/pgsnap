@@ -64,6 +64,50 @@ if ($g_pgstattuple) {
 $buffer .= "</tbody>
 </table>";
 
+$buffer .= "<h1>Primary options</h1>";
+
+$buffer .= "<table>
+<thead>
+<tr>
+  <td>Option</td>
+  <td>Value</td>
+</tr>
+</thead>
+<tbody>\n";
+
+$buffer .= tr()."
+  <td>Autovacuum</td>
+  <td>".$image[$g_settings['autovacuum']]."</td>
+</tr>";
+$buffer .= tr()."
+  <td>Stats collector</td>
+  <td>".$image[$g_settings['autovacuum']]."</td>
+</tr>";
+$buffer .= tr()."
+  <td>Logging collector</td>
+  <td>".$image[$g_settings['logging_collector']]."</td>
+</tr>";
+if (array_key_exists('archive_mode', $g_settings)) {
+  $buffer .= tr()."
+  <td>PITR</td>
+  <td>".$image[$g_settings['archive_mode']]."</td>
+</tr>";
+} else {
+  $buffer .= tr()."
+  <td>PITR</td>
+  <td>".$image[strlen($g_settings['archive_command'])>0 ? 't':'f']."</td>
+</tr>";
+}
+$buffer .= tr()."
+  <td>Server encoding</td>
+  <td>".$g_settings['server_encoding']."</td>
+</tr>";
+$buffer .= tr()."
+  <td>Timezone</td>
+  <td>".$g_settings['TimeZone']."</td>
+</tr>";
+$buffer .= "</table>";
+
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">
 <p>'.$query.'</p>

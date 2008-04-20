@@ -1,5 +1,7 @@
 2008-04-20  Guillaume Lelarge <guillaume@lelarge.info>
 	* New stylesheet, from Damien Clochard
+	* Add database primary options (autovac, stat collector, log collector,
+          pitr) on ver.php.
 
 2008-04-18  Guillaume Lelarge <guillaume@lelarge.info>
 	* Get cache hit ratio
