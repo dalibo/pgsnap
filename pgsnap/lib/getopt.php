@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$VERSION = '0.1.0';
+$VERSION = '0.2.0';
 
 $PGHOST = getenv('PGHOST');
 if (strlen("$PGHOST") == 0) {

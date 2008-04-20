@@ -4,6 +4,7 @@
           pitr) on ver.php.
 	* Bugfix : for 'relation "index name" is not a btree index' message
 	* Show/hide user/system objects
+	* Release 0.2.
 
 2008-04-18  Guillaume Lelarge <guillaume@lelarge.info>
 	* Get cache hit ratio
