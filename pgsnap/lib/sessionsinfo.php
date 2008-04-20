@@ -59,7 +59,7 @@ $buffer .= "<table>
   <td>";
 
 if ($count > $max_connections*90/100) {
-  $buffer .= '<span id="danger">'.$count.'</div>';
+  $buffer .= '<div  class="danger">'.$count.'</div>';
 } else {
   $buffer .= $count;
 }

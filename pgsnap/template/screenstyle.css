@@ -1,12 +1,198 @@
-h1          { font-size: 14px; }
-h2          { font-size: 12px; }
-p, li, td, button, pre   { font-size: 10px; }
-a:link      { text-decoration:none; }
-a:visited   { text-decoration:none; }
-a:active    { text-decoration:none; }
-a:hover     { text-decoration:underline; color: #FF3300; }
-table       { width: 100%; }
-thead tr    { background-color: black; color: white; font-weight: bold; }
-td          { padding-left: 5px; padding-right: 5px; }
-div#warning { padding: 5px; border: 1px black solid; background-color: d2bf00; font-size: 10px; font-weight: bold; }
-span#danger { color: d20000; font-weight: bold; }
+
+/*
+ *   basic tags
+ */
+
+body{
+  font-size: 0.9em;
+}
+
+
+p, td {
+  font-size: 0.9em;
+}
+
+li {
+  margin-left:-15px;
+  font-size: 0.8em;
+  list-style-type: square;
+  color: #cccccc;
+}
+
+
+/* 
+ *  titles
+ */ 
+
+h1 {
+  color: #bbbbbb;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+h2 {
+  color: #aaaaaa;
+  font-size: 1.0em;
+}
+
+/*
+ *  Links
+ */
+a {
+  color: #09f; 
+  text-decoration: none; 
+}
+
+a:visited {
+  color: #c3c; 
+  font-weight: normal;
+}
+
+a:hover {
+  border-bottom : 1px solid;
+}
+
+ 
+ 
+
+/* 
+ *  tables (thx Jens Wedin)
+ */  
+
+table {
+  font: 88%/1.7em "Trebuchet MS", "Bitstream Vera Sans", Verdana, Helvetica, sans-serif;
+  border-collapse: separate; 
+  border-spacing: 0; 
+  margin: 0 0 1em 0; 
+  color:#000;
+}
+
+tfoot th, tfoot td {
+  text-align: left; 
+  border-top: 0.4em solid #09f; 
+  font-weight: bold
+}
+
+
+tbody th {
+  font-weight: normal; 
+  white-space: nowrap;
+}
+
+tbody th a:link, tbody th a:visited {
+  font-weight: bold;
+}
+
+tbody th + td {
+  white-space: nowrap;
+}
+
+
+tbody tr.odd th, tbody tr.odd td {
+  border-color: #deded8; 
+  background: #f9f9fb;
+}
+
+tbody tr:hover td, tbody tr:hover th {
+  background: #fbfbf8;
+}
+
+caption {
+  font-weight: bold; 
+  font-size: 1.7em; 
+  text-align: left; 
+  margin: 0; 
+  padding: 0.5em 0.25em;
+}
+ 
+ th, td {
+  padding-top: 0.25em;
+  padding-right: 0.25em;
+  padding-bottom: 0.25em;
+  padding-left: 0.25em;
+}
+
+thead th, thead td {
+  font-weight: bold;
+  line-height: normal;
+  text-align: left;
+  border-bottom-width: 0.4em;
+  border-bottom-style: solid;
+  border-bottom-color: #0099ff;
+}
+
+tbody th, td {
+  text-align: left;
+  vertical-align: top;
+}
+
+tbody td, tbody th {
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: #ffffff;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+  border-left-color: #ffffff;
+  border-top-width: 1px;
+  border-right-width: 0pt;
+  border-bottom-width: 1px;
+  border-left-width: 0pt;
+}
+
+tbody tr:hover td, tbody tr:hover th {
+  background-color: #fbfbf8;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-x-position: 0%;
+  background-y-position: 0%;
+}
+
+
+/*
+ *  notes (thx Olivier Costes)
+ */
+ 
+ .danger, .important, .warning, .tip {
+  margin-top : 0px;
+  margin-bottom : 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70% !important;
+  min-height: 20px;
+  text-align: justify;
+  vertical-align: middle;
+  border-collapse: collapse;
+  padding: 15px 20px 15px 80px;
+  background-position: 20px 50%;
+  background-repeat: no-repeat;
+  -moz-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  border-radius: 20px;
+}
+ 
+.important {
+  border: 1px solid #99D;
+  background-color: #eef;
+  background-image: url(important.png);
+}
+ 
+.warning {
+  border: 1px solid #ff0;
+  background-color: #ffc;
+  background-image: url(warning.png);
+}
+ 
+.danger {
+  border: 1px solid #d99;
+  background-color: #fdd;
+  background-image: url(danger.png);
+}
+ 
+.tip {
+  border: 1px solid #9d9;
+  background-color: #dfd;
+  background-image: url(tip.png);
+}

@@ -38,7 +38,7 @@ $buffer .= "<table>
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= "<tr>
+$buffer .= tr()."
   <td>".$row['item']."</td>
   <td>".$row['value']."</td>
   <td>".$row['description']."</td>

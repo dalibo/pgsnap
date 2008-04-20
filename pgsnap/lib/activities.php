@@ -69,7 +69,7 @@ $buffer .= "
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= "<tr>
+$buffer .= tr()."
   <td>".$row['datname']."</td>
   <td>".$row['procpid']."</td>
   <td>".$row['client_addr']."</td>

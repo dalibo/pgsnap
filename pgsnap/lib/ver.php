@@ -36,26 +36,26 @@ if (!$rows) {
 }
 
 if ($row = pg_fetch_array($rows)) {
-$buffer .= "<tr>
+$buffer .= tr()."
   <td>".$row['product']."</td>
   <td>".$row['version']."</td>
 </tr>";
 }
 
 if ($g_pgpool) {
-  $buffer .= "<tr>
+  $buffer .= tr()."
   <td>pgPool</td>
   <td><i>Tool</i></td>
 </tr>";
 }
 if ($g_pgbuffercache) {
-  $buffer .= "<tr>
+  $buffer .= tr()."
   <td>pg_buffercache</td>
   <td><i>Contrib module</i></td>
 </tr>";
 }
 if ($g_pgstattuple) {
-  $buffer .= "<tr>
+  $buffer .= tr()."
   <td>pgstattuple</td>
   <td><i>Contrib module</i></td>
 </tr>";

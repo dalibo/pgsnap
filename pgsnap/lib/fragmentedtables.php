@@ -71,7 +71,7 @@ WHERE table_len>0";
   if (pg_num_rows($rows_stattuple) > 0) {
     $row_stattuple = pg_fetch_array($rows_stattuple);
 
-    $buffer .= "<tr>
+    $buffer .= tr()."
   <td>".$row['relname']."</td>
   <td>".$row_stattuple['table_len']."</td>
   <td>".$row_stattuple['tuple_count']."</td>

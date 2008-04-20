@@ -18,6 +18,7 @@
  */
 
 include 'lib/getopt.php';
+include 'lib/ui.php';
 
 // if the directory doesn't exist, we create it
 if (file_exists($outputdir)) {
@@ -49,6 +50,10 @@ copy('external/jquery-1.2.3.js', $outputdir.'/jquery-1.2.3.js');
 copy('template/screenstyle.css', $outputdir.'/screenstyle.css');
 copy('images/check-off.png', $outputdir.'/check-off.png');
 copy('images/check-on.png', $outputdir.'/check-on.png');
+copy('images/danger.png', $outputdir.'/danger.png');
+copy('images/important.png', $outputdir.'/important.png');
+copy('images/tip.png', $outputdir.'/tip.png');
+copy('images/warning.png', $outputdir.'/warning.png');
 $image['f'] = '<img src="check-off.png" title="Off" alt="Off"/>';
 $image['t'] = '<img src="check-on.png" title="On" alt="On"/>';
 

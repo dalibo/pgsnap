@@ -56,7 +56,7 @@ while ($row = pg_fetch_array($rows)) {
   $replacement = '${1}|${2}|${3}';
   $tmp = preg_replace($pattern, $replacement, $row['condef']);
   $def = split("\|", $tmp);
-  $buffer .= "<tr>
+  $buffer .= tr()."
   <td>".$row['tableowner']."</td>
   <td>".$row['tablename']."</td>
   <td>".$row['conname']."</td>

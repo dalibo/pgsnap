@@ -32,7 +32,7 @@ if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
 
   for ($index = 0; $index < count($lines); $index++) {
     $line = split(':', $lines[$index], 2);
-    $buffer .= "<tr>
+    $buffer .= tr()."
   <td>".trim($line[0])."</td>
   <td>".trim($line[1])."</td>
 </tr>";
@@ -40,7 +40,7 @@ if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
   $buffer .= "</tbody>
 </table>";
 } else {
-  $buffer .= '<div id="warning">Remote execution, so pg_controldata results unavailable!</div>';
+  $buffer .= '<div class="warning">Remote execution, so pg_controldata results unavailable!</div>';
 }
 
 $filename = $outputdir.'/pgcontroldata.html';

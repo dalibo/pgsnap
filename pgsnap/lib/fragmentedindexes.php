@@ -72,7 +72,7 @@ WHERE index_size>0";
   if (pg_num_rows($rows_statindex) > 0) {
     $row_statindex = pg_fetch_array($rows_statindex);
 
-    $buffer .= "<tr>
+    $buffer .= tr()."
   <td>".$row['relname']."</td>
   <td>".$row_statindex['version']."</td>
   <td>".$row_statindex['tree_level']."</td>

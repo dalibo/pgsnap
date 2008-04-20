@@ -62,7 +62,7 @@ $buffer .= "<table>
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= "<tr>
+$buffer .= tr()."
   <td>".$row['datname']."</td>
   <td>".$row['dba']."</td>
   <td>".$row['encoding']."</td>

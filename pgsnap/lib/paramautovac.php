@@ -56,7 +56,7 @@ if (!$rows) {
 }
 
 if (pg_num_rows($rows) == 0) {
-  $buffer .= '<div id="warning">No specific configuration.</div>';
+  $buffer .= '<div class="warning">No specific configuration.</div>';
 } else {
   $buffer .= "<table>
 <thead>
@@ -81,7 +81,7 @@ $buffer .= "
 <tbody>\n";
 
   while ($row = pg_fetch_array($rows)) {
-    $buffer .= "<tr>
+    $buffer .= tr()."
   <td>".$row['relname']."</td>
   <td>".$row['enabled']."</td>
   <td>".$row['vac_base_thresh']."</td>

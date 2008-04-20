@@ -80,7 +80,7 @@ $buffer .= "
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= "<tr>
+$buffer .= tr()."
   <td>".$row['locktype']."</td>
   <td>".$row['database']."</td>
   <td>".$row['relation']."</td>

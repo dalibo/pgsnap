@@ -32,7 +32,7 @@ if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
 
   for ($index = 0; $index < count($lignes); $index++) {
     $ligne = split('=', $lignes[$index], 2);
-    $buffer .= "<tr>
+    $buffer .= tr()."
   <td>".$ligne[0]."</td>
   <td>".$ligne[1]."</td>
 </tr>";
@@ -40,7 +40,7 @@ if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
   $buffer .= "</tbody>
 </table>";
 } else {
-  $buffer .= '<div id="warning">Remote execution, so pg_config results unavailable!</div>';
+  $buffer .= '<div class="warning">Remote execution, so pg_config results unavailable!</div>';
 }
 
 $filename = $outputdir.'/pgconfig.html';

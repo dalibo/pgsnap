@@ -50,7 +50,7 @@ $buffer .= "<table>
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= "<tr>
+$buffer .= tr()."
   <td>".$row['checkpoints_timed']."</td>
   <td>".$row['checkpoints_req']."</td>
   <td>".$row['buffers_checkpoint']."</td>

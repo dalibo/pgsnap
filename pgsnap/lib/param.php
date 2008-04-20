@@ -76,7 +76,7 @@ $buffer .= "
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= "<tr>
+$buffer .= tr()."
   <td>".$row['name']."</td>
   <td>".$row['setting']."</td>";
 if ($g_version > 82) {
