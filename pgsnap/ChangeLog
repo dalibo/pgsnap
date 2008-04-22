@@ -1,3 +1,6 @@
+2008-04-22  Guillaume Lelarge <guillaume@lelarge.info>
+	* Add "functions" report.
+
 2008-04-20  Guillaume Lelarge <guillaume@lelarge.info>
 	* New stylesheet, from Damien Clochard
 	* Add database primary options (autovac, stat collector, log collector,
