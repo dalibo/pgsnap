@@ -121,6 +121,7 @@ if ($g_pgstatindex) {
   echo "  pgstattuple on indexes unavailable!\n";
 }
 include 'lib/languages.php';
+include 'lib/functions.php';
 
 echo "Getting Current Activities Informations...\n";
 include 'lib/activities.php';

@@ -95,7 +95,7 @@ if ($g_pgstatindex) {
 }
 
 $buffer.= '
-<li>Functions</li>
+<li><a href="functions.html" target="content">Functions</a></li>
 <li><a href="languages.html" target="content">Languages</a></li>
 </ul>
 </div>
