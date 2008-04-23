@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>bgwriter</h1>";
+$buffer = "<h2>bgwriter</h2>";
 
 
 $query = "SELECT

@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Contents of the last log file</h1>";
+$buffer = "<h2>Contents of the last log file</h2>";
 
 $query = "SELECT * FROM (
   SELECT

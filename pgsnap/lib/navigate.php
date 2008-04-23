@@ -18,22 +18,24 @@
 
 $buffer = '<h1>PGSnap '.$VERSION.'</h1>
 
-<p><a href="links.html" target="content">Home</a></p>
+<div class="leftdiv">
+
+<p><a href="index.html">Home</a></p>
 
 <div>
 <h2>General</h2>
 <ul>
-<li><a href="ver.html" target="content">Installed products</a></li>';
+<li><a href="ver.html">Installed products</a></li>';
 if ($g_version > '74') {
   $buffer .= '
-<li><a href="pgconfig.html" target="content">pg_config</a></li>';
+<li><a href="pgconfig.html">pg_config</a></li>';
 }
 $buffer .= '
-<li><a href="pgcontroldata.html" target="content">pg_controldata</a></li>
-<li><a href="param.html" target="content">General configuration</a>';
+<li><a href="pgcontroldata.html">pg_controldata</a></li>
+<li><a href="param.html">General configuration</a>';
 if ($g_version > '74') {
   $buffer .= '
-<li><a href="paramautovac.html" target="content">Autovacuum configuration</a>';
+<li><a href="paramautovac.html">Autovacuum configuration</a>';
 }
 if ($g_version > '74'
     and (!strcmp($g_settings['log_destination'], 'stderr')
@@ -41,7 +43,7 @@ if ($g_version > '74'
     and (!strcmp($g_settings['redirect_stderr'], 'on')
          or !strcmp($g_settings['logging_collector'], 'on')) ) {
   $buffer .= '
-<li><a href="lastlogfile.html" target="content">Last log file</a>';
+<li><a href="lastlogfile.html">Last log file</a>';
 }
 $buffer .= '
 </div>
@@ -49,18 +51,18 @@ $buffer .= '
 <div>
 <h2>Global Objects</h2>
 <ul>
-<li><a href="bases.html" target="content">Databases</a></li>';
+<li><a href="bases.html">Databases</a></li>';
 
 if ($g_pgbuffercache) {
   $buffer .= '
-<li><a href="databasesincache.html" target="content">Databases in cache</a></li>';
+<li><a href="databasesincache.html">Databases in cache</a></li>';
 }
 $buffer.= '
-<li><a href="roles.html" target="content">Roles</a></li>
-<li><a href="user1.html" target="content">Users\' Objects</a></li>
-<li><a href="user2.html" target="content">Users Space allocated</a></li>
-<li><a href="tablespaces.html" target="content">Tablespaces</a></li>
-<li><a href="tblspc1.html" target="content">Tablespaces\' objects</a></li>
+<li><a href="roles.html">Roles</a></li>
+<li><a href="user1.html">Users\' Objects</a></li>
+<li><a href="user2.html">Users Space allocated</a></li>
+<li><a href="tablespaces.html">Tablespaces</a></li>
+<li><a href="tblspc1.html">Tablespaces\' objects</a></li>
 <li>Large Objects</li>
 </ul>
 </div>
@@ -68,49 +70,49 @@ $buffer.= '
 <div>
 <h2>Database Objects</h2>
 <ul>
-<li><a href="schemas.html" target="content">Schemas</a></li>
-<li><a href="tables.html" target="content">Tables</a></li>';
+<li><a href="schemas.html">Schemas</a></li>
+<li><a href="tables.html">Tables</a></li>';
 
 if ($g_pgbuffercache) {
   $buffer .= '
-<li><a href="tablesincache.html" target="content">Tables in cache</a></li>';
+<li><a href="tablesincache.html">Tables in cache</a></li>';
 }
 
 if ($g_pgstattuple) {
   $buffer .= '
-<li><a href="fragmentedtables.html" target="content">Fragmented Tables</a></li>';
+<li><a href="fragmentedtables.html">Fragmented Tables</a></li>';
 }
 
 $buffer.= '
-<li><a href="tableswithoutpkey.html" target="content">Tables Without PKEY</a></li>
-<li><a href="tableswith5+indexes.html" target="content">Tables With 5+ indexes</a></li>
-<li><a href="fkconstraints.html" target="content">Tables With FKEY constraints</a></li>
-<li><a href="views.html" target="content">Views</a></li>
-<li><a href="sequences.html" target="content">Sequences</a></li>
-<li><a href="indexes.html" target="content">Indexes</a></li>';
+<li><a href="tableswithoutpkey.html">Tables Without PKEY</a></li>
+<li><a href="tableswith5+indexes.html">Tables With 5+ indexes</a></li>
+<li><a href="fkconstraints.html">Tables With FKEY constraints</a></li>
+<li><a href="views.html">Views</a></li>
+<li><a href="sequences.html">Sequences</a></li>
+<li><a href="indexes.html">Indexes</a></li>';
 
 if ($g_pgstatindex) {
   $buffer .= '
-<li><a href="fragmentedindexes.html" target="content">Fragmented Indexes</a></li>';
+<li><a href="fragmentedindexes.html">Fragmented Indexes</a></li>';
 }
 
 $buffer.= '
-<li><a href="functions.html" target="content">Functions</a></li>
-<li><a href="languages.html" target="content">Languages</a></li>
+<li><a href="functions.html">Functions</a></li>
+<li><a href="languages.html">Languages</a></li>
 </ul>
 </div>
 
 <div>
 <h2>Activities</h2>
 <ul>
-<li><a href="sessionsinfo.html" target="content">Sessions</a></li>
-<li><a href="activities.html" target="content">Process</a></li>
-<li><a href="locks.html" target="content">Locks</a></li>';
+<li><a href="sessionsinfo.html">Sessions</a></li>
+<li><a href="activities.html">Process</a></li>
+<li><a href="locks.html">Locks</a></li>';
 if ($g_version >= '82') {
   $buffer .= '
-<li><a href="cursors.html" target="content">Cursors</a></li>
-<li><a href="preparedstatements.html" target="content">Prepared statements</a></li>
-<li><a href="preparedxacts.html" target="content">Prepared transactions</a></li>';
+<li><a href="cursors.html">Cursors</a></li>
+<li><a href="preparedstatements.html">Prepared statements</a></li>
+<li><a href="preparedxacts.html">Prepared transactions</a></li>';
 }
 $buffer .= '
 </ul>
@@ -121,19 +123,19 @@ $buffer .= '
 <ul>';
 if ($g_version == '83') {
   $buffer .= '
-<li><a href="bgwriter.html" target="content">bgwriter</a></li>';
+<li><a href="bgwriter.html">bgwriter</a></li>';
 }
 $buffer .= '
-<li><a href="cachehitratio.html" target="content">Cache hit ratio</a></li>
-<li><a href="stat_databases.html" target="content">Databases</a></li>
-<li><a href="stat_tables.html" target="content">Tables</a></li>';
+<li><a href="cachehitratio.html">Cache hit ratio</a></li>
+<li><a href="stat_databases.html">Databases</a></li>
+<li><a href="stat_tables.html">Tables</a></li>';
 if ($g_version >= '82') {
   $buffer .= '
-<li><a href="lastvacuumtables.html" target="content">Last vacuumed Tables</a></li>
-<li><a href="lastanalyzetables.html" target="content">Last analyzed Tables</a></li>';
+<li><a href="lastvacuumtables.html">Last vacuumed Tables</a></li>
+<li><a href="lastanalyzetables.html">Last analyzed Tables</a></li>';
 }
 $buffer .= '
-<li><a href="stat_indexes.html" target="content">Indexes</a></li>
+<li><a href="stat_indexes.html">Indexes</a></li>
 </ul>
 </div>
 
@@ -143,7 +145,7 @@ $buffer .= '
 
 if ($g_pgpool) {
   $buffer .= '
-<li><a href="pgpool.html" target="content">pgPool</a></li>';
+<li><a href="pgpool.html">pgPool</a></li>';
 }
 
 $buffer .= '
@@ -151,7 +153,11 @@ $buffer .= '
 <li>pgBouncer</li>
 <li>Slony</li>
 </ul>
+</div>
+
 </div>';
+
+$navigate = $buffer;
 
 $filename = $outputdir.'/navigate.html';
 include 'lib/fileoperations.php';

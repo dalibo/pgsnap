@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Installed products</h1>";
+$buffer = '<h2>Installed products</h2>';
 
 $buffer .= "<table>
 <thead>
@@ -64,7 +64,7 @@ if ($g_pgstattuple) {
 $buffer .= "</tbody>
 </table>";
 
-$buffer .= "<h1>Primary options</h1>";
+$buffer .= "<h2>Primary options</h2>";
 
 $buffer .= "<table>
 <thead>

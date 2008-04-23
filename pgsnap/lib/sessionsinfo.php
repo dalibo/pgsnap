@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Sessions</h1>";
+$buffer = "<h2>Sessions</h2>";
 
 $query = "SELECT name, setting FROM pg_settings
   WHERE name IN ('max_connections', 'autovacuum_max_workers');";

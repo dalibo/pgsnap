@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Locks list</h1>";
+$buffer = "<h2>Locks list</h2>";
 
 
 $query = "SELECT

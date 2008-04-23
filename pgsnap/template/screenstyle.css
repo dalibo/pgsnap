@@ -206,3 +206,18 @@ tbody tr:hover td, tbody tr:hover th {
   background-color: #dfd;
   background-image: url(tip.png);
 }
+
+div.leftdiv {
+  border: 1px solid black;
+  background-color: white;
+  width: 20%;
+  float: left;
+  padding: 5px;
+}
+
+div.rightdiv {
+  background-color: white;
+  width: 70%;
+  float: left;
+  margin-left: 20px;
+}

@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Databases in cache</h1>";
+$buffer = "<h2>Databases in cache</h2>";
 
 
 $query = "SELECT

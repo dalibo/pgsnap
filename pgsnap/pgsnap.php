@@ -45,7 +45,6 @@ if ($row = pg_fetch_array($rows)) {
 }
 
 echo "Adding some HTML files...\n";
-copy('template/index.html', $outputdir.'/index.html');
 copy('external/jquery-1.2.3.js', $outputdir.'/jquery-1.2.3.js');
 copy('template/screenstyle.css', $outputdir.'/screenstyle.css');
 copy('images/check-off.png', $outputdir.'/check-off.png');

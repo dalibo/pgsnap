@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>pg_config Results</h1>";
+$buffer = "<h2>pg_config Results</h2>";
 
 if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
   exec('pg_config', $lignes);

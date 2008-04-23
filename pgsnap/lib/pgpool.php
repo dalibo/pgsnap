@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>pgPool Configuration</h1>";
+$buffer = "<h2>pgPool Configuration</h2>";
 
 
 $query = "show pool_status";

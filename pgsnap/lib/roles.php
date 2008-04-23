@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Roles list</h1>";
+$buffer = "<h2>Roles list</h2>";
 
 
 $query = "SELECT rolname,

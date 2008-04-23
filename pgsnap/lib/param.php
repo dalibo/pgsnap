@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>General Configuration</h1>
+$buffer = "<h2>General Configuration</h2>
 
 <p><b>Be careful</b>, this is not the result from reading the postgresql.conf
 file, but it's the actual configuration available when connecting to database

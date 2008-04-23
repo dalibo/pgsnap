@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Prepared statements list</h1>";
+$buffer = "<h2>Prepared statements list</h2>";
 
 // TODO parameter_types is not handled yet
 

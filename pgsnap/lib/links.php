@@ -48,7 +48,7 @@ They represent a snapshot of the target database at the time the script was exec
 <a href="http://www.postgresql.org/docs" target="_blank">PostgreSQL Official Manuals</a>
 </p>';
 
-$filename = $outputdir.'/links.html';
+$filename = $outputdir.'/index.html';
 include 'lib/fileoperations.php';
 
 ?>

@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Languages list</h1>";
+$buffer = "<h2>Languages list</h2>";
 
 switch ($g_version) {
   case '83':

@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Statistical databases list</h1>";
+$buffer = "<h2>Statistical databases list</h2>";
 
 $query = "SELECT
   datname,

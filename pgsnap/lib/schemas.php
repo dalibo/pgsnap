@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Schemas list</h1>";
+$buffer = "<h2>Schemas list</h2>";
 
 
 $query = "SELECT nspname,

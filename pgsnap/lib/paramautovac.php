@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h1>Autovacuum configuration</h1>";
+$buffer = "<h2>Autovacuum configuration</h2>";
 
 
 if ($g_version >= 82) {
