@@ -21,14 +21,14 @@ $buffer = "<h2>pg_config Results</h2>";
 if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
   exec('pg_config', $lignes);
 
-  $buffer .= "<table>
+  $buffer .= '<table>
 <thead>
 <tr>
-  <td>Variable</td>
-  <td>Value</td>
+  <td width="30%">Variable</td>
+  <td width="70%">Value</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
   for ($index = 0; $index < count($lignes); $index++) {
     $ligne = split('=', $lignes[$index], 2);

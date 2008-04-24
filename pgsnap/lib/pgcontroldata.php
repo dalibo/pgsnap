@@ -21,14 +21,14 @@ $buffer = "<h2>pg_controldata Results</h2>";
 if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
   exec('LANG=C pg_controldata', $lines);
 
-  $buffer .= "<table>
+  $buffer .= '<table>
 <thead>
 <tr>
-  <td>Variable</td>
-  <td>Value</td>
+  <td width="30%">Variable</td>
+  <td width="70%">Value</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
   for ($index = 0; $index < count($lines); $index++) {
     $line = split(':', $lines[$index], 2);

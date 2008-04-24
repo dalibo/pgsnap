@@ -19,83 +19,94 @@
 $buffer = "<h2>General Configuration</h2>
 
 <p><b>Be careful</b>, this is not the result from reading the postgresql.conf
-file, but it's the actual configuration available when connecting to database
-".$PGDATABASE." on server ".$PGHOST.":".$PGPORT." as user ".$PGUSER.".</p>";
+file, but it's the actual configuration available when connecting to <b>database
+".$PGDATABASE." on server ".$PGHOST.":".$PGPORT." as user ".$PGUSER."</b>.</p>";
 
-$query = "SELECT name,
-  setting,";
-if ($g_version >= 82) {
-  $query .= "
-  unit,";
-}
-if ($g_version >= 74) {
-  $query .= "
-  category,
-  short_desc,
-  extra_desc,";
-}
-$query .= "
-  context,
-  vartype,
-  source,
-  min_val,
-  max_val
-FROM pg_settings
-ORDER BY ";
-if ($g_version >= 74) {
-  $query .= "category, ";
-}
-$query .= "name";
-
-$rows = pg_query($connection, $query);
-if (!$rows) {
-  echo "An error occured.\n";
-  exit;
+if ($g_version > 74) {
+  $query_cat = "SELECT DISTINCT category AS name FROM pg_settings";
+  $categories = pg_query($connection, $query_cat);
+  if (!$categories) {
+    echo "An error occured.\n";
+    exit;
+  }
+  while ($categorie = pg_fetch_array($categories)) {
+    $cat1[] = $categorie['name'];
+    $cat2[] = preg_replace('/[ \/]/', '', $categorie['name']);
+    if (strlen($buffer2) > 0) {
+      $buffer2 .= ', ';
+    }
+    $buffer2 .= '<a href="#'.$cat2[count($cat2)-1].'">'.$cat1[count($cat1)-1].'</a>';
+  }
+  $buffer .= '<p>'.$buffer2.'</p>';
+  pg_free_result($categories);
 }
 
-$buffer .= "<table>
+$index = 0;
+$done = $index >= count($cat1);
+
+while (!$done) {
+  if ($g_version == 74 or $categories) {
+    $query = "SELECT name, setting, ";
+    if ($g_version >= 82) {
+      $query .= "unit, ";
+    }
+    if ($g_version > 74) {
+      $query .= "short_desc, extra_desc, ";
+    }
+    $query .= "context, vartype, source, min_val, max_val
+      FROM pg_settings ";
+    if ($categories) {
+      $query .= "WHERE category='".$cat1[$index]."'";
+      $buffer .= '<h3 id="'.$cat2[$index].'">'.$cat1[$index].'</h3>';
+    }
+    $query .= "ORDER BY name";
+  }
+
+  $rows = pg_query($connection, $query);
+  if (!$rows) {
+    echo "An error occured.\n";
+    exit;
+  }
+
+  $buffer .= "<table>
 <thead>
 <tr>
   <td>Name</td>
-  <td>Actual setting</td>";
-if ($g_version > 82) {
-  $buffer .= "
-  <td>Unit</td>";
-}
-$buffer .= "
-  <td>Category</td>
-  <td>Short desc</td>
-  <td>Extra desc</td>
+  <td>Actual setting</td>
   <td>Context</td>
   <td>Vartype</td>
   <td>Source</td>
-  <td>Min value</td>
-  <td>Max value</td>
+  <td>Min/Max value</td>
 </tr>
 </thead>
 <tbody>\n";
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td>".$row['name']."</td>
-  <td>".$row['setting']."</td>";
+$buffer .= tr().'
+  <td title="'.preg_replace('/"/', "'", $row['short_desc'])."\n".
+  preg_replace('/"/', "'", $row['extra_desc']).'">'.$row['name']."</td>
+  <td>".$row['setting'];
 if ($g_version > 82) {
-  $buffer .= "
-  <td>".$row['unit']."</td>";
+  $buffer .= ' '.$row['unit'];
 }
-$buffer .= "
-  <td>".$row['category']."</td>
-  <td>".$row['short_desc']."</td>
-  <td>".$row['extra_desc']."</td>
+$buffer .= "</td>
   <td>".$row['context']."</td>
   <td>".$row['vartype']."</td>
   <td>".$row['source']."</td>
-  <td>".$row['min_val']."</td>
-  <td>".$row['max_val']."</td>
+  <td>".$row['min_val']."&nbsp;/&nbsp;".$row['max_val']."</td>
 </tr>";
 }
 $buffer .= "</tbody>
 </table>";
+
+  if ($g_version == 74) {
+    $done = true;
+  } else {
+    $done = $index >= count($cat1);
+  }
+
+  $index++;
+}
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">
