@@ -19,14 +19,8 @@
 $VERSION = '0.2.0';
 
 $PGHOST = getenv('PGHOST');
-if (strlen("$PGHOST") == 0) {
-  $PGHOST = 'localhost';
-}
 
 $PGPORT = getenv('PGPORT');
-if (strlen("$PGPORT") == 0) {
-  $PGPORT = '5432';
-}
 
 $PGUSER = getenv('PGUSER');
 if (strlen("$PGUSER") == 0) {

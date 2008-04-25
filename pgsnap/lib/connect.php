@@ -50,15 +50,23 @@ if ($g_passwordrequired and strlen($PGPASSWORD) == 0) {
 // Connects to database via the usual environnement variables
 // actually, connects to a specific one
 
-$DSN = 'host='.$PGHOST.' '.
-       'port='.$PGPORT.' '.' '.
-       'dbname='.$PGDATABASE.' '.
+$DSN = '';
+
+if (strlen("$PGHOST") > 0) {
+  $DSN .= 'host='.$PGHOST.' ';       
+}
+if (strlen("$PGPORT") > 0) {
+  $DSN .= 'port='.$PGPORT.' ';       
+}
+
+$DSN .= 'dbname='.$PGDATABASE.' '.
        'user='.$PGUSER;
 
 if (strlen("$PGPASSWORD") > 0) {
   $DSN .= ' password='.$PGPASSWORD;
 }
 
+echo $DSN;
 $connection = pg_connect($DSN);
 
 ?>
