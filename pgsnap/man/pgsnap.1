@@ -1,0 +1,48 @@
+.TH PGSNAP "1" "April 2008" "pgsnap 0.2.0" "User Commands"
+.SH NAME
+pgsnap \- PostgreSQL report tool
+.SH DESCRIPTION
+pgsnap is a PostgreSQL tool that mimics orasnap performance report tool for Oracle.
+.SS "Usage:"
+.IP
+\&./pgsnap [OPTIONS]... [DBNAME]
+.SS "General options:"
+.TP
+\fB\-d\fR DBNAME
+specify database name to connect to
+(default: your login name)
+.TP
+\fB\-\-help\fR
+show this help, then exit
+.TP
+\fB\-\-version\fR
+output version information, then exit
+.SS "Connection options:"
+.TP
+\fB\-h\fR HOSTNAME
+database server host or socket directory
+(default: "localhost")
+.TP
+\fB\-p\fR PORT
+database server port (default: "5432")
+.TP
+\fB\-U\fR NAME
+database user name (default: your login name)
+.TP
+\fB\-W\fR
+prompt for password
+
+.SH AUTHOR and CREDITS
+pgsnap is written and maintained by Guillaume Lelarge
+.nh
+<guillaume at lelarge dot info>
+.PP
+The pgsnap website:
+.nh
+.B http://pgfoundry.org/projects/pgsnap/
+.hy
+.PP
+This manpage was written by Pierre Chifflier
+.nh
+<chifflier@debian.org>
+
