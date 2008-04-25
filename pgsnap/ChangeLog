@@ -1,3 +1,9 @@
+2008-04-25  Guillaume Lelarge <guillaume@lelarge.info>
+	* Enable local connections via Unix socket, per a report from pollux.
+
+2008-04-24  Guillaume Lelarge <guillaume@lelarge.info>
+	* Review of the General reports.
+
 2008-04-23  Guillaume Lelarge <guillaume@lelarge.info>
 	* Frames out.
 

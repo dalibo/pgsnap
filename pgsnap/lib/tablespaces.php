@@ -18,7 +18,7 @@
 
 $buffer = "<h2>Tablespaces list</h2>";
 
-
+// TODO : without superuser powers, this fails
 $query = "SELECT spcname,
   rolname AS owner,
   spclocation,

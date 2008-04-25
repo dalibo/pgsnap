@@ -17,3 +17,8 @@ TODO
   * graph on database size and usage
   * graph on tablespace size
   * graph on table and index size and usage
+
+ * pollux asks for
+  * limiting the schemas used with a command line option (to get pg_catalog out)
+  * being able to get a report from a standard user (not a superuser)
+    see TODO in tablespaces.php
