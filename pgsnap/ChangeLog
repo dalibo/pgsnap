@@ -1,6 +1,8 @@
 2008-04-25  Guillaume Lelarge <guillaume@lelarge.info>
 	* Enable local connections via Unix socket, per a report from pollux.
 	* Add man page, from pollux.
+	* Add -o command line option (output directory), per a patch from
+          pollux.
 
 2008-04-24  Guillaume Lelarge <guillaume@lelarge.info>
 	* Review of the General reports.

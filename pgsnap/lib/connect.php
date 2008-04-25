@@ -66,7 +66,6 @@ if (strlen("$PGPASSWORD") > 0) {
   $DSN .= ' password='.$PGPASSWORD;
 }
 
-echo $DSN;
 $connection = pg_connect($DSN);
 
 ?>

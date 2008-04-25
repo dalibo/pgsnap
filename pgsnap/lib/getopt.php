@@ -34,6 +34,8 @@ if (strlen("$PGDATABASE") == 0) {
 
 $PGPASSWORD = getenv('PGPASSWORD');
 
+$outputdir = $PGDATABASE.'_snap_'.date('Ymd');
+
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
   switch($_SERVER["argv"][$i]) {
     case "-v":
@@ -60,6 +62,10 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
     case "-W":
       $g_passwordrequired = true;
       break;
+    case "-o":
+    case "--output-dir":
+      $outputdir = $_SERVER['argv'][++$i];
+      break;
     case "-?":
     case "-h":
     case "--help":
@@ -72,6 +78,8 @@ Usage:
 General options:
   -d DBNAME       specify database name to connect to
                   (default: "<?= $PGDATABASE ?>")
+  -o outputdir    specify output directory
+                  (default: "<?= $outputdir ?>")
   --help          show this help, then exit
   --version       output version information, then exit
 
@@ -90,7 +98,5 @@ Connection options:
       break;
   }
 }
-
-$outputdir = $PGDATABASE.'_snap_'.date('Ymd');
 
 ?>
