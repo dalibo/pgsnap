@@ -68,4 +68,10 @@ if (strlen("$PGPASSWORD") > 0) {
 
 $connection = pg_connect($DSN);
 
+if (!$connection) {
+  echo "Connection error !\n";
+  echo "DSN is $DSN\n";
+  die();
+}
+
 ?>
