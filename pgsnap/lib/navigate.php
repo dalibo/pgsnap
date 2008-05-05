@@ -63,7 +63,6 @@ $buffer.= '
 <li><a href="user2.html">Users Space allocated</a></li>
 <li><a href="tablespaces.html">Tablespaces</a></li>
 <li><a href="tblspc1.html">Tablespaces\' objects</a></li>
-<li>Large Objects</li>
 </ul>
 </div>
 

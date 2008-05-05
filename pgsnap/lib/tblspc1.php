@@ -37,16 +37,16 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table>
 <thead>
 <tr>
-  <td>Owner</td>
-  <td>Tablespace</td>
-  <td>Object's type</td>
-  <td>Count</td>
+  <td width="20%">Tablespace Owner</td>
+  <td width="20%">Tablespace Name</td>
+  <td width="20%">Object\'s type</td>
+  <td width="20%">Count</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."

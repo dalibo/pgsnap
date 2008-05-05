@@ -1,5 +1,6 @@
 2008-05-05  Guillaume Lelarge <guillaume@lelarge.info>
 	* Better handling of connection error.
+	* Review of the "Global Objects" reports.
 
 2008-04-25  Guillaume Lelarge <guillaume@lelarge.info>
 	* Enable local connections via Unix socket, per a report from Pierre
@@ -9,7 +10,7 @@
           Pierre Chifflier.
 
 2008-04-24  Guillaume Lelarge <guillaume@lelarge.info>
-	* Review of the General reports.
+	* Review of the "General" reports.
 
 2008-04-23  Guillaume Lelarge <guillaume@lelarge.info>
 	* Frames out.

@@ -42,29 +42,29 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table>
 <thead>
 <tr>
-  <td>DB Name</td>
-  <td>DB Owner</td>
-  <td>Encoding</td>
-  <td>Template?</td>
-  <td>Allow connections?</td>
-  <td>Connection limits</td>
-  <td>Last system OID</td>
-  <td>Frozen XID</td>
-  <td>Tablespace name</td>
-  <td>Size</td>
-  <td>Configuration</td>
-  <td><acronym X=\"Access Control List\">ACL</acronym></td>
+  <td width="200">DB Owner</td>
+  <td width="200">DB Name</td>
+  <td width="200">Encoding</td>
+  <td width="100">Template?</td>
+  <td width="100">Allow connections?</td>
+  <td width="100">Connection limits</td>
+  <td width="100">Last system OID</td>
+  <td width="100">Frozen XID</td>
+  <td width="200">Tablespace name</td>
+  <td width="200">Size</td>
+  <td width="200">Configuration</td>
+  <td width="300"><acronym title="Access Control List">ACL</acronym></td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['datname']."</td>
   <td>".$row['dba']."</td>
+  <td>".$row['datname']."</td>
   <td>".$row['encoding']."</td>
   <td>".$image[$row['datistemplate']]."</td>
   <td>".$image[$row['datallowconn']]."</td>

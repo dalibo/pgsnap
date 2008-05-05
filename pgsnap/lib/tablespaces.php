@@ -34,25 +34,25 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table>
 <thead>
 <tr>
-  <td>Tablespace name</td>
-  <td>Tablespace owner</td>
-  <td>Location</td>
-  <td>ACL</td>
-  <td>Size</td>
+  <td width="20%">Tablespace Owner</td>
+  <td width="20%">Tablespace Name</td>
+  <td width="20%">Location</td>
+  <td width="20%">Size</td>
+  <td width="20%">ACL</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['spcname']."</td>
   <td>".$row['owner']."</td>
+  <td>".$row['spcname']."</td>
   <td>".$row['spclocation']."</td>
-  <td>".$row['spcacl']."</td>
   <td>".$row['size']."</td>
+  <td>".$row['spcacl']."</td>
 </tr>";
 }
 $buffer .= "</tbody>

@@ -20,13 +20,15 @@ $buffer = "<h2>Databases in cache</h2>";
 
 
 $query = "SELECT
+  rolname AS dba,
   datname,
   pg_database_size(reldatabase) AS size,
   count(*) AS buffers
-FROM pg_buffercache, pg_database
-WHERE reldatabase=pg_database.oid
-GROUP BY 1, 2
-ORDER BY 1, 2";
+FROM pg_buffercache, pg_database, pg_roles, pg_tablespace
+WHERE datdba = pg_roles.oid
+  AND reldatabase=pg_database.oid
+GROUP BY 1, 2, 3
+ORDER BY 1, 2, 3";
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -34,20 +36,22 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table>
 <thead>
 <tr>
-  <td>Database Name</td>
-  <td>Database size</td>
-  <td>Total buffers</td>
-  <td>Total buffers size</td>
-  <td>% of the database in cache</td>
+  <td width="20%">Database Owner</td>
+  <td width="20%">Database Name</td>
+  <td width="20%">Database Size</td>
+  <td width="15%">Total Buffers</td>
+  <td width="15%">Total Buffers Size</td>
+  <td width="10%">% of Database In Cache</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
+  <td>".$row['dba']."</td>
   <td>".$row['datname']."</td>
   <td>".$row['size']."</td>
   <td>".$row['buffers']."</td>

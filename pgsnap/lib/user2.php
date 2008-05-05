@@ -23,9 +23,9 @@ $query = "SELECT rolname,
   CASE WHEN relkind='r' THEN 'table'
        WHEN relkind='i' THEN 'index'
        WHEN relkind='S' THEN 'sequence'
-       WHEN relkind='t' THEN 'table TOAST'
+       WHEN relkind='t' THEN 'TOAST table'
        ELSE '<unkown>' END AS kind,
-  SUM(pg_relation_size(pg_class.oid)) AS total
+  pg_size_pretty(SUM(pg_relation_size(pg_class.oid))::int8) AS total
 FROM pg_class, pg_roles
 WHERE pg_roles.oid=relowner
   AND relkind IN ('r', 't', 'i', 'S')
@@ -38,20 +38,20 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table>
 <thead>
 <tr>
-  <td>Owner</td>
-  <td>Object's type</td>
-  <td>Size</td>
+  <td width="40%">Owner</td>
+  <td width="40%">Object\'s type</td>
+  <td width="20%">Size</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>".$row['rolname']."</td>
-  <td>".$row['kind']."</td>
+  <td>".ucfirst($row['kind'])."</td>
   <td>".$row['total']."</td>
 </tr>";
 }

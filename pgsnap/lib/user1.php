@@ -24,8 +24,8 @@ $query = "SELECT rolname,
        WHEN relkind='i' THEN 'index'
        WHEN relkind='S' THEN 'sequence'
        WHEN relkind='v' THEN 'view'
-       WHEN relkind='c' THEN 'type composite'
-       WHEN relkind='t' THEN 'table TOAST'
+       WHEN relkind='c' THEN 'composite type'
+       WHEN relkind='t' THEN 'TOAST table'
        ELSE '<unkown>' END AS kind,
   COUNT(*) AS total
 FROM pg_class, pg_roles
@@ -39,20 +39,20 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table>
 <thead>
 <tr>
-  <td>Owner</td>
-  <td>Object's type</td>
-  <td>Count</td>
+  <td width="40%">Owner</td>
+  <td width="40%">Object\'s type</td>
+  <td width="20%">Count</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>".$row['rolname']."</td>
-  <td>".$row['kind']."</td>
+  <td>".ucfirst($row['kind'])."</td>
   <td>".$row['total']."</td>
 </tr>";
 }
