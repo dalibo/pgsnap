@@ -3,7 +3,6 @@ TODO
 
  * PostgreSQL support
   * PostgreSQL 7.4 compatibility
-  * pg_freespacemap support
 
  * specific orasnap
   * Tablespace : list default tablespace for each user

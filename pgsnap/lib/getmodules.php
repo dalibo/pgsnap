@@ -51,6 +51,24 @@ if ($rows)
 else
   $g_pgpool = false;
 
+$query = "SELECT 1 FROM pg_proc WHERE proname LIKE 'pg_freespacemap_relations'";
+
+$rows = pg_query($connection, $query);
+if (!$rows) {
+  echo "An error occured.\n";
+  exit;
+}
+$g_fsmrelations = pg_num_rows($rows) > 0;
+
+$query = "SELECT 1 FROM pg_proc WHERE proname LIKE 'pg_freespacemap_pages'";
+
+$rows = pg_query($connection, $query);
+if (!$rows) {
+  echo "An error occured.\n";
+  exit;
+}
+$g_fsmpages = pg_num_rows($rows) > 0;
+
 $query = "SELECT name, setting FROM pg_settings";
 
 $rows = pg_query($connection, $query);

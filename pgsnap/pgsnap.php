@@ -143,6 +143,12 @@ if ($g_version >= '82') {
   include 'lib/lastanalyzetables.php';
 }
 include 'lib/stat_indexes.php';
+if ($g_fsmrelations) {
+  include 'lib/fsmrelations.php';
+}
+if ($g_fsmpages) {
+  include 'lib/fsmpages.php';
+}
 
 echo "Getting Tools Informations...\n";
 if ($g_pgpool) {

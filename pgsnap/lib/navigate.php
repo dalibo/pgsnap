@@ -134,7 +134,16 @@ if ($g_version >= '82') {
 <li><a href="lastanalyzetables.html">Last analyzed Tables</a></li>';
 }
 $buffer .= '
-<li><a href="stat_indexes.html">Indexes</a></li>
+<li><a href="stat_indexes.html">Indexes</a></li>';
+if ($g_fsmrelations) {
+  $buffer .= '
+<li><a href="fsmrelations.html">FSM Relations</a></li>';
+}
+if ($g_fsmpages) {
+  $buffer .= '
+<li><a href="fsmpages.html">FSM Pages</a></li>';
+}
+$buffer .= '
 </ul>
 </div>
 

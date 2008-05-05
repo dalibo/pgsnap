@@ -2,6 +2,7 @@
 	* Better handling of connection error.
 	* Review of the "Global Objects", "Activities" and "Statistics"
         reports.
+	* Add pg_freespacemap support.
 
 2008-04-25  Guillaume Lelarge <guillaume@lelarge.info>
 	* Enable local connections via Unix socket, per a report from Pierre

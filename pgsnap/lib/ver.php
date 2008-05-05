@@ -60,6 +60,12 @@ if ($g_pgstattuple) {
   <td><i>Contrib module</i></td>
 </tr>";
 }
+if ($g_fsmrelations) {
+  $buffer .= tr()."
+  <td>pg_freespacemap</td>
+  <td><i>Contrib module</i></td>
+</tr>";
+}
 
 $buffer .= "</tbody>
 </table>";
