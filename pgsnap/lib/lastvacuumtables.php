@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Last vacuumed Tables</h2>";
+$buffer = "<h2>Last Vacuumed Tables</h2>";
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -37,15 +37,15 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table>
 <thead>
 <tr>
-  <td>Schema name</td>
-  <td>Table name</td>
-  <td>Last vacuum</td>
+  <td width="30%">Schema Name</td>
+  <td width="30%">Table Name</td>
+  <td width="40%">Last vacuum</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['schemaname'])."

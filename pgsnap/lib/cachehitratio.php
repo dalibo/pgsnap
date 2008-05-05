@@ -22,7 +22,7 @@ $buffer = "<h2>Databases in cache</h2>";
 $query = "SELECT datname,
   blks_read,
   blks_hit,
-  blks_hit::float/(blks_read+blks_hit+1)*100 as cachehitratio
+  round((blks_hit::float/(blks_read+blks_hit+1)*100)::numeric, 2) as cachehitratio
 FROM pg_stat_database
 ORDER BY datname, cachehitratio";
 
@@ -32,16 +32,16 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table>
 <thead>
 <tr>
-  <td>Database Name</td>
-  <td>Blocks read</td>
-  <td>Blocks hit</td>
-  <td>Cache hit ratio %</td>
+  <td width="40%">Database Name</td>
+  <td width="20%">Blocks Read</td>
+  <td width="20%">Blocks Hit</td>
+  <td width="20%">Cache Hit Ratio (%)</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."

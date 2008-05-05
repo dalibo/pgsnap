@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Locks list</h2>";
+$buffer = "<h2>Locks List</h2>";
 
 
 $query = "SELECT
@@ -53,28 +53,28 @@ if (!$rows) {
 $buffer .= "<table>
 <thead>
 <tr>
-  <td>locktype</td>
-  <td>database</td>
-  <td>relation</td>
-  <td>page</td>
-  <td>tuple</td>";
+  <td>Lock Type</td>
+  <td>Database</td>
+  <td>Relation</td>
+  <td>Page</td>
+  <td>Tuple</td>";
 if ($g_version >= 83) {
   $buffer .= "
-  <td>virtualxid</td>";
+  <td>Virtual XID</td>";
 }
 $buffer .= "
-  <td>transactionid</td>
-  <td>classid</td>
-  <td>objid</td>
-  <td>objsubid</td>";
+  <td>Transaction ID</td>
+  <td>Class ID</td>
+  <td>Obj ID</td>
+  <td>Obj Sub ID</td>";
 if ($g_version >= 83) {
   $buffer .= "
-  <td>virtualtransaction</td>";
+  <td>Virtual Transaction</td>";
 }
 $buffer .= "
-  <td>pid</td>
-  <td>mode</td>
-  <td>granted</td>
+  <td>PID</td>
+  <td>Mode</td>
+  <td>Granted?</td>
 </tr>
 </thead>
 <tbody>\n";

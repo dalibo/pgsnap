@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Process list</h2>";
+$buffer = "<h2>Process List</h2>";
 
 
 $query = "SELECT
@@ -31,11 +31,11 @@ if ($g_version >= 82) {
 }
 if ($g_version >= 83) {
   $query .= "
-  xact_start,";
+  date_trunc('second', xact_start) as xact_start,";
 }
 $query .="
-  query_start,
-  backend_start
+  date_trunc('second', query_start) as query_start,
+  date_trunc('second', backend_start) as backend_start
 FROM pg_stat_activity
 ORDER BY datname, procpid";
 
@@ -48,11 +48,10 @@ if (!$rows) {
 $buffer .= "<table>
 <thead>
 <tr>
-  <td>Database name</td>
+  <td>DB name</td>
   <td>PID</td>
   <td>Client</td>
-  <td>User</td>
-  <td>Current query</td>";
+  <td>User</td>";
 if ($g_version >= 83) {
   $buffer .= "
   <td>Waiting</td>";
@@ -73,8 +72,7 @@ $buffer .= tr()."
   <td>".$row['datname']."</td>
   <td>".$row['procpid']."</td>
   <td>".$row['client_addr']."</td>
-  <td>".$row['usename']."</td>
-  <td>".$row['current_query']."</td>";
+  <td>".$row['usename']."</td>";
 if ($g_version >= 82) {
   $buffer .= "
   <td>".$image[$row['waiting']]."</td>";
@@ -83,10 +81,10 @@ if ($g_version >= 83) {
   $buffer .= "
   <td>".$row['xact_start']."</td>";
 }
-$buffer .= "
-  <td>".$row['query_start']."</td>
-  <td>".$row['backend_start']."</td>
-</tr>";
+$buffer .= '
+  <td title="'.$row['current_query'].'">'.$row['query_start'].'</td>
+  <td>'.$row['backend_start'].'</td>
+</tr>';
 }
 $buffer .= "</tbody>
 </table>";

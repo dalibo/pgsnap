@@ -38,13 +38,13 @@ if (!$rows) {
 $buffer .= "<table>
 <thead>
 <tr>
-  <td>checkpoints_timed</td>
-  <td>checkpoints_req</td>
-  <td>buffers_checkpoint</td>
-  <td>buffers_clean</td>
-  <td>maxwritten_clean</td>
-  <td>buffers_backend</td>
-  <td>buffers_alloc</td>
+  <td>Checkpoints Timed Out</td>
+  <td>Checkpoints Requested</td>
+  <td>Buffers Freed by Checkpoint</td>
+  <td>Buffers Cleaned by Checkpoint</td>
+  <td>Maxwritten Before complete clean</td>
+  <td>Buffers freed by backends</td>
+  <td>Buffers allocated</td>
 </tr>
 </thead>
 <tbody>\n";

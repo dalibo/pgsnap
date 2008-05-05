@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Prepared transactions list</h2>";
+$buffer = "<h2>Prepared Transactions List</h2>";
 
 
 $query = "SELECT
