@@ -62,7 +62,7 @@ h2 {
 
 #wrapper {
 width:700px;
-background:url(wrapper.gif) center repeat-y;
+background:url(images/wrapper.gif) center repeat-y;
 margin:0 auto;
 }
 
@@ -135,7 +135,7 @@ clear:both;
 
 #menu {
 margin:0 auto;
-background:url(menubg.gif) top no-repeat;
+background:url(images/menubg.gif) top no-repeat;
 font-size:1.4em;
 height:33px;
 text-align:left;
@@ -159,15 +159,15 @@ text-decoration:none;
 }
 
 #menu ul li a:hover {
-background:url(arrow.gif) bottom center no-repeat;
+background:url(images/arrow.gif) bottom center no-repeat;
 }
 
 .current_page_item a { 
-background:url(arrow.gif) bottom center no-repeat;
+background:url(images/arrow.gif) bottom center no-repeat;
 }
 
 .current_page_parent a {
-background:url(arrow.gif) bottom center no-repeat;
+background:url(images/arrow.gif) bottom center no-repeat;
 }
 
 .feed {
@@ -201,7 +201,7 @@ font-weight:normal;
 
 #about {
 height:175px;
-background:url(header.jpg) no-repeat;
+background:url(images/header.jpg) no-repeat;
 color:#FFF;
 font-size:1.4em;
 padding:20px;
@@ -450,11 +450,11 @@ padding:0 0 0 15px;
 blockquote {
 padding:0 35px;
 font-style:italic;
-background:url(quote.gif) top left no-repeat;
+background:url(images/quote.gif) top left no-repeat;
 }
 
 .note {
-background:#F2F2F2 url(note.gif) top left no-repeat;
+background:#F2F2F2 url(images/note.gif) top left no-repeat;
 border-top:1px dashed #CCC;
 border-bottom:1px dashed #CCC;
 font-size:.9em;
@@ -463,7 +463,7 @@ color:#6b6b6b;
 } 
 
 .codebit {
-background:#F2F2F2 url(code.gif) top left no-repeat;
+background:#F2F2F2 url(images/code.gif) top left no-repeat;
 border-top:1px dashed #CCC;
 border-bottom:1px dashed #CCC;
 font-family:"Courier New", Courier, monospace;
@@ -471,7 +471,7 @@ padding:5px 10px 5px 30px;
 }
 
 .dl {
-background:#F2F2F2 url(dl.gif) top left no-repeat;
+background:#F2F2F2 url(images/dl.gif) top left no-repeat;
 border-top:1px dashed #CCC;
 border-bottom:1px dashed #CCC;
 padding:5px 10px 5px 30px;
@@ -494,13 +494,13 @@ margin-bottom:25px;
 .alignleft {
 float:left;
 padding-left:20px;
-background:url(previous.gif) left no-repeat;
+background:url(images/previous.gif) left no-repeat;
 }
 
 .alignright {
 float:right;
 padding-right:20px;
-background:url(next.gif) right no-repeat;
+background:url(images/next.gif) right no-repeat;
 }
 
 .alignleft a, .alignright a {
@@ -529,7 +529,7 @@ border:1px solid #dddddd;
 
 
 #footer {
-background:url(footerbg.gif) no-repeat;
+background:url(images/footerbg.gif) no-repeat;
 height:10px;
 padding:10px 20px;
 font-size:1.2em;
@@ -546,7 +546,7 @@ color:#333;
 }
 
 .to_top {
-background:transparent url(totop.gif) no-repeat scroll 0%;
+background:transparent url(images/totop.gif) no-repeat scroll 0%;
 position:absolute; /*this replaces float - fixes thanks to Larry of	http://blog.lroot.com*/
 height:18px;
 width:19px;
