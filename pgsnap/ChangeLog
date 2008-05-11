@@ -1,6 +1,8 @@
 2008-05-11  Guillaume Lelarge <guillaume@lelarge.info>
 	* Complete UI Review.
 	* Release 0.3.
+	* Bugfix : fix the output dir naming.
+	* Release 0.3.1.
 
 2008-05-05  Guillaume Lelarge <guillaume@lelarge.info>
 	* Better handling of connection error.
