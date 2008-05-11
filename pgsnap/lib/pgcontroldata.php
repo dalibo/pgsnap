@@ -16,29 +16,34 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>pg_controldata Results</h2>";
+$buffer = $navigate_general.'
+<div id="pgContentWrap">
+
+<h1>pg_controldata</h1>
+';
 
 if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
   exec('LANG=C pg_controldata', $lines);
 
-  $buffer .= '<table>
-<thead>
+  $buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td width="30%">Variable</td>
-  <td width="70%">Value</td>
+  <th class="colFirst" width="30%">Variable</th>
+  <th class="colLast" width="70%">Value</th>
 </tr>
-</thead>
-<tbody>';
+';
 
   for ($index = 0; $index < count($lines); $index++) {
     $line = split(':', $lines[$index], 2);
-    $buffer .= tr()."
-  <td>".trim($line[0])."</td>
-  <td>".trim($line[1])."</td>
-</tr>";
+    $buffer .= tr().'
+  <td>'.trim($line[0]).'</td>
+  <td>'.trim($line[1]).'</td>
+</tr>';
   }
-  $buffer .= "</tbody>
-</table>";
+  $buffer .= '</table>
+</div>
+';
 } else {
   $buffer .= '<div class="warning">Remote execution, so pg_controldata results unavailable!</div>';
 }

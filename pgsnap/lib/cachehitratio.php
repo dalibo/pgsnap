@@ -16,8 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Databases in cache</h2>";
+$buffer = $navigate_stats.'
+<div id="pgContentWrap">
 
+<h1>Databases in cache</h1>
+';
 
 $query = "SELECT datname,
   blks_read,
@@ -32,16 +35,16 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td width="40%">Database Name</td>
-  <td width="20%">Blocks Read</td>
-  <td width="20%">Blocks Hit</td>
-  <td width="20%">Cache Hit Ratio (%)</td>
+  <th class="colFirst" width="40%">Database Name</th>
+  <th class="colMid" width="20%">Blocks Read</th>
+  <th class="colMid" width="20%">Blocks Hit</th>
+  <th class="colLast" width="20%">Cache Hit Ratio (%)</th>
 </tr>
-</thead>
-<tbody>';
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -51,8 +54,10 @@ $buffer .= tr()."
   <td>".$row['cachehitratio']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

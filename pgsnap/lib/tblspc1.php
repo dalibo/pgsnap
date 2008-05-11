@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Total objects per tablespace</h2>";
+$buffer = $navigate_globalobjects.'
+<div id="pgContentWrap">
+
+<h1>Total objects per tablespace</h1>
+';
 
 
 $query = "SELECT
@@ -37,16 +41,16 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td width="20%">Tablespace Owner</td>
-  <td width="20%">Tablespace Name</td>
-  <td width="20%">Object\'s type</td>
-  <td width="20%">Count</td>
+  <th class="colFirst" width="20%">Tablespace Owner</th>
+  <th class="colMid" width="20%">Tablespace Name</th>
+  <th class="colMid" width="20%">Object\'s type</th>
+  <th class="colLast" width="20%">Count</th>
 </tr>
-</thead>
-<tbody>';
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -56,8 +60,9 @@ $buffer .= tr()."
   <td>".$row['total']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Views list</h2>";
+$buffer = $navigate_dbobjects.'
+<div id="pgContentWrap">
+
+<h1>Views</h1>
+';
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -70,47 +74,48 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>View name</td>
-  <td>Schema name</td>
-  <td>Table Owner</td>
-  <td>relam</td>
-  <td>relfilenode</td>
-  <td>Tablespace name</td>
-  <td>Pages #</td>
-  <td>Tuples #</td>
-  <td>OID Toast Table</td>
-  <td>OID Toast Index</td>
-  <td>Has index?</td>
-  <td>Is shared?</td>
-  <td>Kind</td>
-  <td>natts</td>
-  <td>Checks</td>
-  <td>Triggers</td>
-  <td>Unique Keys</td>
-  <td>Foreign Keys</td>
-  <td>Refs</td>
-  <td>Has OID?</td>
-  <td>Has Primary Key?</td>
-  <td>Has Rules?</td>
-  <td>Has subclass?</td>";
+  <th class="colFirst">Table name</th>
+  <th class="colMid">Schema name</th>
+  <th class="colMid">Table Owner</th>
+  <th class="colMid">relam</th>
+  <th class="colMid">relfilenode</th>
+  <th class="colMid">Tablespace name</th>
+  <th class="colMid">Pages #</th>
+  <th class="colMid">Tuples #</th>
+  <th class="colMid">OID Toast Table</th>
+  <th class="colMid">OID Toast Index</th>
+  <th class="colMid">Has index?</th>
+  <th class="colMid">Is shared?</th>
+  <th class="colMid">Kind</th>
+  <th class="colMid">natts</th>
+  <th class="colMid">Checks</th>
+  <th class="colMid">Triggers</th>
+  <th class="colMid">Unique Keys</th>
+  <th class="colMid">Foreign Keys</th>
+  <th class="colMid">Refs</th>
+  <th class="colMid">Has OID?</th>
+  <th class="colMid">Has Primary Key?</th>
+  <th class="colMid">Has Rules?</th>
+  <th class="colMid">Has subclass?</th>
+';
 if ($g_version >= 82) {
-$buffer .= "
-  <td>Frozen XID</td>";
+$buffer .= '
+  <th class="colMid">Frozen XID</th>';
 }
-$buffer .= "
-  <td><acronym X=\"Access Control List\">ACL</acronym></td>";
+$buffer .= '
+  <th class="colMid"><acronym X=\"Access Control List\">ACL</acronym></th>';
 if ($g_version >= 82) {
-$buffer .= "
-  <td>Options</td>";
+$buffer .= '
+  <th class="colMid">Options</th>';
 }
-$buffer .= "
-  <td>Size</td>
+$buffer .= '
+  <th class="colLast">Size</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['schema'])."
@@ -151,8 +156,9 @@ $buffer .= "
   <td>".$row['size']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

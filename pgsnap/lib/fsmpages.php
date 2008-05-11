@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>FSM Pages List</h2>";
+$buffer = $navigate_stats.'
+<div id="pgContentWrap">
+
+<h1>FSM Pages List</h1>
+';
 
 
 $query = "SELECT
@@ -37,17 +41,17 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Tablespace</td>
-  <td>Database</td>
-  <td>Relation</td>
-  <td>Block Number</td>
-  <td>Bytes</td>
+  <th class="colFirst">Tablespace</th>
+  <th class="colMid">Database</th>
+  <th class="colMid">Relation</th>
+  <th class="colMid">Block Number</th>
+  <th class="colLast">Bytes</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
@@ -58,8 +62,10 @@ $buffer .= tr().'
   <td>'.$row['bytes'].'</td>
 </tr>';
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

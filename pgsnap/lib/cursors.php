@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Cursors list</h2>";
+$buffer = $navigate_activities.'
+<div id="pgContentWrap">
+
+<h1>Cursors list</h2>
+';
 
 
 $query = "SELECT
@@ -35,18 +39,18 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Cursor name</td>
-  <td>Statement</td>
-  <td>Holdable?</td>
-  <td>Binary?</td>
-  <td>Scrollable?</td>
-  <td>Creation Time</td>
+  <th class="colFirst">Cursor name</th>
+  <th class="colMid">Statement</th>
+  <th class="colMid">Holdable?</th>
+  <th class="colMid">Binary?</th>
+  <th class="colMid">Scrollable?</th>
+  <th class="colLast">Creation Time</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -58,8 +62,10 @@ $buffer .= tr()."
   <td>".$row['creation_time']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

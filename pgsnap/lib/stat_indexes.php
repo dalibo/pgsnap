@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Statistical indexes list</h2>";
+$buffer = $navigate_stats.'
+<div id="pgContentWrap">
+
+<h1>Statistical indexes list</h1>
+';
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -37,18 +41,18 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Schema name</td>
-  <td>Table name</td>
-  <td>Index name</td>
-  <td>idx_scan</td>
-  <td>idx_tup_read</td>
-  <td>idx_tup_fetch</td>
+  <th class="colFirst">Schema name</th>
+  <th class="colMid">Table name</th>
+  <th class="colMid">Index name</th>
+  <th class="colMid">idx_scan</th>
+  <th class="colMid">idx_tup_read</th>
+  <th class="colLast">idx_tup_fetch</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['schemaname'])."
@@ -60,8 +64,10 @@ $buffer .= tr($row['schemaname'])."
   <td>".$row['idx_tup_fetch']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

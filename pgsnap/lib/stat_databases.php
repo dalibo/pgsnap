@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Statistical databases list</h2>";
+$buffer = $navigate_stats.'
+<div id="pgContentWrap">
+
+<h1>Statistical databases list</h1>
+';
 
 $query = "SELECT
   datname,
@@ -43,27 +47,28 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Database name</td>
-  <td>Number of backends</td>
-  <td>XACT commit</td>
-  <td>XACT rollback</td>
-  <td>Blocks read</td>
-  <td>Blocks hit</td>";
+  <th class="colFirst">Database name</th>
+  <th class="colMid">Number of backends</th>
+  <th class="colMid">XACT commit</th>
+  <th class="colMid">XACT rollback</th>';
 if ($g_version >= 83) {
-  $buffer .= "
-  <td>Tuple returned</td>
-  <td>Tuple fetched</td>
-  <td>Tuple inserted</td>
-  <td>Tuple updated</td>
-  <td>Tuple deleted</td>";
+  $buffer .= '
+  <th class="colMid"></th>';
 }
-$buffer .= "
+$buffer .= '
+  <th class="colMid">Tuple returned</th>
+  <th class="colMid">Tuple fetched</th>
+  <th class="colMid">Tuple inserted</th>
+  <th class="colMid">Tuple updated</th>
+  <th class="colMid">Tuple deleted</th>
+  <th class="colMid">Blocks read</th>
+  <th class="colLast">Blocks hit</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -84,8 +89,10 @@ if ($g_version >= 83) {
 $buffer .= "
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

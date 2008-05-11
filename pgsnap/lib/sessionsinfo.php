@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Sessions</h2>";
+$buffer = $navigate_activities.'
+<div id="pgContentWrap">
+
+<h1>Sessions</h1>
+';
 
 $query = "SELECT name, setting FROM pg_settings
   WHERE name IN ('max_connections', 'autovacuum_max_workers');";
@@ -46,17 +50,15 @@ if ($rows) {
   $count = $row[0];
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Actual sessions</td>
-  <td>Max connections</td>
-  <td>Autovac Workers</td>
+  <th class="colFirst">Actual sessions</th>
+  <th class="colMid">Max connections</th>
+  <th class="colLast">Autovac Workers</th>
 </tr>
-</thead>
-<tbody>
-<tr>
-  <td>";
+';
 
 if ($count > $max_connections*90/100) {
   $buffer .= '<div  class="danger">'.$count.'</div>';
@@ -64,12 +66,13 @@ if ($count > $max_connections*90/100) {
   $buffer .= $count;
 }
 
-$buffer .= "</td>
-  <td>".$max_connections."</td>
-  <td>".$autovacuum_max_workers."</td>
+$buffer .= '</td>
+  <td>'.$max_connections.'</td>
+  <td>'.$autovacuum_max_workers.'</td>
 </tr>
-</tbody>
-</table>\n";
+</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

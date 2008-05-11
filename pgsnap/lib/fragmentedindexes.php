@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Fragmented Indexes</h2>";
+$buffer = $navigate_dbobjects.'
+<div id="pgContentWrap">
+
+<h1>Fragmented Indexes</h1>
+';
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -34,23 +38,24 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Index Name</td>
-  <td>Version</td>
-  <td>Tree Level</td>
-  <td>Index Size</td>
-  <td>Root Block No</td>
-  <td>Internal Pages</td>
-  <td>Leaf Pages</td>
-  <td>Empty Pages</td>
-  <td>Deleted Pages</td>
-  <td>Average Leaf Density</td>
-  <td>Leaf Fragmentation</td>
+  <th class="colFirst">Index Name</th>
+  <th class="colMid">Version</th>
+  <th class="colMid">Tree Level</th>
+  <th class="colMid">Index Size</th>
+  <th class="colMid">Root Block No</th>
+  <th class="colMid">Internal Pages</th>
+  <th class="colMid">Leaf Pages</th>
+  <th class="colMid">Empty Pages</th>
+  <th class="colMid">Deleted Pages</th>
+  <th class="colMid">Average Leaf Density</th>
+  <th class="colLast">Leaf Fragmentation</th>
 </tr>
-</thead>
-<tbody>\n";
+';
+
 while ($row = pg_fetch_array($rows)) {
   $query_statindex = "SELECT
   version,
@@ -90,8 +95,11 @@ WHERE index_size>0";
 </tr>";
   }
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
+
 $queries .= "<br/>".$query;
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>

@@ -45,14 +45,48 @@ if ($row = pg_fetch_array($rows)) {
 }
 
 echo "Adding some HTML files...\n";
+// javascript
 copy('external/jquery-1.2.3.js', $outputdir.'/jquery-1.2.3.js');
-copy('template/screenstyle.css', $outputdir.'/screenstyle.css');
+// css
+copy('template/fixed.css', $outputdir.'/fixed.css');
+copy('template/global.css', $outputdir.'/global.css');
+copy('template/layout.css', $outputdir.'/layout.css');
+copy('template/text.css', $outputdir.'/text.css');
+copy('template/navigation.css', $outputdir.'/navigation.css');
+copy('template/table.css', $outputdir.'/table.css');
+copy('template/iefixes.css', $outputdir.'/iefixes.css');
+// png
 copy('images/check-off.png', $outputdir.'/check-off.png');
 copy('images/check-on.png', $outputdir.'/check-on.png');
 copy('images/danger.png', $outputdir.'/danger.png');
 copy('images/important.png', $outputdir.'/important.png');
 copy('images/tip.png', $outputdir.'/tip.png');
 copy('images/warning.png', $outputdir.'/warning.png');
+
+copy('images/hdr_left.png', $outputdir.'/hdr_left.png');
+copy('images/hdr_right.png', $outputdir.'/hdr_right.png');
+copy('images/bg_hdr.png', $outputdir.'/bg_hdr.png');
+copy('images/blt_blu_arrow.png', $outputdir.'/blt_blu_arrow.png');
+copy('images/blt_gry_arrow.png', $outputdir.'/blt_gry_arrow.png');
+copy('images/box_bottom.gif', $outputdir.'/box_bottom.gif');
+copy('images/box_top.gif', $outputdir.'/box_top.gif');
+copy('images/feature_bl.gif', $outputdir.'/feature_bl.gif');
+copy('images/feature_br.gif', $outputdir.'/feature_br.gif');
+copy('images/feature_tl.gif', $outputdir.'/feature_tl.gif');
+copy('images/feature_tr.gif', $outputdir.'/feature_tr.gif');
+copy('images/hdr_fill.png', $outputdir.'/hdr_fill.png');
+copy('images/nav_fill.png', $outputdir.'/nav_fill.png');
+copy('images/nav_tbl_btm_lft.png', $outputdir.'/nav_tbl_btm_lft.png');
+copy('images/nav_tbl_btm.png', $outputdir.'/nav_tbl_btm.png');
+copy('images/nav_tbl_btm_rgt.png', $outputdir.'/nav_tbl_btm_rgt.png');
+copy('images/nav_tbl_top_lft.png', $outputdir.'/nav_tbl_top_lft.png');
+copy('images/nav_tbl_top.png', $outputdir.'/nav_tbl_top.png');
+copy('images/nav_tbl_top_rgt.png', $outputdir.'/nav_tbl_top_rgt.png');
+copy('images/usr_tbl_btm.png', $outputdir.'/usr_tbl_btm.png');
+copy('images/usr_tbl_top.png', $outputdir.'/usr_tbl_top.png');
+copy('images/nav_lft.png', $outputdir.'/nav_lft.png');
+copy('images/nav_rgt.png', $outputdir.'/nav_rgt.png');
+// variables
 $image['f'] = '<img src="check-off.png" title="Off" alt="Off"/>';
 $image['t'] = '<img src="check-on.png" title="On" alt="On"/>';
 $image['off'] = '<img src="check-off.png" title="Off" alt="Off"/>';
@@ -79,7 +113,7 @@ if ($g_version > '74'
          or !strcmp($g_settings['log_destination'], 'csvlog'))
     and (!strcmp($g_settings['redirect_stderr'], 'on')
          or !strcmp($g_settings['logging_collector'], 'on')) ) {
-  include 'lib/lastlogfile.php';
+  //include 'lib/lastlogfile.php';
 }
 
 echo "Getting Global Informations...\n";

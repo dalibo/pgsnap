@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Locks List</h2>";
+$buffer = $navigate_activities.'
+<div id="pgContentWrap">
+
+<h1>Locks List</h1>
+';
 
 
 $query = "SELECT
@@ -50,34 +54,34 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Lock Type</td>
-  <td>Database</td>
-  <td>Relation</td>
-  <td>Page</td>
-  <td>Tuple</td>";
+  <th class="colFirst">Lock Type</th>
+  <th class="colMid">Database</th>
+  <th class="colMid">Relation</th>
+  <th class="colMid">Page</th>
+  <th class="colMid">Tuple</th>';
 if ($g_version >= 83) {
-  $buffer .= "
-  <td>Virtual XID</td>";
+  $buffer .= '
+  <th class="colMid">Virtual XID</th>';
 }
-$buffer .= "
-  <td>Transaction ID</td>
-  <td>Class ID</td>
-  <td>Obj ID</td>
-  <td>Obj Sub ID</td>";
+$buffer .= '
+  <th class="colMid">Transaction ID</th>
+  <th class="colMid">Class ID</th>
+  <th class="colMid">Obj ID</th>
+  <th class="colMid">Obj Sub ID</th>';
 if ($g_version >= 83) {
-  $buffer .= "
-  <td>Virtual Transaction</td>";
+  $buffer .= '
+  <th class="colMid">Virtual Transaction</th>';
 }
-$buffer .= "
-  <td>PID</td>
-  <td>Mode</td>
-  <td>Granted?</td>
+$buffer .= '
+  <th class="colMid">PID</th>
+  <th class="colMid">Mode</th>
+  <th class="colLast">Granted?</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -105,8 +109,10 @@ $buffer .= "
   <td>".$image[$row['granted']]."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

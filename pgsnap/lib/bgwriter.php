@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>bgwriter</h2>";
+$buffer = $navigate_stats.'
+<div id="pgContentWrap">
+
+<h1>bgwriter</h1>
+';
 
 
 $query = "SELECT
@@ -35,19 +39,19 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Checkpoints Timed Out</td>
-  <td>Checkpoints Requested</td>
-  <td>Buffers Freed by Checkpoint</td>
-  <td>Buffers Cleaned by Checkpoint</td>
-  <td>Maxwritten Before complete clean</td>
-  <td>Buffers freed by backends</td>
-  <td>Buffers allocated</td>
+  <th class="colFirst">Checkpoints Timed Out</th>
+  <th class="colMid">Checkpoints Requested</th>
+  <th class="colMid">Buffers Freed by Checkpoint</th>
+  <th class="colMid">Buffers Cleaned by Checkpoint</th>
+  <th class="colMid">Maxwritten Before complete clean</th>
+  <th class="colMid">Buffers freed by backends</th>
+  <th class="colLast">Buffers allocated</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -60,8 +64,10 @@ $buffer .= tr()."
   <td>".$row['buffers_alloc']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

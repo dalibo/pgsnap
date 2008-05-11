@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Process List</h2>";
+$buffer = $navigate_activities.'
+<div id="pgContentWrap">
+
+<h1>Process List</h1>
+';
 
 
 $query = "SELECT
@@ -45,27 +49,27 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>DB name</td>
-  <td>PID</td>
-  <td>Client</td>
-  <td>User</td>";
+  <th class="colFirst">DB name</th>
+  <th class="colMid">PID</th>
+  <th class="colMid">Client</th>
+  <th class="colMid">User</th>';
 if ($g_version >= 83) {
-  $buffer .= "
-  <td>Waiting</td>";
+  $buffer .= '
+  <th class="colMid">Waiting</th>';
 }
 if ($g_version >= 83) {
-  $buffer .= "
-  <td>XACT start</td>";
+  $buffer .= '
+  <th class="colMid">XACT start</th>';
 }
-$buffer .= "
-  <td>Query start</td>
-  <td>Backend start</td>
+$buffer .= '
+  <th class="colMid">Query start</th>
+  <th class="colLast">Backend start</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -86,8 +90,10 @@ $buffer .= '
   <td>'.$row['backend_start'].'</td>
 </tr>';
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

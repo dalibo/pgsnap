@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>PGSnap - Reports</title>
-  <style type="text/css" media="all">@import "screenstyle.css";</style>
+  <style type="text/css" media="screen" title="Normal Text">@import url("fixed.css");</style>
   <script type="text/javascript" src="jquery-1.2.3.js"></script>
   <script type="text/javascript">
   $(document).ready(function() {     
@@ -30,5 +30,56 @@
   });
   </script>
 </head>
-
 <body>
+   <div id="pgContainerWrap">
+    <div id="pgContainer">
+      <span class="txtOffScreen"><a href="#pgContent" title="Skip site navigation" accesskey="1">Skip site navigation</a> (1)</span>
+      <span class="txtOffScreen"><a href="#pgContentWrap" title="Skip section navigation" accesskey="2">Skip section navigation</a> (2)</span>
+      <div id="pgHeaderContainer">
+        <div id="pgHeader">
+	  <h2 class="pgBlockHide">Header And Logo</h2>
+          <div id="pgHeaderLogoLeft">
+            <a href="/" title="PostgreSQL"><img src="hdr_left.png" width="230" height="80" alt="PostgreSQL" /></a>
+          </div>
+          <div id="pgHeaderLogoRight">
+            <span class="txtOffScreen">|</span>
+            <a href="/" title="The world's most advanced open source database."><img src="hdr_right.png" width="210" height="80" alt="The world's most advanced open source database." /></a>
+          </div>
+        </div>
+  	<h2 class="pgBlockHide">Site Navigation</h2>
+        <div id="pgTopNav">
+          <div id="pgTopNavLeft">
+            <img src="nav_lft.png" width="7" height="23" alt="" />
+          </div>
+          <div id="pgTopNavRight">
+            <img src="nav_rgt.png" width="7" height="23" alt="" />
+          </div>
+          <ul id="pgTopNavList">
+  <li>
+    <a href="index.html" title="Home">Home</a>
+  </li>
+  <li>
+    <a href="ver.html" title="General">General</a>
+  </li>
+  <li>
+
+    <a href="bases.html" title="Global Objects">Global Objects</a>
+  </li>
+  <li>
+    <a href="schemas.html" title="Databases Objects">Databases Objects</a>
+  </li>
+  <li>
+    <a href="sessionsinfo.html" title="Activities">Activities</a>
+
+  </li>
+  <li>
+    <a href="bgwriter.html" title="Statistics">Statistics</a>
+  </li>
+  <li>
+    <a href="http://pgsnap.projects.postgresql.org/" title="pgsnap Home Page">pgsnap</a>
+  </li>
+</ul>
+
+        </div>
+      </div>
+      <div id="pgContent">

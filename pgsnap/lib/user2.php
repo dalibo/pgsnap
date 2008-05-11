@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Total objects per tablespace</h2>";
+$buffer = $navigate_globalobjects.'
+<div id="pgContentWrap">
+
+<h1>Total objects per tablespace</h1>
+';
 
 
 $query = "SELECT rolname,
@@ -38,25 +42,26 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td width="40%">Owner</td>
-  <td width="40%">Object\'s type</td>
-  <td width="20%">Size</td>
+  <th class="colFirst" width="40%">Owner</th>
+  <th class="colMid" width="40%">Object\'s type</th>
+  <th class="colLast" width="20%">Size</th>
 </tr>
-</thead>
-<tbody>';
+';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td>".$row['rolname']."</td>
-  <td>".ucfirst($row['kind'])."</td>
-  <td>".$row['total']."</td>
-</tr>";
+$buffer .= tr().'
+  <td>'.$row['rolname'].'</td>
+  <td>'.ucfirst($row['kind']).'</td>
+  <td>'.$row['total'].'</td>
+</tr>';
 }
-$buffer .= "</tbody>
-</table>";
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

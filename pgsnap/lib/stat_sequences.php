@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Statistical tables list</h2>";
+$buffer = $navigate_stats.'
+<div id="pgContentWrap">
+
+<h1>Statistical tables list</h1>
+';
 
 
 $query = "SELECT
@@ -45,28 +49,28 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Schema name</td>
-  <td>Table name</td>
-  <td>seq_scan</td>
-  <td>seq_tup_read</td>
-  <td>idx_scan</td>
-  <td>idx_tup_fetch</td>
-  <td>n_tup_ins</td>
-  <td>n_tup_upd</td>
-  <td>n_tup_del</td>
-  <td>n_tup_hot_upd</td>
-  <td>n_live_tup</td>
-  <td>n_dead_tup</td>
-  <td>last_vacuum</td>
-  <td>last_autovacuum</td>
-  <td>last_analyze</td>
-  <td>last_autoanalyze</td>
+  <th class="colFirst">Schema name</th>
+  <th class="colMid">Table name</th>
+  <th class="colMid">seq_scan</th>
+  <th class="colMid">seq_tup_read</th>
+  <th class="colMid">idx_scan</th>
+  <th class="colMid">idx_tup_fetch</th>
+  <th class="colMid">n_tup_ins</th>
+  <th class="colMid">n_tup_upd</th>
+  <th class="colMid">n_tup_del</th>
+  <th class="colMid">n_tup_hot_upd</th>
+  <th class="colMid">n_live_tup</th>
+  <th class="colMid">n_dead_tup</th>
+  <th class="colMid">last_vacuum</th>
+  <th class="colMid">last_autovacuum</th>
+  <th class="colMid">last_analyze</th>
+  <th class="colLast">last_autoanalyze</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -88,8 +92,10 @@ $buffer .= tr()."
   <td>".$row['last_autoanalyze']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

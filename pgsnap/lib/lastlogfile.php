@@ -16,7 +16,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Contents of the last log file</h2>";
+$buffer = $navigate_general.'
+<div id="pgContentWrap">
+
+<h1>Contents of the last log file</h1>';
 
 $query = "SELECT * FROM (
   SELECT

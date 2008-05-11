@@ -16,7 +16,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Prepared Transactions List</h2>";
+$buffer = $navigate_activities.'
+<div id="pgContentWrap">
+
+<h1>Prepared Transactions List</h1>';
 
 
 $query = "SELECT
@@ -34,17 +37,17 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Owner</td>
-  <td>Database</td>
-  <td>Transaction ID</td>
-  <td>GID</td>
-  <td>Prepared Time</td>
+  <th class="colFirst">Owner</th>
+  <th class="colMid">Database</th>
+  <th class="colMid">Transaction ID</th>
+  <th class="colMid">GID</th>
+  <th class="colLast">Prepared Time</th>
 </tr>
-</thead>
-<tbody>\n";
+';
  
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -55,8 +58,10 @@ $buffer .= tr()."
   <td>".$row['prepared']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

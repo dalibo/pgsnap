@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>FK constraints list</h2>";
+$buffer = $navigate_dbobjects.'
+<div id="pgContentWrap">
+
+<h1>FK constraints list</h1>
+';
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -40,18 +44,18 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Table Owner</td>
-  <td>Table name</td>
-  <td>Constraint name</td>
-  <td>Column name</td>
-  <td>Referenced Table name</td>
-  <td>Referenced Column name</td>
+  <th class="colFirst">Table Owner</th>
+  <th class="colMid">Table name</th>
+  <th class="colMid">Constraint Name</th>
+  <th class="colMid">Column Name</th>
+  <th class="colMid">Referenced Table Name</th>
+  <th class="colLast">Referenced Column Name</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 //column, referenced table, referenced column
@@ -69,8 +73,10 @@ while ($row = pg_fetch_array($rows)) {
   <td>".$def[2]."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

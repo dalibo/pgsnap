@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Last Vacuumed Tables</h2>";
+$buffer = $navigate_stats.'
+<div id="pgContentWrap">
+
+<h1>Last Vacuumed Tables</h1>
+';
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -37,15 +41,15 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td width="30%">Schema Name</td>
-  <td width="30%">Table Name</td>
-  <td width="40%">Last vacuum</td>
+  <th class="colFirst">Schema Name</th>
+  <th class="colMid">Table Name</th>
+  <th class="colLast">Last vacuum</th>
 </tr>
-</thead>
-<tbody>';
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['schemaname'])."
@@ -54,8 +58,10 @@ $buffer .= tr($row['schemaname'])."
   <td>".$row['lastvac']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

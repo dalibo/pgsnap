@@ -16,11 +16,15 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>General Configuration</h2>
+$buffer = $navigate_general.'
+<div id="pgContentWrap">
 
-<p><b>Be careful</b>, this is not the result from reading the postgresql.conf
-file, but it's the actual configuration available when connecting to <b>database
-".$PGDATABASE." on server ".$PGHOST.":".$PGPORT." as user ".$PGUSER."</b>.</p>";
+<h1>General Configuration</h1>
+
+<p><b>Be careful</b>, this is not the result from reading the
+postgresql.conf file, but it\'s the actual configuration available
+when connecting to <b>database '.$PGDATABASE.' on server '.$PGHOST.
+':'.$PGPORT.' as user '.$PGUSER.'</b>.</p>';
 
 if ($g_version > 74) {
   $query_cat = "SELECT DISTINCT category AS name FROM pg_settings";
@@ -68,18 +72,18 @@ while (!$done) {
     exit;
   }
 
-  $buffer .= "<table>
-<thead>
+  $buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Name</td>
-  <td>Actual setting</td>
-  <td>Context</td>
-  <td>Vartype</td>
-  <td>Source</td>
-  <td>Min/Max value</td>
+  <th class="colFirst">Name</th>
+  <th class="colMid">Actual setting</th>
+  <th class="colMid">Context</th>
+  <th class="colMid">Vartype</th>
+  <th class="colMid">Source</th>
+  <th class="colLast">Min/Max value</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
@@ -96,8 +100,9 @@ $buffer .= "</td>
   <td>".$row['min_val']."&nbsp;/&nbsp;".$row['max_val']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+$buffer .= '</table>
+</div>
+';
 
   if ($g_version == 74) {
     $done = true;

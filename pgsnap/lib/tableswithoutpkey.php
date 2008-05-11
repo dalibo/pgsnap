@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Tables without PKEY list</h2>";
+$buffer = $navigate_dbobjects.'
+<div id="pgContentWrap">
+
+<h1>Tables without PKEY list</h1>
+';
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -40,16 +44,16 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Table Owner</td>
-  <td>Schema Name</td>
-  <td>Table Name</td>
-  <td>Size</td>
+  <th class="colFirst">Table Owner</th>
+  <th class="colMid">Schema Name</th>
+  <th class="colMid">Table Name</th>
+  <th class="colLast">Size</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['nspname'])."
@@ -59,8 +63,10 @@ $buffer .= tr($row['nspname'])."
   <td>".$row['size']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

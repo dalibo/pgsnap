@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Fragmented Tables</h2>";
+$buffer = $navigate_dbobjects.'
+<div id="pgContentWrap">
+
+<h1>Fragmented Tables</h1>
+';
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -34,22 +38,22 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Table Name</td>
-  <td>Table Length</td>
-  <td>Tuple count</td>
-  <td>Tuple Length</td>
-  <td>Tuple percent</td>
-  <td>Dead Tuple count</td>
-  <td>Dead Tuple Length</td>
-  <td>Dead Tuple percent</td>
-  <td>Free Space</td>
-  <td>Free percent</td>
+  <th class="colFirst">Table Name</th>
+  <th class="colMid">Table Length</th>
+  <th class="colMid">Tuple count</th>
+  <th class="colMid">Tuple Length</th>
+  <th class="colMid">Tuple percent</th>
+  <th class="colMid">Dead Tuple Count</th>
+  <th class="colMid">Dead Tuple Length</th>
+  <th class="colMid">Dead Tuple Percent</th>
+  <th class="colMid">Free Space</th>
+  <th class="colLast">Free Percent</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
   $query_stattuple = "SELECT
@@ -88,8 +92,10 @@ WHERE table_len>0";
 </tr>";
   }
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $queries .= "<br/>".$query;
 

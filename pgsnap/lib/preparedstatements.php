@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Prepared Statements List</h2>";
+$buffer = $navigate_activities.'
+<div id="pgContentWrap">
+
+<h1>Prepared Statements List</h1>
+';
 
 // TODO parameter_types is not handled yet
 
@@ -34,16 +38,16 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Name</td>
-  <td>Statement</td>
-  <td>Prepare Time</td>
-  <td>From SQL</td>
+  <th class="colFirst">Name</th>
+  <th class="colMid">Statement</th>
+  <th class="colMid">Prepare Time</th>
+  <th class="colLast">From SQL</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -53,8 +57,10 @@ $buffer .= tr()."
   <td>".$row['from_sql']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

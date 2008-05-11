@@ -16,8 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Databases in cache</h2>";
+$buffer = $navigate_globalobjects.'
+<div id="pgContentWrap">
 
+<h1>Databases in cache</h1>
+';
 
 $query = "SELECT
   rolname AS dba,
@@ -36,31 +39,31 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td width="20%">Database Owner</td>
-  <td width="20%">Database Name</td>
-  <td width="20%">Database Size</td>
-  <td width="15%">Total Buffers</td>
-  <td width="15%">Total Buffers Size</td>
-  <td width="10%">% of Database In Cache</td>
-</tr>
-</thead>
-<tbody>';
+  <th class="colFirst" width="20%">Database Owner</th>
+  <th class="colMid" width="20%">Database Name</th>
+  <th class="colMid" width="20%">Database Size</th>
+  <th class="colMid" width="15%">Total Buffers</th>
+  <th class="colMid" width="15%">Total Buffers Size</th>
+  <th class="colLast" width="10%">% of Database In Cache</th>
+</tr>';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td>".$row['dba']."</td>
-  <td>".$row['datname']."</td>
-  <td>".$row['size']."</td>
-  <td>".$row['buffers']."</td>
-  <td>".($row['buffers']*8192)."</td>
-  <td>".round(($row['buffers']*8192*100/$row['size']), 2)."</td>
-</tr>";
+$buffer .= tr().'
+  <td>'.$row['dba'].'</td>
+  <td>'.$row['datname'].'</td>
+  <td>'.$row['size'].'</td>
+  <td>'.$row['buffers'].'</td>
+  <td>'.($row['buffers']*8192).'</td>
+  <td>'.round(($row['buffers']*8192*100/$row['size']), 2).'</td>
+</tr>';
 }
-$buffer .= "</tbody>
-</table>";
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

@@ -16,8 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Roles list</h2>";
+$buffer = $navigate_globalobjects.'
+<div id="pgContentWrap">
 
+<h1>Roles list</h1>
+';
 
 $query = "SELECT rolname,
   rolsuper,
@@ -38,39 +41,39 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Role name</td>
-  <td>Super user?</td>
-  <td>Inherit?</td>
-  <td>Create role?</td>
-  <td>Create DB?</td>
-  <td>Catalog update?</td>
-  <td>Can login?</td>
-  <td>Connection limits</td>
-  <td>Valid until</td>
-  <td>Configuration</td>
-</tr>
-</thead>
-<tbody>\n";
+  <th class="colFirst">Role name</th>
+  <th class="colMid">Super user?</th>
+  <th class="colMid">Inherit?</th>
+  <th class="colMid">Create role?</th>
+  <th class="colMid">Create DB?</th>
+  <th class="colMid">Catalog update?</th>
+  <th class="colMid">Can login?</th>
+  <th class="colMid">Connection limits</th>
+  <th class="colMid">Valid until</th>
+  <th class="colLast">Configuration</th>
+</tr>';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td>".$row['rolname']."</td>
-  <td>".$image[$row['rolsuper']]."</td>
-  <td>".$image[$row['rolinherit']]."</td>
-  <td>".$image[$row['rolcreaterole']]."</td>
-  <td>".$image[$row['rolcreatedb']]."</td>
-  <td>".$image[$row['rolcatupdate']]."</td>
-  <td>".$image[$row['rolcanlogin']]."</td>
-  <td>".$row['rolconnlimit']."</td>
-  <td>".$row['rolvaliduntil']."</td>
-  <td>".$row['rolconfig']."</td>
-</tr>";
+$buffer .= tr().'
+  <td>'.$row['rolname'].'</td>
+  <td>'.$image[$row['rolsuper']].'</td>
+  <td>'.$image[$row['rolinherit']].'</td>
+  <td>'.$image[$row['rolcreaterole']].'</td>
+  <td>'.$image[$row['rolcreatedb']].'</td>
+  <td>'.$image[$row['rolcatupdate']].'</td>
+  <td>'.$image[$row['rolcanlogin']].'</td>
+  <td>'.$row['rolconnlimit'].'</td>
+  <td>'.$row['rolvaliduntil'].'</td>
+  <td>'.$row['rolconfig'].'</td>
+</tr>';
 }
-$buffer .= "</tbody>
-</table>";
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

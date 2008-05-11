@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Languages list</h2>";
+$buffer = $navigate_dbobjects.'
+<div id="pgContentWrap">
+
+<h1>Languages</h1>
+';
 
 switch ($g_version) {
   case '83':
@@ -44,21 +48,21 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Language name</td>";
+  <th class="colFirst">Language Name</th>';
 if ($g_version == '83') {
-  $buffer .= "
-  <td>Language owner</td>";
+  $buffer .= '
+  <td class="colMid">Language Owner</td>';
 }
-$buffer .= "
-  <td>Is PL?</td>
-  <td>Trusted PL?</td>
-  <td><acronym X=\"Access Control List\">ACL</acronym></td>
+$buffer .= '
+  <th class="colMid">Is PL?</th>
+  <th class="colMid">Trusted PL?</th>
+  <th class="colLast"><acronym X=\"Access Control List\">ACL</acronym></th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -73,8 +77,10 @@ $buffer .= "
   <td><acronym X=\"Access Control List\">".$row['lanacl']."</acronym></td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

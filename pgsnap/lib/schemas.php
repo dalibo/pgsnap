@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Schemas list</h2>";
+$buffer = $navigate_dbobjects.'
+<div id="pgContentWrap">
+
+<h1>Schemas</h2>
+';
 
 
 $query = "SELECT nspname,
@@ -32,15 +36,15 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Schema name</td>
-  <td>Schema owner</td>
-  <td><acronym X=\"Access Control List\">ACL</acronym></td>
+  <th class="colFirst" width="20%">Schema Name</th>
+  <th class="colMid" width="20%">Schema Owner</th>
+  <th class="colLast" width="20%"><acronym X=\"Access Control List\">ACL</acronym></th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -49,8 +53,10 @@ $buffer .= tr()."
   <td>".$row['nspacl']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

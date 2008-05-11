@@ -16,8 +16,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Databases list</h2>";
+$buffer = $navigate_globalobjects.'
+<div id="pgContentWrap">
 
+<h1>Databases</h1>';
 
 $query = "SELECT datname,
   rolname AS dba,
@@ -42,43 +44,45 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td width="200">DB Owner</td>
-  <td width="200">DB Name</td>
-  <td width="200">Encoding</td>
-  <td width="100">Template?</td>
-  <td width="100">Allow connections?</td>
-  <td width="100">Connection limits</td>
-  <td width="100">Last system OID</td>
-  <td width="100">Frozen XID</td>
-  <td width="200">Tablespace name</td>
-  <td width="200">Size</td>
-  <td width="200">Configuration</td>
-  <td width="300"><acronym title="Access Control List">ACL</acronym></td>
+  <th class="colFirst" width="200">DB Owner</th>
+  <th class="colMid" width="200">DB Name</th>
+  <th class="colMid" width="200">Encoding</th>
+  <th class="colMid" width="100">Template?</th>
+  <th class="colMid" width="100">Allow connections?</th>
+  <th class="colMid" width="100">Connection limits</th>
+  <th class="colMid" width="100">Last system OID</th>
+  <th class="colMid" width="100">Frozen XID</th>
+  <th class="colMid" width="200">Tablespace name</th>
+  <th class="colMid" width="200">Size</th>
+  <th class="colMid" width="200">Configuration</th>
+  <th class="colLast" width="300"><acronym title="Access Control List">ACL</acronym></th>
 </tr>
 </thead>
 <tbody>';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td>".$row['dba']."</td>
-  <td>".$row['datname']."</td>
-  <td>".$row['encoding']."</td>
-  <td>".$image[$row['datistemplate']]."</td>
-  <td>".$image[$row['datallowconn']]."</td>
-  <td>".$row['datconnlimit']."</td>
-  <td>".$row['datlastsysoid']."</td>
-  <td>".$row['datfrozenxid']."</td>
-  <td>".$row['tablespace']."</td>
-  <td>".$row['size']."</td>
-  <td>".$row['datconfig']."</td>
-  <td><acronym X=\"Access Control List\">".$row['datacl']."</acronym></td>
-</tr>";
+$buffer .= tr().'
+  <td>'.$row['dba'].'</td>
+  <td>'.$row['datname'].'</td>
+  <td>'.$row['encoding'].'</td>
+  <td>'.$image[$row['datistemplate']].'</td>
+  <td>'.$image[$row['datallowconn']].'</td>
+  <td>'.$row['datconnlimit'].'</td>
+  <td>'.$row['datlastsysoid'].'</td>
+  <td>'.$row['datfrozenxid'].'</td>
+  <td>'.$row['tablespace'].'</td>
+  <td>'.$row['size'].'</td>
+  <td>'.$row['datconfig'].'</td>
+  <td><acronym X=\"Access Control List\">'.$row['datacl'].'</acronym></td>
+</tr>';
 }
-$buffer .= "</tbody>
-</table>";
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

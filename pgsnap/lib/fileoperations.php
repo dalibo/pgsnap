@@ -21,8 +21,7 @@ $basdepage = file_get_contents('template/footer.template.html');
 
 $file = fopen($filename, "w");
 fwrite($file, $entete);
-fwrite($file, $navigate);
-fwrite($file, '<div class="rightdiv">'.$buffer.'</div>');
+fwrite($file, $buffer);
 fwrite($file, $basdepage);
 fclose($file);
 

@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>FSM Relations List</h2>";
+$buffer = $navigate_stats.'
+<div id="pgContentWrap">
+
+<h1>FSM Relations List</h1>
+';
 
 $query = "SELECT
   sum(interestingpages) as ip,
@@ -62,19 +66,19 @@ if (pg_num_rows($rows) > $g_settings['max_fsm_relations']*0.9
   $buffer .= '<div class="warning">You should increase the max_fsm_relations parameter (max_fsm_relations is set to '.$g_settings['max_fsm_relations'].' and there\'s already '.pg_num_rows($rows).' relations in the FSM cache!).</div>';
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Tablespace</td>
-  <td>Database</td>
-  <td>Relation</td>
-  <td>Average Request</td>
-  <td>Interesting Pages</td>
-  <td>Stored Pages</td>
-  <td>Next Page</td>
+  <th class="colFirst">Tablespace</th>
+  <th class="colMid">Database</th>
+  <th class="colMid">Relation</th>
+  <th class="colMid">Average Request</th>
+  <th class="colMid">Interesting Pages</th>
+  <th class="colMid">Stored Pages</th>
+  <th class="colLast">Next Page</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
@@ -87,8 +91,10 @@ $buffer .= tr().'
   <td>'.$row['nextpage'].'</td>
 </tr>';
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

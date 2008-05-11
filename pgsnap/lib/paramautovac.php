@@ -16,8 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Autovacuum configuration</h2>";
+$buffer = $navigate_general.'
+<div id="pgContentWrap">
 
+<h1>Autovacuum configuration</h1>
+';
 
 if ($g_version >= 82) {
   $query = "SELECT
@@ -58,48 +61,49 @@ if (!$rows) {
 if (pg_num_rows($rows) == 0) {
   $buffer .= '<div class="warning">No specific configuration.</div>';
 } else {
-  $buffer .= "<table>
-<thead>
+  $buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Table name</td>
-  <td>Enabled?</td>
-  <td>Table Owner</td>
-  <td>Vacuum threshold</td>
-  <td>Vacuum scale factor</td>
-  <td>Analyze threshold</td>
-  <td>Analyze scale factor</td>
-  <td>Vacuum Cost Delay</td>
-  <td>Vacuum Cost Limit</td>";
+  <th class="colFirst">Table</th>
+  <th class="colMid">Enabled?</th>
+  <th class="colMid">Owner</th>
+  <th class="colMid">Vacuum threshold</th>
+  <th class="colMid">Vacuum scale factor</th>
+  <th class="colMid">Analyze threshold</th>
+  <th class="colMid">Analyze scale factor</th>
+  <th class="colMid">Vacuum Cost Delay</th>
+  <th class="colMid">Vacuum Cost Limit</th>';
 if ($g_version > 82) {
-  $buffer .= "
-  <td>freeze_min_age</td>
-  <td>freeze_max_age</td>";
+  $buffer .= '
+  <th class="colMid">Free Min Age</td>
+  <th class="colLast">Freeze Max Age</td>
+';
 }
-$buffer .= "
+$buffer .= '
 </tr>
-</thead>
-<tbody>\n";
+';
 
   while ($row = pg_fetch_array($rows)) {
-    $buffer .= tr()."
-  <td>".$row['relname']."</td>
-  <td>".$row['enabled']."</td>
-  <td>".$row['vac_base_thresh']."</td>
-  <td>".$row['vac_scale_factor']."</td>
-  <td>".$row['anl_base_thresh']."</td>
-  <td>".$row['anl_scale_factor']."</td>
-  <td>".$row['vac_cost_delay']."</td>
-  <td>".$row['vac_cost_limit']."</td>";
-if ($g_version > 82) {
-  $buffer .= "
-  <td>".$row['freeze_min_age']."</td>
-  <td>".$row['freeze_max_age']."</td>";
-}
-$buffer .= "
-</tr>";
+    $buffer .= tr().'
+  <td>'.$row['relname'].'</td>
+  <td>'.$row['enabled'].'</td>
+  <td>'.$row['vac_base_thresh'].'</td>
+  <td>'.$row['vac_scale_factor'].'</td>
+  <td>'.$row['anl_base_thresh'].'</td>
+  <td>'.$row['anl_scale_factor'].'</td>
+  <td>'.$row['vac_cost_delay'].'</td>
+  <td>'.$row['vac_cost_limit'].'</td>';
+    if ($g_version > 82) {
+      $buffer .= '
+  <td>'.$row['freeze_min_age'].'</td>
+  <td>'.$row['freeze_max_age'].'</td>';
+    }
+$buffer .= '
+</tr>';
   }
-  $buffer .= "</tbody>
-</table>";
+  $buffer .= '</table>
+</div>';
 }
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>

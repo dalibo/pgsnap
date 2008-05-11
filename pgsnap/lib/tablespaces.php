@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Tablespaces list</h2>";
+$buffer = $navigate_globalobjects.'
+<div id="pgContentWrap">
+
+<h1>Tablespaces list</h1>
+';
 
 // TODO : without superuser powers, this fails
 $query = "SELECT spcname,
@@ -34,17 +38,17 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td width="20%">Tablespace Owner</td>
-  <td width="20%">Tablespace Name</td>
-  <td width="20%">Location</td>
-  <td width="20%">Size</td>
-  <td width="20%">ACL</td>
+  <th class="colFirst" width="20%">Tablespace Owner</th>
+  <th class="colMid" width="20%">Tablespace Name</th>
+  <th class="colMid" width="20%">Location</th>
+  <th class="colMid" width="20%">Size</th>
+  <th class="colLast" width="20%">ACL</th>
 </tr>
-</thead>
-<tbody>';
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
@@ -55,8 +59,9 @@ $buffer .= tr()."
   <td>".$row['spcacl']."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

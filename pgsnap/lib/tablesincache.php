@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = "<h2>Tables in cache</h2>";
+$buffer = $navigate_dbobjects.'
+<div id="pgContentWrap">
+
+<h1>Tables in cache</h1>
+';
 
 $buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
@@ -41,17 +45,17 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
-<thead>
+$buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <td>Table Name</td>
-  <td>Table size</td>
-  <td>Total buffers</td>
-  <td>Total buffers size</td>
-  <td>% of the table in cache</td>
+  <th class="colFirst">Table Name</th>
+  <th class="colMid">Table size</th>
+  <th class="colMid">Total buffers</th>
+  <th class="colMid">Total buffers size</th>
+  <th class="colLast">% of the table in cache</th>
 </tr>
-</thead>
-<tbody>\n";
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['nspname'])."
@@ -62,8 +66,10 @@ $buffer .= tr($row['nspname'])."
   <td>".round(($row['buffers']*8192*100/$row['size']), 2)."</td>
 </tr>";
 }
-$buffer .= "</tbody>
-</table>";
+
+$buffer .= '</table>
+</div>
+';
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">
