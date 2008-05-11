@@ -1,4 +1,4 @@
-.TH PGSNAP "1" "April 2008" "pgsnap 0.2.0" "User Commands"
+.TH PGSNAP "1" "April 2008" "pgsnap 0.3.0" "User Commands"
 .SH NAME
 pgsnap \- PostgreSQL report tool
 .SH DESCRIPTION
@@ -11,6 +11,12 @@ pgsnap is a PostgreSQL tool that mimics orasnap performance report tool for Orac
 \fB\-d\fR DBNAME
 specify database name to connect to
 (default: your login name)
+.TP
+\fB\-o\fR outputdir
+specify directory name where the reports
+will be created (default: the database name
+followed by 'snap_', followed by the date
+and time)
 .TP
 \fB\-\-help\fR
 show this help, then exit
@@ -39,7 +45,7 @@ pgsnap is written and maintained by Guillaume Lelarge
 .PP
 The pgsnap website:
 .nh
-.B http://pgfoundry.org/projects/pgsnap/
+.B http://pgsnap.projects.postgresql.org/
 .hy
 .PP
 This manpage was written by Pierre Chifflier
