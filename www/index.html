@@ -12,14 +12,15 @@
 <div id="menu">
 <ul>
 <li><a href="#about">About</a></li>
-<li><a href="#demo" title="PGSnap Demo">Demo</a></li>
-<li><a href="#todo" title="To Do">To Do</a></li>
-<li><a href="#usage" title="Usage">Usage</a></li>
+<li><a href="#demo" title="PGSnap Demo">Demos</a></li>
 <li><a href="#download" title="Download">Download</a></li>
 <li><a href="#install">Install</a></li>
+<li><a href="#usage" title="Usage">Usage</a></li>
+<li><a href="#todo" title="To Do">To Do</a></li>
 <li><a href="#contact" title="contact pgsnap author">Contact</a></li>
 </ul> 
 </div>
+
 <h1>PGSnap</h1>
 <a name="about"/>
 <div id="about">
@@ -31,7 +32,6 @@ It's written in PHP but one uses it on the command line. Many HTML files, aka re
 </p>
 </div>
 
-			
 <a name="demo"></a>
 <div class="entry">
 <h2>Demos</h2>
@@ -46,39 +46,21 @@ Here are three examples of the output:
 </div>
 	
 <hr/>	
-
-<a name="todo"></a>
+<a name="download"></a>
 <div class="entry">
-	<h2>To Do</h2>
-	<ul>
-		<li>specific orasnap:
-		<ul>
-			<li>Tablespace : list default tablespace for each user</li>
-			<li>Disabled constraints : owner, table, constraint, type, status</li>
-			<li>FK without indexes : owner, constraint name, column name</li>
-			<li>cached tables (pg_buffercache)</li>
-			<li>Buffer Hit Ratio (Consistent Gets  DB Blk Gets  Physical Reads  Hit Ratio)</li>
-		</ul></li>
-		<li>HTML interface:
-		<ul>
-			<li>jQuery support : sort in tables, filtering</li>
-			<li>graph on database size and usage</li>
-			<li>graph on tablespace size</li>
-			<li>graph on table and index size and usage</li>
-		</ul></li>
-		<li>pollux asks for:
-		<ul>
-			<li>limiting the schemas used with a command line option (to get pg_catalog out)</li>
-			<li>being able to get a report from a standard user (not a superuser)</li>
-		</ul></li>
-	</ul>
-<!--
-	<p class="note">On peut meme ecrire des notes.</p>
--->
+   <h2>Download</h2>			    
+<p class="dl"><a onclick="pageTracker._trackPageview('/pgsnap-0.3.1.tar.gz');"
+href="http://pgfoundry.org/frs/download.php/1791/pgsnap-0.3.1.tar.gz">pgsnap-0.3.1</a></p>
+</div>				
+
+<hr/>	
+<a name="install"></a>
+<div class="entry" >
+	<h2>Install</h2>
+	<p class="codebit">apt-get install php5-pgsql php5-cli</p>
 </div>
 	
 <hr/>	
-
 <a name="usage"></a>
 <div class="entry">
 	<h2>Usage</h2>
@@ -111,19 +93,34 @@ Here are three examples of the output:
 </div>
 
 <hr/>
-
-<a name="download"></a>
+<a name="todo"></a>
 <div class="entry">
-   <h2>Download</h2>			    
-<p class="dl"><a onclick="pageTracker._trackPageview('/pgsnap-0.3.1.tar.gz');"
-href="http://pgfoundry.org/frs/download.php/1791/pgsnap-0.3.1.tar.gz">pgsnap-0.3.1</a></p>
-</div>				
-	
-<hr/>	
-<a name="install"></a>
-<div class="entry" >
-	<h2>Install</h2>
-	<p class="codebit">apt-get install php5-pgsql php5-cli</p>
+	<h2>To Do</h2>
+	<ul>
+		<li>specific orasnap:
+		<ul>
+			<li>Tablespace : list default tablespace for each user</li>
+			<li>Disabled constraints : owner, table, constraint, type, status</li>
+			<li>FK without indexes : owner, constraint name, column name</li>
+			<li>cached tables (pg_buffercache)</li>
+			<li>Buffer Hit Ratio (Consistent Gets  DB Blk Gets  Physical Reads  Hit Ratio)</li>
+		</ul></li>
+		<li>HTML interface:
+		<ul>
+			<li>jQuery support : sort in tables, filtering</li>
+			<li>graph on database size and usage</li>
+			<li>graph on tablespace size</li>
+			<li>graph on table and index size and usage</li>
+		</ul></li>
+		<li>pollux asks for:
+		<ul>
+			<li>limiting the schemas used with a command line option (to get pg_catalog out)</li>
+			<li>being able to get a report from a standard user (not a superuser)</li>
+		</ul></li>
+	</ul>
+<!--
+	<p class="note">On peut meme ecrire des notes.</p>
+-->
 </div>
 
 <div id="footer">
