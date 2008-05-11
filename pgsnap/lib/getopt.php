@@ -34,8 +34,6 @@ if (strlen("$PGDATABASE") == 0) {
 
 $PGPASSWORD = getenv('PGPASSWORD');
 
-$outputdir = $PGDATABASE.'_snap_'.date('Ymd');
-
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
   switch($_SERVER["argv"][$i]) {
     case "-v":
@@ -98,5 +96,7 @@ Connection options:
       break;
   }
 }
+
+$outputdir = $PGDATABASE.'_snap_'.date('Ymd');
 
 ?>
