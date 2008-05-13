@@ -16,8 +16,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$entete = file_get_contents('template/header.template.html');
-$basdepage = file_get_contents('template/footer.template.html');
+$entete = file_get_contents($PGSNAP_ROOT_PATH.'template/header.template.html');
+$basdepage = file_get_contents($PGSNAP_ROOT_PATH.'template/footer.template.html');
 
 $file = fopen($filename, "w");
 fwrite($file, $entete);

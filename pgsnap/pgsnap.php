@@ -17,6 +17,15 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+/****************************************************************************/
+/* This can be modified to suit your needs                                  */
+$PGSNAP_ROOT_PATH='./';
+ini_set('include_path', '.:/usr/share/pgsnap/');
+
+$PGSNAP_ROOT_PATH='/home/guillaume/freeprojects/cvs.pgsnap/head/pgsnap/';
+ini_set('include_path', '.:/home/guillaume/freeprojects/cvs.pgsnap/head/pgsnap');
+/****************************************************************************/
+
 include 'lib/getopt.php';
 include 'lib/ui.php';
 
@@ -46,46 +55,47 @@ if ($row = pg_fetch_array($rows)) {
 
 echo "Adding some HTML files...\n";
 // javascript
-copy('external/jquery-1.2.3.js', $outputdir.'/jquery-1.2.3.js');
+copy($PGSNAP_ROOT_PATH.'external/jquery-1.2.3.js',
+     $outputdir.'/jquery-1.2.3.js');
 // css
-copy('template/fixed.css', $outputdir.'/fixed.css');
-copy('template/global.css', $outputdir.'/global.css');
-copy('template/layout.css', $outputdir.'/layout.css');
-copy('template/text.css', $outputdir.'/text.css');
-copy('template/navigation.css', $outputdir.'/navigation.css');
-copy('template/table.css', $outputdir.'/table.css');
-copy('template/iefixes.css', $outputdir.'/iefixes.css');
+copy($PGSNAP_ROOT_PATH.'template/fixed.css', $outputdir.'/fixed.css');
+copy($PGSNAP_ROOT_PATH.'template/global.css', $outputdir.'/global.css');
+copy($PGSNAP_ROOT_PATH.'template/layout.css', $outputdir.'/layout.css');
+copy($PGSNAP_ROOT_PATH.'template/text.css', $outputdir.'/text.css');
+copy($PGSNAP_ROOT_PATH.'template/navigation.css', $outputdir.'/navigation.css');
+copy($PGSNAP_ROOT_PATH.'template/table.css', $outputdir.'/table.css');
+copy($PGSNAP_ROOT_PATH.'template/iefixes.css', $outputdir.'/iefixes.css');
 // png
-copy('images/check-off.png', $outputdir.'/check-off.png');
-copy('images/check-on.png', $outputdir.'/check-on.png');
-copy('images/danger.png', $outputdir.'/danger.png');
-copy('images/important.png', $outputdir.'/important.png');
-copy('images/tip.png', $outputdir.'/tip.png');
-copy('images/warning.png', $outputdir.'/warning.png');
+copy($PGSNAP_ROOT_PATH.'images/check-off.png', $outputdir.'/check-off.png');
+copy($PGSNAP_ROOT_PATH.'images/check-on.png', $outputdir.'/check-on.png');
+copy($PGSNAP_ROOT_PATH.'images/danger.png', $outputdir.'/danger.png');
+copy($PGSNAP_ROOT_PATH.'images/important.png', $outputdir.'/important.png');
+copy($PGSNAP_ROOT_PATH.'images/tip.png', $outputdir.'/tip.png');
+copy($PGSNAP_ROOT_PATH.'images/warning.png', $outputdir.'/warning.png');
 
-copy('images/hdr_left.png', $outputdir.'/hdr_left.png');
-copy('images/hdr_right.png', $outputdir.'/hdr_right.png');
-copy('images/bg_hdr.png', $outputdir.'/bg_hdr.png');
-copy('images/blt_blu_arrow.png', $outputdir.'/blt_blu_arrow.png');
-copy('images/blt_gry_arrow.png', $outputdir.'/blt_gry_arrow.png');
-copy('images/box_bottom.gif', $outputdir.'/box_bottom.gif');
-copy('images/box_top.gif', $outputdir.'/box_top.gif');
-copy('images/feature_bl.gif', $outputdir.'/feature_bl.gif');
-copy('images/feature_br.gif', $outputdir.'/feature_br.gif');
-copy('images/feature_tl.gif', $outputdir.'/feature_tl.gif');
-copy('images/feature_tr.gif', $outputdir.'/feature_tr.gif');
-copy('images/hdr_fill.png', $outputdir.'/hdr_fill.png');
-copy('images/nav_fill.png', $outputdir.'/nav_fill.png');
-copy('images/nav_tbl_btm_lft.png', $outputdir.'/nav_tbl_btm_lft.png');
-copy('images/nav_tbl_btm.png', $outputdir.'/nav_tbl_btm.png');
-copy('images/nav_tbl_btm_rgt.png', $outputdir.'/nav_tbl_btm_rgt.png');
-copy('images/nav_tbl_top_lft.png', $outputdir.'/nav_tbl_top_lft.png');
-copy('images/nav_tbl_top.png', $outputdir.'/nav_tbl_top.png');
-copy('images/nav_tbl_top_rgt.png', $outputdir.'/nav_tbl_top_rgt.png');
-copy('images/usr_tbl_btm.png', $outputdir.'/usr_tbl_btm.png');
-copy('images/usr_tbl_top.png', $outputdir.'/usr_tbl_top.png');
-copy('images/nav_lft.png', $outputdir.'/nav_lft.png');
-copy('images/nav_rgt.png', $outputdir.'/nav_rgt.png');
+copy($PGSNAP_ROOT_PATH.'images/hdr_left.png', $outputdir.'/hdr_left.png');
+copy($PGSNAP_ROOT_PATH.'images/hdr_right.png', $outputdir.'/hdr_right.png');
+copy($PGSNAP_ROOT_PATH.'images/bg_hdr.png', $outputdir.'/bg_hdr.png');
+copy($PGSNAP_ROOT_PATH.'images/blt_blu_arrow.png', $outputdir.'/blt_blu_arrow.png');
+copy($PGSNAP_ROOT_PATH.'images/blt_gry_arrow.png', $outputdir.'/blt_gry_arrow.png');
+copy($PGSNAP_ROOT_PATH.'images/box_bottom.gif', $outputdir.'/box_bottom.gif');
+copy($PGSNAP_ROOT_PATH.'images/box_top.gif', $outputdir.'/box_top.gif');
+copy($PGSNAP_ROOT_PATH.'images/feature_bl.gif', $outputdir.'/feature_bl.gif');
+copy($PGSNAP_ROOT_PATH.'images/feature_br.gif', $outputdir.'/feature_br.gif');
+copy($PGSNAP_ROOT_PATH.'images/feature_tl.gif', $outputdir.'/feature_tl.gif');
+copy($PGSNAP_ROOT_PATH.'images/feature_tr.gif', $outputdir.'/feature_tr.gif');
+copy($PGSNAP_ROOT_PATH.'images/hdr_fill.png', $outputdir.'/hdr_fill.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_fill.png', $outputdir.'/nav_fill.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_tbl_btm_lft.png', $outputdir.'/nav_tbl_btm_lft.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_tbl_btm.png', $outputdir.'/nav_tbl_btm.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_tbl_btm_rgt.png', $outputdir.'/nav_tbl_btm_rgt.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_tbl_top_lft.png', $outputdir.'/nav_tbl_top_lft.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_tbl_top.png', $outputdir.'/nav_tbl_top.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_tbl_top_rgt.png', $outputdir.'/nav_tbl_top_rgt.png');
+copy($PGSNAP_ROOT_PATH.'images/usr_tbl_btm.png', $outputdir.'/usr_tbl_btm.png');
+copy($PGSNAP_ROOT_PATH.'images/usr_tbl_top.png', $outputdir.'/usr_tbl_top.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_lft.png', $outputdir.'/nav_lft.png');
+copy($PGSNAP_ROOT_PATH.'images/nav_rgt.png', $outputdir.'/nav_rgt.png');
 // variables
 $image['f'] = '<img src="check-off.png" title="Off" alt="Off"/>';
 $image['t'] = '<img src="check-on.png" title="On" alt="On"/>';

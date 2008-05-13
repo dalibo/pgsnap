@@ -5,6 +5,8 @@
 	* Bugfix : fix system/user checkboxes, per a report from Pierre
         Chifflier.
 	* Release 0.3.2.
+	* pgsnap can now be used from any location on your system, per a
+        suggestion from Pierre Chifflier.
 
 2008-05-11  Guillaume Lelarge <guillaume@lelarge.info>
 	* Complete UI Review.
