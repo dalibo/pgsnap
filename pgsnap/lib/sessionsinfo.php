@@ -60,6 +60,8 @@ $buffer .= '<div class="tblBasic">
 </tr>
 ';
 
+$buffer .= tr().'<td>';
+
 if ($count > $max_connections*90/100) {
   $buffer .= '<div  class="danger">'.$count.'</div>';
 } else {

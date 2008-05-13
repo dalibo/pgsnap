@@ -2,6 +2,8 @@
 	* Bugfix : fix -o option (per a patch from Pierre Chifflier).
 	* Bugfix : re-activate the "last log file" report, per a report from
         Dimitri Fontaine.
+	* Bugfix : fix system/user checkboxes, per a report from Pierre
+        Chifflier.
 
 2008-05-11  Guillaume Lelarge <guillaume@lelarge.info>
 	* Complete UI Review.

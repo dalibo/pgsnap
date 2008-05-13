@@ -23,7 +23,7 @@ function tr($namespace = '') {
 
   $tr = '<tr class="'.$class.'">';
 
-  return '<tr>';
+  return $tr;
 }
 
 ?>
