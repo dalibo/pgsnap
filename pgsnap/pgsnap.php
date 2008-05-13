@@ -21,9 +21,6 @@
 /* This can be modified to suit your needs                                  */
 $PGSNAP_ROOT_PATH='./';
 ini_set('include_path', '.:/usr/share/pgsnap/');
-
-$PGSNAP_ROOT_PATH='/home/guillaume/freeprojects/cvs.pgsnap/head/pgsnap/';
-ini_set('include_path', '.:/home/guillaume/freeprojects/cvs.pgsnap/head/pgsnap');
 /****************************************************************************/
 
 include 'lib/getopt.php';
