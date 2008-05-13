@@ -1,3 +1,6 @@
+2008-05-12  Guillaume Lelarge <guillaume@lelarge.info>
+	* Bugfix : fix -o option (per a patch from Pierre Chifflier).
+
 2008-05-11  Guillaume Lelarge <guillaume@lelarge.info>
 	* Complete UI Review.
 	* Release 0.3.

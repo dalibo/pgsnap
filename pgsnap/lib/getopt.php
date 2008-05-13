@@ -97,6 +97,8 @@ Connection options:
   }
 }
 
-$outputdir = $PGDATABASE.'_snap_'.date('Ymd');
+if (! isset($outputdir) ) {
+  $outputdir = $PGDATABASE.'_snap_'.date('Ymd');
+}
 
 ?>
