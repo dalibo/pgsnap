@@ -4,6 +4,7 @@
         Dimitri Fontaine.
 	* Bugfix : fix system/user checkboxes, per a report from Pierre
         Chifflier.
+	* Release 0.3.2.
 
 2008-05-11  Guillaume Lelarge <guillaume@lelarge.info>
 	* Complete UI Review.
