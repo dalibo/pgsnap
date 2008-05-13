@@ -113,7 +113,7 @@ if ($g_version > '74'
          or !strcmp($g_settings['log_destination'], 'csvlog'))
     and (!strcmp($g_settings['redirect_stderr'], 'on')
          or !strcmp($g_settings['logging_collector'], 'on')) ) {
-  //include 'lib/lastlogfile.php';
+  include 'lib/lastlogfile.php';
 }
 
 echo "Getting Global Informations...\n";
