@@ -1,3 +1,7 @@
+2008-05-24  Guillaume Lelarge <guillaume@lelarge.info>
+	* onclick calls aren't useful with jquery (per a comment from
+        Pierre-Emmanuel Andre).
+
 2008-05-12  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : fix -o option (per a patch from Pierre Chifflier).
 	* Bugfix : re-activate the "last log file" report, per a report from

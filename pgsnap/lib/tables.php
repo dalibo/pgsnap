@@ -22,8 +22,8 @@ $buffer = $navigate_dbobjects.'
 <h1>Tables</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
+$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
+$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
 
 $query = "SELECT
   relname,

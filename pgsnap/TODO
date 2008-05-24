@@ -13,6 +13,8 @@ TODO
   * graph on database size and usage
   * graph on tablespace size
   * graph on table and index size and usage
+  * graph using flash ? see http://teethgrinder.co.uk/open-flash-chart/
+    (idea from Claude Castello)
 
  * pollux asks for
   * limiting the schemas used with a command line option (to get pg_catalog out)
