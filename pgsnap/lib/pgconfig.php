@@ -23,7 +23,8 @@ $buffer = $navigate_general.'
 
 ';
 
-if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')) {
+if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')
+  or strlen($PGHOST) == 0 or preg_match('/^\//', $PGHOST) == 1) {
   exec('pg_config', $lignes);
 
   $buffer .= '<div class="tblBasic">
