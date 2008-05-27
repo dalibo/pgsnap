@@ -33,6 +33,7 @@ if (strlen("$PGDATABASE") == 0) {
 }
 
 $PGPASSWORD = getenv('PGPASSWORD');
+$g_passwordrequired = false;
 
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
   switch($_SERVER["argv"][$i]) {

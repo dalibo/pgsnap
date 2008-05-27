@@ -38,7 +38,7 @@ $query = "SELECT
   reltoastidxid,
   relhasindex,
   relisshared,
-  reltype,
+  relkind,
   relnatts,
   relchecks,
   reltriggers,

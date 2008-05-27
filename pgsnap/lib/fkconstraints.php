@@ -64,6 +64,12 @@ while ($row = pg_fetch_array($rows)) {
   $replacement = '${1}|${2}|${3}';
   $tmp = preg_replace($pattern, $replacement, $row['condef']);
   $def = split("\|", $tmp);
+  if (count($def) == 1) {
+    $def[1] = '';
+    $def[2] = '';
+  } elseif (count($def) == 2) {
+    $def[2] = '';
+  }
   $buffer .= tr($row['nspname'])."
   <td>".$row['tableowner']."</td>
   <td>".$row['nspname'].".".$row['tablename']."</td>
@@ -72,6 +78,7 @@ while ($row = pg_fetch_array($rows)) {
   <td>".$def[1]."</td>
   <td>".$def[2]."</td>
 </tr>";
+// TODO def[1] et def[2] pas forcément défini
 }
 
 $buffer .= '</table>

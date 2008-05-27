@@ -14,6 +14,7 @@ function tr($namespace = '') {
       $class = 'usr';
     }
   }
+  else $class = '';
   if ($odd) {
     if (strlen($class) > 0) {
       $class .= '_';

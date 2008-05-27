@@ -118,8 +118,10 @@ if ($g_version > '74') {
 if ($g_version > '74'
     and (!strcmp($g_settings['log_destination'], 'stderr')
          or !strcmp($g_settings['log_destination'], 'csvlog'))
-    and (!strcmp($g_settings['redirect_stderr'], 'on')
-         or !strcmp($g_settings['logging_collector'], 'on')) ) {
+    and ((array_key_exists('redirect_stderr', $g_settings)
+           and !strcmp($g_settings['redirect_stderr'], 'on'))
+         or (array_key_exists('logging_collector', $g_settings)
+           and!strcmp($g_settings['logging_collector'], 'on'))) ) {
   include 'lib/lastlogfile.php';
 }
 

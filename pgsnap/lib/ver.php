@@ -99,41 +99,21 @@ $buffer .= tr().'
   <td>'.$image[$g_settings['autovacuum']].'</td>
 </tr>
 ';
-if (array_key_exists('logging_collector', $g_settings)) {
-  $buffer .= tr().'
+$buffer .= tr().'
   <td>Logging collector</td>
   <td>'.$image[$g_settings['logging_collector']].'</td>
 </tr>
 ';
-} elseif (array_key_exists('redirect_stderr', $g_settings)) {
-  $buffer .= tr().'
-  <td>Logging collector</td>
-  <td>'.$image[$g_settings['redirect_stderr']].'</td>
-</tr>
-';
-} else {
-  $buffer .= tr().'
-  <td>Logging collector</td>
-  <td>'.$image['off'].'</td>
-</tr>
-';
-}
 if (array_key_exists('archive_mode', $g_settings)) {
   $buffer .= tr().'
   <td>PITR</td>
   <td>'.$image[$g_settings['archive_mode']].'</td>
 </tr>
 ';
-} elseif (strlen($g_settings['archive_command'])>0) {
-  $buffer .= tr().'
-  <td>PITR</td>
-  <td>'.$image[strcmp($g_settings['archive_command'], 'unset') == 0 ? 'f':'t'].'</td>
-</tr>
-';
 } else {
   $buffer .= tr().'
   <td>PITR</td>
-  <td>'.$image['off'].'</td>
+  <td>'.$image[strlen($g_settings['archive_command'])>0 ? 't':'f'].'</td>
 </tr>
 ';
 }

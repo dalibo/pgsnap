@@ -33,6 +33,7 @@ if ($g_version > 74) {
     echo "An error occured.\n";
     exit;
   }
+  $buffer2 = '';
   while ($categorie = pg_fetch_array($categories)) {
     $cat1[] = $categorie['name'];
     $cat2[] = preg_replace('/[ \/]/', '', $categorie['name']);
@@ -107,7 +108,7 @@ $buffer .= '</table>
   if ($g_version == 74) {
     $done = true;
   } else {
-    $done = $index >= count($cat1);
+    $done = $index >= count($cat1) - 1;
   }
 
   $index++;

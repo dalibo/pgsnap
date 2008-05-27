@@ -8,6 +8,7 @@
 	* Bugfix : pg_config and pg_controldata reports were not available
         when one used the Unix domain socket to connect.
 	* Release 0.3.3.
+	* Fixes PHP notice messages.
 
 2008-05-24  Guillaume Lelarge <guillaume@lelarge.info>
 	* onclick calls aren't useful with jquery (per a comment from
