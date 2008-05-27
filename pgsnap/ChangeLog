@@ -7,6 +7,7 @@
         stats_start_collector for releases < 8.3.
 	* Bugfix : pg_config and pg_controldata reports were not available
         when one used the Unix domain socket to connect.
+	* Release 0.3.3.
 
 2008-05-12  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : fix -o option (per a patch from Pierre Chifflier).
