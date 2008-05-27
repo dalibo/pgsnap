@@ -90,45 +90,79 @@ $buffer .= '<h1>Primary options</h1>
 ';
 
 $buffer .= tr().'
-  <td>Autovacuum</td>
+  <td><a href="param.html#Autovacuum">Autovacuum</a></td>
   <td>'.$image[$g_settings['autovacuum']].'</td>
 </tr>
 ';
-$buffer .= tr().'
-  <td>Stats collector</td>
-  <td>'.$image[$g_settings['autovacuum']].'</td>
-</tr>
-';
-$buffer .= tr().'
-  <td>Logging collector</td>
-  <td>'.$image[$g_settings['logging_collector']].'</td>
-</tr>
-';
-if (array_key_exists('archive_mode', $g_settings)) {
+if (array_key_exists('track_activities', $g_settings)) {
   $buffer .= tr().'
-  <td>PITR</td>
-  <td>'.$image[$g_settings['archive_mode']].'</td>
+  <td><a href="param.html#StatisticsQueryandIndexStatisticsCollector">Stats collector</a></td>
+  <td>'.$image[$g_settings['track_activities']].'</td>
+</tr>
+';
+} elseif (array_key_exists('stats_start_collector', $g_settings)) {
+  $buffer .= tr().'
+  <td><a href="param.html#StatisticsQueryandIndexStatisticsCollector">Stats collector</a></td>
+  <td>'.$image[$g_settings['stats_start_collector']].'</td>
 </tr>
 ';
 } else {
   $buffer .= tr().'
-  <td>PITR</td>
-  <td>'.$image[strlen($g_settings['archive_command'])>0 ? 't':'f'].'</td>
+  <td><a href="param.html#StatisticsQueryandIndexStatisticsCollector">Stats collector</a></td>
+  <td>'.$image['off'].'</td>
+</tr>
+';
+}
+if (array_key_exists('logging_collector', $g_settings)) {
+  $buffer .= tr().'
+  <td><a href="param.html#ReportingandLoggingWheretoLog">Logging collector</a></td>
+  <td>'.$image[$g_settings['logging_collector']].'</td>
+</tr>
+';
+} elseif (array_key_exists('redirect_stderr', $g_settings)) {
+  $buffer .= tr().'
+  <td><a href="param.html#ReportingandLoggingWheretoLog">Logging collector</a></td>
+  <td>'.$image[$g_settings['redirect_stderr']].'</td>
+</tr>
+';
+} else {
+  $buffer .= tr().'
+  <td><a href="param.html#ReportingandLoggingWheretoLog">Logging collector</a></td>
+  <td>'.$image['off'].'</td>
+</tr>
+';
+}
+if (array_key_exists('archive_mode', $g_settings)) {
+  $buffer .= tr().'
+  <td><a href="param.html#Write-AheadLogSettings">PITR</a></td>
+  <td>'.$image[$g_settings['archive_mode']].'</td>
+</tr>
+';
+} elseif (strlen($g_settings['archive_command'])>0) {
+  $buffer .= tr().'
+  <td><a href="param.html#Write-AheadLogSettings">PITR</a></td>
+  <td>'.$image[strcmp($g_settings['archive_command'], 'unset') == 0 ? 'f':'t'].'</td>
+</tr>
+';
+} else {
+  $buffer .= tr().'
+  <td><a href="param.html#Write-AheadLogSettings">PITR</a></td>
+  <td>'.$image['off'].'</td>
 </tr>
 ';
 }
 $buffer .= tr().'
-  <td>GEQO</td>
+  <td><a href="param.html#QueryTuningGeneticQueryOptimizer">GEQO</a></td>
   <td>'.$image[$g_settings['geqo']].'</td>
 </tr>
 ';
 $buffer .= tr().'
-  <td>Server encoding</td>
+  <td><a href="param.html#ClientConnectionDefaultsLocaleandFormatting">Server encoding</a></td>
   <td>'.$g_settings['server_encoding'].'</td>
 </tr>
 ';
 $buffer .= tr().'
-  <td>Timezone</td>
+  <td><a href="param.html#ClientConnectionDefaultsLocaleandFormatting">Timezone</a></td>
   <td>'.$g_settings['TimeZone'].'</td>
 </tr>
 ';
