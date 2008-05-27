@@ -123,7 +123,8 @@ if ($g_version >= '82') {
       <li><a href="preparedxacts.html">Prepared transactions</a></li>';
 }
 $navigate_activities .= '
-      <li class="last-child"><a href="locks.html">Locks</a></li>
+      <li><a href="locks.html">Locks</a></li>
+      <li class="last-child"><a href="exclusivelocks.html">Exclusive Locks</a></li>
     </ul>
   </div>
 </div>

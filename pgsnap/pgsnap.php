@@ -168,6 +168,7 @@ include 'lib/functions.php';
 echo "Getting Current Activities Informations...\n";
 include 'lib/activities.php';
 include 'lib/locks.php';
+include 'lib/exclusivelocks.php';
 if ($g_version >= '82') {
   include 'lib/cursors.php';
   include 'lib/preparedstatements.php';
