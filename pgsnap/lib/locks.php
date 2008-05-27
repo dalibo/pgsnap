@@ -25,7 +25,9 @@ $buffer = $navigate_activities.'
 
 $query = "SELECT
  locktype,
- database::regclass as database,
+ CASE WHEN datname IS NOT NULL THEN datname
+      ELSE database::text
+ END AS database,
  relation::regclass as relation,
  page,
  tuple,";
@@ -46,7 +48,8 @@ $query .= "
  pid,
  mode,
  granted
-FROM pg_locks";
+FROM pg_locks
+ LEFT JOIN pg_database ON pg_database.oid = database";
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
