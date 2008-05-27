@@ -5,7 +5,6 @@ TODO
  * add a --without-sysobjects command line option
  * add a --server-only option, to get a view of all DB, no specific DB objects.
  * ajouter une option --all pour que pgsnap fasse un rapport par base de données présente
- * locks report doesn't show the db name
  * add a way to filter locks report (by dbname, by lock mode)
  * add sessions info by dbname (actuellement seulement pour toutes les bases)
  * le rapport du ratio n'a aucun intérêt si stats_block_level n'est pas activé

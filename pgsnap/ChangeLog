@@ -12,6 +12,7 @@
 	* Add GEQO in "Installed Products" report.
 	* Add links in "Installed Products" report.
 	* Add an "Exclusive Locks" report (without transactions locks).
+	* Bugfix : Fix DB name in Locks and "Exclusive Locks" reports.
 
 2008-05-24  Guillaume Lelarge <guillaume@lelarge.info>
 	* onclick calls aren't useful with jquery (per a comment from

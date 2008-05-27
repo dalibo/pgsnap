@@ -19,7 +19,7 @@
 $buffer = $navigate_activities.'
 <div id="pgContentWrap">
 
-<h1>Locks List</h1>
+<h1>Exclusive Locks</h1>
 ';
 
 
@@ -46,10 +46,11 @@ $query .= "
 }
 $query .= "
  pid,
- mode,
  granted
 FROM pg_locks
- LEFT JOIN pg_database ON pg_database.oid = database";
+ LEFT JOIN pg_database ON pg_database.oid = database
+WHERE mode='ExclusiveLock'
+  AND locktype NOT IN ('virtualxid', 'transactionid')";
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -81,7 +82,6 @@ if ($g_version >= 83) {
 }
 $buffer .= '
   <th class="colMid">PID</th>
-  <th class="colMid">Mode</th>
   <th class="colLast">Granted?</th>
 </tr>
 ';
@@ -108,7 +108,6 @@ if ($g_version >= 83) {
 }
 $buffer .= "
   <td>".$row['pid']."</td>
-  <td>".$row['mode']."</td>
   <td>".$image[$row['granted']]."</td>
 </tr>";
 }
@@ -122,7 +121,7 @@ $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <p>'.$query.'</p>
 </div>';
 
-$filename = $outputdir.'/locks.html';
+$filename = $outputdir.'/exclusivelocks.html';
 include 'lib/fileoperations.php';
 
 ?>
