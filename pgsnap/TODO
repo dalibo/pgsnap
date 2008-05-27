@@ -1,6 +1,31 @@
 TODO
 ====
 
+OK 1. Créer une branche REL_0.3_STABLE
+OK 2. Corriger les bugs sur cette branche et sur HEAD
+OK * bug : erreur quand je vais dans l'onglet Statistics et que le module stats est désactivé... en fait on va par défaut sur la stat bgwriter qui n'existe pas pour les db < 8.3
+OK * bug : j'ai aucune info pour le logging collector ?!?!
+OK * bug : pitr on alors que "archive_command  unset"
+OK * bug : stats collector off alors que stats_start_collector = on
+OK * bug : pgsnap indique une connexion remote pour pg_config et pg_controldata alors que ce n'est pas le cas
+3. Sortir la Release 0.3.3
+4. Ajouter les nouvelles fonctionnalités suivantes (pas forcément dans cet ordre)
+ * corriger les messages Notice de PHP
+ * add a --without-sysobjects command line option
+ * add a --server-only option, to get a view of all DB, no specific DB objects.
+ * ajouter une option --all pour que pgsnap fasse un rapport par base de données présente
+ * add a "Exclusive Locks" report (without transactions locks).
+ * locks report doesn't show the db name
+ * add a way to filter locks report (by dbname, by lock mode)
+ * add sessions info by dbname (actuellement seulement pour toutes les bases)
+ * sur le rapport Installed products, partie primary options, un clic sur autovacuum devrait amener à la config de l'autovacuum (et pareil pour le reste : stats collector, logging collector, pitr, etc.)
+ * ajouter geqo dans le rapport Installed products, partie primary options
+ * le rapport du ratio n'a aucun intérêt si stats_block_level n'est pas activé
+ *  il n'y a pas de stats tuple inserted/updated/deleted
+ * blocks hit read des bases indiquant rien alors qu'on devrait avoir 0 sur une 8.1 (ajouter le ratio serait un plus certain)
+ * ajouter un rapport listant les index plus gros que la table associée (avec une option pour desélectionner index GIN et GiST
+ 
+
  * specific orasnap
   * Tablespace : list default tablespace for each user
   * Disabled constraints : owner, table, constraint, type, status
