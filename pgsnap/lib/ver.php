@@ -118,6 +118,11 @@ if (array_key_exists('archive_mode', $g_settings)) {
 ';
 }
 $buffer .= tr().'
+  <td>GEQO</td>
+  <td>'.$image[$g_settings['geqo']].'</td>
+</tr>
+';
+$buffer .= tr().'
   <td>Server encoding</td>
   <td>'.$g_settings['server_encoding'].'</td>
 </tr>

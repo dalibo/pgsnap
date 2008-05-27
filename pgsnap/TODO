@@ -10,7 +10,6 @@ TODO
  * add a way to filter locks report (by dbname, by lock mode)
  * add sessions info by dbname (actuellement seulement pour toutes les bases)
  * sur le rapport Installed products, partie primary options, un clic sur autovacuum devrait amener à la config de l'autovacuum (et pareil pour le reste : stats collector, logging collector, pitr, etc.)
- * ajouter geqo dans le rapport Installed products, partie primary options
  * le rapport du ratio n'a aucun intérêt si stats_block_level n'est pas activé
  *  il n'y a pas de stats tuple inserted/updated/deleted
  * blocks hit read des bases indiquant rien alors qu'on devrait avoir 0 sur une 8.1 (ajouter le ratio serait un plus certain)
