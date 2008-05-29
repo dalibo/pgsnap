@@ -54,19 +54,18 @@ $buffer .= '<div class="tblBasic">
   <th class="colFirst">Database name</th>
   <th class="colMid">Number of backends</th>
   <th class="colMid">XACT commit</th>
-  <th class="colMid">XACT rollback</th>';
+  <th class="colMid">XACT rollback</th>
+  <th class="colMid">Blocks read</th>
+  <th class="colLast">Blocks hit</th>';
 if ($g_version >= 83) {
   $buffer .= '
-  <th class="colMid"></th>';
-}
-$buffer .= '
   <th class="colMid">Tuple returned</th>
   <th class="colMid">Tuple fetched</th>
   <th class="colMid">Tuple inserted</th>
   <th class="colMid">Tuple updated</th>
-  <th class="colMid">Tuple deleted</th>
-  <th class="colMid">Blocks read</th>
-  <th class="colLast">Blocks hit</th>
+  <th class="colMid">Tuple deleted</th>';
+}
+$buffer .= '
 </tr>
 ';
 
