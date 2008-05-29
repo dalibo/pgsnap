@@ -1,7 +1,11 @@
+2008-05-29  Guillaume Lelarge <guillaume@lelarge.info>
+	* Fixes one more PHP notice message.
+
 2008-05-27  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : default report for statistics tab should be the cache
         hit ratio (old one, bgwriter, is not available in releases prior
         to 8.3).
+
 	* Bugfix : on "Installed Products" report, pgsnap didn't understand
         "unset" value, and logging_collector was used instead of
         stats_start_collector for releases < 8.3.

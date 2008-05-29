@@ -55,8 +55,12 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst">Actual sessions</th>
-  <th class="colMid">Max connections</th>
-  <th class="colLast">Autovac Workers</th>
+  <th class="colMid">Max connections</th>';
+if ($g_version >= 83) {
+  $buffer .= '
+  <th class="colLast">Autovac Workers</th>';
+}
+$buffer .= '
 </tr>
 ';
 
@@ -69,8 +73,12 @@ if ($count > $max_connections*90/100) {
 }
 
 $buffer .= '</td>
-  <td>'.$max_connections.'</td>
-  <td>'.$autovacuum_max_workers.'</td>
+  <td>'.$max_connections.'</td>';
+if ($g_version >= 83) {
+  $buffer .= '
+  <td>'.$autovacuum_max_workers.'</td>';
+}
+$buffer .= '
 </tr>
 </table>
 </div>
