@@ -1,18 +1,15 @@
 TODO
 ====
 
-4. Ajouter les nouvelles fonctionnalités suivantes (pas forcément dans cet ordre)
  * add a --without-sysobjects command line option
  * add a --server-only option, to get a view of all DB, no specific DB objects.
- * ajouter une option --all pour que pgsnap fasse un rapport par base de données présente
+ * add a --all option to get a report for each database available
  * add a way to filter locks report (by dbname, by lock mode)
- * add sessions info by dbname (actuellement seulement pour toutes les bases)
- * le rapport du ratio n'a aucun intérêt si stats_block_level n'est pas activé
- *  il n'y a pas de stats tuple inserted/updated/deleted
- * blocks hit read des bases indiquant rien alors qu'on devrait avoir 0 sur une 8.1 (ajouter le ratio serait un plus certain)
- * ajouter un rapport listant les index plus gros que la table associée (avec une option pour desélectionner index GIN et GiST
+ * add sessions info by dbname (now only available for all databases)
+ * cache hit ratio is not interesting if stats_block_level is disabled
+ * add a report to get index whose size is greater than the associated table
+ * display database in red if blks_read>blks_hit
  
-
  * specific orasnap
   * Tablespace : list default tablespace for each user
   * Disabled constraints : owner, table, constraint, type, status
