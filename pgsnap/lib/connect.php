@@ -16,6 +16,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+if (!function_exists('pg_connect')) {
+  $msg = "pg_connect() function is not available!\n
+You probably need to install PHP PostgreSQL driver.\n";
+  die($msg);
+}
+
 // password checks
 if ($g_passwordrequired and strlen($PGPASSWORD) == 0) {
   // check pgpass first

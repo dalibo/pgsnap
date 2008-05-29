@@ -2,6 +2,7 @@
 	* Bugfix : Blocks read et Blocks hit informations were under Tuple
         returned and Tuple fetched columns.
 	* Bugfix : Objects from schemas out of search_path weren't displayed.
+	* Bugfix : Check the availability of pg_connect() function.
 
 2008-05-27  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : default report for statistics tab should be the cache
