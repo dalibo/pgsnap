@@ -22,8 +22,8 @@ $buffer = $navigate_dbobjects.'
 <h1>Functions</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+$buffer .= '<label><input id ="showusrobjects" type="checkbox" onclick="usrobjects();" checked>Show User Objects</label>';
+$buffer .= '<label><input id ="showsysobjects" type="checkbox" onclick="sysobjects();" checked>Show System Objects</label>';
 
 $query = "SELECT n.nspname,
   p.proname,
@@ -73,7 +73,6 @@ WHERE p.prorettype <> 'pg_catalog.cstring'::pg_catalog.regtype
       AND (p.proargtypes[0] IS NULL
       OR   p.proargtypes[0] <> 'pg_catalog.cstring'::pg_catalog.regtype)
       AND NOT p.proisagg
-  AND pg_catalog.pg_function_is_visible(p.oid)
 ORDER BY 1, 2, 3, 4";
 
 $rows = pg_query($connection, $query);
