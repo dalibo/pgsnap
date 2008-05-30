@@ -139,8 +139,10 @@ if ($g_version > '80') {
 }
 include 'lib/user1.php';
 include 'lib/user2.php';
-include 'lib/tablespaces.php';
-include 'lib/tblspc1.php';
+if ($g_version > '74') {
+  include 'lib/tablespaces.php';
+  include 'lib/tblspc1.php';
+}
 
 echo "Getting Database Informations...\n";
 include 'lib/schemas.php';

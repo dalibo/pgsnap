@@ -30,8 +30,12 @@ $query = "SELECT
   nspname AS schema,
   pg_get_userbyid(relowner) AS owner,
   relam,
-  relfilenode,
-  (select spcname from pg_tablespace where oid=reltablespace) as tablespace,
+  relfilenode,";
+if ($g_version > 74) {
+  $query .= "
+  (select spcname from pg_tablespace where oid=reltablespace) as tablespace,";
+}
+$query .= "
   relpages,
   reltuples,
   reltoastrelid,
@@ -87,8 +91,12 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Schema name</th>
   <th class="colMid">Table Owner</th>
   <th class="colMid">relam</th>
-  <th class="colMid">relfilenode</th>
-  <th class="colMid">Tablespace name</th>
+  <th class="colMid">relfilenode</th>';
+if ($g_version > 74) {
+  $buffer .= '
+  <th class="colMid">Tablespace name</th>';
+}
+$buffer .= '
   <th class="colMid">Pages #</th>
   <th class="colMid">Tuples #</th>
   <th class="colMid">OID Toast Table</th>
@@ -134,8 +142,12 @@ $buffer .= tr($row['schema'])."
   <td>".$row['schema']."</td>
   <td>".$row['owner']."</td>
   <td>".$row['relam']."</td>
-  <td>".$row['relfilenode']."</td>
-  <td>".$row['tablespace']."</td>
+  <td>".$row['relfilenode']."</td>";
+if ($g_version > 74) {
+  $buffer .= "
+  <td>".$row['tablespace']."</td>";
+}
+$buffer .= "
   <td>".$row['relpages']."</td>
   <td>".$row['reltuples']."</td>
   <td>".$row['reltoastrelid']."</td>

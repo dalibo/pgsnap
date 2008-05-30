@@ -32,8 +32,11 @@ if ($g_version > 80) {
 }
 $query .= '
   datlastsysoid,
-  datfrozenxid,
+  datfrozenxid,';
+if ($g_version > 74) {
+  $query .= '
   spcname as tablespace,';
+}
 if ($g_version > 80) {
   $query .= '
   pg_size_pretty(pg_database_size(datname)) AS size,';
@@ -41,8 +44,12 @@ if ($g_version > 80) {
 $query .= '
   datconfig,
   datacl
-FROM pg_database, pg_tablespace
-WHERE dattablespace = pg_tablespace.oid
+FROM pg_database';
+if ($g_version > 74) {
+  $query .= ', pg_tablespace
+WHERE dattablespace = pg_tablespace.oid';
+}
+$query .= '
 ORDER BY datname';
 
 $rows = pg_query($connection, $query);
@@ -66,8 +73,11 @@ if ($g_version > 80) {
 }
 $buffer .= '
   <th class="colMid" width="100">Last system OID</th>
-  <th class="colMid" width="100">Frozen XID</th>
+  <th class="colMid" width="100">Frozen XID</th>';
+if ($g_version > 74) {
+  $buffer .= '
   <th class="colMid" width="200">Tablespace name</th>';
+}
 if ($g_version > 80) {
   $buffer .= '
   <th class="colMid" width="200">Size</th>';
@@ -92,8 +102,11 @@ if ($g_version > 80) {
 }
 $buffer .= '
   <td>'.$row['datlastsysoid'].'</td>
-  <td>'.$row['datfrozenxid'].'</td>
+  <td>'.$row['datfrozenxid'].'</td>';
+if ($g_version > 74) {
+  $buffer .= '
   <td>'.$row['tablespace'].'</td>';
+}
 if ($g_version > 80) {
   $buffer .= '
   <td>'.$row['size'].'</td>';

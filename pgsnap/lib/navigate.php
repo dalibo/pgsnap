@@ -74,9 +74,13 @@ $navigate_globalobjects.= '
 }
 $navigate_globalobjects.= '
       <li><a href="user1.html">Users\' Objects</a></li>
-      <li><a href="user2.html">Users Space allocated</a></li>
+      <li><a href="user2.html">Users Space allocated</a></li>';
+if ($g_version > '74') {
+$navigate_globalobjects.= '
       <li><a href="tablespaces.html">Tablespaces</a></li>
-      <li class="last-child"><a href="tblspc1.html">Tablespaces\' objects</a></li>
+      <li class="last-child"><a href="tblspc1.html">Tablespaces\' objects</a></li>';
+}
+$navigate_globalobjects.= '
     </ul>
   </div>
 </div>
