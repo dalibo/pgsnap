@@ -25,12 +25,11 @@ $buffer = $navigate_dbobjects.'
 switch ($g_version) {
   case '83':
     $query = "SELECT lanname,
-  rolname AS owner,
+  pg_get_userbyid(lanowner) AS owner,
   lanispl,
   lanpltrusted,
   lanacl
-FROM pg_language, pg_roles
-WHERE lanowner = pg_roles.oid
+FROM pg_language
 ORDER BY lanname";
     break;
   default:

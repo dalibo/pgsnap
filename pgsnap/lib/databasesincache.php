@@ -23,13 +23,12 @@ $buffer = $navigate_globalobjects.'
 ';
 
 $query = "SELECT
-  rolname AS dba,
+  pg_get_userbyid(datdba) AS dba,
   datname,
   pg_database_size(reldatabase) AS size,
   count(*) AS buffers
-FROM pg_buffercache, pg_database, pg_roles, pg_tablespace
-WHERE datdba = pg_roles.oid
-  AND reldatabase=pg_database.oid
+FROM pg_buffercache, pg_database, pg_tablespace
+WHERE reldatabase=pg_database.oid
 GROUP BY 1, 2, 3
 ORDER BY 1, 2, 3";
 

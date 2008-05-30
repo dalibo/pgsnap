@@ -26,15 +26,21 @@ $buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
 
 $query = "SELECT
-  rolname AS owner,
+  pg_get_userbyid(relowner) AS owner,
   nspname,
-  relname,
-  pg_relation_size(pg_class.oid) as size
-FROM pg_class, pg_roles, pg_namespace
+  relname,";
+if ($g_version > 80) {
+  $query .= '
+  pg_size_pretty(pg_relation_size(pg_class.oid)) AS size';
+} else {
+  $query .= '
+  relpages*8192 AS size';
+}
+  $query .= "
+FROM pg_class, pg_namespace
 WHERE
   relkind='r'
   AND relhaspkey IS false
-  AND relowner = pg_roles.oid
   AND relnamespace = pg_namespace.oid
 ORDER BY relowner, relname";
 
@@ -50,8 +56,15 @@ $buffer .= '<div class="tblBasic">
 <tr>
   <th class="colFirst">Table Owner</th>
   <th class="colMid">Schema Name</th>
-  <th class="colMid">Table Name</th>
-  <th class="colLast">Size</th>
+  <th class="colMid">Table Name</th>';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colLast" width="200">Size</th>';
+} else {
+  $buffer .= '
+  <th class="colLast" width="200">Estimated Size</th>';
+}
+  $buffer .= '
 </tr>
 ';
 

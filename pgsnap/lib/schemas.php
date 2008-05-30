@@ -24,10 +24,9 @@ $buffer = $navigate_dbobjects.'
 
 
 $query = "SELECT nspname,
-  rolname AS owner,
+  pg_get_userbyid(nspowner) AS owner,
   nspacl
-FROM pg_namespace, pg_roles
-WHERE nspowner = pg_roles.oid
+FROM pg_namespace
 ORDER BY nspname";
 
 $rows = pg_query($connection, $query);

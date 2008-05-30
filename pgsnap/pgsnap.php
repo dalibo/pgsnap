@@ -112,7 +112,7 @@ if ($g_version > '74') {
 }
 include 'lib/pgcontroldata.php';
 include 'lib/param.php';
-if ($g_version > '74') {
+if ($g_version > '80') {
   include 'lib/paramautovac.php';
 }
 if ($g_version > '74'
@@ -132,7 +132,11 @@ if ($g_pgbuffercache) {
 } else {
   echo "  pg_buffercache unavailable!\n";
 }
-include 'lib/roles.php';
+if ($g_version > '80') {
+  include 'lib/roles.php';
+} else {
+  include 'lib/users.php';
+}
 include 'lib/user1.php';
 include 'lib/user2.php';
 include 'lib/tablespaces.php';
@@ -168,7 +172,9 @@ include 'lib/functions.php';
 echo "Getting Current Activities Informations...\n";
 include 'lib/activities.php';
 include 'lib/locks.php';
-include 'lib/exclusivelocks.php';
+if ($g_version > '80') {
+  include 'lib/exclusivelocks.php';
+}
 if ($g_version >= '82') {
   include 'lib/cursors.php';
   include 'lib/preparedstatements.php';

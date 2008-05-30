@@ -24,13 +24,19 @@ $buffer = $navigate_globalobjects.'
 
 // TODO : without superuser powers, this fails
 $query = "SELECT spcname,
-  rolname AS owner,
+  pg_get_userbyid(spcowner) AS owner,
   spclocation,
-  spcacl,
-  pg_size_pretty(pg_tablespace_size(spcname)) AS size
-FROM pg_tablespace, pg_roles
-WHERE spcowner = pg_roles.oid
-ORDER BY rolname";
+  spcacl,";
+if ($g_version > 80) {
+  $query .= '
+  pg_size_pretty(pg_tablespace_size(spcname)) AS size';
+} else {
+  $query .= '
+  (SELECT SUM(relpages)*8192 FROM pg_class WHERE reltablespace=pg_tablespace.oid ) AS size';
+}
+$query .= '
+FROM pg_tablespace
+ORDER BY spcname';
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -44,8 +50,15 @@ $buffer .= '<div class="tblBasic">
 <tr>
   <th class="colFirst" width="20%">Tablespace Owner</th>
   <th class="colMid" width="20%">Tablespace Name</th>
-  <th class="colMid" width="20%">Location</th>
-  <th class="colMid" width="20%">Size</th>
+  <th class="colMid" width="20%">Location</th>';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid" width="200">Size</th>';
+} else {
+  $buffer .= '
+  <th class="colMid" width="200">Estimated Size</th>';
+}
+$buffer .= '
   <th class="colLast" width="20%">ACL</th>
 </tr>
 ';

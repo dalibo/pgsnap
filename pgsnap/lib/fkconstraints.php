@@ -26,14 +26,13 @@ $buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User
 $buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
 
 $query = "SELECT
-  rolname AS tableowner,
+  pg_get_userbyid(relowner) AS tableowner,
   nspname,
   relname AS tablename,
   conname,
   pg_get_constraintdef(pg_constraint.oid, true) as condef
-FROM pg_constraint, pg_class, pg_roles, pg_namespace
+FROM pg_constraint, pg_class, pg_namespace
 WHERE conrelid=pg_class.oid
-  AND relowner=pg_roles.oid
   AND relnamespace=pg_namespace.oid
   AND contype = 'f'
 ORDER BY 1, 2, 3";

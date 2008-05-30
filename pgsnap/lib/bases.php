@@ -21,22 +21,29 @@ $buffer = $navigate_globalobjects.'
 
 <h1>Databases</h1>';
 
-$query = "SELECT datname,
-  rolname AS dba,
+$query = 'SELECT datname,
+  pg_get_userbyid(datdba) AS dba,
   pg_catalog.pg_encoding_to_char(encoding) AS encoding,
   datistemplate,
-  datallowconn,
-  datconnlimit,
+  datallowconn,';
+if ($g_version > 80) {
+  $query .= '
+  datconnlimit,';
+}
+$query .= '
   datlastsysoid,
   datfrozenxid,
-  spcname as tablespace,
-  pg_size_pretty(pg_database_size(datname)) AS size,
+  spcname as tablespace,';
+if ($g_version > 80) {
+  $query .= '
+  pg_size_pretty(pg_database_size(datname)) AS size,';
+}
+$query .= '
   datconfig,
   datacl
-FROM pg_database, pg_roles, pg_tablespace
-WHERE datdba = pg_roles.oid
-  AND dattablespace = pg_tablespace.oid
-ORDER BY datname";
+FROM pg_database, pg_tablespace
+WHERE dattablespace = pg_tablespace.oid
+ORDER BY datname';
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -52,12 +59,20 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid" width="200">DB Name</th>
   <th class="colMid" width="200">Encoding</th>
   <th class="colMid" width="100">Template?</th>
-  <th class="colMid" width="100">Allow connections?</th>
-  <th class="colMid" width="100">Connection limits</th>
+  <th class="colMid" width="100">Allow connections?</th>';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid" width="100">Connection limits</th>';
+}
+$buffer .= '
   <th class="colMid" width="100">Last system OID</th>
   <th class="colMid" width="100">Frozen XID</th>
-  <th class="colMid" width="200">Tablespace name</th>
-  <th class="colMid" width="200">Size</th>
+  <th class="colMid" width="200">Tablespace name</th>';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid" width="200">Size</th>';
+}
+$buffer .= '
   <th class="colMid" width="200">Configuration</th>
   <th class="colLast" width="300"><acronym title="Access Control List">ACL</acronym></th>
 </tr>
@@ -70,12 +85,20 @@ $buffer .= tr().'
   <td>'.$row['datname'].'</td>
   <td>'.$row['encoding'].'</td>
   <td>'.$image[$row['datistemplate']].'</td>
-  <td>'.$image[$row['datallowconn']].'</td>
-  <td>'.$row['datconnlimit'].'</td>
+  <td>'.$image[$row['datallowconn']].'</td>';
+if ($g_version > 80) {
+  $buffer .= '
+  <td>'.$row['datconnlimit'].'</td>';
+}
+$buffer .= '
   <td>'.$row['datlastsysoid'].'</td>
   <td>'.$row['datfrozenxid'].'</td>
-  <td>'.$row['tablespace'].'</td>
-  <td>'.$row['size'].'</td>
+  <td>'.$row['tablespace'].'</td>';
+if ($g_version > 80) {
+  $buffer .= '
+  <td>'.$row['size'].'</td>';
+}
+$buffer .= '
   <td>'.$row['datconfig'].'</td>
   <td><acronym X=\"Access Control List\">'.$row['datacl'].'</acronym></td>
 </tr>';

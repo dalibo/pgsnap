@@ -23,26 +23,36 @@ $buffer = $navigate_activities.'
 ';
 
 
-$query = "SELECT
- locktype,
+$query = "SELECT";
+if ($g_version > 80) {
+  $query .= "
+ locktype,";
+}
+$query .= "
  CASE WHEN datname IS NOT NULL THEN datname
       ELSE database::text
  END AS database,
- relation::regclass as relation,
+ relation::regclass as relation,";
+if ($g_version > 80) {
+  $query .= "
  page,
  tuple,";
-if ($g_version >= 83) {
-$query .= "
+  if ($g_version >= 83) {
+  $query .= "
  virtualxid,";
-}
-$query .= "
+  }
+  $query .= "
  transactionid,
  classid,
  objid,
  objsubid,";
-if ($g_version >= 83) {
-$query .= "
+  if ($g_version >= 83) {
+  $query .= "
  virtualtransaction,";
+  }
+} else {
+  $query .= "
+ transaction,";
 }
 $query .= "
  pid,
@@ -60,24 +70,34 @@ if (!$rows) {
 $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
-<tr>
-  <th class="colFirst">Lock Type</th>
-  <th class="colMid">Database</th>
-  <th class="colMid">Relation</th>
-  <th class="colMid">Page</th>
-  <th class="colMid">Tuple</th>';
-if ($g_version >= 83) {
+<tr>';
+if ($g_version > 80) {
   $buffer .= '
-  <th class="colMid">Virtual XID</th>';
+  <th class="colFirst">Lock Type</th>';
 }
 $buffer .= '
+  <th class="colMid">Database</th>
+  <th class="colMid">Relation</th>';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid">Page</th>
+  <th class="colMid">Tuple</th>';
+  if ($g_version >= 83) {
+    $buffer .= '
+  <th class="colMid">Virtual XID</th>';
+  }
+  $buffer .= '
   <th class="colMid">Transaction ID</th>
   <th class="colMid">Class ID</th>
   <th class="colMid">Obj ID</th>
   <th class="colMid">Obj Sub ID</th>';
-if ($g_version >= 83) {
-  $buffer .= '
+  if ($g_version >= 83) {
+    $buffer .= '
   <th class="colMid">Virtual Transaction</th>';
+  }
+} else {
+  $buffer .= '
+  <th class="colMid">Transaction</th>';
 }
 $buffer .= '
   <th class="colMid">PID</th>
@@ -87,24 +107,34 @@ $buffer .= '
 ';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td>".$row['locktype']."</td>
-  <td>".$row['database']."</td>
-  <td>".$row['relation']."</td>
-  <td>".$row['page']."</td>
-  <td>".$row['tuple']."</td>";
-if ($g_version >= 83) {
+$buffer .= tr();
+if ($g_version > 80) {
   $buffer .= "
-  <td>".$row['virtualxid']."</td>";
+  <td>".$row['locktype']."</td>";
 }
 $buffer .= "
+  <td>".$row['database']."</td>
+  <td>".$row['relation']."</td>";
+if ($g_version > 80) {
+  $buffer .= "
+  <td>".$row['page']."</td>
+  <td>".$row['tuple']."</td>";
+  if ($g_version >= 83) {
+    $buffer .= "
+    <td>".$row['virtualxid']."</td>";
+  }
+  $buffer .= "
   <td>".$row['transactionid']."</td>
   <td>".$row['classid']."</td>
   <td>".$row['objid']."</td>
   <td>".$row['objsubid']."</td>";
-if ($g_version >= 83) {
-  $buffer .= "
+  if ($g_version >= 83) {
+    $buffer .= "
   <td>".$row['virtualtransaction']."</td>";
+  }
+} else {
+  $buffer .= "
+  <td>".$row['transaction']."</td>";
 }
 $buffer .= "
   <td>".$row['pid']."</td>

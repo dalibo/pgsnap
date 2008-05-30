@@ -23,7 +23,7 @@ $buffer = $navigate_globalobjects.'
 ';
 
 
-$query = "SELECT rolname,
+$query = "SELECT pg_get_userbyid(relowner) AS rolname,
   CASE WHEN relkind='r' THEN 'table'
        WHEN relkind='i' THEN 'index'
        WHEN relkind='S' THEN 'sequence'
@@ -32,8 +32,7 @@ $query = "SELECT rolname,
        WHEN relkind='t' THEN 'TOAST table'
        ELSE '<unkown>' END AS kind,
   COUNT(*) AS total
-FROM pg_class, pg_roles
-WHERE pg_roles.oid=relowner
+FROM pg_class
 GROUP BY 1, 2
 ORDER BY 1, 2";
 

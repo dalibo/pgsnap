@@ -23,16 +23,22 @@ $buffer = $navigate_globalobjects.'
 ';
 
 
-$query = "SELECT rolname,
+$query = "SELECT pg_get_userbyid(relowner) AS rolname,
   CASE WHEN relkind='r' THEN 'table'
        WHEN relkind='i' THEN 'index'
        WHEN relkind='S' THEN 'sequence'
        WHEN relkind='t' THEN 'TOAST table'
-       ELSE '<unkown>' END AS kind,
-  pg_size_pretty(SUM(pg_relation_size(pg_class.oid))::int8) AS total
-FROM pg_class, pg_roles
-WHERE pg_roles.oid=relowner
-  AND relkind IN ('r', 't', 'i', 'S')
+       ELSE '<unkown>' END AS kind,";
+if ($g_version > 80) {
+  $query .= '
+  pg_size_pretty(SUM(pg_relation_size(pg_class.oid))::int8) AS size';
+} else {
+  $query .= '
+  sum(relpages)*8192 AS size';
+}
+$query .= "
+FROM pg_class
+WHERE relkind IN ('r', 't', 'i', 'S')
 GROUP BY 1, 2
 ORDER BY 1, 2";
 
@@ -47,7 +53,15 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst" width="40%">Owner</th>
-  <th class="colMid" width="40%">Object\'s type</th>
+  <th class="colMid" width="40%">Object\'s type</th>';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colLast" width="200">Size</th>';
+} else {
+  $buffer .= '
+  <th class="colLast" width="200">Estimated Size</th>';
+}
+$buffer .= '
   <th class="colLast" width="20%">Size</th>
 </tr>
 ';

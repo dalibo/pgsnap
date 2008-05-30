@@ -1,4 +1,7 @@
 2008-05-29  Guillaume Lelarge <guillaume@lelarge.info>
+	* Fixes 8.0 compatibility.
+
+2008-05-29  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fixes one more PHP notice message.
 
 2008-05-27  Guillaume Lelarge <guillaume@lelarge.info>

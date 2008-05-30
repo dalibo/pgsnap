@@ -25,8 +25,12 @@ $buffer = $navigate_activities.'
 
 $query = "SELECT
   datname,
-  procpid,
-  client_addr,
+  procpid,";
+if ($g_version > 80) {
+  $query .= "
+  client_addr,";
+}
+$quer .= "
   usename,
   current_query,";
 if ($g_version >= 82) {
@@ -38,8 +42,12 @@ if ($g_version >= 83) {
   date_trunc('second', xact_start) as xact_start,";
 }
 $query .="
-  date_trunc('second', query_start) as query_start,
-  date_trunc('second', backend_start) as backend_start
+  date_trunc('second', query_start) as query_start";
+if ($g_version > 80) {
+$query .= ",
+  date_trunc('second', backend_start) as backend_start";
+}
+$query .= "
 FROM pg_stat_activity
 ORDER BY datname, procpid";
 
@@ -54,8 +62,12 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst">DB name</th>
-  <th class="colMid">PID</th>
-  <th class="colMid">Client</th>
+  <th class="colMid">PID</th>';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid">Client</th>';
+}
+$buffer .= '
   <th class="colMid">User</th>';
 if ($g_version >= 83) {
   $buffer .= '
@@ -65,8 +77,14 @@ if ($g_version >= 83) {
   $buffer .= '
   <th class="colMid">XACT start</th>';
 }
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid">Query start</th>';
+} else {
+  $buffer .= '
+  <th class="colMid">Query</th>';
+}
 $buffer .= '
-  <th class="colMid">Query start</th>
   <th class="colLast">Backend start</th>
 </tr>
 ';
@@ -74,8 +92,12 @@ $buffer .= '
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>".$row['datname']."</td>
-  <td>".$row['procpid']."</td>
-  <td>".$row['client_addr']."</td>
+  <td>".$row['procpid']."</td>";
+if ($g_version > 80) {
+  $buffer .= "
+  <td>".$row['client_addr']."</td>";
+}
+$buffer .= "
   <td>".$row['usename']."</td>";
 if ($g_version >= 82) {
   $buffer .= "
@@ -85,8 +107,14 @@ if ($g_version >= 83) {
   $buffer .= "
   <td>".$row['xact_start']."</td>";
 }
+if ($g_version > 80) {
+  $buffer .= '
+  <td title="'.$row['current_query'].'">'.$row['query_start'].'</td>';
+} else {
+  $buffer .= '
+  <td>'.$row['current_query'].'</td>';
+}
 $buffer .= '
-  <td title="'.$row['current_query'].'">'.$row['query_start'].'</td>
   <td>'.$row['backend_start'].'</td>
 </tr>';
 }

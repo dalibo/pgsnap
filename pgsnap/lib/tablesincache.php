@@ -27,8 +27,15 @@ $buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show Syst
 
 $query = "SELECT
   n.nspname,
-  c.relname,
-  pg_relation_size(c.oid) AS size,
+  c.relname,";
+if ($g_version > 80) {
+  $query .= '
+  pg_relation_size(c.oid) AS size,';
+} else {
+  $query .= '
+  sum(c.relpages)*8192 AS size,';
+}
+$query .= "
   count(*) AS buffers
 FROM pg_buffercache b, pg_class c, pg_namespace n
 WHERE b.relfilenode = c.relfilenode
@@ -50,7 +57,15 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst">Table Name</th>
-  <th class="colMid">Table size</th>
+';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid">Table Size</th>';
+} else {
+  $buffer .= '
+  <th class="colMid">Estimated TableSize</th>';
+}
+$buffer .= '
   <th class="colMid">Total buffers</th>
   <th class="colMid">Total buffers size</th>
   <th class="colLast">% of the table in cache</th>

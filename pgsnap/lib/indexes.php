@@ -28,7 +28,7 @@ $buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show Syst
 $query = "SELECT
   relname,
   nspname AS schema,
-  rolname AS owner,
+  pg_get_userbyid(relowner) AS owner,
   relam,
   relfilenode,
   (select spcname from pg_tablespace where oid=reltablespace) as tablespace,
@@ -59,11 +59,16 @@ if ($g_version >= 82) {
 $query .= "
   reloptions,";
 }
+if ($g_version > 80) {
+  $query .= '
+  pg_size_pretty(pg_relation_size(pg_class.oid)) AS size';
+} else {
+  $query .= '
+  relpages*8192 AS size';
+}
 $query .= "
-  pg_size_pretty(pg_relation_size(pg_class.oid)) AS size
-FROM pg_class, pg_roles, pg_namespace
+FROM pg_class, pg_namespace
 WHERE relkind = 'i'
-  AND relowner = pg_roles.oid
   AND relnamespace = pg_namespace.oid
   AND pg_table_is_visible(pg_class.oid)
 ORDER BY relname";
@@ -113,8 +118,14 @@ if ($g_version >= 82) {
 $buffer .= '
   <th class="colMid">Options</th>';
 }
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid" width="200">Size</th>';
+} else {
+  $buffer .= '
+  <th class="colMid" width="200">Estimated Size</th>';
+}
 $buffer .= '
-  <th class="colLast">Size</th>
 </tr>
 ';
 

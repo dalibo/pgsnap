@@ -25,7 +25,24 @@ $buffer = $navigate_general.'
 
 if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')
   or strlen($PGHOST) == 0 or preg_match('/^\//', $PGHOST) == 1) {
-  exec('pg_config', $lignes);
+  if ($g_version > '80') {
+    exec('pg_config', $lignes);
+  } else {
+    exec('pg_config --bindir', $lignes[0]);
+    $lignes[0] = 'BINDIR = '.$lignes[0];
+    exec('pg_config --includedir', $lignes[1]);
+    $lignes[1] = 'INCLUDEDIR = '.$lignes[1];
+    exec('pg_config --includedir-server', $lignes[2]);
+    $lignes[2] = 'INCLUDEDIR-SERVER = '.$lignes[2];
+    exec('pg_config --libdir', $lignes[3]);
+    $lignes[3] = 'LIBDIR = '.$lignes[3];
+    exec('pg_config --pkglibdir', $lignes[4]);
+    $lignes[4] = 'PKGLIBDIR = '.$lignes[4];
+    exec('pg_config --pgxs', $lignes[5]);
+    $lignes[5] = 'PGXS = '.$lignes[5];
+    exec('pg_config --configure', $lignes[6]);
+    $lignes[6] = 'CONFIGURE = '.$lignes[6];
+  }
 
   $buffer .= '<div class="tblBasic">
 

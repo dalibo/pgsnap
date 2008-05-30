@@ -65,8 +65,14 @@ if ($g_pgbuffercache) {
       <li><a href="databasesincache.html">Databases in cache</a></li>';
 }
 
+if ($g_version > '80') {
+  $navigate_globalobjects.= '
+      <li><a href="roles.html">Roles</a></li>';
+} else {
 $navigate_globalobjects.= '
-      <li><a href="roles.html">Roles</a></li>
+      <li><a href="users.html">Users</a></li>';
+}
+$navigate_globalobjects.= '
       <li><a href="user1.html">Users\' Objects</a></li>
       <li><a href="user2.html">Users Space allocated</a></li>
       <li><a href="tablespaces.html">Tablespaces</a></li>
@@ -123,8 +129,12 @@ if ($g_version >= '82') {
       <li><a href="preparedxacts.html">Prepared transactions</a></li>';
 }
 $navigate_activities .= '
-      <li><a href="locks.html">Locks</a></li>
-      <li class="last-child"><a href="exclusivelocks.html">Exclusive Locks</a></li>
+      <li><a href="locks.html">Locks</a></li>';
+if ($g_version > '80') {
+  $navigate_activities .= '
+      <li class="last-child"><a href="exclusivelocks.html">Exclusive Locks</a></li>';
+}
+$navigate_activities .= '
     </ul>
   </div>
 </div>

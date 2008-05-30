@@ -29,7 +29,9 @@ $query = "SELECT n.nspname,
   p.proname,
   CASE WHEN p.proretset THEN 'setof '
        ELSE '' END ||
-    pg_catalog.format_type(p.prorettype, NULL) as returntype,
+    pg_catalog.format_type(p.prorettype, NULL) as returntype,";
+if ($g_version > 80) {
+  $query .= "
   CASE WHEN proallargtypes IS NOT NULL THEN
     pg_catalog.array_to_string(ARRAY(
       SELECT
@@ -57,18 +59,19 @@ $query = "SELECT n.nspname,
       FROM
         pg_catalog.generate_series(0, pg_catalog.array_upper(p.proargtypes, 1)) AS s(i)
     ), ', ')
-  END AS args,
+  END AS args,";
+}
+$query .= "
   CASE
     WHEN p.provolatile = 'i' THEN 'immutable'
     WHEN p.provolatile = 's' THEN 'stable'
     WHEN p.provolatile = 'v' THEN 'volatile'
   END as volatility,
-  r.rolname,
+  pg_get_userbyid(proowner) AS rolname,
   l.lanname
 FROM pg_catalog.pg_proc p
      LEFT JOIN pg_catalog.pg_namespace n ON n.oid = p.pronamespace
      LEFT JOIN pg_catalog.pg_language l ON l.oid = p.prolang
-     JOIN pg_catalog.pg_roles r ON r.oid = p.proowner
 WHERE p.prorettype <> 'pg_catalog.cstring'::pg_catalog.regtype
       AND (p.proargtypes[0] IS NULL
       OR   p.proargtypes[0] <> 'pg_catalog.cstring'::pg_catalog.regtype)
@@ -89,8 +92,12 @@ $buffer .= '<div class="tblBasic">
   <th class="colFirst">Owner</th>
   <th class="colMid">Schema Name</th>
   <th class="colMid">Function Name</th>
-  <th class="colMid">Return type</th>
-  <th class="colMid">Args</th>
+  <th class="colMid">Return type</th>';
+if ($g_version > 80) {
+  $buffer .= '
+  <th class="colMid">Args</th>';
+}
+$buffer .= '
   <th class="colMid">Volatibility</th>
   <th class="colLast">Language</th>
 </tr>
@@ -101,8 +108,12 @@ $buffer .= tr($row['nspname'])."
   <td>".$row['rolname']."</td>
   <td>".$row['nspname']."</td>
   <td>".$row['proname']."</td>
-  <td>".$row['returntype']."</td>
-  <td>".$row['args']."</td>
+  <td>".$row['returntype']."</td>";
+if ($g_version > 80) {
+  $buffer .= "
+  <td>".$row['args']."</td>";
+}
+$buffer .= "
   <td>".$row['volatility']."</td>
   <td>".$row['lanname']."</td>
 </tr>";
