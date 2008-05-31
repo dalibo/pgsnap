@@ -107,9 +107,7 @@ include 'lib/links.php';
 echo "Getting General informations...\n";
 include 'lib/ver.php';
 include 'lib/sessionsinfo.php';
-if ($g_version > '74') {
-  include 'lib/pgconfig.php';
-}
+include 'lib/pgconfig.php';
 include 'lib/pgcontroldata.php';
 include 'lib/param.php';
 if ($g_version > '80') {

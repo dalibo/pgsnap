@@ -1,3 +1,6 @@
+2008-05-31  Guillaume Lelarge <guillaume@lelarge.info>
+	* Bugfix : pg_config report was not available with 7.4 server release.
+
 2008-05-29  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fixes 8.0 compatibility.
 	* Adds 7.4 compatibility.
