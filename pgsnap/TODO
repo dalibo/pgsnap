@@ -1,15 +1,6 @@
 TODO
 ====
 
- * add a --without-sysobjects command line option
- * add a --server-only option, to get a view of all DB, no specific DB objects.
- * add a --all option to get a report for each database available
- * add a way to filter locks report (by dbname, by lock mode)
- * add sessions info by dbname (now only available for all databases)
- * cache hit ratio is not interesting if stats_block_level is disabled
- * add a report to get index whose size is greater than the associated table
- * display database in red if blks_read>blks_hit
- 
  * specific orasnap
   * Tablespace : list default tablespace for each user
   * Disabled constraints : owner, table, constraint, type, status
@@ -22,8 +13,6 @@ TODO
   * graph on database size and usage
   * graph on tablespace size
   * graph on table and index size and usage
-  * graph using flash ? see http://teethgrinder.co.uk/open-flash-chart/
-    (idea from Claude Castello)
 
  * pollux asks for
   * limiting the schemas used with a command line option (to get pg_catalog out)
