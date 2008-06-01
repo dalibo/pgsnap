@@ -74,7 +74,6 @@ $query .= "
 FROM pg_class, pg_namespace
 WHERE relkind = 'S'
   AND relnamespace = pg_namespace.oid
-  AND pg_table_is_visible(pg_class.oid)
 ORDER BY relname";
 
 $rows = pg_query($connection, $query);

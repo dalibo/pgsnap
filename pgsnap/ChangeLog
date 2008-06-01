@@ -1,18 +1,24 @@
+2008-06-01  Guillaume Lelarge <guillaume@lelarge.info>
+	* Release 0.3.4.
+
 2008-05-31  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : pg_config report was not available with 7.4 server release.
 
-2008-05-29  Guillaume Lelarge <guillaume@lelarge.info>
+2008-05-30  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fixes 8.0 compatibility.
 	* Adds 7.4 compatibility.
 
 2008-05-29  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fixes one more PHP notice message.
+	* Bugfix : Blocks read et Blocks hit informations were under Tuple
+        returned and Tuple fetched columns.
+	* Bugfix : Objects from schemas out of search_path weren't displayed.
+	* Bugfix : Check the availability of pg_connect() function.
 
 2008-05-27  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : default report for statistics tab should be the cache
         hit ratio (old one, bgwriter, is not available in releases prior
         to 8.3).
-
 	* Bugfix : on "Installed Products" report, pgsnap didn't understand
         "unset" value, and logging_collector was used instead of
         stats_start_collector for releases < 8.3.
