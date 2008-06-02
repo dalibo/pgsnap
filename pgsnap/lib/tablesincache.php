@@ -22,8 +22,9 @@ $buffer = $navigate_dbobjects.'
 <h1>Tables in cache</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT
   n.nspname,
@@ -39,7 +40,14 @@ $query .= "
   count(*) AS buffers
 FROM pg_buffercache b, pg_class c, pg_namespace n
 WHERE b.relfilenode = c.relfilenode
-  AND c.relnamespace = n.oid
+  AND c.relnamespace = n.oid";
+if ($g_withoutsysobjects) {
+  $query .= "
+  AND n.nspname <> 'pg_catalog'
+  AND n.nspname <> 'information_schema'
+  AND n.nspname !~ '^pg_toast'";
+}
+$query .= "
   AND c.relkind = 'r'
   AND b.reldatabase IN (0, (SELECT oid FROM pg_database
                             WHERE datname = current_database()))

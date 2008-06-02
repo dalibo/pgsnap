@@ -22,8 +22,9 @@ $buffer = $navigate_dbobjects.'
 <h1>Tables without PKEY list</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT
   pg_get_userbyid(relowner) AS owner,
@@ -41,7 +42,14 @@ FROM pg_class, pg_namespace
 WHERE
   relkind='r'
   AND relhaspkey IS false
-  AND relnamespace = pg_namespace.oid
+  AND relnamespace = pg_namespace.oid";
+if ($g_withoutsysobjects) {
+  $query .= "
+  AND nspname <> 'pg_catalog'
+  AND nspname <> 'information_schema'
+  AND nspname !~ '^pg_toast'";
+}
+$query .= "
 ORDER BY relowner, relname";
 
 $rows = pg_query($connection, $query);

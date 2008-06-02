@@ -22,7 +22,6 @@ $buffer = $navigate_globalobjects.'
 <h1>Total objects per tablespace</h1>
 ';
 
-
 $query = "SELECT pg_get_userbyid(relowner) AS rolname,
   CASE WHEN relkind='r' THEN 'table'
        WHEN relkind='i' THEN 'index'
@@ -32,7 +31,16 @@ $query = "SELECT pg_get_userbyid(relowner) AS rolname,
        WHEN relkind='t' THEN 'TOAST table'
        ELSE '<unkown>' END AS kind,
   COUNT(*) AS total
-FROM pg_class
+FROM pg_class";
+if ($g_withoutsysobjects) {
+  $query .= "
+WHERE relnamespace NOT IN
+  (SELECT oid FROM pg_namespace
+   WHERE nspname <> 'pg_catalog'
+     AND nspname <> 'information_schema'
+     AND nspname !~ '^pg_toast')";
+}
+$query .= "
 GROUP BY 1, 2
 ORDER BY 1, 2";
 

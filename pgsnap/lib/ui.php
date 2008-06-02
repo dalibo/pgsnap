@@ -27,4 +27,11 @@ function tr($namespace = '') {
   return $tr;
 }
 
+function add_sys_and_user_checkboxes() {
+  global $buffer;
+
+  $buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>
+<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+}
+
 ?>

@@ -22,8 +22,9 @@ $buffer = $navigate_stats.'
 <h1>Statistical indexes list</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT
   schemaname,
@@ -32,7 +33,14 @@ $query = "SELECT
   idx_scan,
   idx_tup_read,
   idx_tup_fetch
-FROM pg_stat_all_indexes
+FROM pg_stat_all_indexes";
+if ($g_withoutsysobjects) {
+  $query .= "
+WHERE schemaname <> 'pg_catalog'
+  AND schemaname <> 'information_schema'
+  AND schemaname !~ '^pg_toast'";
+}
+$query .= "
 ORDER BY schemaname, relname";
 
 $rows = pg_query($connection, $query);

@@ -34,6 +34,7 @@ if (strlen("$PGDATABASE") == 0) {
 
 $PGPASSWORD = getenv('PGPASSWORD');
 $g_passwordrequired = false;
+$g_withoutsysobjects = false;
 
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
   switch($_SERVER["argv"][$i]) {
@@ -64,6 +65,10 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
     case "-o":
     case "--output-dir":
       $outputdir = $_SERVER['argv'][++$i];
+      break;
+    case "-S":
+    case "--without-sysobjects":
+      $g_withoutsysobjects = true;
       break;
     case "-?":
     case "-h":

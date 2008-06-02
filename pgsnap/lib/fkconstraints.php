@@ -22,8 +22,9 @@ $buffer = $navigate_dbobjects.'
 <h1>FK constraints list</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT
   pg_get_userbyid(relowner) AS tableowner,
@@ -33,7 +34,14 @@ $query = "SELECT
   pg_get_constraintdef(pg_constraint.oid, true) as condef
 FROM pg_constraint, pg_class, pg_namespace
 WHERE conrelid=pg_class.oid
-  AND relnamespace=pg_namespace.oid
+  AND relnamespace=pg_namespace.oid";
+if ($g_withoutsysobjects) {
+  $query .= "
+  AND nspname <> 'pg_catalog'
+  AND nspname <> 'information_schema'
+  AND nspname !~ '^pg_toast'";
+}
+$query .= "
   AND contype = 'f'
 ORDER BY 1, 2, 3";
 

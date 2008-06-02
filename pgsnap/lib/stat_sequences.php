@@ -22,7 +22,6 @@ $buffer = $navigate_stats.'
 <h1>Statistical tables list</h1>
 ';
 
-
 $query = "SELECT
   schemaname,
   relname,

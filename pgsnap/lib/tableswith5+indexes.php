@@ -22,14 +22,22 @@ $buffer = $navigate_dbobjects.'
 <h1>Tables with 5+ indexes list</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT
   schemaname,
   tablename,
   count(*) as total
-FROM pg_indexes
+FROM pg_indexes";
+if ($g_withoutsysobjects) {
+  $query .= "
+WHERE schemaname <> 'pg_catalog'
+  AND schemaname <> 'information_schema'
+  AND schemaname !~ '^pg_toast'";
+}
+$query .= "
 GROUP BY 1, 2
 HAVING count(*)>=5
 ORDER BY 1, 2";

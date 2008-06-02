@@ -22,8 +22,9 @@ $buffer = $navigate_stats.'
 <h1>Last Vacuumed Tables</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT
   schemaname,
@@ -31,7 +32,14 @@ $query = "SELECT
   max(greatest(last_vacuum, last_autovacuum)) as lastvac
 FROM pg_stat_all_tables
 WHERE
-  last_vacuum IS NOT NULL OR last_autovacuum IS NOT NULL
+  last_vacuum IS NOT NULL OR last_autovacuum IS NOT NULL";
+if ($g_withoutsysobjects) {
+  $query .= "
+  AND schemaname <> 'pg_catalog'
+  AND schemaname <> 'information_schema'
+  AND schemaname !~ '^pg_toast'";
+}
+$query .= "
 GROUP BY 1, 2
 ORDER BY 3 DESC";
 

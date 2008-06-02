@@ -22,13 +22,21 @@ $buffer = $navigate_dbobjects.'
 <h1>Fragmented Tables</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT pg_class.oid, nspname, relname
 FROM pg_class, pg_namespace
 WHERE relkind IN ('r', 't')
-  AND relnamespace = pg_namespace.oid
+  AND relnamespace = pg_namespace.oid";
+if ($g_withoutsysobjects) {
+  $query .= "
+  AND nspname <> 'pg_catalog'
+  AND nspname <> 'information_schema'
+  AND nspname !~ '^pg_toast'";
+}
+$query .= "
 ORDER BY relname";
 $queries = $query;
 

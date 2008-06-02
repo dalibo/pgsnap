@@ -22,13 +22,21 @@ $buffer = $navigate_dbobjects.'
 <h1>Fragmented Indexes</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 // relam 403 is btree index
 $query = "SELECT nspname, relname
 FROM pg_class, pg_namespace
-WHERE relkind = 'i' and  relnamespace=pg_namespace.oid and relam=403
+WHERE relkind = 'i' and  relnamespace=pg_namespace.oid and relam=403";
+if ($g_withoutsysobjects) {
+  $query .= "
+  AND nspname <> 'pg_catalog'
+  AND nspname <> 'information_schema'
+  AND nspname !~ '^pg_toast'";
+}
+$query .= "
 ORDER BY relname";
 $queries = $query;
 

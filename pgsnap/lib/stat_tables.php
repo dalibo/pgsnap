@@ -22,8 +22,9 @@ $buffer = $navigate_stats.'
 <h1>Statistical tables list</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT
   schemaname,
@@ -49,7 +50,14 @@ if ($g_version >= 82) {
   last_autoanalyze";
 }
 $query .= "
-FROM pg_stat_all_tables
+FROM pg_stat_all_tables";
+if ($g_withoutsysobjects) {
+  $query .= "
+WHERE schemaname <> 'pg_catalog'
+  AND schemaname <> 'information_schema'
+  AND schemaname !~ '^pg_toast'";
+}
+$query .= "
 ORDER BY schemaname, relname";
 
 $rows = pg_query($connection, $query);

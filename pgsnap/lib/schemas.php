@@ -22,11 +22,17 @@ $buffer = $navigate_dbobjects.'
 <h1>Schemas</h2>
 ';
 
-
 $query = "SELECT nspname,
   pg_get_userbyid(nspowner) AS owner,
   nspacl
-FROM pg_namespace
+FROM pg_namespace";
+if ($g_withoutsysobjects) {
+  $query .= "
+WHERE nspname <> 'pg_catalog'
+  AND nspname <> 'information_schema'
+  AND nspname !~ '^pg_toast'";
+}
+$query .= "
 ORDER BY nspname";
 
 $rows = pg_query($connection, $query);

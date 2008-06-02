@@ -22,8 +22,9 @@ $buffer = $navigate_dbobjects.'
 <h1>Functions</h1>
 ';
 
-$buffer .= '<label><input id ="showusrobjects" type="checkbox" checked>Show User Objects</label>';
-$buffer .= '<label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT n.nspname,
   p.proname,
@@ -75,7 +76,14 @@ FROM pg_catalog.pg_proc p
 WHERE p.prorettype <> 'pg_catalog.cstring'::pg_catalog.regtype
       AND (p.proargtypes[0] IS NULL
       OR   p.proargtypes[0] <> 'pg_catalog.cstring'::pg_catalog.regtype)
-      AND NOT p.proisagg
+      AND NOT p.proisagg";
+if ($g_withoutsysobjects) {
+  $query .= "
+  AND n.nspname <> 'pg_catalog'
+  AND n.nspname <> 'information_schema'
+  AND n.nspname !~ '^pg_toast'";
+}
+$query .= "
 ORDER BY 1, 2, 3, 4";
 
 $rows = pg_query($connection, $query);

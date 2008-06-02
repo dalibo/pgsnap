@@ -1,3 +1,7 @@
+2008-06-02  Guillaume Lelarge <guillaume@lelarge.info>
+	* Add a --without-sysobjects command line option to retrieve only
+        user objects.
+
 2008-06-01  Guillaume Lelarge <guillaume@lelarge.info>
 	* Release 0.3.4.
 

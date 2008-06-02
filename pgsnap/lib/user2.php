@@ -22,7 +22,6 @@ $buffer = $navigate_globalobjects.'
 <h1>Total objects per tablespace</h1>
 ';
 
-
 $query = "SELECT pg_get_userbyid(relowner) AS rolname,
   CASE WHEN relkind='r' THEN 'table'
        WHEN relkind='i' THEN 'index'
@@ -38,7 +37,16 @@ if ($g_version > 80) {
 }
 $query .= "
 FROM pg_class
-WHERE relkind IN ('r', 't', 'i', 'S')
+WHERE relkind IN ('r', 't', 'i', 'S')";
+if ($g_withoutsysobjects) {
+  $query .= "
+  AND relnamespace NOT IN
+  (SELECT oid FROM pg_namespace
+   WHERE nspname <> 'pg_catalog'
+     AND nspname <> 'information_schema'
+     AND nspname !~ '^pg_toast')";
+}
+$query .= "
 GROUP BY 1, 2
 ORDER BY 1, 2";
 
@@ -62,7 +70,6 @@ if ($g_version > 80) {
   <th class="colLast" width="200">Estimated Size</th>';
 }
 $buffer .= '
-  <th class="colLast" width="20%">Size</th>
 </tr>
 ';
 
@@ -70,7 +77,7 @@ while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
   <td>'.$row['rolname'].'</td>
   <td>'.ucfirst($row['kind']).'</td>
-  <td>'.$row['total'].'</td>
+  <td>'.$row['size'].'</td>
 </tr>';
 }
 $buffer .= '</table>

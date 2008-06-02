@@ -1,20 +1,30 @@
 TODO
 ====
 
- * specific orasnap
-  * Tablespace : list default tablespace for each user
-  * Disabled constraints : owner, table, constraint, type, status
+ * 0.4.0
+  * cache hit ratio is not interesting if stats_block_level is disabled
+  * add a --all option to get a report for each database available
+  * add sessions info by dbname (now only available for all databases)
+  * add a report to get index whose size is greater than the associated table
+  * display database in red if blks_read>blks_hit
   * FK without indexes : owner, constraint name, column name
-  * cached tables (pg_buffercache)
-  * Buffer Hit Ratio (Consistent Gets  DB Blk Gets  Physical Reads  Hit Ratio)
-
- * HTML interface
-  * jQuery support : sort in tables, filtering
   * graph on database size and usage
   * graph on tablespace size
   * graph on table and index size and usage
-
- * pollux asks for
-  * limiting the schemas used with a command line option (to get pg_catalog out)
+  * graph using flash ? see http://teethgrinder.co.uk/open-flash-chart/
+    (idea from Claude Castello)
   * being able to get a report from a standard user (not a superuser)
     see TODO in tablespaces.php
+  * limiting the schemas used with a command line option (to get pg_catalog out)
+    --> already done with --without-sysobjects ?
+
+ * customer specific
+  * add a --server-only option, to get a view of all DB, no specific DB objects.
+ 
+ * specific orasnap
+  * Tablespace : list default tablespace for each user
+  * Disabled constraints : owner, table, constraint, type, status
+
+ * HTML interface
+  * jQuery support : sort in tables, filtering
+   * add a way to filter locks report (by dbname, by lock mode)
