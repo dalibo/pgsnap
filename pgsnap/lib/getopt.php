@@ -84,6 +84,8 @@ General options:
                   (default: "<?= $PGDATABASE ?>")
   -o outputdir    specify output directory
                   (default: "<?= $outputdir ?>")
+  -S, --without-sysobjects
+                  get report without system objects informations
   --help          show this help, then exit
   --version       output version information, then exit
 
