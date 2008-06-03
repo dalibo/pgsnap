@@ -19,7 +19,7 @@
 $buffer = $navigate_globalobjects.'
 <div id="pgContentWrap">
 
-<h1>Tablespaces list</h1>
+<h1>Tablespaces</h1>
 ';
 
 // TODO : without superuser powers, this fails

@@ -19,7 +19,7 @@
 $buffer = $navigate_activities.'
 <div id="pgContentWrap">
 
-<h1>Prepared Transactions List</h1>';
+<h1>Prepared Transactions</h1>';
 
 
 $query = "SELECT

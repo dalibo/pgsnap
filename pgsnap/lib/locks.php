@@ -19,7 +19,7 @@
 $buffer = $navigate_activities.'
 <div id="pgContentWrap">
 
-<h1>Locks List</h1>
+<h1>Locks</h1>
 ';
 
 

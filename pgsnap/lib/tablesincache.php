@@ -19,7 +19,7 @@
 $buffer = $navigate_dbobjects.'
 <div id="pgContentWrap">
 
-<h1>Tables in cache</h1>
+<h1>Tables In Cache</h1>
 ';
 
 if(!$g_withoutsysobjects) {

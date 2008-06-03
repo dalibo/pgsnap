@@ -19,7 +19,7 @@
 $buffer = $navigate_dbobjects.'
 <div id="pgContentWrap">
 
-<h1>FK constraints list</h1>
+<h1>FK Constraints</h1>
 ';
 
 if(!$g_withoutsysobjects) {

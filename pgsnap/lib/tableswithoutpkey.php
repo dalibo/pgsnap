@@ -19,7 +19,7 @@
 $buffer = $navigate_dbobjects.'
 <div id="pgContentWrap">
 
-<h1>Tables without PKEY list</h1>
+<h1>Tables Without PKEY</h1>
 ';
 
 if(!$g_withoutsysobjects) {

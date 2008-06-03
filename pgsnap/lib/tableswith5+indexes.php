@@ -19,7 +19,7 @@
 $buffer = $navigate_dbobjects.'
 <div id="pgContentWrap">
 
-<h1>Tables with 5+ indexes list</h1>
+<h1>Tables With 5+ Indexes</h1>
 ';
 
 if(!$g_withoutsysobjects) {

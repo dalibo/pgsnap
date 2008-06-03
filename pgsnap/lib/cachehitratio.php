@@ -19,7 +19,7 @@
 $buffer = $navigate_stats.'
 <div id="pgContentWrap">
 
-<h1>Databases in cache</h1>
+<h1>Cache Hit Ratio</h1>
 ';
 
 $query = "SELECT datname,

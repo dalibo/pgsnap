@@ -19,7 +19,7 @@
 $buffer = $navigate_globalobjects.'
 <div id="pgContentWrap">
 
-<h1>Roles list</h1>
+<h1>Roles</h1>
 ';
 
 $query = "SELECT rolname,

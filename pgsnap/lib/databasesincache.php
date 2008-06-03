@@ -19,7 +19,7 @@
 $buffer = $navigate_globalobjects.'
 <div id="pgContentWrap">
 
-<h1>Databases in cache</h1>
+<h1>Databases In Cache</h1>
 ';
 
 $query = "SELECT

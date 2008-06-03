@@ -19,7 +19,7 @@
 $buffer = $navigate_stats.'
 <div id="pgContentWrap">
 
-<h1>Statistical indexes list</h1>
+<h1>Statistical Indexes</h1>
 ';
 
 if(!$g_withoutsysobjects) {

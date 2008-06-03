@@ -19,7 +19,7 @@
 $buffer = $navigate_general.'
 <div id="pgContentWrap">
 
-<h1>Autovacuum configuration</h1>
+<h1>Autovacuum Configuration</h1>
 ';
 
 if ($g_version >= 82) {

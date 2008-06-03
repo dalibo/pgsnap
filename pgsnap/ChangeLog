@@ -1,3 +1,6 @@
+2008-06-03  Guillaume Lelarge <guillaume@lelarge.info>
+	* Some reports' titles are modified to get more consistent.
+
 2008-06-02  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add a --without-sysobjects command line option to retrieve only
         user objects.

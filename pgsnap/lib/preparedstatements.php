@@ -19,7 +19,7 @@
 $buffer = $navigate_activities.'
 <div id="pgContentWrap">
 
-<h1>Prepared Statements List</h1>
+<h1>Prepared Statements</h1>
 ';
 
 // TODO parameter_types is not handled yet

@@ -19,7 +19,7 @@
 $buffer = $navigate_stats.'
 <div id="pgContentWrap">
 
-<h1>Statistical databases list</h1>
+<h1>Statistical Databases</h1>
 ';
 
 $query = "SELECT

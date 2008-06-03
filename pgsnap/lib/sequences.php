@@ -19,7 +19,7 @@
 $buffer = $navigate_dbobjects.'
 <div id="pgContentWrap">
 
-<h1>Sequences list</h1>
+<h1>Sequences</h1>
 ';
 
 if(!$g_withoutsysobjects) {

@@ -19,7 +19,7 @@
 $buffer = $navigate_globalobjects.'
 <div id="pgContentWrap">
 
-<h1>Total objects per tablespace</h1>
+<h1>Total Objects Per Tablespace</h1>
 ';
 
 $query = "SELECT pg_get_userbyid(relowner) AS rolname,
