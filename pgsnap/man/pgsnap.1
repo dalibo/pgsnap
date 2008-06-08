@@ -8,6 +8,9 @@ pgsnap is a PostgreSQL tool that mimics orasnap performance report tool for Orac
 \&./pgsnap [OPTIONS]... [DBNAME]
 .SS "General options:"
 .TP
+\fB\-a, \-\-all\fR
+build a report for all databases on the PostgreSQL server
+.TP
 \fB\-d\fR DBNAME
 specify database name to connect to
 (default: your login name)
@@ -18,7 +21,7 @@ will be created (default: the database name
 followed by 'snap_', followed by the date
 and time)
 .TP
-\fB\-S\fR without-sysobjects
+\fB\-S, \-\-without\-sysobjects\fR
 all reports will display informations on user objects only
 .TP
 \fB\-\-help\fR

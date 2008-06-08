@@ -35,6 +35,7 @@ if (strlen("$PGDATABASE") == 0) {
 $PGPASSWORD = getenv('PGPASSWORD');
 $g_passwordrequired = false;
 $g_withoutsysobjects = false;
+$g_alldatabases = false;
 
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
   switch($_SERVER["argv"][$i]) {
@@ -70,6 +71,10 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
     case "--without-sysobjects":
       $g_withoutsysobjects = true;
       break;
+    case "-a":
+    case "--all":
+      $g_alldatabases = true;
+      break;
     case "-?":
     case "-h":
     case "--help":
@@ -80,6 +85,7 @@ Usage:
   <?= $_SERVER['argv'][0]; ?> [OPTIONS]... [DBNAME]
 
 General options:
+  -a, --all       build a report for all databases on the PostgreSQL server
   -d DBNAME       specify database name to connect to
                   (default: "<?= $PGDATABASE ?>")
   -o outputdir    specify output directory
@@ -103,10 +109,6 @@ Connection options:
       $PGDATABASE = $_SERVER['argv'][$i];
       break;
   }
-}
-
-if (! isset($outputdir) ) {
-  $outputdir = $PGDATABASE.'_snap_'.date('Ymd');
 }
 
 ?>

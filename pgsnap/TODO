@@ -2,7 +2,6 @@ TODO
 ====
 
  * 0.4.0
-  * add a --all option to get a report for each database available
   * add a report to get index whose size is greater than the associated table
   * FK without indexes : owner, constraint name, column name
   * being able to get a report from a standard user (not a superuser)
