@@ -203,7 +203,13 @@ echo "Getting Statistical Informations...\n";
 if ($g_version == '83') {
   include 'lib/bgwriter.php';
 }
-include 'lib/cachehitratio.php';
+if ((array_key_exists('stats_block_level', $g_settings)
+     and !strcmp($g_settings['stats_block_level'], 'on'))
+   or
+   (array_key_exists('track_counts', $g_settings)
+     and !strcmp($g_settings['track_counts'], 'on'))) {
+  include 'lib/cachehitratio.php';
+}
 include 'lib/stat_databases.php';
 include 'lib/stat_tables.php';
 include 'lib/statio_tables.php';

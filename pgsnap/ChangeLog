@@ -6,6 +6,8 @@
 	* Add "Non Idle Processes" Report.
 	* Add "Relations Bloat" Report.
 	* Add Stat IO reports.
+	* "Cache hit ratio" report is not interesting if stats_block_level
+        (or track_counts in 8.3) is disabled.
 
 2008-06-03  Guillaume Lelarge <guillaume@lelarge.info>
 	* Some reports' titles are modified to get more consistent.
