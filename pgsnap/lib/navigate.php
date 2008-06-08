@@ -60,11 +60,14 @@ $navigate_globalobjects = $navigate_header.'
     <ul>
       <li><a href="bases.html">Databases</a></li>';
 
+if ($g_flashexists and $g_version > '80') {
+  $navigate_globalobjects .= '
+      <li><a href="graph_dbsize.html">Databases Size Graph</a></li>';
+}
 if ($g_pgbuffercache) {
   $navigate_globalobjects .= '
       <li><a href="databasesincache.html">Databases in cache</a></li>';
 }
-
 if ($g_version > '80') {
   $navigate_globalobjects.= '
       <li><a href="roles.html">Roles</a></li>';
@@ -76,8 +79,13 @@ $navigate_globalobjects.= '
       <li><a href="user1.html">Users\' Objects</a></li>
       <li><a href="user2.html">Users Space allocated</a></li>';
 if ($g_version > '74') {
-$navigate_globalobjects.= '
-      <li><a href="tablespaces.html">Tablespaces</a></li>
+  $navigate_globalobjects.= '
+      <li><a href="tablespaces.html">Tablespaces</a></li>';
+  if ($g_flashexists and $g_version > '80') {
+    $navigate_globalobjects .= '
+      <li><a href="graph_tblspcsize.html">Tablespaces Size Graph</a></li>';
+  }
+  $navigate_globalobjects.= '
       <li class="last-child"><a href="tblspc1.html">Tablespaces\' objects</a></li>';
 }
 $navigate_globalobjects.= '
@@ -91,6 +99,10 @@ $navigate_dbobjects = $navigate_header.'
       <li><a href="schemas.html">Schemas</a></li>
       <li><a href="tables.html">Tables</a></li>';
 
+if ($g_flashexists and $g_version > '80') {
+  $navigate_dbobjects .= '
+      <li><a href="graph_tablesize.html">Tables Size Graph</a></li>';
+}
 if ($g_pgbuffercache) {
   $navigate_dbobjects .= '
       <li><a href="tablesincache.html">Tables in cache</a></li>';

@@ -7,11 +7,6 @@ TODO
   * add a --all option to get a report for each database available
   * add a report to get index whose size is greater than the associated table
   * FK without indexes : owner, constraint name, column name
-  * graph on database size and usage
-  * graph on tablespace size
-  * graph on table and index size and usage
-  * graph using flash ? see http://teethgrinder.co.uk/open-flash-chart/
-    (idea from Claude Castello)
   * being able to get a report from a standard user (not a superuser)
     see TODO in tablespaces.php
   * limiting the schemas used with a command line option (to get pg_catalog out)

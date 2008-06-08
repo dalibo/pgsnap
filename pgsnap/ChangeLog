@@ -1,5 +1,8 @@
 2008-06-08  Guillaume Lelarge <guillaume@lelarge.info>
 	* Display databases' name in red if blks_read>=blks_hit.
+	* Display database size with a graph.
+	* Display tablespace size with a graph.
+	* Display table size with a graph.
 
 2008-06-03  Guillaume Lelarge <guillaume@lelarge.info>
 	* Some reports' titles are modified to get more consistent.

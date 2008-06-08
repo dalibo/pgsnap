@@ -16,6 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+$g_flashexists = file_exists('external/open-flash-chart.php')
+             and file_exists('external/open_flash_chart_object.php')
+             and file_exists('external/open-flash-chart.swf')
+             and file_exists('external/swfobject.js');
+
 $query = "SELECT 1 FROM pg_proc WHERE proname LIKE '%buffercache%'";
 
 $rows = pg_query($connection, $query);
