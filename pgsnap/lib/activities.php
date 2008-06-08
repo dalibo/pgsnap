@@ -30,7 +30,7 @@ if ($g_version > 80) {
   $query .= "
   client_addr,";
 }
-$quer .= "
+$query .= "
   usename,
   current_query,";
 if ($g_version >= 82) {
