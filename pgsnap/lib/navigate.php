@@ -127,6 +127,7 @@ if ($g_pgstatindex) {
 }
 
 $navigate_dbobjects.= '
+      <li><a href="relationsbloat.html">Relations Bloat</a></li>
       <li><a href="functions.html">Functions</a></li>
       <li class="last-child"><a href="languages.html">Languages</a></li>
     </ul>

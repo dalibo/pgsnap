@@ -182,6 +182,7 @@ if ($g_pgstatindex) {
 } else {
   echo "  pgstattuple on indexes unavailable!\n";
 }
+include 'lib/relationsbloat.php';
 include 'lib/languages.php';
 include 'lib/functions.php';
 
