@@ -22,17 +22,18 @@ $buffer = $navigate_globalobjects.'
 <h1>Tablespaces</h1>
 ';
 
-// TODO : without superuser powers, this fails
 $query = "SELECT spcname,
   pg_get_userbyid(spcowner) AS owner,
   spclocation,
-  spcacl,";
-if ($g_version > 80) {
-  $query .= '
+  spcacl";
+if ($g_superuser) {
+  if ($g_version > 80) {
+    $query .= ',
   pg_size_pretty(pg_tablespace_size(spcname)) AS size';
-} else {
-  $query .= '
+  } else {
+    $query .= ',
   (SELECT SUM(relpages)*8192 FROM pg_class WHERE reltablespace=pg_tablespace.oid ) AS size';
+  }
 }
 $query .= '
 FROM pg_tablespace
@@ -51,12 +52,14 @@ $buffer .= '<div class="tblBasic">
   <th class="colFirst" width="20%">Tablespace Owner</th>
   <th class="colMid" width="20%">Tablespace Name</th>
   <th class="colMid" width="20%">Location</th>';
-if ($g_version > 80) {
-  $buffer .= '
+if ($g_superuser) {
+  if ($g_version > 80) {
+    $buffer .= '
   <th class="colMid" width="200">Size</th>';
-} else {
-  $buffer .= '
+  } else {
+    $buffer .= '
   <th class="colMid" width="200">Estimated Size</th>';
+  }
 }
 $buffer .= '
   <th class="colLast" width="20%">ACL</th>
@@ -64,11 +67,15 @@ $buffer .= '
 ';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
+  $buffer .= tr()."
   <td>".$row['owner']."</td>
   <td>".$row['spcname']."</td>
-  <td>".$row['spclocation']."</td>
-  <td>".$row['size']."</td>
+  <td>".$row['spclocation']."</td>";
+  if ($g_superuser) {
+    $buffer .= "
+  <td>".$row['size']."</td>";
+  }
+  $buffer .= "
   <td>".$row['spcacl']."</td>
 </tr>";
 }

@@ -89,11 +89,14 @@ $buffer .= '<h1>Primary options</h1>
 </tr>
 ';
 
-$buffer .= tr().'
+if (array_key_exists('autovacuum', $g_settings)) {
+  $buffer .= tr().'
   <td><a href="param.html#Autovacuum">Autovacuum</a></td>
   <td>'.$image[$g_settings['autovacuum']].'</td>
 </tr>
 ';
+}
+
 if (array_key_exists('track_activities', $g_settings)) {
   $buffer .= tr().'
   <td><a href="param.html#StatisticsQueryandIndexStatisticsCollector">Stats collector</a></td>
@@ -138,7 +141,8 @@ if (array_key_exists('archive_mode', $g_settings)) {
   <td>'.$image[$g_settings['archive_mode']].'</td>
 </tr>
 ';
-} elseif (strlen($g_settings['archive_command'])>0) {
+} elseif (array_key_exists('archive_command', $g_settings) and
+  strlen($g_settings['archive_command'])>0) {
   $buffer .= tr().'
   <td><a href="param.html#Write-AheadLogSettings">PITR</a></td>
   <td>'.$image[strcmp($g_settings['archive_command'], 'unset') == 0 ? 'f':'t'].'</td>

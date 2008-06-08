@@ -26,6 +26,8 @@ postgresql.conf file, but it\'s the actual configuration available
 when connecting to <b>database '.$PGDATABASE.' on server '.$PGHOST.
 ':'.$PGPORT.' as user '.$PGUSER.'</b>.</p>';
 
+$cat1 = array();
+
 if ($g_version > 74) {
   $query_cat = "SELECT DISTINCT category AS name FROM pg_settings";
   $categories = pg_query($connection, $query_cat);

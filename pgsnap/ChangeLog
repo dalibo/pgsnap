@@ -12,6 +12,7 @@
         the selected PostgreSQL server.
 	* Add a report to get index whose size is greater than the associated
         table.
+	* Now, you don't need to be a superuser to use pgsnap.
 
 2008-06-03  Guillaume Lelarge <guillaume@lelarge.info>
 	* Some reports' titles are modified to get more consistent.

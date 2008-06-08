@@ -3,8 +3,6 @@ TODO
 
  * 0.4.0
   * FK without indexes : owner, constraint name, column name
-  * being able to get a report from a standard user (not a superuser)
-    see TODO in tablespaces.php
   * limiting the schemas used with a command line option (to get pg_catalog out)
     --> already done with --without-sysobjects ?
 

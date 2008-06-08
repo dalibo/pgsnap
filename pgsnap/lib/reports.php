@@ -99,7 +99,7 @@ include 'lib/param.php';
 if ($g_version > '80') {
   include 'lib/paramautovac.php';
 }
-if ($g_version > '74'
+if ($g_superuser and $g_version > '74'
     and (!strcmp($g_settings['log_destination'], 'stderr')
          or !strcmp($g_settings['log_destination'], 'csvlog'))
     and ((array_key_exists('redirect_stderr', $g_settings)
@@ -128,7 +128,7 @@ include 'lib/user1.php';
 include 'lib/user2.php';
 if ($g_version > '74') {
   include 'lib/tablespaces.php';
-  if ($g_flashexists and $g_version > '80') {
+  if ($g_superuser and $g_flashexists and $g_version > '80') {
     include 'lib/graph_tblspcsize.php';
   }
   include 'lib/tblspc1.php';
@@ -156,13 +156,17 @@ include 'lib/fkconstraints.php';
 include 'lib/views.php';
 include 'lib/sequences.php';
 include 'lib/indexes.php';
-include 'lib/indexesbiggerthantables.php';
+if ($g_version > '80') {
+  include 'lib/indexesbiggerthantables.php';
+}
 if ($g_pgstatindex) {
   include 'lib/fragmentedindexes.php';
 } else {
   echo "  pgstattuple on indexes unavailable!\n";
 }
-include 'lib/relationsbloat.php';
+if ($g_version > '80') {
+  include 'lib/relationsbloat.php';
+}
 include 'lib/languages.php';
 include 'lib/functions.php';
 
