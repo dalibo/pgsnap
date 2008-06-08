@@ -1,5 +1,10 @@
+2008-06-08  Guillaume Lelarge <guillaume@lelarge.info>
+	* Display databases' name in red if blks_read>=blks_hit.
+
 2008-06-03  Guillaume Lelarge <guillaume@lelarge.info>
 	* Some reports' titles are modified to get more consistent.
+	* Forgot to update manpage and --help message with the
+        --without-sysobjects addition.
 
 2008-06-02  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add a --without-sysobjects command line option to retrieve only

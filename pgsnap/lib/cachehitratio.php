@@ -48,7 +48,15 @@ $buffer .= '<div class="tblBasic">
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['datname']."</td>
+  <td>";
+if ($row['blks_read'] >= $row['blks_hit']) {
+  $buffer .= '<span class="txtImportant">';
+}
+$buffer .= $row['datname'];
+if ($row['blks_read'] >= $row['blks_hit']) {
+  $buffer .= '</span>';
+}
+$buffer .= "</td>
   <td>".$row['blks_read']."</td>
   <td>".$row['blks_hit']."</td>
   <td>".$row['cachehitratio']."</td>

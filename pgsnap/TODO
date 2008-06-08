@@ -5,9 +5,7 @@ TODO
   * add statio reports
   * cache hit ratio is not interesting if stats_block_level is disabled
   * add a --all option to get a report for each database available
-  * add sessions info by dbname (now only available for all databases)
   * add a report to get index whose size is greater than the associated table
-  * display database in red if blks_read>blks_hit
   * FK without indexes : owner, constraint name, column name
   * graph on database size and usage
   * graph on tablespace size
