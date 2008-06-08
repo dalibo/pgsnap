@@ -10,6 +10,8 @@
         (or track_counts in 8.3) is disabled.
 	* Add a --all option to get a report for each database available on
         the selected PostgreSQL server.
+	* Add a report to get index whose size is greater than the associated
+        table.
 
 2008-06-03  Guillaume Lelarge <guillaume@lelarge.info>
 	* Some reports' titles are modified to get more consistent.

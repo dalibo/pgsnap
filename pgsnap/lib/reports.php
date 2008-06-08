@@ -156,6 +156,7 @@ include 'lib/fkconstraints.php';
 include 'lib/views.php';
 include 'lib/sequences.php';
 include 'lib/indexes.php';
+include 'lib/indexesbiggerthantables.php';
 if ($g_pgstatindex) {
   include 'lib/fragmentedindexes.php';
 } else {
