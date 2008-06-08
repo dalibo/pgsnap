@@ -167,7 +167,8 @@ if ($g_version == '83') {
 $navigate_stats .= '
       <li><a href="cachehitratio.html">Cache hit ratio</a></li>
       <li><a href="stat_databases.html">Databases</a></li>
-      <li><a href="stat_tables.html">Tables</a></li>';
+      <li><a href="stat_tables.html">Tables (Tuples)</a></li>
+      <li><a href="statio_tables.html">Tables (IO)</a></li>';
 if ($g_version >= '82') {
   $navigate_stats .= '
       <li><a href="lastvacuumtables.html">Last vacuumed Tables</a></li>
@@ -182,7 +183,9 @@ if ($g_fsmpages) {
       <li><a href="fsmpages.html">FSM Pages</a></li>';
 }
 $navigate_stats .= '
-      <li class="last-child"><a href="stat_indexes.html">Indexes</a></li>
+      <li><a href="stat_indexes.html">Indexes (Tuples)</a></li>
+      <li><a href="statio_indexes.html">Indexes (IO)</a></li>
+      <li class="last-child"><a href="statio_sequences.html">Sequences (IO)</a></li>
     </ul>
   </div>
 </div>

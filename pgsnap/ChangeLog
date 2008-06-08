@@ -5,6 +5,7 @@
 	* Display table size with a graph.
 	* Add "Non Idle Processes" Report.
 	* Add "Relations Bloat" Report.
+	* Add Stat IO reports.
 
 2008-06-03  Guillaume Lelarge <guillaume@lelarge.info>
 	* Some reports' titles are modified to get more consistent.

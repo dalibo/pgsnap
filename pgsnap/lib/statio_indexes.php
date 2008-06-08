@@ -19,28 +19,28 @@
 $buffer = $navigate_stats.'
 <div id="pgContentWrap">
 
-<h1>Statistical Sequences</h1>
+<h1>Statistical IO Indexes</h1>
 ';
+
+if(!$g_withoutsysobjects) {
+  add_sys_and_user_checkboxes();
+}
 
 $query = "SELECT
   schemaname,
   relname,
-  seq_scan,
-  seq_tup_read,
-  idx_scan,
-  idx_tup_fetch,
-  n_tup_ins,
-  n_tup_upd,
-  n_tup_del,
-  n_tup_hot_upd,
-  n_live_tup,
-  n_dead_tup,
-  last_vacuum,
-  last_autovacuum,
-  last_analyze,
-  last_autoanalyze
-FROM pg_stat_all_tables
-ORDER BY schemaname, relname";
+  indexrelname,
+  idx_blks_read,
+  idx_blks_hit
+FROM pg_statio_all_indexes";
+if ($g_withoutsysobjects) {
+  $query .= "
+WHERE schemaname <> 'pg_catalog'
+  AND schemaname <> 'information_schema'
+  AND schemaname !~ '^pg_toast'";
+}
+$query .= "
+ORDER BY schemaname, relname, indexrelname";
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -54,41 +54,19 @@ $buffer .= '<div class="tblBasic">
 <tr>
   <th class="colFirst">Schema name</th>
   <th class="colMid">Table name</th>
-  <th class="colMid">seq_scan</th>
-  <th class="colMid">seq_tup_read</th>
-  <th class="colMid">idx_scan</th>
-  <th class="colMid">idx_tup_fetch</th>
-  <th class="colMid">n_tup_ins</th>
-  <th class="colMid">n_tup_upd</th>
-  <th class="colMid">n_tup_del</th>
-  <th class="colMid">n_tup_hot_upd</th>
-  <th class="colMid">n_live_tup</th>
-  <th class="colMid">n_dead_tup</th>
-  <th class="colMid">last_vacuum</th>
-  <th class="colMid">last_autovacuum</th>
-  <th class="colMid">last_analyze</th>
-  <th class="colLast">last_autoanalyze</th>
+  <th class="colMid">Index name</th>
+  <th class="colMid">Blocks Read</th>
+  <th class="colLast">Blocks Hit</th>
 </tr>
 ';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
+$buffer .= tr($row['schemaname'])."
   <td>".$row['schemaname']."</td>
   <td>".$row['relname']."</td>
-  <td>".$row['seq_scan']."</td>
-  <td>".$row['seq_tup_read']."</td>
-  <td>".$row['idx_scan']."</td>
-  <td>".$row['idx_tup_fetch']."</td>
-  <td>".$row['n_tup_ins']."</td>
-  <td>".$row['n_tup_upd']."</td>
-  <td>".$row['n_tup_del']."</td>
-  <td>".$row['n_tup_hot_upd']."</td>
-  <td>".$row['n_live_tup']."</td>
-  <td>".$row['n_dead_tup']."</td>
-  <td>".$row['last_vacuum']."</td>
-  <td>".$row['last_autovacuum']."</td>
-  <td>".$row['last_analyze']."</td>
-  <td>".$row['last_autoanalyze']."</td>
+  <td>".$row['indexrelname']."</td>
+  <td>".$row['idx_blks_read']."</td>
+  <td>".$row['idx_blks_hit']."</td>
 </tr>";
 }
 
@@ -101,7 +79,7 @@ $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <p>'.$query.'</p>
 </div>';
 
-$filename = $outputdir.'/stat_tables.html';
+$filename = $outputdir.'/statio_indexes.html';
 include 'lib/fileoperations.php';
 
 ?>

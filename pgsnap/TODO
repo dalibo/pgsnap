@@ -2,7 +2,6 @@ TODO
 ====
 
  * 0.4.0
-  * add statio reports
   * cache hit ratio is not interesting if stats_block_level is disabled
   * add a --all option to get a report for each database available
   * add a report to get index whose size is greater than the associated table

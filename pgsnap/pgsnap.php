@@ -206,11 +206,14 @@ if ($g_version == '83') {
 include 'lib/cachehitratio.php';
 include 'lib/stat_databases.php';
 include 'lib/stat_tables.php';
+include 'lib/statio_tables.php';
 if ($g_version >= '82') {
   include 'lib/lastvacuumtables.php';
   include 'lib/lastanalyzetables.php';
 }
 include 'lib/stat_indexes.php';
+include 'lib/statio_indexes.php';
+include 'lib/statio_sequences.php';
 if ($g_fsmrelations) {
   include 'lib/fsmrelations.php';
 }
