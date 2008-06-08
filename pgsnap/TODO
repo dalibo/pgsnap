@@ -2,9 +2,8 @@ TODO
 ====
 
  * 0.4.0
+  * broken checkboxes
   * FK without indexes : owner, constraint name, column name
-  * limiting the schemas used with a command line option (to get pg_catalog out)
-    --> already done with --without-sysobjects ?
 
  * customer specific
   * add a --server-only option, to get a view of all DB, no specific DB objects.
