@@ -137,7 +137,8 @@ $navigate_dbobjects.= '
 $navigate_activities = $navigate_header.'
     <ul>
       <li><a href="sessionsinfo.html">Sessions</a></li>
-      <li><a href="activities.html">Process</a></li>';
+      <li><a href="activities.html">Process</a></li>
+      <li><a href="nonidleprocesses.html">Non Idle Processes</a></li>';
 if ($g_version >= '82') {
   $navigate_activities .= '
       <li><a href="cursors.html">Cursors</a></li>

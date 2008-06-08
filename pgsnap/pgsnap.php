@@ -187,6 +187,7 @@ include 'lib/functions.php';
 
 echo "Getting Current Activities Informations...\n";
 include 'lib/activities.php';
+include 'lib/nonidleprocesses.php';
 include 'lib/locks.php';
 if ($g_version > '80') {
   include 'lib/exclusivelocks.php';
