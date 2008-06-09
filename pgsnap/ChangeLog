@@ -1,3 +1,7 @@
+2008-06-09  Guillaume Lelarge <guillaume@lelarge.info>
+	* Bugfix : Toggle function on a checkbox had disabled the
+        checkbox's ability to check on and off
+
 2008-06-08  Guillaume Lelarge <guillaume@lelarge.info>
 	* Display databases' name in red if blks_read>=blks_hit.
 	* Display database size with a graph.

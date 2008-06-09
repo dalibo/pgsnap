@@ -13,19 +13,23 @@
       $("button#showthesource").text('Show SQL commands!');
       $("#source").hide();
     });
-    $("input#showusrobjects").toggle(function(){
-      $(".usr_odd").hide();
-      $(".usr").hide();
-    },function(){
-      $(".usr_odd").show();
-      $(".usr").show();
+    $("input#showusrobjects").click(function() {
+      if($(this).attr("checked")) {
+        $(".usr_odd").show();
+        $(".usr").show();
+      } else {
+        $(".usr_odd").hide();
+        $(".usr").hide();
+      }
     });
-    $("input#showsysobjects").toggle(function(){
-      $(".sys_odd").hide();
-      $(".sys").hide();
-    },function(){
-      $(".sys_odd").show();
-      $(".sys").show();
+    $("input#showsysobjects").click(function() {
+      if($(this).attr("checked")) {
+        $(".sys_odd").show();
+        $(".sys").show();
+      } else {
+        $(".sys_odd").hide();
+        $(".sys").hide();
+      }
     });
   });
   </script>
