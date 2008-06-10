@@ -72,7 +72,7 @@ if (strlen("$PGPASSWORD") > 0) {
   $DSN .= ' password='.$PGPASSWORD;
 }
 
-$connection = pg_connect($DSN);
+$connection = @pg_connect($DSN);
 
 if (!$connection) {
   echo "Connection error !\n";

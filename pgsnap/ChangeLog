@@ -1,10 +1,12 @@
 2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : replace and by && and or by ||, per a report from Matteo
-        Beccati
+        Beccati.
+	* Bugfix : silence PHP error message on the pg_connect function, per a
+        report from Claude Castello.
 
 2008-06-09  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : Toggle function on a checkbox had disabled the
-        checkbox's ability to check on and off
+        checkbox's ability to check on and off.
 
 2008-06-08  Guillaume Lelarge <guillaume@lelarge.info>
 	* Display databases' name in red if blks_read>=blks_hit.
