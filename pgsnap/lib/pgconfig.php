@@ -23,15 +23,15 @@ $buffer = $navigate_general.'
 
 ';
 
-if (!strcmp($PGHOST, '127.0.0.1') or !strcmp($PGHOST, 'localhost')
-  or strlen($PGHOST) == 0 or preg_match('/^\//', $PGHOST) == 1) {
+if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')
+  || strlen($PGHOST) == 0 || preg_match('/^\//', $PGHOST) == 1) {
   if ($g_version > '80') {
     exec('pg_config', $lignes);
   } else {
     $options = array('bindir', 'includedir', 'includedir-server',
                      'libdir', 'pkglibdir', 'configure', 'pgxs');
     for ($i = 0; $i < count($options); $i++) {
-      if ($options[$i] != 'pgxs' or $g_version == '80') {
+      if ($options[$i] != 'pgxs' || $g_version == '80') {
         unset($tmp);
         exec('pg_config --'.$options[$i], $tmp);
         $lignes[$i] = strtoupper($options[$i]).' = '.$tmp[0];

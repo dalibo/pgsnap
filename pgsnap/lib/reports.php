@@ -1,7 +1,7 @@
 <?
 
 
-if (! isset($outputdir) or $g_alldatabases) {
+if (! isset($outputdir) || $g_alldatabases) {
   $outputdir = $PGDATABASE.'_snap_'.date('Ymd');
 }
 
@@ -74,7 +74,7 @@ copy($PGSNAP_ROOT_PATH.'images/nav_lft.png', $outputdir.'/nav_lft.png');
 copy($PGSNAP_ROOT_PATH.'images/nav_rgt.png', $outputdir.'/nav_rgt.png');
 // flash stuff
 if (file_exists('external/open-flash-chart.swf')
-    and file_exists('external/swfobject.js')) {
+    && file_exists('external/swfobject.js')) {
   mkdir($outputdir.'/js');
   copy($PGSNAP_ROOT_PATH.'external/open-flash-chart.swf', $outputdir.'/open-flash-chart.swf');
   copy($PGSNAP_ROOT_PATH.'external/swfobject.js', $outputdir.'/js/swfobject.js');
@@ -99,19 +99,19 @@ include 'lib/param.php';
 if ($g_version > '80') {
   include 'lib/paramautovac.php';
 }
-if ($g_superuser and $g_version > '74'
-    and (!strcmp($g_settings['log_destination'], 'stderr')
-         or !strcmp($g_settings['log_destination'], 'csvlog'))
-    and ((array_key_exists('redirect_stderr', $g_settings)
-           and !strcmp($g_settings['redirect_stderr'], 'on'))
-         or (array_key_exists('logging_collector', $g_settings)
-           and!strcmp($g_settings['logging_collector'], 'on'))) ) {
+if ($g_superuser && $g_version > '74'
+   && (!strcmp($g_settings['log_destination'], 'stderr')
+         || !strcmp($g_settings['log_destination'], 'csvlog'))
+   && ((array_key_exists('redirect_stderr', $g_settings)
+          && !strcmp($g_settings['redirect_stderr'], 'on'))
+         || (array_key_exists('logging_collector', $g_settings)
+          && !strcmp($g_settings['logging_collector'], 'on'))) ) {
   include 'lib/lastlogfile.php';
 }
 
 echo "Getting Global Informations...\n";
 include 'lib/bases.php';
-if ($g_flashexists and $g_version > '80') {
+if ($g_flashexists && $g_version > '80') {
   include 'lib/graph_dbsize.php';
 }
 if ($g_pgbuffercache) {
@@ -128,7 +128,7 @@ include 'lib/user1.php';
 include 'lib/user2.php';
 if ($g_version > '74') {
   include 'lib/tablespaces.php';
-  if ($g_superuser and $g_flashexists and $g_version > '80') {
+  if ($g_superuser && $g_flashexists && $g_version > '80') {
     include 'lib/graph_tblspcsize.php';
   }
   include 'lib/tblspc1.php';
@@ -137,7 +137,7 @@ if ($g_version > '74') {
 echo "Getting Database Informations...\n";
 include 'lib/schemas.php';
 include 'lib/tables.php';
-if ($g_flashexists and $g_version > '80') {
+if ($g_flashexists && $g_version > '80') {
   include 'lib/graph_tablesize.php';
 }
 if ($g_pgbuffercache) {
@@ -188,10 +188,10 @@ if ($g_version == '83') {
   include 'lib/bgwriter.php';
 }
 if ((array_key_exists('stats_block_level', $g_settings)
-     and !strcmp($g_settings['stats_block_level'], 'on'))
-   or
+     && !strcmp($g_settings['stats_block_level'], 'on'))
+   ||
    (array_key_exists('track_counts', $g_settings)
-     and !strcmp($g_settings['track_counts'], 'on'))) {
+     && !strcmp($g_settings['track_counts'], 'on'))) {
   include 'lib/cachehitratio.php';
 }
 include 'lib/stat_databases.php';

@@ -2,13 +2,12 @@ TODO
 ====
 
  * 0.4.0
-  * broken checkboxes
-  * FK without indexes : owner, constraint name, column name
 
  * customer specific
   * add a --server-only option, to get a view of all DB, no specific DB objects.
  
  * specific orasnap
+  * FK without indexes : owner, constraint name, column name
   * Tablespace : list default tablespace for each user
   * Disabled constraints : owner, table, constraint, type, status
 

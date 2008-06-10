@@ -52,7 +52,7 @@ $index = 0;
 $done = $index >= count($cat1);
 
 while (!$done) {
-  if ($g_version == 74 or $categories) {
+  if ($g_version == 74 || $categories) {
     $query = "SELECT name, setting, ";
     if ($g_version >= 82) {
       $query .= "unit, ";

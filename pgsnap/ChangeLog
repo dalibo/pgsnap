@@ -1,3 +1,7 @@
+2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
+	* Bugfix : replace and by && and or by ||, per a report from Matteo
+        Beccati
+
 2008-06-09  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : Toggle function on a checkbox had disabled the
         checkbox's ability to check on and off

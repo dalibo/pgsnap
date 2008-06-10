@@ -7,8 +7,8 @@ function tr($namespace = '') {
 
   if (strlen($namespace) > 0) {
     if (!strcmp($namespace, 'information_schema')
-      or !strcmp($namespace, 'pg_catalog')
-      or !strcmp(substr($namespace, 0, 8), 'pg_toast')) {
+      || !strcmp($namespace, 'pg_catalog')
+      || !strcmp(substr($namespace, 0, 8), 'pg_toast')) {
       $class = 'sys';
     } else {
       $class = 'usr';

@@ -141,7 +141,7 @@ if (array_key_exists('archive_mode', $g_settings)) {
   <td>'.$image[$g_settings['archive_mode']].'</td>
 </tr>
 ';
-} elseif (array_key_exists('archive_command', $g_settings) and
+} elseif (array_key_exists('archive_command', $g_settings) &&
   strlen($g_settings['archive_command'])>0) {
   $buffer .= tr().'
   <td><a href="param.html#Write-AheadLogSettings">PITR</a></td>

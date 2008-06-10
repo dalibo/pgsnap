@@ -17,9 +17,9 @@
  */
 
 $g_flashexists = file_exists('external/open-flash-chart.php')
-             and file_exists('external/open_flash_chart_object.php')
-             and file_exists('external/open-flash-chart.swf')
-             and file_exists('external/swfobject.js');
+              && file_exists('external/open_flash_chart_object.php')
+              && file_exists('external/open-flash-chart.swf')
+              && file_exists('external/swfobject.js');
 
 if ($g_version > 80) {
   $query = "SELECT rolsuper AS superuser FROM pg_roles
@@ -44,7 +44,7 @@ if (!$rows) {
   echo "An error occured.\n";
   exit;
 }
-$g_pgbuffercache = $g_superuser and pg_num_rows($rows) > 0;
+$g_pgbuffercache = $g_superuser && (pg_num_rows($rows) > 0);
 
 $query = "SELECT 1 FROM pg_proc WHERE proname LIKE '%stattuple%'";
 
@@ -53,7 +53,7 @@ if (!$rows) {
   echo "An error occured.\n";
   exit;
 }
-$g_pgstattuple = $g_superuser and pg_num_rows($rows) > 0;
+$g_pgstattuple = $g_superuser && pg_num_rows($rows) > 0;
 
 $query = "SELECT 1 FROM pg_proc WHERE proname LIKE '%statindex%'";
 
@@ -62,7 +62,7 @@ if (!$rows) {
   echo "An error occured.\n";
   exit;
 }
-$g_pgstatindex = $g_superuser and pg_num_rows($rows) > 0;
+$g_pgstatindex = $g_superuser && pg_num_rows($rows) > 0;
 
 $query = "show pool_status";
 
@@ -79,7 +79,7 @@ if (!$rows) {
   echo "An error occured.\n";
   exit;
 }
-$g_fsmrelations = $g_superuser and pg_num_rows($rows) > 0;
+$g_fsmrelations = $g_superuser && pg_num_rows($rows) > 0;
 
 $query = "SELECT 1 FROM pg_proc WHERE proname LIKE 'pg_freespacemap_pages'";
 
@@ -88,7 +88,7 @@ if (!$rows) {
   echo "An error occured.\n";
   exit;
 }
-$g_fsmpages = $g_superuser and pg_num_rows($rows) > 0;
+$g_fsmpages = $g_superuser && pg_num_rows($rows) > 0;
 
 $query = "SELECT name, setting FROM pg_settings";
 
