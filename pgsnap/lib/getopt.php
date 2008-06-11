@@ -36,6 +36,7 @@ $PGPASSWORD = getenv('PGPASSWORD');
 $g_passwordrequired = false;
 $g_withoutsysobjects = false;
 $g_alldatabases = false;
+$outputdir = '';
 
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
   switch($_SERVER["argv"][$i]) {
@@ -65,6 +66,9 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
       break;
     case "-o":
     case "--output-dir":
+      if ($g_alldatabases) {
+        die("-a and -o parameters are mutually exclusive.\n");
+      }
       $outputdir = $_SERVER['argv'][++$i];
       break;
     case "-S":
@@ -73,6 +77,9 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
       break;
     case "-a":
     case "--all":
+      if (strlen($outputdir) > 0) {
+        die("-a and -o parameters are mutually exclusive.\n");
+      }
       $g_alldatabases = true;
       break;
     case "-?":

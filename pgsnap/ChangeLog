@@ -1,4 +1,7 @@
 2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
+	* -a and -o options are mutually exclusive.
+
+2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : replace and by && and or by ||, per a report from Matteo
         Beccati.
 	* Bugfix : silence PHP error message on the pg_connect function, per a
