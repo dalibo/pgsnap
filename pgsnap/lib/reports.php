@@ -1,15 +1,31 @@
 <?
 
 
-if (! isset($outputdir) || $g_alldatabases) {
+if (strlen($outputdir) == 0 || $g_alldatabases) {
   $outputdir = $PGDATABASE.'_snap_'.date('Ymd');
 }
 
 // if the directory doesn't exist, we create it
 if (file_exists($outputdir)) {
-  $files = scandir($outputdir);
-  if (count($files) > 2) {
-    die ("Directory $outputdir already here and not empty!\n");
+  if ($g_deleteifexists) {
+    // removing js folder
+    $handle = opendir($outputdir.'/js');
+    for (;false !== ($file = readdir($handle));)
+      if($file != "." && $file != "..")
+        unlink($outputdir.'/js/'.$file);
+    closedir($handle);
+    rmdir($outputdir.'/js');
+    // removing root folder contents
+    $handle = opendir($outputdir);
+    for (;false !== ($file = readdir($handle));)
+      if($file != "." && $file != "..")
+        unlink($outputdir.'/'.$file);
+    closedir($handle);
+  } else {
+    $files = scandir($outputdir);
+    if (count($files) > 2) {
+      die ("Directory $outputdir already here and not empty!\n");
+    }
   }
 } else {
   mkdir($outputdir);

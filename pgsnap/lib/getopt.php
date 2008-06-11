@@ -36,6 +36,7 @@ $PGPASSWORD = getenv('PGPASSWORD');
 $g_passwordrequired = false;
 $g_withoutsysobjects = false;
 $g_alldatabases = false;
+$g_deleteifexists = false;
 $outputdir = '';
 
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
@@ -82,6 +83,9 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
       }
       $g_alldatabases = true;
       break;
+    case "--delete-if-exists":
+      $g_deleteifexists = true;
+      break;
     case "-?":
     case "-h":
     case "--help":
@@ -99,6 +103,8 @@ General options:
                   (default: "<?= $outputdir ?>")
   -S, --without-sysobjects
                   get report without system objects informations
+  --delete-if-exists
+                  delete output directory if it already exists
   --help          show this help, then exit
   --version       output version information, then exit
 

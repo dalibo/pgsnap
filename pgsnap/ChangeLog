@@ -1,5 +1,6 @@
 2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* -a and -o options are mutually exclusive.
+	* Add --delete-if-exists option to delete a previous report folder.
 
 2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : replace and by && and or by ||, per a report from Matteo
