@@ -1,5 +1,6 @@
 2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix, per a great report from Claude Castello.
+	* Bugfix : lots of bugfixes, per a great report from Claude Castello.
+	* Bugfix : graph_tblspcsize is only available to superuser.
 
 2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* -a and -o options are mutually exclusive.

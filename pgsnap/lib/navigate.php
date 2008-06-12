@@ -81,7 +81,7 @@ $navigate_globalobjects.= '
 if ($g_version > '74') {
   $navigate_globalobjects.= '
       <li><a href="tablespaces.html">Tablespaces</a></li>';
-  if ($g_flashexists && $g_version > '80') {
+  if ($g_superuser && $g_flashexists && $g_version > '80') {
     $navigate_globalobjects .= '
       <li><a href="graph_tblspcsize.html">Tablespaces Size Graph</a></li>';
   }
