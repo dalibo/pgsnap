@@ -26,20 +26,21 @@ $buffer = $navigate_general.'
 if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')
   || strlen($PGHOST) == 0 || preg_match('/^\//', $PGHOST) == 1) {
   if ($g_version > '80') {
-    exec('pg_config', $lignes);
+    exec('pg_config', $lignes, $errorcode);
   } else {
     $options = array('bindir', 'includedir', 'includedir-server',
                      'libdir', 'pkglibdir', 'configure', 'pgxs');
-    for ($i = 0; $i < count($options); $i++) {
+    for ($i = 0; $i < count($options) or $errorcode != 0; $i++) {
       if ($options[$i] != 'pgxs' || $g_version == '80') {
         unset($tmp);
-        exec('pg_config --'.$options[$i], $tmp);
+        exec('pg_config --'.$options[$i], $tmp, $errorcode);
         $lignes[$i] = strtoupper($options[$i]).' = '.$tmp[0];
       }
     }
   }
 
-  $buffer .= '<div class="tblBasic">
+  if ($errorcode == 0) {
+    $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
@@ -48,16 +49,19 @@ if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')
 </tr>
 ';
 
-  for ($index = 0; $index < count($lignes); $index++) {
-    $ligne = split('=', $lignes[$index], 2);
-    $buffer .= tr().'
+    for ($index = 0; $index < count($lignes); $index++) {
+      $ligne = split('=', $lignes[$index], 2);
+      $buffer .= tr().'
   <td>'.$ligne[0].'</td>
   <td>'.$ligne[1].'</td>
 </tr>';
-  }
-  $buffer .= '</table>
+    }
+    $buffer .= '</table>
 </div>
 ';
+  } else {
+    $buffer .= '<div class="warning">pg_config returns error code '.$errorcode.'!</div>';
+  }
 } else {
   $buffer .= '<div class="warning">Remote execution, so pg_config results unavailable!</div>';
 }

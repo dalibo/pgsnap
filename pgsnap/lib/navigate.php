@@ -169,8 +169,15 @@ if ($g_version == '83') {
   $navigate_stats .= '
       <li><a href="bgwriter.html">bgwriter</a></li>';
 }
+if ((array_key_exists('stats_block_level', $g_settings)
+     && !strcmp($g_settings['stats_block_level'], 'on'))
+   ||
+   (array_key_exists('track_counts', $g_settings)
+     && !strcmp($g_settings['track_counts'], 'on'))) {
+  $navigate_stats .= '
+      <li><a href="cachehitratio.html">Cache hit ratio</a></li>';
+}
 $navigate_stats .= '
-      <li><a href="cachehitratio.html">Cache hit ratio</a></li>
       <li><a href="stat_databases.html">Databases</a></li>
       <li><a href="stat_tables.html">Tables (Tuples)</a></li>
       <li><a href="statio_tables.html">Tables (IO)</a></li>';

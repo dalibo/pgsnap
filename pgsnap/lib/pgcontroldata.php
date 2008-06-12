@@ -23,9 +23,9 @@ $buffer = $navigate_general.'
 ';
 
 if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')) {
-  exec('LANG=C pg_controldata', $lines);
-
-  $buffer .= '<div class="tblBasic">
+  exec('LANG=C pg_controldata', $lines, $errorcode);
+  if ($errorcode == 0) {
+    $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
@@ -34,16 +34,19 @@ if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')) {
 </tr>
 ';
 
-  for ($index = 0; $index < count($lines); $index++) {
-    $line = split(':', $lines[$index], 2);
-    $buffer .= tr().'
+    for ($index = 0; $index < count($lines); $index++) {
+      $line = split(':', $lines[$index], 2);
+      $buffer .= tr().'
   <td>'.trim($line[0]).'</td>
   <td>'.trim($line[1]).'</td>
 </tr>';
-  }
-  $buffer .= '</table>
+    }
+    $buffer .= '</table>
 </div>
 ';
+  } else {
+    $buffer .= '<div class="warning">pg_controldata returns error code '.$errorcode.'!</div>';
+  }
 } else {
   $buffer .= '<div class="warning">Remote execution, so pg_controldata results unavailable!</div>';
 }

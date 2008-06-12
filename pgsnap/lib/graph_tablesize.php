@@ -16,17 +16,17 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = $navigate_globalobjects.'
+$buffer = $navigate_dbobjects.'
 <div id="pgContentWrap">
 
 <h1>Table Size Graph</h1>';
 
 $query = "SELECT relname,
-  pg_relation_size(pg_class.oid)/1024 AS size
+  pg_relation_size(pg_class.oid)/1024/1024 AS size
 FROM pg_class, pg_namespace
 WHERE relkind = 'r'
   AND relnamespace = pg_namespace.oid
-  AND pg_relation_size(pg_class.oid)/1024 > 1";
+  AND pg_relation_size(pg_class.oid)/1024/1024 > 1";
 if ($g_withoutsysobjects) {
   $query .= "
   AND nspname <> 'pg_catalog'
@@ -42,39 +42,43 @@ if (!$rows) {
   exit;
 }
 
-include_once( 'external/open-flash-chart.php' );
+if (pg_num_rows($rows) > 0) {
+  include_once( 'external/open-flash-chart.php' );
 
-$bar = new bar_outline( 50, 6, '#99FF00', '#7030A0' );
+  $bar = new bar_outline( 50, 6, '#99FF00', '#7030A0' );
 
-$data = array();
-$labels = array();
+  $data = array();
+  $labels = array();
 
-$max = 0;
-while ($row = pg_fetch_array($rows)) {
-  if ($max < $row['size']) {
-    $max = $row['size'];
+  $max = 0;
+  while ($row = pg_fetch_array($rows)) {
+    if ($max < $row['size']) {
+      $max = $row['size'];
+    }
+    $bar->data[] = $row['size'];
+    $labels[] = $row['relname'];
   }
-  $bar->data[] = $row['size'];
-  $labels[] = $row['relname'];
-}
 
-$g = new graph();
-$g->title( 'Tables size in MB', '{font-size: 18px; color: #A0A0A0;}' );
-$g->set_tool_tip( '#x_label#<br>#val# MB' );
-$g->set_x_labels( $labels );
-$g->data_sets[] = $bar;
-$g->set_x_label_style( 10, '#A0A0A0', 0, 1 );
-$g->set_y_label_style( 10, '#A0A0A0' );
-$g->x_axis_colour( '#A0A0A0', '#FFFFFF' );
-$g->set_x_legend( 'Databases\' names', 12, '#A0A0A0' );
-$g->y_axis_colour( '#A0A0A0', '#FFFFFF' );
-$g->set_y_min( 0 );
-$g->set_y_max( $max );
-$g->y_label_steps( 10 );
-$g->set_width( 800 );
-$g->set_height( 500 );
-$g->set_output_type('js');
-$buffer .= $g->render();
+  $g = new graph();
+  $g->title( 'Tables size in MB', '{font-size: 18px; color: #A0A0A0;}' );
+  $g->set_tool_tip( '#x_label#<br>#val# MB' );
+  $g->set_x_labels( $labels );
+  $g->data_sets[] = $bar;
+  $g->set_x_label_style( 10, '#A0A0A0', 0, 1 );
+  $g->set_y_label_style( 10, '#A0A0A0' );
+  $g->x_axis_colour( '#A0A0A0', '#FFFFFF' );
+  $g->set_x_legend( 'Databases\' names', 12, '#A0A0A0' );
+  $g->y_axis_colour( '#A0A0A0', '#FFFFFF' );
+  $g->set_y_min( 0 );
+  $g->set_y_max( $max );
+  $g->y_label_steps( 10 );
+  $g->set_width( 800 );
+  $g->set_height( 500 );
+  $g->set_output_type('js');
+  $buffer .= $g->render();
+} else {
+  $buffer .= '<div class="warning">No table of more than 1 MB!</div>';
+}
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

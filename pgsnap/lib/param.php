@@ -100,7 +100,17 @@ $buffer .= "</td>
   <td>".$row['context']."</td>
   <td>".$row['vartype']."</td>
   <td>".$row['source']."</td>
-  <td>".$row['min_val']."&nbsp;/&nbsp;".$row['max_val']."</td>
+  <td>";
+if (strlen($row['min_val']) > 0) {
+  $buffer .= $row['min_val'];
+}
+if (strlen($row['min_val']) > 0 || strlen($row['max_val']) > 0) {
+  $buffer .= '/';
+}
+if (strlen($row['max_val']) > 0) {
+  $buffer .= $row['max_val'];
+}
+$buffer .= "</td>
 </tr>";
 }
 $buffer .= '</table>
