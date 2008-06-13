@@ -1,8 +1,12 @@
-2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
+2008-06-13  Guillaume Lelarge <guillaume@lelarge.info>
+	* Bugfix : no autovac params with 7.4, per a report from Claude
+        Castello.
+
+2008-06-12  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : lots of bugfixes, per a great report from Claude Castello.
 	* Bugfix : graph_tblspcsize is only available to superuser.
 
-2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
+2008-06-11  Guillaume Lelarge <guillaume@lelarge.info>
 	* -a and -o options are mutually exclusive.
 	* Add --delete-if-exists option to delete a previous report folder.
 

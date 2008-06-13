@@ -30,7 +30,12 @@ $navigate_general = $navigate_header.'
       <li><a href="pgcontroldata.html">pg_controldata</a></li>
       <li><a href="param.html">General configuration</a></li>';
 
-if ($g_version > '74'
+if ($g_version > '80') {
+  $navigate_general .= '
+      <li><a href="paramautovac.html">Autovacuum configuration</a></li>';
+}
+
+if ($g_superuser && $g_version > '74'
     && (!strcmp($g_settings['log_destination'], 'stderr')
          || !strcmp($g_settings['log_destination'], 'csvlog'))
     && ((array_key_exists('redirect_stderr', $g_settings)
@@ -39,13 +44,7 @@ if ($g_version > '74'
            && !strcmp($g_settings['logging_collector'], 'on'))) ) {
 
   $navigate_general .= '
-      <li><a href="paramautovac.html">Autovacuum configuration</a></li>
       <li class="last-child"><a href="lastlogfile.html">Last log file</a></li>';
-
-} else {
-
-  $navigate_general .= '
-      <li class="last-child"><a href="paramautovac.html">Autovacuum configuration</a></li>';
 
 }
 
@@ -72,7 +71,7 @@ if ($g_version > '80') {
   $navigate_globalobjects.= '
       <li><a href="roles.html">Roles</a></li>';
 } else {
-$navigate_globalobjects.= '
+  $navigate_globalobjects.= '
       <li><a href="users.html">Users</a></li>';
 }
 $navigate_globalobjects.= '
@@ -131,8 +130,12 @@ if ($g_pgstatindex) {
       <li><a href="fragmentedindexes.html">Fragmented Indexes</a></li>';
 }
 
+if ($g_version > '80') {
+  $navigate_dbobjects.= '
+      <li><a href="relationsbloat.html">Relations Bloat</a></li>';
+}
+
 $navigate_dbobjects.= '
-      <li><a href="relationsbloat.html">Relations Bloat</a></li>
       <li><a href="functions.html">Functions</a></li>
       <li class="last-child"><a href="languages.html">Languages</a></li>
     </ul>
@@ -165,7 +168,7 @@ $navigate_activities .= '
 
 $navigate_stats = $navigate_header.'
     <ul>';
-if ($g_version == '83') {
+if ($g_version >= '83') {
   $navigate_stats .= '
       <li><a href="bgwriter.html">bgwriter</a></li>';
 }

@@ -108,7 +108,6 @@ include 'lib/links.php';
 
 echo "Getting General informations...\n";
 include 'lib/ver.php';
-include 'lib/sessionsinfo.php';
 include 'lib/pgconfig.php';
 include 'lib/pgcontroldata.php';
 include 'lib/param.php';
@@ -187,20 +186,21 @@ include 'lib/languages.php';
 include 'lib/functions.php';
 
 echo "Getting Current Activities Informations...\n";
+include 'lib/sessionsinfo.php';
 include 'lib/activities.php';
 include 'lib/nonidleprocesses.php';
-include 'lib/locks.php';
-if ($g_version > '80') {
-  include 'lib/exclusivelocks.php';
-}
 if ($g_version >= '82') {
   include 'lib/cursors.php';
   include 'lib/preparedstatements.php';
   include 'lib/preparedxacts.php';
 }
+include 'lib/locks.php';
+if ($g_version > '80') {
+  include 'lib/exclusivelocks.php';
+}
 
 echo "Getting Statistical Informations...\n";
-if ($g_version == '83') {
+if ($g_version >= '83') {
   include 'lib/bgwriter.php';
 }
 if ((array_key_exists('stats_block_level', $g_settings)
@@ -217,15 +217,15 @@ if ($g_version >= '82') {
   include 'lib/lastvacuumtables.php';
   include 'lib/lastanalyzetables.php';
 }
-include 'lib/stat_indexes.php';
-include 'lib/statio_indexes.php';
-include 'lib/statio_sequences.php';
 if ($g_fsmrelations) {
   include 'lib/fsmrelations.php';
 }
 if ($g_fsmpages) {
   include 'lib/fsmpages.php';
 }
+include 'lib/stat_indexes.php';
+include 'lib/statio_indexes.php';
+include 'lib/statio_sequences.php';
 
 echo "Getting Tools Informations...\n";
 if ($g_pgpool) {
