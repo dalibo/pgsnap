@@ -8,13 +8,15 @@ if (strlen($outputdir) == 0 || $g_alldatabases) {
 // if the directory doesn't exist, we create it
 if (file_exists($outputdir)) {
   if ($g_deleteifexists) {
-    // removing js folder
-    $handle = opendir($outputdir.'/js');
-    for (;false !== ($file = readdir($handle));)
-      if($file != "." && $file != "..")
-        unlink($outputdir.'/js/'.$file);
-    closedir($handle);
-    rmdir($outputdir.'/js');
+    // removing js folder if it exists
+    if (file_exists($outputdir.'/js')) {
+      $handle = opendir($outputdir.'/js');
+      for (;false !== ($file = readdir($handle));)
+        if($file != "." && $file != "..")
+          unlink($outputdir.'/js/'.$file);
+      closedir($handle);
+      rmdir($outputdir.'/js');
+    }
     // removing root folder contents
     $handle = opendir($outputdir);
     for (;false !== ($file = readdir($handle));)
