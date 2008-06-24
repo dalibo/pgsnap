@@ -1,6 +1,7 @@
 2008-06-24  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : check that the js directory exists before trying to empty
         it, per a report from Claude Castello.
+	* Release 0.4.0.
 
 2008-06-13  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : no autovac params with 7.4, per a report from Claude
