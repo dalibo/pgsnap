@@ -1,5 +1,7 @@
 2008-07-15  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : wrong column title.
+	* Bugfix : if blks_hit and blks_read are zero, there's no need to set an
+        alarm on the cache hit ratio for this database
 
 2008-06-24  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : check that the js directory exists before trying to empty
