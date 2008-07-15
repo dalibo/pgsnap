@@ -94,7 +94,7 @@ $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <th class="colFirst">Table name</th>
+  <th class="colFirst">Sequence name</th>
   <th class="colMid">Schema name</th>
   <th class="colMid">Table Owner</th>
   <th class="colMid">relam</th>
