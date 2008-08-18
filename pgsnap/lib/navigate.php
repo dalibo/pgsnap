@@ -28,7 +28,8 @@ $navigate_general = $navigate_header.'
       <li><a href="ver.html">Installed products</a></li>
       <li><a href="pgconfig.html">pg_config</a></li>
       <li><a href="pgcontroldata.html">pg_controldata</a></li>
-      <li><a href="param.html">General configuration</a></li>';
+      <li><a href="param.html">General configuration</a></li>
+      <li><a href="nondefaultparam.html">Non Default configuration</a></li>';
 
 if ($g_version > '80') {
   $navigate_general .= '

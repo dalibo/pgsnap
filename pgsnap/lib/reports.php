@@ -113,6 +113,7 @@ include 'lib/ver.php';
 include 'lib/pgconfig.php';
 include 'lib/pgcontroldata.php';
 include 'lib/param.php';
+include 'lib/nondefaultparam.php';
 if ($g_version > '80') {
   include 'lib/paramautovac.php';
 }

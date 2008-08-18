@@ -19,7 +19,7 @@
 $buffer = $navigate_general.'
 <div id="pgContentWrap">
 
-<h1>General Configuration</h1>
+<h1>Non Default Configuration</h1>
 
 <p><b>Be careful</b>, this is not the result from reading the
 postgresql.conf file, but it\'s the actual configuration available
@@ -61,9 +61,10 @@ while (!$done) {
       $query .= "short_desc, extra_desc, ";
     }
     $query .= "context, vartype, source, min_val, max_val
-      FROM pg_settings ";
+      FROM pg_settings 
+      WHERE source <> 'default' ";
     if ($categories) {
-      $query .= "WHERE category='".$cat1[$index]."' ";
+      $query .= "AND category='".$cat1[$index]."' ";
       $buffer .= '<h3 id="'.$cat2[$index].'">'.$cat1[$index].'</h3>';
     }
     $query .= "ORDER BY name";
@@ -75,7 +76,8 @@ while (!$done) {
     exit;
   }
 
-  $buffer .= '<div class="tblBasic">
+  if (pg_num_rows($rows) > 0) {
+    $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
@@ -88,34 +90,35 @@ while (!$done) {
 </tr>
 ';
 
-while ($row = pg_fetch_array($rows)) {
-$buffer .= tr().'
+    while ($row = pg_fetch_array($rows)) {
+      $buffer .= tr().'
   <td title="'.preg_replace('/"/', "'", $row['short_desc'])."\n".
   preg_replace('/"/', "'", $row['extra_desc']).'">'.$row['name']."</td>
   <td>".$row['setting'];
-if ($g_version > 82) {
-  $buffer .= ' '.$row['unit'];
-}
-$buffer .= "</td>
+      if ($g_version > 82) {
+        $buffer .= ' '.$row['unit'];
+      }
+      $buffer .= "</td>
   <td>".$row['context']."</td>
   <td>".$row['vartype']."</td>
   <td>".$row['source']."</td>
   <td>";
-if (strlen($row['min_val']) > 0) {
-  $buffer .= $row['min_val'];
-}
-if (strlen($row['min_val']) > 0 || strlen($row['max_val']) > 0) {
-  $buffer .= '/';
-}
-if (strlen($row['max_val']) > 0) {
-  $buffer .= $row['max_val'];
-}
-$buffer .= "</td>
+      if (strlen($row['min_val']) > 0) {
+        $buffer .= $row['min_val'];
+      }
+      if (strlen($row['min_val']) > 0 || strlen($row['max_val']) > 0) {
+        $buffer .= '/';
+      }
+      if (strlen($row['max_val']) > 0) {
+        $buffer .= $row['max_val'];
+      }
+      $buffer .= "</td>
 </tr>";
-}
-$buffer .= '</table>
+    }
+    $buffer .= '</table>
 </div>
 ';
+  }
 
   if ($g_version == 74) {
     $done = true;
@@ -131,7 +134,7 @@ $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <p>'.$query.'</p>
 </div>';
 
-$filename = $outputdir.'/param.html';
+$filename = $outputdir.'/nondefaultparam.html';
 include 'lib/fileoperations.php';
 
 ?>
