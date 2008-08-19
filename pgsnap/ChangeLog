@@ -1,5 +1,6 @@
 2008-08-19  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add listeners report.
+	* Update Relations Bloat query (from check_postgres.pl perl script).
 
 2008-08-18  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add non-default configuration report.
