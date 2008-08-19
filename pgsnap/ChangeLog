@@ -1,6 +1,7 @@
 2008-08-19  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add listeners report.
 	* Update Relations Bloat query (from check_postgres.pl perl script).
+	* Add partitions informations on Tablespaces report.
 
 2008-08-18  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add non-default configuration report.
