@@ -4,6 +4,8 @@
 	* Add partitions informations on Tablespaces report.
 	* Add PHP pretty_size function to get values with units with 7.4 and 8.0
 	PostgreSQL release.
+	* Add database freeze age and percentage until autovacuum freeze (per
+	check_postgres.pl perl script)
 
 2008-08-18  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add non-default configuration report.
