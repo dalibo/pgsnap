@@ -76,8 +76,15 @@ $buffer .= '
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
   <td>'.$row['rolname'].'</td>
-  <td>'.ucfirst($row['kind']).'</td>
-  <td>'.$row['size'].'</td>
+  <td>'.ucfirst($row['kind']).'</td>';
+if ($g_version > 80) {
+$buffer .= '
+  <td>'.$row['size'].'</td>';
+} else {
+$buffer .= '
+  <td>'.pretty_size($row['size']).'</td>';
+}
+$buffer .= '
 </tr>';
 }
 $buffer .= '</table>

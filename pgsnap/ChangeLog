@@ -2,6 +2,8 @@
 	* Add listeners report.
 	* Update Relations Bloat query (from check_postgres.pl perl script).
 	* Add partitions informations on Tablespaces report.
+	* Add PHP pretty_size function to get values with units with 7.4 and 8.0
+	PostgreSQL release.
 
 2008-08-18  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add non-default configuration report.

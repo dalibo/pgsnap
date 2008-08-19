@@ -80,8 +80,15 @@ while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['nspname'])."
   <td>".$row['owner']."</td>
   <td>".$row['nspname']."</td>
-  <td>".$row['relname']."</td>
-  <td>".$row['size']."</td>
+  <td>".$row['relname']."</td>";
+if ($g_version > 80) {
+$buffer .= "
+  <td>".$row['size']."</td>";
+} else {
+$buffer .= "
+  <td>".pretty_size($row['size'])."</td>";
+}
+$buffer .= "
 </tr>";
 }
 

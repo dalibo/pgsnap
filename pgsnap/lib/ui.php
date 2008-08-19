@@ -34,4 +34,22 @@ function add_sys_and_user_checkboxes() {
 <label><input id ="showsysobjects" type="checkbox" checked>Show System Objects</label>';
 }
 
+function pretty_size($bytes, $rounded = false) {
+
+  if ($bytes <= 10240) {
+    return "$bytes bytes";
+  }
+
+  $units = array('kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB');
+  foreach($units as $index => $unit) {
+    if ($bytes <= pow(1024,$index)) {
+      $bytes /= (pow(1024,$index-1));
+      return $rounded ?
+        sprintf ('%d %s', $bytes, $units[$index-2]) :
+        sprintf ('%.2f %s', $bytes, $units[$index-2]);
+    }
+  }
+
+  return $bytes;
+}
 ?>

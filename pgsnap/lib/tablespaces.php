@@ -78,8 +78,13 @@ while ($row = pg_fetch_array($rows)) {
   <td>".$row['spcname']."</td>
   <td>".$row['spclocation']."</td>";
   if ($g_superuser) {
-    $buffer .= "
+    if ($g_version > 80) {
+      $buffer .= "
   <td>".$row['size']."</td>";
+    } else {
+      $buffer .= "
+  <td>".pretty_size($row['size'])."</td>";
+    }
   }
   $buffer .= "
   <td>".$row['spcacl']."</td>
