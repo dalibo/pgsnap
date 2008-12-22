@@ -126,6 +126,11 @@ if ($g_version > '80') {
       <li><a href="indexesbiggerthantables.html">Indexes Bigger Than Tables</a></li>';
 }
 
+if ($g_version > '82') {
+  $navigate_dbobjects .= '
+      <li><a href="uselessindexes.html">Useless Indexes</a></li>';
+}
+
 if ($g_pgstatindex) {
   $navigate_dbobjects .= '
       <li><a href="fragmentedindexes.html">Fragmented Indexes</a></li>';

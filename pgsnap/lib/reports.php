@@ -174,6 +174,9 @@ include 'lib/fkconstraints.php';
 include 'lib/views.php';
 include 'lib/sequences.php';
 include 'lib/indexes.php';
+if ($g_version > '82') {
+  include 'lib/uselessindexes.php';
+}
 if ($g_version > '80') {
   include 'lib/indexesbiggerthantables.php';
 }

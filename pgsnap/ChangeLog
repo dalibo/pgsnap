@@ -1,3 +1,7 @@
+2008-12-22  Guillaume Lelarge <guillaume@lelarge.info>
+	* Add useless indexes report (from an idea of Josh Berkus,
+	http://it.toolbox.com/blogs/database-soup/finding-useless-indexes-28796).
+
 2008-08-19  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add listeners report.
 	* Update Relations Bloat query (from check_postgres.pl perl script).
