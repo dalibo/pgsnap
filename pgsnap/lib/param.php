@@ -63,7 +63,7 @@ while (!$done) {
     $query .= "context, vartype, source, min_val, max_val
       FROM pg_settings ";
     if ($categories) {
-      $query .= "WHERE category='".$cat1[$index]."' ";
+      $query .= "WHERE category='".$cat1[$index]."'";
       $buffer .= '<h3 id="'.$cat2[$index].'">'.$cat1[$index].'</h3>';
     }
     $query .= "ORDER BY name";

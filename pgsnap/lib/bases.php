@@ -43,24 +43,10 @@ if ($g_version > 80) {
 }
 $query .= '
   datconfig,
-  datacl';
-if ($g_version > 81) {
-  $query .= ',
-  age(datfrozenxid) AS freezeage, ROUND(100*(age(datfrozenxid)/freez::float)) AS perc';
-}
-$query .= '
+  datacl
 FROM pg_database';
 if ($g_version > 74) {
-  $query .= ', pg_tablespace';
-}
-if ($g_version > 81) {
-  $query .= "
-JOIN (SELECT setting AS freez FROM pg_settings
-      WHERE name = 'autovacuum_freeze_max_age') AS param
-      ON (true)";
-}
-if ($g_version > 74) {
-  $query .= '
+  $query .= ', pg_tablespace
 WHERE dattablespace = pg_tablespace.oid';
 }
 $query .= '
@@ -96,10 +82,6 @@ if ($g_version > 80) {
   $buffer .= '
   <th class="colMid" width="200">Size</th>';
 }
-if ($g_version > 81) {
-  $buffer .= '
-  <th class="colMid" width="200">Auto Freeze</th>';
-}
 $buffer .= '
   <th class="colMid" width="200">Configuration</th>
   <th class="colLast" width="300"><acronym title="Access Control List">ACL</acronym></th>
@@ -128,10 +110,6 @@ if ($g_version > 74) {
 if ($g_version > 80) {
   $buffer .= '
   <td>'.$row['size'].'</td>';
-}
-if ($g_version > 81) {
-  $buffer .= '
-  <td>'.$row['freezeage'].' ('.$row['perc'].' %)</td>';
 }
 $buffer .= '
   <td>'.$row['datconfig'].'</td>

@@ -28,8 +28,7 @@ $navigate_general = $navigate_header.'
       <li><a href="ver.html">Installed products</a></li>
       <li><a href="pgconfig.html">pg_config</a></li>
       <li><a href="pgcontroldata.html">pg_controldata</a></li>
-      <li><a href="param.html">General configuration</a></li>
-      <li><a href="nondefaultparam.html">Non Default configuration</a></li>';
+      <li><a href="param.html">General configuration</a></li>';
 
 if ($g_version > '80') {
   $navigate_general .= '
@@ -126,11 +125,6 @@ if ($g_version > '80') {
       <li><a href="indexesbiggerthantables.html">Indexes Bigger Than Tables</a></li>';
 }
 
-if ($g_version > '82') {
-  $navigate_dbobjects .= '
-      <li><a href="uselessindexes.html">Useless Indexes</a></li>';
-}
-
 if ($g_pgstatindex) {
   $navigate_dbobjects .= '
       <li><a href="fragmentedindexes.html">Fragmented Indexes</a></li>';
@@ -164,10 +158,9 @@ $navigate_activities .= '
       <li><a href="locks.html">Locks</a></li>';
 if ($g_version > '80') {
   $navigate_activities .= '
-      <li><a href="exclusivelocks.html">Exclusive Locks</a></li>';
+      <li class="last-child"><a href="exclusivelocks.html">Exclusive Locks</a></li>';
 }
 $navigate_activities .= '
-      <li class="last-child"><a href="listeners.html">Listeners</a></li>
     </ul>
   </div>
 </div>

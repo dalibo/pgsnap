@@ -94,7 +94,7 @@ $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <th class="colFirst">Sequence name</th>
+  <th class="colFirst">Table name</th>
   <th class="colMid">Schema name</th>
   <th class="colMid">Table Owner</th>
   <th class="colMid">relam</th>
@@ -177,15 +177,9 @@ if ($g_version >= 82) {
 $buffer .= "
  <td>".$row['reloptions']."</td>";
 }
-if ($g_version > 80) {
-  $buffer .= "
+$buffer .= "
   <td>".$row['size']."</td>
 </tr>";
-} else {
-  $buffer .= "
-  <td>".pretty_size($row['size'])."</td>
-</tr>";
-}
 }
 $buffer .= '</table>
 </div>

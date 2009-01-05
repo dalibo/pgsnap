@@ -49,7 +49,7 @@ $buffer .= '<div class="tblBasic">
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>";
-if ($row['blks_read'] >= $row['blks_hit'] && $row['blks_read']+$row['blks_hit'] > 0) {
+if ($row['blks_read'] >= $row['blks_hit']) {
   $buffer .= '<span class="txtImportant">';
 }
 $buffer .= $row['datname'];

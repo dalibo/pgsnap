@@ -129,7 +129,6 @@ include 'lib/ver.php';
 include 'lib/pgconfig.php';
 include 'lib/pgcontroldata.php';
 include 'lib/param.php';
-include 'lib/nondefaultparam.php';
 if ($g_version > '80') {
   include 'lib/paramautovac.php';
 }
@@ -190,9 +189,6 @@ include 'lib/fkconstraints.php';
 include 'lib/views.php';
 include 'lib/sequences.php';
 include 'lib/indexes.php';
-if ($g_version > '82') {
-  include 'lib/uselessindexes.php';
-}
 if ($g_version > '80') {
   include 'lib/indexesbiggerthantables.php';
 }
@@ -220,7 +216,6 @@ include 'lib/locks.php';
 if ($g_version > '80') {
   include 'lib/exclusivelocks.php';
 }
-include 'lib/listeners.php';
 
 echo "Getting Statistical Informations...\n";
 if ($g_version >= '83') {

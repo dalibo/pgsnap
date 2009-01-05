@@ -182,15 +182,9 @@ if ($g_version >= 82) {
 $buffer .= "
  <td>".$row['reloptions']."</td>";
 }
-if ($g_version > 80) {
-  $buffer .= "
+$buffer .= "
   <td>".$row['size']."</td>
 </tr>";
-} else {
-  $buffer .= "
-  <td>".pretty_size($row['size'])."</td>
-</tr>";
-}
 }
 $buffer .= '</table>
 </div>

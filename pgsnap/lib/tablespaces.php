@@ -24,10 +24,7 @@ $buffer = $navigate_globalobjects.'
 
 $query = "SELECT spcname,
   pg_get_userbyid(spcowner) AS owner,
-  CASE WHEN length(spclocation) = 0
-       THEN (SELECT setting FROM pg_settings WHERE name='data_directory')
-       ELSE spclocation
-  END AS spclocation,
+  spclocation,
   spcacl";
 if ($g_superuser) {
   if ($g_version > 80) {
@@ -63,9 +60,6 @@ if ($g_superuser) {
     $buffer .= '
   <th class="colMid" width="200">Estimated Size</th>';
   }
-  $colspan = 5;
-} else {
-  $colspan = 4;
 }
 $buffer .= '
   <th class="colLast" width="20%">ACL</th>
@@ -78,31 +72,12 @@ while ($row = pg_fetch_array($rows)) {
   <td>".$row['spcname']."</td>
   <td>".$row['spclocation']."</td>";
   if ($g_superuser) {
-    if ($g_version > 80) {
-      $buffer .= "
+    $buffer .= "
   <td>".$row['size']."</td>";
-    } else {
-      $buffer .= "
-  <td>".pretty_size($row['size'])."</td>";
-    }
   }
   $buffer .= "
   <td>".$row['spcacl']."</td>
 </tr>";
-  if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')
-    || strlen($PGHOST) == 0 || preg_match('/^\//', $PGHOST) == 1) {
-    if (strlen($row['spclocation']) > 0) {
-      exec('df -P '.$row['spclocation']." | sed 's/ \+/ /g'", $partitions);
-      $partition = $partitions[count($partitions) -1];
-      $infospartition = split (' ', $partition);
-      $message = $infospartition[0]." mounted on ".$infospartition[5].",
-".$infospartition[3]." free bytes (".$infospartition[4]." free)";
-      $buffer .= tr()."
-  <td>&nbsp;</td>
-  <td colspan='".$colspan."'>".$message."</td>
-";
-    }
-  }
 }
 $buffer .= '</table>
 </div>

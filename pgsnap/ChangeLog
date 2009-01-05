@@ -3,27 +3,6 @@
 	per report from pea.
 	* Copyright update.
 
-2008-12-22  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add useless indexes report (from an idea of Josh Berkus,
-	http://it.toolbox.com/blogs/database-soup/finding-useless-indexes-28796).
-
-2008-08-19  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add listeners report.
-	* Update Relations Bloat query (from check_postgres.pl perl script).
-	* Add partitions informations on Tablespaces report.
-	* Add PHP pretty_size function to get values with units with 7.4 and 8.0
-	PostgreSQL release.
-	* Add database freeze age and percentage until autovacuum freeze (per
-	check_postgres.pl perl script)
-
-2008-08-18  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add non-default configuration report.
-
-2008-07-15  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : wrong column title.
-	* Bugfix : if blks_hit and blks_read are zero, there's no need to set an
-        alarm on the cache hit ratio for this database
-
 2008-06-24  Guillaume Lelarge <guillaume@lelarge.info>
 	* Bugfix : check that the js directory exists before trying to empty
         it, per a report from Claude Castello.
