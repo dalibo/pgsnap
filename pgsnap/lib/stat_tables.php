@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2008 Guillaume Lelarge <guillaume@lelarge.info>
+ * Copyright (c) 2008-2009 Guillaume Lelarge <guillaume@lelarge.info>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above

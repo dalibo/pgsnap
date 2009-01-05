@@ -1,6 +1,7 @@
 2009-01-05  Guillaume Lelarge <guillaume@lelarge.info>
 	* Forgot the php keyword in <? line and the copyright on one file,
 	per report from pea.
+	* Copyright update.
 
 2008-12-22  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add useless indexes report (from an idea of Josh Berkus,
