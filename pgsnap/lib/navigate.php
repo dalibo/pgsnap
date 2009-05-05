@@ -116,6 +116,7 @@ if ($g_pgstattuple) {
 $navigate_dbobjects .= '
       <li><a href="tableswithoutpkey.html">Tables Without PKEY</a></li>
       <li><a href="tableswith5+indexes.html">Tables With 5+ indexes</a></li>
+      <li><a href="clusteredtables.html">Clustered Tables</a></li>
       <li><a href="fkconstraints.html">Tables With FKEY constraints</a></li>
       <li><a href="views.html">Views</a></li>
       <li><a href="sequences.html">Sequences</a></li>

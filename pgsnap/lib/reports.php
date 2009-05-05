@@ -186,6 +186,7 @@ if ($g_pgstattuple) {
 }
 include 'lib/tableswithoutpkey.php';
 include 'lib/tableswith5+indexes.php';
+include 'lib/clusteredtables.php';
 include 'lib/fkconstraints.php';
 include 'lib/views.php';
 include 'lib/sequences.php';
