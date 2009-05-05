@@ -45,11 +45,15 @@ $query .= "
   relisshared,
   relkind,
   relnatts,
-  relchecks,
+  relchecks,";
+if ($g_version < 84) {
+  $query .= "
   reltriggers,
   relukeys,
   relfkeys,
-  relrefs,
+  relrefs,";
+}
+$query .= "
   relhasoids,
   relhaspkey,
   relhasrules,
@@ -112,11 +116,15 @@ $buffer .= '
   <th class="colMid">Is shared?</th>
   <th class="colMid">Kind</th>
   <th class="colMid">natts</th>
-  <th class="colMid">Checks</th>
+  <th class="colMid">Checks</th>';
+if ($g_version < 84) {
+$buffer .= '
   <th class="colMid">Triggers</th>
   <th class="colMid">Unique Keys</th>
   <th class="colMid">Foreign Keys</th>
-  <th class="colMid">Refs</th>
+  <th class="colMid">Refs</th>';
+}
+$buffer .= '
   <th class="colMid">Has OID?</th>
   <th class="colMid">Has Primary Key?</th>
   <th class="colMid">Has Rules?</th>
@@ -158,11 +166,15 @@ $buffer .= tr($row['schema'])."
   <td>".$row['relisshared']."</td>
   <td>".$row['relkind']."</td>
   <td>".$row['relnatts']."</td>
-  <td>".$row['relchecks']."</td>
+  <td>".$row['relchecks']."</td>";
+if ($g_version < 84) {
+  $buffer .= "
   <td>".$row['reltriggers']."</td>
   <td>".$row['relukeys']."</td>
   <td>".$row['relfkeys']."</td>
-  <td>".$row['relrefs']."</td>
+  <td>".$row['relrefs']."</td>";
+}
+$buffer .= "
   <td>".$row['relhasoids']."</td>
   <td>".$row['relhaspkey']."</td>
   <td>".$row['relhasrules']."</td>

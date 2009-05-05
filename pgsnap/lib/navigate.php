@@ -31,7 +31,7 @@ $navigate_general = $navigate_header.'
       <li><a href="param.html">General configuration</a></li>
       <li><a href="nondefaultparam.html">Non Default configuration</a></li>';
 
-if ($g_version > '80') {
+if ($g_version > '80' && $g_version < '84') {
   $navigate_general .= '
       <li><a href="paramautovac.html">Autovacuum configuration</a></li>';
 }
