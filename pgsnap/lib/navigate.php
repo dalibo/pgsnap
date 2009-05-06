@@ -208,7 +208,12 @@ if ($g_fsmpages) {
 $navigate_stats .= '
       <li><a href="stat_indexes.html">Indexes (Tuples)</a></li>
       <li><a href="statio_indexes.html">Indexes (IO)</a></li>
-      <li class="last-child"><a href="statio_sequences.html">Sequences (IO)</a></li>
+      <li><a href="statio_sequences.html">Sequences (IO)</a></li>';
+if ($g_version >= '84') {
+  $navigate_stats .= '
+      <li><a href="stat_functions.html">Functions (Runs)</a></li>';
+}
+$navigate_stats .= '
     </ul>
   </div>
 </div>

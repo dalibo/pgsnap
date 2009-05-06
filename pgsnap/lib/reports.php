@@ -250,6 +250,9 @@ if ($g_fsmpages) {
 include 'lib/stat_indexes.php';
 include 'lib/statio_indexes.php';
 include 'lib/statio_sequences.php';
+if ($g_version >= '84') {
+  include 'lib/stat_functions.php';
+}
 
 echo "Getting Tools Informations...\n";
 if ($g_pgpool) {

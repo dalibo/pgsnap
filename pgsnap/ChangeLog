@@ -1,5 +1,6 @@
 2009-05-06  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add clustered tables' report.
+	* Add "stats on functions" report.
 
 2009-05-05  Guillaume Lelarge <guillaume@lelarge.info>
 	* Minimum 8.4 support.
