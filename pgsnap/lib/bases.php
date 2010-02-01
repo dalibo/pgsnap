@@ -23,7 +23,13 @@ $buffer = $navigate_globalobjects.'
 
 $query = 'SELECT datname,
   pg_get_userbyid(datdba) AS dba,
-  pg_catalog.pg_encoding_to_char(encoding) AS encoding,
+  pg_catalog.pg_encoding_to_char(encoding) AS encoding,';
+if ($g_version > 83) {
+  $query .= '
+  datcollate,
+  datctype,';
+}
+$query .= '
   datistemplate,
   datallowconn,';
 if ($g_version > 80) {
@@ -78,7 +84,13 @@ $buffer .= '<div class="tblBasic">
 <tr>
   <th class="colFirst" width="200">DB Owner</th>
   <th class="colMid" width="200">DB Name</th>
-  <th class="colMid" width="200">Encoding</th>
+  <th class="colMid" width="200">Encoding</th>';
+if ($g_version > 83) {
+  $buffer .= '
+  <th class="colMid" width="100">Collation</th>
+  <th class="colMid" width="100">CType</th>';
+}
+$buffer .= '
   <th class="colMid" width="100">Template?</th>
   <th class="colMid" width="100">Allow connections?</th>';
 if ($g_version > 80) {
@@ -111,7 +123,13 @@ while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
   <td>'.$row['dba'].'</td>
   <td>'.$row['datname'].'</td>
-  <td>'.$row['encoding'].'</td>
+  <td>'.$row['encoding'].'</td>';
+if ($g_version > 83) {
+  $buffer .= '
+  <td>'.$row['datcollate'].'</td>
+  <td>'.$row['datctype'].'</td>';
+}
+$buffer .= '
   <td>'.$image[$row['datistemplate']].'</td>
   <td>'.$image[$row['datallowconn']].'</td>';
 if ($g_version > 80) {

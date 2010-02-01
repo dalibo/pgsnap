@@ -62,6 +62,7 @@ $buffer .= '<div class="tblBasic">
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['table_name'])."
+  <td>".$row['table_name']."</td>
   <td>".$row['index_name']."</td>
   <td>".$row['times_used']."</td>
   <td>".$row['table_size']."</td>
@@ -79,7 +80,7 @@ $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <p>'.$query.'</p>
 </div>';
 
-$filename = $outputdir.'/indexes.html';
+$filename = $outputdir.'/uselessindexes.html';
 include 'lib/fileoperations.php';
 
 ?>
