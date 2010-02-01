@@ -1,7 +1,7 @@
 TODO
 ====
 
- * 0.5.0
+ * 0.6.0
   * add an argument to -a option... this argument is the complete path to a folder
     which will contain every reports and an index.html allowing to navigate from
     one to the other
