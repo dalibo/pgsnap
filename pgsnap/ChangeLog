@@ -2,6 +2,7 @@
 	* Add collation and ctype info on databases report.
 	* Fix the useless indexes report.
     * Copyright update.
+    * Release 0.5.0.
 
 2009-05-06  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add clustered tables' report.
