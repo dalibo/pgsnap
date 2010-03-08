@@ -24,7 +24,7 @@ $buffer = $navigate_activities.'
 
 
 $query = "SELECT
-  extract(epoch FROM (now() - query_start))::numeric(5,2) AS age,
+  extract(epoch FROM (now() - query_start))::numeric(10,2) AS age,
   procpid,
   usename,";
 if ($g_version > 80) {
@@ -37,6 +37,7 @@ FROM pg_stat_activity
 WHERE current_query <> '<IDLE>'
 ORDER BY 1";
 
+echo $query;
 $rows = pg_query($connection, $query);
 if (!$rows) {
   echo "An error occured.\n";

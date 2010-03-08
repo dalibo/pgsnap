@@ -1,3 +1,7 @@
+2010-03-08  Guillaume Lelarge <guillaume@lelarge.info>
+	* Fix the "non idle queries" for really long queries, per a report and
+      patch from Philippe Pellen.
+
 2010-02-01  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add collation and ctype info on databases report.
 	* Fix the useless indexes report.
