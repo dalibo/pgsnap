@@ -37,7 +37,6 @@ FROM pg_stat_activity
 WHERE current_query <> '<IDLE>'
 ORDER BY 1";
 
-echo $query;
 $rows = pg_query($connection, $query);
 if (!$rows) {
   echo "An error occured.\n";

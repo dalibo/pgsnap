@@ -26,22 +26,32 @@ if(!$g_withoutsysobjects) {
   add_sys_and_user_checkboxes();
 }
 
-$query = "SELECT s.relname,
-  s.indexrelname,
-  a.attname,
-  p.correlation
-FROM pg_stats p,
-  pg_stat_user_indexes s,
-  pg_index i,
-  pg_attribute a
-WHERE
-  i.indisclustered
-  AND s.indexrelid = i.indexrelid
-  AND p.tablename = s.relname
-  AND a.attnum = ANY (indkey)
-  AND a.attrelid = i.indrelid
-  AND p.attname = a.attname
-ORDER BY 1, 2, 3";
+if ($g_version <= '80') {
+  $query = "SELECT tab.relname AS relname,
+    ind.relname AS indexrelname
+  FROM pg_class tab, pg_class ind, pg_index i
+  WHERE i.indisclustered
+    AND i.indexrelid=ind.oid
+    AND i.indrelid=tab.oid
+  ORDER BY 1, 2";
+} else {
+  $query = "SELECT s.relname,
+    s.indexrelname,
+    a.attname,
+    p.correlation
+  FROM pg_stats p,
+    pg_stat_user_indexes s,
+    pg_index i,
+    pg_attribute a
+  WHERE
+    i.indisclustered
+    AND s.indexrelid = i.indexrelid
+    AND p.tablename = s.relname
+    AND a.attnum = ANY (indkey)
+    AND a.attrelid = i.indrelid
+    AND p.attname = a.attname
+  ORDER BY 1, 2, 3";
+}
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -54,18 +64,26 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst">Table</th>
-  <th class="colMid">Index</th>
+  <th class="colMid">Index</th>';
+if ($g_version > '80') {
+  $buffer .= '
   <th class="colMid">Column</th>
-  <th class="colLast">Correlation</th>
+  <th class="colLast">Correlation</th>';
+}
+$buffer .= '
 </tr>
 ';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['relname'])."
   <td>".$row['relname']."</td>
-  <td>".$row['indexrelname']."</td>
+  <td>".$row['indexrelname']."</td>";
+if ($g_version > '80') {
+  $buffer .= "
   <td>".$row['attname']."</td>
-  <td>".$row['correlation']."</td>
+  <td>".$row['correlation']."</td>";
+}
+$buffer .= "
 </tr>";
 }
 

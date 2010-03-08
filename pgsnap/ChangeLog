@@ -1,6 +1,8 @@
 2010-03-08  Guillaume Lelarge <guillaume@lelarge.info>
-	* Fix the "non idle queries" for really long queries, per a report and
+	* Fix the "non idle queries" report for really long queries, per a report and
       patch from Philippe Pellen.
+	* Fix the "clustered tables" report as it didn't work on 7.4 and 8.0, per
+      a report and patch (modified by me) from Philippe Pellen.
 
 2010-02-01  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add collation and ctype info on databases report.
