@@ -53,6 +53,10 @@ if ($g_version < 84) {
   relfkeys,
   relrefs,";
 }
+else {
+  $query .= "
+  relistemp,";
+}
 $query .= "
   relhasoids,
   relhaspkey,
@@ -123,6 +127,9 @@ $buffer .= '
   <th class="colMid">Unique Keys</th>
   <th class="colMid">Foreign Keys</th>
   <th class="colMid">Refs</th>';
+} else {
+$buffer .= '
+  <th class="colMid">Is Temp</th>';
 }
 $buffer .= '
   <th class="colMid">Has OID?</th>
@@ -177,6 +184,10 @@ if ($g_version < 84) {
   <td>".$row['relukeys']."</td>
   <td>".$row['relfkeys']."</td>
   <td>".$row['relrefs']."</td>";
+}
+else {
+  $buffer .= "
+  <td>".$image[$row['relistemp']]."</td>";
 }
 $buffer .= "
   <td>".$image[$row['relhasoids']]."</td>

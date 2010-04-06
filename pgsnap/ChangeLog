@@ -1,3 +1,6 @@
+2010-04-07  Guillaume Lelarge <guillaume@lelarge.info>
+	* Support the relistemp column of pg_class (8.4+).
+
 2010-03-08  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fix the "non idle queries" report for really long queries, per a report and
       patch from Philippe Pellen.
