@@ -1,6 +1,7 @@
 2010-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 	* Change headers, and transform the relkind one letter with a full
       description.
+    * Add a Large Object report.
 
 2010-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 	* Support the relistemp column of pg_class (8.4+).

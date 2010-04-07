@@ -86,9 +86,10 @@ if ($g_version > '74') {
       <li><a href="graph_tblspcsize.html">Tablespaces Size Graph</a></li>';
   }
   $navigate_globalobjects.= '
-      <li class="last-child"><a href="tblspc1.html">Tablespaces\' objects</a></li>';
+      <li><a href="tblspc1.html">Tablespaces\' objects</a></li>';
 }
 $navigate_globalobjects.= '
+      <li class="last-child"><a href="largeobjects.html">Large Objects</a></li>
     </ul>
   </div>
 </div>
