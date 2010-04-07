@@ -120,7 +120,7 @@ $buffer .= '
   <th class="colMid">Has index?</th>
   <th class="colMid">Is shared?</th>
   <th class="colMid">Kind</th>
-  <th class="colMid">natts</th>
+  <th class="colMid">Number of Attributes</th>
   <th class="colMid">Checks</th>';
 if ($g_version < 84) {
 $buffer .= '
@@ -177,7 +177,7 @@ $buffer .= "
   <td>".$row['reltoastidxid']."</td>
   <td>".$image[$row['relhasindex']]."</td>
   <td>".$image[$row['relisshared']]."</td>
-  <td>".$row['relkind']."</td>
+  <td>".$kind[$row['relkind']]."</td>
   <td>".$row['relnatts']."</td>
   <td>".$row['relchecks']."</td>";
 if ($g_version < 84) {

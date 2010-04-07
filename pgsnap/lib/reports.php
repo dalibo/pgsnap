@@ -113,11 +113,16 @@ if (file_exists('external/open-flash-chart.swf')
   copy($PGSNAP_ROOT_PATH.'external/open-flash-chart.swf', $outputdir.'/open-flash-chart.swf');
   copy($PGSNAP_ROOT_PATH.'external/swfobject.js', $outputdir.'/js/swfobject.js');
 }
-// variables
+// image variables
 $image['f'] = '<img src="check-off.png" title="Off" alt="Off"/>';
 $image['t'] = '<img src="check-on.png" title="On" alt="On"/>';
 $image['off'] = '<img src="check-off.png" title="Off" alt="Off"/>';
 $image['on'] = '<img src="check-on.png" title="On" alt="On"/>';
+// kind variables
+$kind['r'] = 'HEAP Table';
+$kind['t'] = 'TOAST Table';
+$kind['i'] = 'Index';
+$kind['S'] = 'Sequence';
 
 echo "Getting Misc informations...\n";
 include 'lib/getmodules.php';
