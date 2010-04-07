@@ -121,6 +121,7 @@ $navigate_dbobjects .= '
       <li><a href="fkconstraints.html">Tables With FKEY constraints</a></li>
       <li><a href="views.html">Views</a></li>
       <li><a href="sequences.html">Sequences</a></li>
+      <li><a href="sequences2.html">Sequences - metadata</a></li>
       <li><a href="indexes.html">Indexes</a></li>';
 
 if ($g_version > '80') {

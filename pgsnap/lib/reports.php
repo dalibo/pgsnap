@@ -196,6 +196,7 @@ include 'lib/clusteredtables.php';
 include 'lib/fkconstraints.php';
 include 'lib/views.php';
 include 'lib/sequences.php';
+include 'lib/sequences2.php';
 include 'lib/indexes.php';
 if ($g_version > '82') {
   include 'lib/uselessindexes.php';
