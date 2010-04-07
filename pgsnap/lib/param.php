@@ -60,6 +60,9 @@ while (!$done) {
     if ($g_version > 74) {
       $query .= "short_desc, extra_desc, ";
     }
+    if ($g_version > 83) {
+      $query .= "boot_val, reset_val, sourcefile, sourceline, ";
+    }
     $query .= "context, vartype, source, min_val, max_val
       FROM pg_settings ";
     if ($categories) {
@@ -84,7 +87,15 @@ while (!$done) {
   <th class="colMid">Context</th>
   <th class="colMid">Vartype</th>
   <th class="colMid">Source</th>
-  <th class="colLast">Min/Max value</th>
+  <th class="colMid">Min/Max value</th>';
+if ($g_version > 83) {
+  $buffer .= '
+  <th class="colMid">Boot Value</th>
+  <th class="colMid">Reset Value</th>
+  <th class="colMid">Source file</th>
+  <th class="colLast">Line in Source file</th>';
+}
+  $buffer .= '
 </tr>
 ';
 
@@ -110,7 +121,16 @@ if (strlen($row['min_val']) > 0 || strlen($row['max_val']) > 0) {
 if (strlen($row['max_val']) > 0) {
   $buffer .= $row['max_val'];
 }
-$buffer .= "</td>
+$buffer .= "</td>";
+if ($g_version > 83) {
+  $buffer .= "
+  <td>".$row['boot_val']."</td>
+  <td>".$row['reset_val']."</td>
+  <td>".$row['sourcefile']."</td>
+  <td>".$row['sourceline']."</td>";
+}
+
+$buffer .="
 </tr>";
 }
 $buffer .= '</table>
