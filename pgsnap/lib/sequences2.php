@@ -27,7 +27,7 @@ if(!$g_withoutsysobjects) {
 }
 
 // Build the SQL for the real query
-$query = "SELECT nspname||'.'||relname AS relname
+$query = "SELECT '\"'||nspname||'\".\"'||relname||'\"' AS relname
 FROM pg_class, pg_namespace
 WHERE relkind='S'
   AND relnamespace=pg_namespace.oid
