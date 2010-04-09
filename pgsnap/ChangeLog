@@ -1,5 +1,6 @@
 2010-04-09  Guillaume Lelarge <guillaume@lelarge.info>
 	* Basic 9.0 support.
+	* Enable the use of the application_name parameter (9.0 specific).
 
 2010-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 	* Change headers, and transform the relkind one letter with a full
