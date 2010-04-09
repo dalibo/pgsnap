@@ -47,8 +47,11 @@ if ($g_version > 80) {
   $query .= '
   pg_size_pretty(pg_database_size(datname)) AS size,';
 }
+if ($g_version < 90) {
+  $query .= '
+    datconfig,';
+}
 $query .= '
-  datconfig,
   datacl';
 if ($g_version > 81) {
   $query .= ',
@@ -112,8 +115,11 @@ if ($g_version > 81) {
   $buffer .= '
   <th class="colMid" width="200">Auto Freeze</th>';
 }
+if ($g_version < 90) {
+  $buffer .= '
+  <th class="colMid" width="200">Configuration</th>';
+}
 $buffer .= '
-  <th class="colMid" width="200">Configuration</th>
   <th class="colLast" width="300"><acronym title="Access Control List">ACL</acronym></th>
 </tr>
 </thead>
@@ -151,8 +157,11 @@ if ($g_version > 81) {
   $buffer .= '
   <td>'.$row['freezeage'].' ('.$row['perc'].' %)</td>';
 }
+if ($g_version < 90) {
+  $buffer .= '
+  <td>'.$row['datconfig'].'</td>';
+}
 $buffer .= '
-  <td>'.$row['datconfig'].'</td>
   <td><acronym X=\"Access Control List\">'.$row['datacl'].'</acronym></td>
 </tr>';
 }

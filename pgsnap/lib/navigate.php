@@ -169,8 +169,11 @@ if ($g_version > '80') {
   $navigate_activities .= '
       <li><a href="exclusivelocks.html">Exclusive Locks</a></li>';
 }
+if ($g_version < '90') {
+  $navigate_activities .= '
+      <li class="last-child"><a href="listeners.html">Listeners</a></li>';
+}
 $navigate_activities .= '
-      <li class="last-child"><a href="listeners.html">Listeners</a></li>
     </ul>
   </div>
 </div>

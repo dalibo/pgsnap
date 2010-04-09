@@ -228,7 +228,9 @@ include 'lib/locks.php';
 if ($g_version > '80') {
   include 'lib/exclusivelocks.php';
 }
-include 'lib/listeners.php';
+if ($g_version < '90') {
+  include 'lib/listeners.php';
+}
 
 echo "Getting Statistical Informations...\n";
 if ($g_version >= '83') {
