@@ -37,6 +37,7 @@ $g_passwordrequired = false;
 $g_withoutsysobjects = false;
 $g_alldatabases = false;
 $g_deleteifexists = false;
+$g_witholdlibpq = false;
 $outputdir = '';
 
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
@@ -64,6 +65,9 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
       break;
     case "-W":
       $g_passwordrequired = true;
+      break;
+    case "--with-old-libpq":
+      $g_witholdlibpq = true;
       break;
     case "-o":
     case "--output-dir":
@@ -101,6 +105,8 @@ General options:
                   (default: "<?= $PGDATABASE ?>")
   -o outputdir    specify output directory
                   (default: "<?= $outputdir ?>")
+  --with-old-libpq
+                  disable the use of the parameter application_name
   -S, --without-sysobjects
                   get report without system objects informations
   --delete-if-exists

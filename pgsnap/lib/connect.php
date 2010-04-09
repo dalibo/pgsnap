@@ -68,6 +68,10 @@ if (strlen("$PGPORT") > 0) {
 $DSN .= 'dbname='.$PGDATABASE.' '.
        'user='.$PGUSER;
 
+if (!$g_witholdlibpq) {
+  $DSN .= ' application_name=pgsnap';
+}
+
 if (strlen("$PGPASSWORD") > 0) {
   $DSN .= ' password='.$PGPASSWORD;
 }
@@ -77,6 +81,10 @@ $connection = @pg_connect($DSN);
 if (!$connection) {
   echo "Connection error !\n";
   echo "DSN is $DSN\n";
+  if (!$g_witholdlibpq) {
+    echo "Maybe you should try with --with-old-libpq option if you don't have";
+    echo " an uptodate libpq.\n";
+  }
   die();
 }
 
