@@ -2,12 +2,46 @@ TODO
 ====
 
  * 0.6.0
-  * add an argument to -a option... this argument is the complete path to a folder
-    which will contain every reports and an index.html allowing to navigate from
-    one to the other
-  * add a --server-only option, to get a view of all DB, no specific DB objects.
-  * add a XLOG report:
-    SELECT count(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ E'^[0-9A-F]{24}$';
+
+   All Releases
+     * Quiet pgsnap's activity, but allow it to be verbose with --query-in-logs
+     * add an argument to -a option... this argument is the complete path to a folder
+       which will contain every reports and an index.html allowing to navigate from
+       one to the other
+     * add a --server-only option, to get a view of all DB, no specific DB objects.
+     * add a XLOG report:
+       SELECT count(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ E'^[0-9A-F]{24}$';
+     * Find all interesting modules
+   
+   8.4 Release
+     * pg_load_conf_time()
+     * functions stats
+     * SQL/Med objects
+     * support for column level privs
+     * add a -w/--no-password option that prevents password prompting
+   
+   9.0 Release
+     * Read-only queries
+     * Continuous archive
+     * pg_last_xlog_receive_location / pg_last_xlog_replay_location
+     * settin per tablespace configuration variables
+     * distinct statistics using ALTER TABLE
+     * application_name
+     * setting of configuration variables on database/role combinations
+     * comments on columns of tables, views and composite types
+     * default privs
+     * create table of type
+     * deferrable unique constraints
+     * exclusion contraints
+     * control large objects permissions
+     * triggers per-column, and when clause
+
+ * 0.7?
+
+  * Split in two parts:
+    * pgsnap will create a sort-of-dump of the catalogs and statistics views
+      (this dump will be restored in a database on another server)
+    * pgsnapweb is a PHP interface that will show the results
 
  * specific orasnap
   * FK without indexes : owner, constraint name, column name
