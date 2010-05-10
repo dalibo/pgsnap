@@ -40,6 +40,7 @@ $g_alldatabases = false;
 $g_deleteifexists = false;
 $g_witholdlibpq = false;
 $outputdir = '';
+$queriesinlogs = false;
 
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
   switch($_SERVER["argv"][$i]) {
@@ -100,6 +101,9 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
       break;
     case "--delete-if-exists":
       $g_deleteifexists = true;
+      break;
+    case "--query-in-logs":
+      $queriesinlogs = true;
       break;
     case "-?":
     case "-h":

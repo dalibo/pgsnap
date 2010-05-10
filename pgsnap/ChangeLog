@@ -2,6 +2,7 @@
 	* Fix the sequence2 report (schema wasn't available)
     * Add start time and conf reload time.
     * Add a -w/--no-password option that prevents password prompting
+    * Quiet pgsnap's activity, but allow it to be verbose with --query-in-logs
 
 2010-04-09  Guillaume Lelarge <guillaume@lelarge.info>
 	* Basic 9.0 support.

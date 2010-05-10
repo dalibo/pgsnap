@@ -52,6 +52,11 @@ if (file_exists($outputdir)) {
 echo "Connecting to $PGDATABASE database...\n";
 include 'lib/connect.php';
 
+if (!$queriesinlogs) {
+  $query = "SET log_statement TO 'none'; SET log_duration TO off; SET log_min_duration_statement TO -1;";
+  pg_query($connection, $query);
+}
+
 $query = "SHOW server_version";
 $rows = pg_query($connection, $query);
 if (!$rows) {

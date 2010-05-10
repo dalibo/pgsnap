@@ -4,7 +4,6 @@ TODO
  * 0.6.0
 
    All Releases
-     * Quiet pgsnap's activity, but allow it to be verbose with --query-in-logs
      * add an argument to -a option... this argument is the complete path to a folder
        which will contain every reports and an index.html allowing to navigate from
        one to the other

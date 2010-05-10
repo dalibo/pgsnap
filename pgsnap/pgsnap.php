@@ -32,6 +32,11 @@ if ($g_alldatabases) {
   echo "Connecting...\n";
   include 'lib/connect.php';
 
+  if (!$queriesinlogs) {
+    $query = "SET log_statement TO 'none'; SET log_duration TO off; SET log_min_duration_statement TO -1;";
+    pg_query($connection, $query);
+  }
+
   $query = "SELECT datname FROM pg_database WHERE datallowconn IS TRUE";
   $rows = pg_query($connection, $query);
   if (!$rows) {
