@@ -27,7 +27,8 @@ if(!$g_withoutsysobjects) {
 }
 
 // Build the SQL for the real query
-$query = "SELECT '\"'||nspname||'\".\"'||relname||'\"' AS relname
+$query = "SELECT nspname AS schema,
+  '\"'||nspname||'\".\"'||relname||'\"' AS relname
 FROM pg_class, pg_namespace
 WHERE relkind='S'
   AND relnamespace=pg_namespace.oid
@@ -45,7 +46,7 @@ if (pg_num_rows($rows) > 0)
   while ($row = pg_fetch_array($rows)) {
     if (strlen($query) > 0)
       $query .= "\nUNION\n";
-    $query .= 'SELECT sequence_name, last_value, ';
+    $query .= "SELECT '".$row['schema']."' AS schema, sequence_name, last_value, ";
     if ($g_version > 83) {
       $query .= 'start_value, ';
     }

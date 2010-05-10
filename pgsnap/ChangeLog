@@ -1,3 +1,6 @@
+2010-05-10  Guillaume Lelarge <guillaume@lelarge.info>
+	* Fix the sequence2 report (schema wasn't available)
+
 2010-04-09  Guillaume Lelarge <guillaume@lelarge.info>
 	* Basic 9.0 support.
 	* Enable the use of the application_name parameter (9.0 specific).
