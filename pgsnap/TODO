@@ -13,11 +13,6 @@ TODO
        SELECT count(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ E'^[0-9A-F]{24}$';
      * Find all interesting modules
    
-   8.4 Release
-     * functions stats
-     * SQL/Med objects
-     * support for column level privs
-   
    9.0 Release
      * Read-only queries
      * Continuous archive
