@@ -34,6 +34,7 @@ if (strlen("$PGDATABASE") == 0) {
 
 $PGPASSWORD = getenv('PGPASSWORD');
 $g_passwordrequired = false;
+$g_nopassword = false;
 $g_withoutsysobjects = false;
 $g_alldatabases = false;
 $g_deleteifexists = false;
@@ -63,7 +64,17 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
     case "--database":
       $PGDATABASE = $_SERVER['argv'][++$i];
       break;
+    case "-w":
+    case "--no-password":
+      if ($g_passwordrequired) {
+        die("-w and -W parameters are mutually exclusive.\n");
+      }
+      $g_nopassword = true;
+      break;
     case "-W":
+      if ($g_nopassword) {
+        die("-w and -W parameters are mutually exclusive.\n");
+      }
       $g_passwordrequired = true;
       break;
     case "--with-old-libpq":

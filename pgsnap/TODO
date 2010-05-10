@@ -17,7 +17,6 @@ TODO
      * functions stats
      * SQL/Med objects
      * support for column level privs
-     * add a -w/--no-password option that prevents password prompting
    
    9.0 Release
      * Read-only queries

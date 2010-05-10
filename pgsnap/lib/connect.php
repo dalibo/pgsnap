@@ -44,7 +44,7 @@ if ($g_passwordrequired && strlen($PGPASSWORD) == 0) {
     }
   }
   // if still no password
-  if (strlen($PGPASSWORD) == 0) {
+  if (!$g_nopassword && strlen($PGPASSWORD) == 0) {
     // Be careful, password will appear in clear text on the terminal...
     // At least, it won't show up in ps output :-/
     echo "Password: ";
