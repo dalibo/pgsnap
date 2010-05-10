@@ -30,7 +30,16 @@ $buffer = $navigate_general.'
 </tr>
 ';
 
-$query = "SELECT 'PostgreSQL' AS product, version() AS version;";
+$query = "SELECT 'PostgreSQL' AS product, version() AS version";
+if ($g_version >= 81) {
+    $query .= ", pg_postmaster_start_time() AS starttime, ";
+    if ($g_version >= 84) {
+	    $query .= "pg_conf_load_time()";
+    } else {
+	    $query .= "'unavailable'";
+    }
+    $query .= " AS reloadtime";
+}
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -76,8 +85,24 @@ if ($g_fsmrelations) {
 }
 
 $buffer .= '</table>
+';
+
+if ($g_version >= 81) {
+  $buffer .= '<div class="tblBasic">
+
+<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<tr>
+  <th class="colFirst">Started on</th>
+  <th class="colLast">Conf. reloaded on</th>
+</tr>
+<tr>
+  <td>'.$row['starttime'].'</td>
+  <td>'.$row['reloadtime'].'</td>
+</tr>
+</table>
 </div>
 ';
+}
 
 $buffer .= '<h1>Primary options</h1>
 <div class="tblBasic">

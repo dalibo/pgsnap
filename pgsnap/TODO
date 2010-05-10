@@ -14,7 +14,6 @@ TODO
      * Find all interesting modules
    
    8.4 Release
-     * pg_load_conf_time()
      * functions stats
      * SQL/Med objects
      * support for column level privs
