@@ -29,6 +29,10 @@ $query = "SELECT spcname,
        ELSE spclocation
   END AS spclocation,
   spcacl";
+if ($g_version >= 90) {
+    $query .= ', spcoptions
+  ';
+}
 if ($g_superuser) {
   if ($g_version > 80) {
     $query .= ',
@@ -67,6 +71,10 @@ if ($g_superuser) {
 } else {
   $colspan = 4;
 }
+if ($g_version >= 90) {
+  $buffer .= '
+  <th class="colMid" width="20%">Configuration</th>';
+}
 $buffer .= '
   <th class="colLast" width="20%">ACL</th>
 </tr>
@@ -85,6 +93,10 @@ while ($row = pg_fetch_array($rows)) {
       $buffer .= "
   <td>".pretty_size($row['size'])."</td>";
     }
+  }
+  if ($g_version >= 90) {
+    $buffer .= '
+  <td>'.$row['spcoptions'].'</td>';
   }
   $buffer .= "
   <td>".$row['spcacl']."</td>

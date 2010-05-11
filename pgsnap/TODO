@@ -13,10 +13,6 @@ TODO
      * Find all interesting modules
    
    9.0 Release
-     * Read-only queries
-     * Continuous archive
-     * pg_last_xlog_receive_location / pg_last_xlog_replay_location
-     * settin per tablespace configuration variables
      * distinct statistics using ALTER TABLE
      * application_name
      * setting of configuration variables on database/role combinations
