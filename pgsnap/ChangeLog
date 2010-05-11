@@ -2,9 +2,10 @@
 	* Add InRecovery status.
 	* Show pg_last_xlog_receive_location() / pg_last_xlog_replay_location()
 	  informations.
-	* Add support of tablespace configuration variables.
-	* Add support of the application name.
-	* Add support of typed tables, and exclusion constraints in the tables report.
+	* Add support for tablespace configuration variables.
+	* Add support for the application name.
+	* Add support for typed tables, and exclusion constraints in the tables report.
+	* Add support for large objects ACL and owner.
 
 2010-05-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fix the sequence2 report (schema wasn't available)

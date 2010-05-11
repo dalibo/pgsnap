@@ -182,7 +182,7 @@ $buffer .= tr($row['schema'])."
   <td>".$row['relname']."</td>
   <td>".$row['schema']."</td>
   <td>".$row['owner']."</td>";
-if ($g_version > 74) {
+if ($g_version >= 90) {
   $buffer .= "
   <td>".$row['reloftype']."</td>";
 }
@@ -217,7 +217,7 @@ else {
 $buffer .= "
   <td>".$image[$row['relhasoids']]."</td>
   <td>".$image[$row['relhaspkey']]."</td>";
-if ($g_version > 74) {
+if ($g_version >= 90) {
   $buffer .= "
   <td>".$image[$row['relhasexclusion']]."</td>";
 }

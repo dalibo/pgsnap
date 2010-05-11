@@ -28,7 +28,20 @@ $query = "SELECT
   count(*) AS totalblocks
 FROM pg_largeobject
 GROUP BY 1
-ORDER BY 1;";
+ORDER BY 1";
+
+if ($g_version >= 90) {
+$query = "SELECT
+  loid,
+  pg_get_userbyid(lomowner) AS owner,
+  lomacl,
+  totalblocks
+FROM pg_largeobject_metadata md,
+(".$query.") pg_largeobject
+WHERE md.oid=loid
+ORDER BY 1";
+}
+
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -40,14 +53,26 @@ $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <th class="colFirst" width="20%">LO Oid</th>
+  <th class="colFirst" width="20%">LO Oid</th>';
+if ($g_version >= 90) {
+$buffer .= '
+  <th class="colMid">Owner</th>
+  <th class="colMid">ACL</th>';
+}
+$buffer .= '
   <th class="colLast" width="20%">Total Blocks</th>
 </tr>
 ';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['loid']."</td>
+  <td>".$row['loid']."</td>";
+if ($g_version >= 90) {
+$buffer .= "
+  <td>".$row['owner']."</td>
+  <td>".$row['lamacl']."</td>";
+}
+$buffer .= "
   <td>".$row['totalblocks']."</td>
 </tr>";
 }

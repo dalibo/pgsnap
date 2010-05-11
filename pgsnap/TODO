@@ -11,15 +11,12 @@ TODO
      * add a XLOG report:
        SELECT count(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ E'^[0-9A-F]{24}$';
      * Find all interesting modules
+     * Add objects' comments?
    
    9.0 Release
-     * distinct statistics using ALTER TABLE
      * setting of configuration variables on database/role combinations
-     * comments on columns of tables, views and composite types
      * default privs
-     * create table of type
      * deferrable unique constraints
-     * control large objects permissions
      * triggers per-column, and when clause
 
  * 0.7?
