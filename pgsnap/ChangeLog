@@ -7,6 +7,7 @@
 	* Add support for typed tables, and exclusion constraints in the tables report.
 	* Add support for large objects ACL and owner.
 	* Add a report to take care of database/role settings.
+	* Add a report to take care of default ACLs.
 
 2010-05-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fix the sequence2 report (schema wasn't available)

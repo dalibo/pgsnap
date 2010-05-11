@@ -184,6 +184,9 @@ include 'lib/largeobjects.php';
 
 echo "Getting Database Informations...\n";
 include 'lib/schemas.php';
+if ($g_version >= '90') {
+  include 'lib/defaultacl.php';
+}
 include 'lib/tables.php';
 if ($g_flashexists && $g_version > '80') {
   include 'lib/graph_tablesize.php';

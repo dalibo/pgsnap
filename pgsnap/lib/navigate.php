@@ -101,7 +101,12 @@ $navigate_globalobjects.= '
 
 $navigate_dbobjects = $navigate_header.'
     <ul>
-      <li><a href="schemas.html">Schemas</a></li>
+      <li><a href="schemas.html">Schemas</a></li>';
+if ($g_version >= '90') {
+  $navigate_dbobjects.= '
+      <li><a href="defaultacl.html">Default ACLs</a></li>';
+}
+$navigate_dbobjects.= '
       <li><a href="tables.html">Tables</a></li>';
 
 if ($g_flashexists && $g_version > '80') {
