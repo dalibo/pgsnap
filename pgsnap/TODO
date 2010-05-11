@@ -3,22 +3,23 @@ TODO
 
  * 0.6.0
 
-   All Releases
-     * add an argument to -a option... this argument is the complete path to a folder
-       which will contain every reports and an index.html allowing to navigate from
-       one to the other
-     * add a --server-only option, to get a view of all DB, no specific DB objects.
-     * add a XLOG report:
-       SELECT count(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ E'^[0-9A-F]{24}$';
-     * Find all interesting modules
-     * Add objects' comments?
+  * Find all interesting modules
+  * Add objects' comments?
    
  * 0.7?
 
   * Split in two parts:
-    * pgsnap will create a sort-of-dump of the catalogs and statistics views
-      (this dump will be restored in a database on another server)
-    * pgsnapweb is a PHP interface that will show the results
+   * pgsnap will create a sort-of-dump of the catalogs and statistics views
+     (this dump will be restored in a database on another server)
+   * pgsnapweb is a PHP interface that will show the results
+
+ * specific PostgreSQL
+  * add an argument to -a option... this argument is the complete path to a folder
+    which will contain every reports and an index.html allowing to navigate from
+    one to the other
+  * add a --server-only option, to get a view of all DB, no specific DB objects.
+  * add a XLOG report:
+    SELECT count(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ E'^[0-9A-F]{24}$';
 
  * specific orasnap
   * FK without indexes : owner, constraint name, column name
