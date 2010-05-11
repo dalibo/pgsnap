@@ -39,6 +39,10 @@ if ($g_version >= 81) {
 	    $query .= "'unavailable'";
     }
     $query .= " AS reloadtime";
+    if ($g_version >= 90) {
+		$query .= ", pg_is_in_recovery() AS recovery,
+  pg_last_xlog_receive_location(), pg_last_xlog_replay_location() ";
+	}
 }
 
 $rows = pg_query($connection, $query);
@@ -113,6 +117,18 @@ $buffer .= '<h1>Primary options</h1>
   <th class="colLast">Value</th>
 </tr>
 ';
+
+if ($g_version >= 90) {
+  $buffer .= tr().'
+  <td><a href="param.html#Write-AheadLogSettings">In Recovery</a></td>
+  <td>'.$image[$row['recovery']];
+  if ($row['recovery'] == 't') {
+	  $buffer .= ' ('.$row['pg_last_xlog_receive_location'].' / '.$row['pg_last_xlog_replay_location'].')';
+  }
+  $buffer .= '</td>
+</tr>
+';
+}
 
 if (array_key_exists('autovacuum', $g_settings)) {
   $buffer .= tr().'
