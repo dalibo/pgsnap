@@ -4,6 +4,7 @@
 	  informations.
 	* Add support of tablespace configuration variables.
 	* Add support of the application name.
+	* Add support of typed tables, and exclusion constraints in the tables report.
 
 2010-05-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fix the sequence2 report (schema wasn't available)

@@ -19,7 +19,6 @@ TODO
      * default privs
      * create table of type
      * deferrable unique constraints
-     * exclusion contraints
      * control large objects permissions
      * triggers per-column, and when clause
 

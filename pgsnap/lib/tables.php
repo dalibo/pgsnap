@@ -29,7 +29,12 @@ if(!$g_withoutsysobjects) {
 $query = "SELECT
   relname,
   nspname AS schema,
-  pg_get_userbyid(relowner) AS owner,
+  pg_get_userbyid(relowner) AS owner,";
+if ($g_version >= 90) {
+  $query .= "
+  reloftype,";
+}
+$query .= "
   relam,
   relfilenode,";
 if ($g_version > 74) {
@@ -59,7 +64,12 @@ else {
 }
 $query .= "
   relhasoids,
-  relhaspkey,
+  relhaspkey,";
+if ($g_version >= 90) {
+  $query .= "
+  relhasexclusion,";
+}
+$query .= "
   relhasrules,
   relhassubclass,";
 if ($g_version >= 82) {
@@ -104,7 +114,12 @@ $buffer .= '<div class="tblBasic">
 <tr>
   <th class="colFirst">Table name</th>
   <th class="colMid">Schema name</th>
-  <th class="colMid">Table Owner</th>
+  <th class="colMid">Table Owner</th>';
+if ($g_version >= 90) {
+  $buffer .= '
+  <th class="colMid">Of Type</th></th>';
+}
+$buffer .= '
   <th class="colMid">relam</th>
   <th class="colMid">relfilenode</th>';
 if ($g_version > 74) {
@@ -133,7 +148,12 @@ $buffer .= '
 }
 $buffer .= '
   <th class="colMid">Has OID?</th>
-  <th class="colMid">Has Primary Key?</th>
+  <th class="colMid">Has Primary Key?</th>';
+if ($g_version >= 90) {
+  $buffer .= '
+  <th class="colMid">Has Exclusion Constraint</th>';
+}
+$buffer .= '
   <th class="colMid">Has Rules?</th>
   <th class="colMid">Has subclass?</th>';
 if ($g_version >= 82) {
@@ -161,7 +181,12 @@ while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['schema'])."
   <td>".$row['relname']."</td>
   <td>".$row['schema']."</td>
-  <td>".$row['owner']."</td>
+  <td>".$row['owner']."</td>";
+if ($g_version > 74) {
+  $buffer .= "
+  <td>".$row['reloftype']."</td>";
+}
+$buffer .= "
   <td>".$row['relam']."</td>
   <td>".$row['relfilenode']."</td>";
 if ($g_version > 74) {
@@ -191,7 +216,12 @@ else {
 }
 $buffer .= "
   <td>".$image[$row['relhasoids']]."</td>
-  <td>".$image[$row['relhaspkey']]."</td>
+  <td>".$image[$row['relhaspkey']]."</td>";
+if ($g_version > 74) {
+  $buffer .= "
+  <td>".$image[$row['relhasexclusion']]."</td>";
+}
+$buffer .= "
   <td>".$image[$row['relhasrules']]."</td>
   <td>".$image[$row['relhassubclass']]."</td>";
 if ($g_version >= 82) {
