@@ -3,6 +3,7 @@
 	* Show pg_last_xlog_receive_location() / pg_last_xlog_replay_location()
 	  informations.
 	* Add support of tablespace configuration variables.
+	* Add support of the application name.
 
 2010-05-10  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fix the sequence2 report (schema wasn't available)

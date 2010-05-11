@@ -47,6 +47,10 @@ if ($g_version > 80) {
 $query .= ",
   date_trunc('second', backend_start) as backend_start";
 }
+if ($g_version >= 90) {
+  $query .= ",
+  application_name";
+}
 $query .= "
 FROM pg_stat_activity
 ORDER BY datname, procpid";
@@ -63,6 +67,10 @@ $buffer .= '<div class="tblBasic">
 <tr>
   <th class="colFirst">DB name</th>
   <th class="colMid">PID</th>';
+if ($g_version >= 90) {
+  $buffer .= '
+  <th class="colMid">Application name</th>';
+}
 if ($g_version > 80) {
   $buffer .= '
   <th class="colMid">Client</th>';
@@ -93,6 +101,10 @@ while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>".$row['datname']."</td>
   <td>".$row['procpid']."</td>";
+if ($g_version >= 90) {
+  $buffer .= "
+  <td>".$row['application_name']."</td>";
+}
 if ($g_version > 80) {
   $buffer .= "
   <td>".$row['client_addr']."</td>";

@@ -14,7 +14,6 @@ TODO
    
    9.0 Release
      * distinct statistics using ALTER TABLE
-     * application_name
      * setting of configuration variables on database/role combinations
      * comments on columns of tables, views and composite types
      * default privs

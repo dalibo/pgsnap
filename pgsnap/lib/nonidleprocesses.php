@@ -31,6 +31,10 @@ if ($g_version > 80) {
   $query .= "
   client_addr,";
 }
+if ($g_version >= 90) {
+  $query .= "
+  application_name,";
+}
 $query .= "
   current_query
 FROM pg_stat_activity
@@ -48,7 +52,12 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst">Age</th>
-  <th class="colMid">PID</th>
+  <th class="colMid">PID</th>';
+if ($g_version >= 90) {
+  $buffer .= '
+  <th class="colMid">Application name</th>';
+}
+$buffer .= '
   <th class="colMid">User</th>';
 if ($g_version > 80) {
   $buffer .= '
@@ -62,7 +71,12 @@ $buffer .= '
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>".$row['age']."</td>
-  <td>".$row['procpid']."</td>
+  <td>".$row['procpid']."</td>";
+if ($g_version >= 90) {
+  $buffer .= "
+  <td>".$row['application_name']."</td>";
+}
+$buffer .= "
   <td>".$row['usename']."</td>";
 if ($g_version > 80) {
   $buffer .= "
