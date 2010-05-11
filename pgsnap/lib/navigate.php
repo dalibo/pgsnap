@@ -78,6 +78,10 @@ if ($g_version > '80') {
 $navigate_globalobjects.= '
       <li><a href="user1.html">Users\' Objects</a></li>
       <li><a href="user2.html">Users Space allocated</a></li>';
+if ($g_version >= '90') {
+  $navigate_globalobjects.= '
+      <li><a href="dbrolesettings.html">DB/Role Settings</a></li>';
+}
 if ($g_version > '74') {
   $navigate_globalobjects.= '
       <li><a href="tablespaces.html">Tablespaces</a></li>';

@@ -14,10 +14,7 @@ TODO
      * Add objects' comments?
    
    9.0 Release
-     * setting of configuration variables on database/role combinations
      * default privs
-     * deferrable unique constraints
-     * triggers per-column, and when clause
 
  * 0.7?
 

@@ -170,6 +170,9 @@ if ($g_version > '80') {
 }
 include 'lib/user1.php';
 include 'lib/user2.php';
+if ($g_version >= '90') {
+  include 'lib/dbrolesettings.php';
+}
 if ($g_version > '74') {
   include 'lib/tablespaces.php';
   if ($g_superuser && $g_flashexists && $g_version > '80') {
