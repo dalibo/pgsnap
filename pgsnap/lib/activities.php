@@ -25,25 +25,23 @@ $buffer = $navigate_activities.'
 
 $query = "SELECT
   datname,
-  procpid,";
-if ($g_version > 80) {
-  $query .= "
-  client_addr,";
-}
-$query .= "
+  procpid,
   usename,
-  current_query,";
-if ($g_version >= 82) {
-  $query .= "
-  waiting,";
-}
-if ($g_version >= 83) {
-  $query .= "
-  date_trunc('second', xact_start) as xact_start,";
-}
-$query .="
+  current_query,
   date_trunc('second', query_start) as query_start";
 if ($g_version > 80) {
+  $query .= ",
+  client_addr";
+}
+if ($g_version >= 82) {
+  $query .= ",
+  waiting";
+}
+if ($g_version >= 83) {
+  $query .= ",
+  date_trunc('second', xact_start) as xact_start";
+}
+if ($g_version >= 82) {
 $query .= ",
   date_trunc('second', backend_start) as backend_start";
 }
@@ -81,19 +79,17 @@ if ($g_version >= 83) {
   $buffer .= '
   <th class="colMid">Waiting</th>';
 }
+if ($g_version >= 82) {
+  $buffer .= '
+  <th class="colMid">Backend start</th>';
+}
 if ($g_version >= 83) {
   $buffer .= '
   <th class="colMid">XACT start</th>';
 }
-if ($g_version > 80) {
-  $buffer .= '
-  <th class="colMid">Query start</th>';
-} else {
-  $buffer .= '
-  <th class="colMid">Query</th>';
-}
 $buffer .= '
-  <th class="colLast">Backend start</th>
+  <th class="colMid">Query start</th>
+  <th class="colLast">Query</th>
 </tr>
 ';
 
@@ -115,19 +111,17 @@ if ($g_version >= 82) {
   $buffer .= "
   <td>".$image[$row['waiting']]."</td>";
 }
+if ($g_version >= 82) {
+  $buffer .= '
+  <td>'.$row['backend_start'].'</td>';
+}
 if ($g_version >= 83) {
   $buffer .= "
   <td>".$row['xact_start']."</td>";
 }
-if ($g_version > 80) {
-  $buffer .= '
-  <td title="'.$row['current_query'].'">'.$row['query_start'].'</td>';
-} else {
-  $buffer .= '
-  <td>'.$row['current_query'].'</td>';
-}
 $buffer .= '
-  <td>'.$row['backend_start'].'</td>
+  <td>'.$row['query_start'].'</td>
+  <td>'.$row['current_query'].'</td>
 </tr>';
 }
 

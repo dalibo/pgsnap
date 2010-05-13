@@ -52,11 +52,6 @@ if (file_exists($outputdir)) {
 echo "Connecting to $PGDATABASE database...\n";
 include 'lib/connect.php';
 
-if (!$queriesinlogs) {
-  $query = "SET log_statement TO 'none'; SET log_duration TO off; SET log_min_duration_statement TO -1;";
-  pg_query($connection, $query);
-}
-
 $query = "SHOW server_version";
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -66,6 +61,15 @@ if (!$rows) {
 if ($row = pg_fetch_array($rows)) {
   $tmp = split("\.", $row['server_version']);
   $g_version = $tmp[0].$tmp[1];
+}
+
+if (!$queriesinlogs) {
+  if ($g_version == 74) {
+    $query = "SET log_statement TO off; SET log_duration TO off; SET log_min_duration_statement TO -1;";
+  } else {
+    $query = "SET log_statement TO 'none'; SET log_duration TO off; SET log_min_duration_statement TO -1;";
+  }
+  pg_query($connection, $query);
 }
 
 echo "Adding some HTML files...\n";

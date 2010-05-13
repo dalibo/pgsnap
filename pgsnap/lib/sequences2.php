@@ -69,8 +69,12 @@ if (pg_num_rows($rows) > 0)
   <tr>
     <th class="colFirst">Schema name</th>
     <th class="colMid">Sequence name</th>
-    <th class="colMid">Last Value</th>
-    <th class="colMid">Start Value Owner</th>
+    <th class="colMid">Last Value</th>';
+  if ($g_version > 83) {
+	$buffer .= '
+    <th class="colMid">Start Value</th>';
+  }
+  $buffer .= '
     <th class="colMid">Increment By</th>
     <th class="colMid">Max Value</th>
     <th class="colMid">Min Value</th>
@@ -85,8 +89,12 @@ if (pg_num_rows($rows) > 0)
   $buffer .= tr($row['schema'])."
     <td title=\"".$comments['schemas'][$row['schema']]."\">".$row['schema']."</td>
     <td title=\"".$comments['relations'][$row['schema']][$row['sequence_name']]."\">".$row['sequence_name']."</td>
-    <td>".$row['last_value']."</td>
-    <td>".$row['start_value']."</td>
+    <td>".$row['last_value']."</td>";
+  if ($g_version > 83) {
+    $buffer .= "
+    <td>".$row['start_value']."</td>";
+  }
+  $buffer .= "
     <td>".$row['increment_by']."</td>
     <td>".$row['max_value']."</td>
     <td>".$row['min_value']."</td>

@@ -39,10 +39,17 @@ while ($row = pg_fetch_array($rows)) {
 
 // Comments on Tablespaces
 if ($g_version > 74) {
-  $query = "SELECT spcname,
+  if ($g_version > 81) {
+    $query = "SELECT spcname,
   pg_catalog.shobj_description(pg_tablespace.oid, 'pg_tablespace') AS description
 FROM pg_tablespace
 ORDER BY spcname";
+  } else {
+    $query = "SELECT spcname, description
+FROM pg_tablespace
+LEFT JOIN pg_description ON pg_tablespace.oid=objoid
+ORDER BY spcname";
+  }
 
   $rows = pg_query($connection, $query);
   if (!$rows) {
@@ -56,10 +63,22 @@ ORDER BY spcname";
 }
 
 // Comments on Roles
+if ($g_version > 81) {
 $query = "SELECT rolname,
   pg_catalog.shobj_description(pg_roles.oid, 'pg_authid') AS description
 FROM pg_roles
 ORDER BY rolname";
+} elseif ($g_version > 80) {
+$query = "SELECT rolname, description
+FROM pg_roles
+LEFT JOIN pg_description ON pg_roles.oid=objoid
+ORDER BY rolname";
+} else {
+$query = "SELECT usename AS rolname,
+  '' as description
+FROM pg_shadow
+ORDER BY usename";
+}
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
