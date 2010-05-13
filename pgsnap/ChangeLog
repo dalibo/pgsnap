@@ -1,3 +1,6 @@
+2010-05-13  Guillaume Lelarge <guillaume@lelarge.info>
+	* Update usage message with the new command line option.
+
 2010-05-11  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add InRecovery status.
 	* Show pg_last_xlog_receive_location() / pg_last_xlog_replay_location()

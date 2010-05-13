@@ -135,6 +135,7 @@ Connection options:
   -p PORT         database server port (default: "<?= $PGPORT ?>")
   -U NAME         database user name (default: "<?= $PGUSER ?>")
   -W              prompt for password
+  -w              don't prompt for password
 
 <?php
       exit;
