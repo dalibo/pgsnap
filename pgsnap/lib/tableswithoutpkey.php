@@ -78,9 +78,9 @@ if ($g_version > 80) {
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['nspname'])."
-  <td>".$row['owner']."</td>
-  <td>".$row['nspname']."</td>
-  <td>".$row['relname']."</td>";
+  <td title=\"".$comments['roles'][$row['owner']]."\">".$row['owner']."</td>
+  <td title=\"".$comments['schemas'][$row['nspname']]."\">".$row['nspname']."</td>
+  <td title=\"".$comments['relations'][$row['nspname']][$row['relname']]."\">".$row['relname']."</td>";
 if ($g_version > 80) {
 $buffer .= "
   <td>".$row['size']."</td>";

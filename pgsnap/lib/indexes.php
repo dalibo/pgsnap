@@ -161,9 +161,9 @@ $buffer .= '
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['schema'])."
-  <td>".$row['relname']."</td>
-  <td>".$row['schema']."</td>
-  <td>".$row['owner']."</td>
+  <td title=\"".$comments['relations'][$row['schema']][$row['relname']]."\">".$row['relname']."</td>
+  <td title=\"".$comments['schemas'][$row['schema']]."\">".$row['schema']."</td>
+  <td title=\"".$comments['roles'][$row['owner']]."\">".$row['owner']."</td>
   <td>".$row['relam']."</td>
   <td>".$row['relfilenode']."</td>";
 if ($g_version > 74) {

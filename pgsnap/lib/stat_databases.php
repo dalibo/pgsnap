@@ -71,7 +71,7 @@ $buffer .= '
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['datname']."</td>
+  <td title=\"".$comments['databases'][$row['datname']]."\">".$row['datname']."</td>
   <td>".$row['numbackends']."</td>
   <td>".$row['xact_commit']."</td>
   <td>".$row['xact_rollback']."</td>

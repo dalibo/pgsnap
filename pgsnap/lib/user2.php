@@ -75,7 +75,7 @@ $buffer .= '
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
-  <td>'.$row['rolname'].'</td>
+  <td title="'.$comments['roles'][$row['rolname']].'">'.$row['rolname'].'</td>
   <td>'.ucfirst($row['kind']).'</td>';
 if ($g_version > 80) {
 $buffer .= '

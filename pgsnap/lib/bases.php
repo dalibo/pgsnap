@@ -127,8 +127,8 @@ $buffer .= '
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
-  <td>'.$row['dba'].'</td>
-  <td>'.$row['datname'].'</td>
+  <td title="'.$comments['roles'][$row['dba']].'">'.$row['dba'].'</td>
+  <td title="'.$comments['databases'][$row['datname']].'">'.$row['datname'].'</td>
   <td>'.$row['encoding'].'</td>';
 if ($g_version > 83) {
   $buffer .= '
@@ -147,7 +147,7 @@ $buffer .= '
   <td>'.$row['datfrozenxid'].'</td>';
 if ($g_version > 74) {
   $buffer .= '
-  <td>'.$row['tablespace'].'</td>';
+  <td title="'.$comments['tablespaces'][$row['tablespace']].'">'.$row['tablespace'].'</td>';
 }
 if ($g_version > 80) {
   $buffer .= '

@@ -52,9 +52,9 @@ $buffer .= '<div class="tblBasic">
 ';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td>".$row['rolname']."</td>
-  <td>".$row['spcname']."</td>
+  $buffer .= tr().'
+  <td title="'.$comments['roles'][$row['rolname']].'">'.$row['rolname'].'</td>
+  <td title="'.$comments['tablespaces'][$row['spcname']].'">'.$row['spcname']."</td>
   <td>".$row['kind']."</td>
   <td>".$row['total']."</td>
 </tr>";

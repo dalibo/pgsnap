@@ -53,13 +53,15 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst">Table Name</th>
+  <th class="colMid">Schema Name</th>
   <th class="colLast">Total</th>
 </tr>
 ';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['schemaname'])."
-  <td>".$row['schemaname'].".".$row['tablename']."</td>
+  <td title=\"".$comments['relations'][$row['schemaname']][$row['tablename']]."\">".$row['tablename']."</td>
+  <td title=\"".$comments['schemas'][$row['schemaname']]."\">".$row['schemaname']."</td>
   <td>".$row['total']."</td>
 </tr>";
 }

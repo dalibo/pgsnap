@@ -99,7 +99,7 @@ $buffer .= '
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['datname']."</td>
+  <td title=\"".$comments['databases'][$row['datname']]."\">".$row['datname']."</td>
   <td>".$row['procpid']."</td>";
 if ($g_version >= 90) {
   $buffer .= "
@@ -110,7 +110,7 @@ if ($g_version > 80) {
   <td>".$row['client_addr']."</td>";
 }
 $buffer .= "
-  <td>".$row['usename']."</td>";
+  <td title=\"".$comments['roles'][$row['usename']]."\">".$row['usename']."</td>";
 if ($g_version >= 82) {
   $buffer .= "
   <td>".$image[$row['waiting']]."</td>";

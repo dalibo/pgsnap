@@ -53,8 +53,8 @@ $buffer .= '<div class="tblBasic">
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['nspname']."</td>
-  <td>".$row['owner']."</td>
+  <td title=\"".$comments['schemas'][$row['nspname']]."\">".$row['nspname']."</td>
+  <td title=\"".$comments['roles'][$row['owner']]."\">".$row['owner']."</td>
   <td>".$row['nspacl']."</td>
 </tr>";
 }

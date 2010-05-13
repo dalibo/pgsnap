@@ -48,7 +48,7 @@ $buffer .= '<div class="tblBasic">
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>";
+  <td title=\"".$comments['databases'][$row['datname']]."\">";
 if ($row['blks_read'] >= $row['blks_hit'] && $row['blks_read']+$row['blks_hit'] > 0) {
   $buffer .= '<span class="txtImportant">';
 }

@@ -51,8 +51,8 @@ $buffer .= '<div class="tblBasic">
  
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['rolname']."</td>
-  <td>".$row['database']."</td>
+  <td title=\"".$comments['roles'][$row['rolname']]."\">".$row['rolname']."</td>
+  <td title=\"".$comments['databases'][$row['database']]."\">".$row['database']."</td>
   <td>".$row['transaction']."</td>
   <td>".$row['gid']."</td>
   <td>".$row['prepared']."</td>

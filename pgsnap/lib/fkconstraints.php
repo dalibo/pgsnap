@@ -57,6 +57,7 @@ $buffer .= '<div class="tblBasic">
 <tr>
   <th class="colFirst">Table Owner</th>
   <th class="colMid">Table name</th>
+  <th class="colMid">Schema name</th>
   <th class="colMid">Constraint Name</th>
   <th class="colMid">Column Name</th>
   <th class="colMid">Referenced Table Name</th>
@@ -78,8 +79,9 @@ while ($row = pg_fetch_array($rows)) {
     $def[2] = '';
   }
   $buffer .= tr($row['nspname'])."
-  <td>".$row['tableowner']."</td>
-  <td>".$row['nspname'].".".$row['tablename']."</td>
+  <td title=\"".$comments['roles'][$row['tableowner']]."\">".$row['tableowner']."</td>
+  <td title=\"".$comments['schemas'][$row['nspname']]."\">".$row['nspname']."</td>
+  <td title=\"".$comments['relations'][$row['nspname']][$row['tablename']]."\">".$row['tablename']."</td>
   <td>".$row['conname']."</td>
   <td>".$def[0]."</td>
   <td>".$def[1]."</td>

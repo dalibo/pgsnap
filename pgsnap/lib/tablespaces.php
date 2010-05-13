@@ -81,9 +81,9 @@ $buffer .= '
 ';
 
 while ($row = pg_fetch_array($rows)) {
-  $buffer .= tr()."
-  <td>".$row['owner']."</td>
-  <td>".$row['spcname']."</td>
+  $buffer .= tr().'
+  <td title="'.$comments['roles'][$row['owner']].'">'.$row['owner'].'</td>
+  <td title="'.$comments['tablespaces'][$row['spcname']].'">'.$row['spcname']."</td>
   <td>".$row['spclocation']."</td>";
   if ($g_superuser) {
     if ($g_version > 80) {

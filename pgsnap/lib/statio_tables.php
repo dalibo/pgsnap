@@ -72,8 +72,8 @@ $buffer .= '<div class="tblBasic">
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['schemaname'])."
-  <td>".$row['schemaname']."</td>
-  <td>".$row['relname']."</td>
+  <td title=\"".$comments['schemas'][$row['schemaname']]."\">".$row['schemaname']."</td>
+  <td title=\"".$comments['relations'][$row['schemaname']][$row['relname']]."\">".$row['relname']."</td>
   <td>".$row['heap_blks_read']."</td>
   <td>".$row['heap_blks_hit']."</td>
   <td>".$row['idx_blks_read']."</td>

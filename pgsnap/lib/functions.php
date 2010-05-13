@@ -112,9 +112,9 @@ $buffer .= '
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['nspname'])."
-  <td>".$row['rolname']."</td>
-  <td>".$row['nspname']."</td>
-  <td>".$row['proname']."</td>
+  <td title=\"".$comments['roles'][$row['rolname']]."\">".$row['rolname']."</td>
+  <td title=\"".$comments['schemas'][$row['nspname']]."\">".$row['nspname']."</td>
+  <td title=\"".$comments['functions'][$row['nspname']][$row['proname']]."\">".$row['proname']."</td>
   <td>".$row['returntype']."</td>";
 if ($g_version > 80) {
   $buffer .= "
@@ -122,7 +122,7 @@ if ($g_version > 80) {
 }
 $buffer .= "
   <td>".$row['volatility']."</td>
-  <td>".$row['lanname']."</td>
+  <td title=\"".$comments['languages'][$row['lanname']]."\">".$row['lanname']."</td>
 </tr>";
 }
 

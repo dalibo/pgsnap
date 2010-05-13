@@ -67,7 +67,8 @@ if (pg_num_rows($rows) > 0)
   
   <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
   <tr>
-    <th class="colFirst">Sequence name</th>
+    <th class="colFirst">Schema name</th>
+    <th class="colMid">Sequence name</th>
     <th class="colMid">Last Value</th>
     <th class="colMid">Start Value Owner</th>
     <th class="colMid">Increment By</th>
@@ -82,7 +83,8 @@ if (pg_num_rows($rows) > 0)
   
   while ($row = pg_fetch_array($rows)) {
   $buffer .= tr($row['schema'])."
-    <td>".$row['sequence_name']."</td>
+    <td title=\"".$comments['schemas'][$row['schema']]."\">".$row['schema']."</td>
+    <td title=\"".$comments['relations'][$row['schema']][$row['sequence_name']]."\">".$row['sequence_name']."</td>
     <td>".$row['last_value']."</td>
     <td>".$row['start_value']."</td>
     <td>".$row['increment_by']."</td>

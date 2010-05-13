@@ -131,6 +131,7 @@ $kind['S'] = 'Sequence';
 
 echo "Getting Misc informations...\n";
 include 'lib/getmodules.php';
+include 'lib/getcomments.php';
 include 'lib/navigate.php';
 include 'lib/links.php';
 

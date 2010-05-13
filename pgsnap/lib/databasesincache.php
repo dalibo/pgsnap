@@ -53,7 +53,7 @@ $buffer .= '<div class="tblBasic">
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
   <td>'.$row['dba'].'</td>
-  <td>'.$row['datname'].'</td>
+  <td title="'.$comments['databases'][$row['datname']].'">'.$row['datname'].'</td>
   <td>'.$row['size'].'</td>
   <td>'.$row['buffers'].'</td>
   <td>'.($row['buffers']*8192).'</td>

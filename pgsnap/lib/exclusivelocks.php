@@ -28,7 +28,8 @@ $query = "SELECT
  CASE WHEN datname IS NOT NULL THEN datname
       ELSE database::text
  END AS database,
- relation::regclass as relation,
+ nspname,
+ relname,
  page,
  tuple,";
 if ($g_version >= 83) {
@@ -49,6 +50,8 @@ $query .= "
  granted
 FROM pg_locks
  LEFT JOIN pg_database ON pg_database.oid = database
+ LEFT JOIN pg_class ON pg_class.oid = relation
+ LEFT JOIN pg_namespace ON pg_namespace.oid=pg_class.relnamespace
 WHERE mode='ExclusiveLock'
   AND locktype NOT IN ('virtualxid', 'transactionid')";
 
@@ -89,8 +92,18 @@ $buffer .= '
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>".$row['locktype']."</td>
-  <td>".$row['database']."</td>
-  <td>".$row['relation']."</td>
+  <td";
+if (array_key_exists($row['database'], $comments['databases'])) {
+  $buffer .= " title=\"".$comments['databases'][$row['database']]."\"";
+}
+$buffer .= ">".$row['database']."</td>
+  <td";
+if (array_key_exists($row['nspname'], $comments['relations'])) {
+  if (array_key_exists($row['relname'], $comments['relations'][$row['nspname']])) {
+    $buffer .= " title=\"".$comments['relations'][$row['nspname']][$row['relname']]."\"";
+  }
+}
+$buffer .= ">".$row['nspname'].".".$row['relname']."</td>
   <td>".$row['page']."</td>
   <td>".$row['tuple']."</td>";
 if ($g_version >= 83) {

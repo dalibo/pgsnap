@@ -21,7 +21,7 @@ $buffer = $navigate_dbobjects.'
 
 <h1>Table Size Graph</h1>';
 
-$query = "SELECT relname,
+$query = "SELECT nspname, relname,
   pg_relation_size(pg_class.oid)/1024/1024 AS size
 FROM pg_class, pg_namespace
 WHERE relkind = 'r'
@@ -55,13 +55,13 @@ if (pg_num_rows($rows) > 0) {
     if ($max < $row['size']) {
       $max = $row['size'];
     }
-    $bar->data[] = $row['size'];
+    $bar->add_data_tip($row['size'], $comments['relations'][$row['nspname']][$row['relname']]);
     $labels[] = $row['relname'];
   }
 
   $g = new graph();
   $g->title( 'Tables size in MB', '{font-size: 18px; color: #A0A0A0;}' );
-  $g->set_tool_tip( '#x_label#<br>#val# MB' );
+  $g->set_tool_tip( '#x_label#<br>#tip#<br>#val# MB' );
   $g->set_x_labels( $labels );
   $g->data_sets[] = $bar;
   $g->set_x_label_style( 10, '#A0A0A0', 0, 1 );

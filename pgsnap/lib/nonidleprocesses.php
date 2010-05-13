@@ -77,7 +77,7 @@ if ($g_version >= 90) {
   <td>".$row['application_name']."</td>";
 }
 $buffer .= "
-  <td>".$row['usename']."</td>";
+  <td title=\"".$comments['roles'][$row['usename']]."\">".$row['usename']."</td>";
 if ($g_version > 80) {
   $buffer .= "
   <td>".$row['client_addr']."</td>";

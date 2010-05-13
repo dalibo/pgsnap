@@ -59,7 +59,7 @@ $buffer .= '<div class="tblBasic">
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
-  <td>'.$row['rolname'].'</td>
+  <td title="'.$comments['roles'][$row['rolname']].'">'.$row['rolname'].'</td>
   <td>'.$image[$row['rolsuper']].'</td>
   <td>'.$image[$row['rolinherit']].'</td>
   <td>'.$image[$row['rolcreaterole']].'</td>

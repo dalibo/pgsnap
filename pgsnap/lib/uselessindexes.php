@@ -26,7 +26,8 @@ if(!$g_withoutsysobjects) {
   add_sys_and_user_checkboxes();
 }
 
-$query = "SELECT idstat.relname AS table_name,
+$query = "SELECT idstat.schemaname AS schema_name,
+idstat.relname AS table_name,
 indexrelname AS index_name,
 idstat.idx_scan AS times_used,
 pg_size_pretty(pg_relation_size(idstat.relid)) AS table_size,
@@ -51,6 +52,7 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst">Table name</th>
+  <th class="colMid">Schema name</th>
   <th class="colMid">Index name</th>
   <th class="colMid">Times Used</th>
   <th class="colMid">Table Size</th>
@@ -62,8 +64,9 @@ $buffer .= '<div class="tblBasic">
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr($row['table_name'])."
-  <td>".$row['table_name']."</td>
-  <td>".$row['index_name']."</td>
+  <td title=\"".$comments['schemas'][$row['schema_name']]."\">".$row['schema_name']."</td>
+  <td title=\"".$comments['relations'][$row['schema_name']][$row['table_name']]."\">".$row['table_name']."</td>
+  <td title=\"".$comments['relations'][$row['schema_name']][$row['index_name']]."\">".$row['index_name']."</td>
   <td>".$row['times_used']."</td>
   <td>".$row['table_size']."</td>
   <td>".$row['index_size']."</td>
