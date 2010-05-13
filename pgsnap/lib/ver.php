@@ -88,6 +88,54 @@ if ($g_fsmrelations) {
 ';
 }
 
+// check a few other contrib modules by functions
+$functions = array(
+    'adminpack'          => 'pg_file_write',
+    'btree_gin'          => 'gin_btree_consistent',
+    'btree_gist'         => 'gbtreekey4_in',
+    'citext'             => 'citext_smaller',
+    'cube'               => 'cube_distance',
+    'dblink'             => 'dblink_connect',
+    'dict_int'           => 'dintdict_lexize',
+    'dict_xsyn'          => 'dxsyn_lexize',
+    'earthdistance'      => 'earth_distance',
+    'fuzzystrmatch'      => 'dmetaphone_alt',
+    'hstore'             => 'hstore_out',
+    'intarray'           => 'intarray_del_elem',
+    'isn'                => 'isbn13_in',
+    'lo'                 => 'lo_manage',
+    'ltree'              => 'ltree2text',
+    'pageinspect'        => 'heap_page_items',
+    'pgcrypto'           => 'gen_salt',
+    'pg_row_locks'       => 'pgrowlocks',
+    'pg_stat_statements' => 'pg_stat_statements_reset',
+    'pg_trgm'            => 'show_trgm',
+    'seg'                => 'seg_over_left',
+    'sslinfo'            => 'ssl_client_cert_present',
+    'tablefunc'          => 'crosstab4',
+    'tsearch2'           => 'to_tsvector',
+    'uuid'               => 'uuid_ns_x500',
+    'xml2'               => 'xslt_process'
+);
+
+foreach ($functions as $module => $function) {
+  $fquery = "SELECT 1 FROM pg_proc WHERE proname = '$function'";
+  $frows = pg_query($connection, $fquery);
+  if (!$frows) {
+    echo "An error occured.\n";
+    exit;
+  }
+
+  if (pg_num_rows($frows) == 1) {
+    $buffer .= tr().'
+  <td>'.$module.'</td>
+  <td><i>Contrib module</i></td>
+</tr>
+';
+  }
+  pg_free_result($frows);
+}
+
 $buffer .= '</table>
 ';
 

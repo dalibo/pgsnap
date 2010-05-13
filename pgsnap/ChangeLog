@@ -1,5 +1,6 @@
 2010-05-13  Guillaume Lelarge <guillaume@lelarge.info>
 	* Update usage message with the new command line option.
+	* Add informations on all available contrib modules.
 
 2010-05-11  Guillaume Lelarge <guillaume@lelarge.info>
 	* Add InRecovery status.
