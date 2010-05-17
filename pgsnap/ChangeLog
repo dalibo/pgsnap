@@ -1,4 +1,8 @@
 2010-05-13  Guillaume Lelarge <guillaume@lelarge.info>
+	* Fix an issue vith the ordering of the tables' graph.
+	* Add a report to display graph for indexes' size.
+
+2010-05-13  Guillaume Lelarge <guillaume@lelarge.info>
 	* Update usage message with the new command line option.
 	* Add informations on all available contrib modules.
 	* Add objects' comments.
