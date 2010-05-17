@@ -34,7 +34,7 @@ if ($g_withoutsysobjects) {
   AND nspname !~ '^pg_toast'";
 }
 $query .= "
-ORDER BY 2 DESC";
+ORDER BY 3 DESC";
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
