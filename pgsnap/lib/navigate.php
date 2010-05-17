@@ -133,6 +133,10 @@ $navigate_dbobjects .= '
       <li><a href="sequences2.html">Sequences - metadata</a></li>
       <li><a href="indexes.html">Indexes</a></li>';
 
+if ($g_flashexists && $g_version > '80') {
+  $navigate_dbobjects .= '
+      <li><a href="graph_indexsize.html">Indexes Size Graph</a></li>';
+}
 if ($g_version > '80') {
   $navigate_dbobjects .= '
       <li><a href="indexesbiggerthantables.html">Indexes Bigger Than Tables</a></li>';

@@ -214,6 +214,9 @@ include 'lib/views.php';
 include 'lib/sequences.php';
 include 'lib/sequences2.php';
 include 'lib/indexes.php';
+if ($g_flashexists && $g_version > '80') {
+  include 'lib/graph_indexsize.php';
+}
 if ($g_version > '82') {
   include 'lib/uselessindexes.php';
 }
