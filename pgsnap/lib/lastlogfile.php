@@ -24,11 +24,15 @@ $buffer = $navigate_general.'
 $query = "SELECT * FROM (
   SELECT
     pg_ls_dir('".pg_escape_string($g_settings['log_directory'])."'))
-    AS tmp (filename)";
+    AS tmp (filename)
+WHERE ";
 if (!strcmp($g_settings['log_destination'], 'csvlog')) {
-  $query .= "WHERE filename LIKE '%csv' ";
+  $query .= "filename LIKE '%csv' AND ";
 }
-$query .= "ORDER BY 1 DESC LIMIT 1";
+$query .= "EXISTS (SELECT 1
+FROM pg_stat_file('".pg_escape_string($g_settings['log_directory'])."/'||filename)
+WHERE not isdir)
+ORDER BY 1 DESC LIMIT 1";
 $queries = $query." -- to get the latest filename<br/>\n";
 
 $rows = pg_query($connection, $query);

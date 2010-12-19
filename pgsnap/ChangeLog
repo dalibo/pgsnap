@@ -1,5 +1,6 @@
 2010-12-19  Guillaume Lelarge <guillaume@lelarge.info>
     * Check superuser privilege before setting log_statement.
+    * Fix an issue when the last log file is actually a directory.
 
 2010-05-17  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fix an issue vith the ordering of the tables' graph.
