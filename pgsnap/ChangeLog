@@ -1,4 +1,7 @@
-2010-05-13  Guillaume Lelarge <guillaume@lelarge.info>
+2010-12-19  Guillaume Lelarge <guillaume@lelarge.info>
+    * Check superuser privilege before setting log_statement.
+
+2010-05-17  Guillaume Lelarge <guillaume@lelarge.info>
 	* Fix an issue vith the ordering of the tables' graph.
 	* Add a report to display graph for indexes' size.
 

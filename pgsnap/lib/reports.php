@@ -63,7 +63,17 @@ if ($row = pg_fetch_array($rows)) {
   $g_version = $tmp[0].$tmp[1];
 }
 
-if (!$queriesinlogs) {
+$query = 'SELECT rolsuper FROM pg_roles WHERE rolname=current_user';
+$rows = pg_query($connection, $query);
+if (!$rows) {
+  echo "An error occured.\n";
+  exit;
+}
+if ($row = pg_fetch_array($rows)) {
+  $g_superuser = $row['rolsuper'] == 't';
+}
+
+if (!$queriesinlogs && $g_superuser) {
   if ($g_version == 74) {
     $query = "SET log_statement TO off; SET log_duration TO off; SET log_min_duration_statement TO -1;";
   } else {
