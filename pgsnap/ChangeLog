@@ -1,249 +1,252 @@
+2011-09-26  Guillaume Lelarge <guillaume@lelarge.info>
+    * Complete support for 9.1.
+
 2010-12-19  Guillaume Lelarge <guillaume@lelarge.info>
     * Check superuser privilege before setting log_statement.
     * Fix an issue when the last log file is actually a directory.
 
 2010-05-17  Guillaume Lelarge <guillaume@lelarge.info>
-	* Fix an issue vith the ordering of the tables' graph.
-	* Add a report to display graph for indexes' size.
+    * Fix an issue vith the ordering of the tables' graph.
+    * Add a report to display graph for indexes' size.
 
 2010-05-13  Guillaume Lelarge <guillaume@lelarge.info>
-	* Update usage message with the new command line option.
-	* Add informations on all available contrib modules.
-	* Add objects' comments.
+    * Update usage message with the new command line option.
+    * Add informations on all available contrib modules.
+    * Add objects' comments.
     * Release 0.6.0.
 
 2010-05-11  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add InRecovery status.
-	* Show pg_last_xlog_receive_location() / pg_last_xlog_replay_location()
-	  informations.
-	* Add support for tablespace configuration variables.
-	* Add support for the application name.
-	* Add support for typed tables, and exclusion constraints in the tables report.
-	* Add support for large objects ACL and owner.
-	* Add a report to take care of database/role settings.
-	* Add a report to take care of default ACLs.
+    * Add InRecovery status.
+    * Show pg_last_xlog_receive_location() / pg_last_xlog_replay_location()
+      informations.
+    * Add support for tablespace configuration variables.
+    * Add support for the application name.
+    * Add support for typed tables, and exclusion constraints in the tables report.
+    * Add support for large objects ACL and owner.
+    * Add a report to take care of database/role settings.
+    * Add a report to take care of default ACLs.
 
 2010-05-10  Guillaume Lelarge <guillaume@lelarge.info>
-	* Fix the sequence2 report (schema wasn't available)
+    * Fix the sequence2 report (schema wasn't available)
     * Add start time and conf reload time.
     * Add a -w/--no-password option that prevents password prompting
     * Quiet pgsnap's activity, but allow it to be verbose with --query-in-logs
 
 2010-04-09  Guillaume Lelarge <guillaume@lelarge.info>
-	* Basic 9.0 support.
-	* Enable the use of the application_name parameter (9.0 specific).
+    * Basic 9.0 support.
+    * Enable the use of the application_name parameter (9.0 specific).
 
 2010-04-07  Guillaume Lelarge <guillaume@lelarge.info>
-	* Change headers, and transform the relkind one letter with a full
+    * Change headers, and transform the relkind one letter with a full
       description.
     * Add a Large Object report.
     * Add 8.4 new pg_settings' columns.
     * Add another sequences report.
 
 2010-04-07  Guillaume Lelarge <guillaume@lelarge.info>
-	* Support the relistemp column of pg_class (8.4+).
+    * Support the relistemp column of pg_class (8.4+).
 
 2010-03-08  Guillaume Lelarge <guillaume@lelarge.info>
-	* Fix the "non idle queries" report for really long queries, per a report and
+    * Fix the "non idle queries" report for really long queries, per a report and
       patch from Philippe Pellen.
-	* Fix the "clustered tables" report as it didn't work on 7.4 and 8.0, per
+    * Fix the "clustered tables" report as it didn't work on 7.4 and 8.0, per
       a report and patch (modified by me) from Philippe Pellen.
 
 2010-02-01  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add collation and ctype info on databases report.
-	* Fix the useless indexes report.
+    * Add collation and ctype info on databases report.
+    * Fix the useless indexes report.
     * Copyright update.
     * Release 0.5.0.
 
 2009-05-06  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add clustered tables' report.
-	* Add "stats on functions" report.
+    * Add clustered tables' report.
+    * Add "stats on functions" report.
 
 2009-05-05  Guillaume Lelarge <guillaume@lelarge.info>
-	* Minimum 8.4 support.
+    * Minimum 8.4 support.
 
 2009-01-05  Guillaume Lelarge <guillaume@lelarge.info>
-	* Forgot the php keyword in <? line and the copyright on one file,
-	per report from pea.
-	* Copyright update.
+    * Forgot the php keyword in <? line and the copyright on one file,
+    per report from pea.
+    * Copyright update.
 
 2008-12-22  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add useless indexes report (from an idea of Josh Berkus,
-	http://it.toolbox.com/blogs/database-soup/finding-useless-indexes-28796).
+    * Add useless indexes report (from an idea of Josh Berkus,
+    http://it.toolbox.com/blogs/database-soup/finding-useless-indexes-28796).
 
 2008-08-19  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add listeners report.
-	* Update Relations Bloat query (from check_postgres.pl perl script).
-	* Add partitions informations on Tablespaces report.
-	* Add PHP pretty_size function to get values with units with 7.4 and 8.0
-	PostgreSQL release.
-	* Add database freeze age and percentage until autovacuum freeze (per
-	check_postgres.pl perl script)
+    * Add listeners report.
+    * Update Relations Bloat query (from check_postgres.pl perl script).
+    * Add partitions informations on Tablespaces report.
+    * Add PHP pretty_size function to get values with units with 7.4 and 8.0
+    PostgreSQL release.
+    * Add database freeze age and percentage until autovacuum freeze (per
+    check_postgres.pl perl script)
 
 2008-08-18  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add non-default configuration report.
+    * Add non-default configuration report.
 
 2008-07-15  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : wrong column title.
-	* Bugfix : if blks_hit and blks_read are zero, there's no need to set an
-        alarm on the cache hit ratio for this database
+    * Bugfix : wrong column title.
+    * Bugfix : if blks_hit and blks_read are zero, there's no need to set an
+    alarm on the cache hit ratio for this database
 
 2008-06-24  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : check that the js directory exists before trying to empty
-        it, per a report from Claude Castello.
-	* Release 0.4.0.
+    * Bugfix : check that the js directory exists before trying to empty
+    it, per a report from Claude Castello.
+    * Release 0.4.0.
 
 2008-06-13  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : no autovac params with 7.4, per a report from Claude
-        Castello.
+    * Bugfix : no autovac params with 7.4, per a report from Claude
+    Castello.
 
 2008-06-12  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : lots of bugfixes, per a great report from Claude Castello.
-	* Bugfix : graph_tblspcsize is only available to superuser.
+    * Bugfix : lots of bugfixes, per a great report from Claude Castello.
+    * Bugfix : graph_tblspcsize is only available to superuser.
 
 2008-06-11  Guillaume Lelarge <guillaume@lelarge.info>
-	* -a and -o options are mutually exclusive.
-	* Add --delete-if-exists option to delete a previous report folder.
+    * -a and -o options are mutually exclusive.
+    * Add --delete-if-exists option to delete a previous report folder.
 
 2008-06-10  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : replace and by && and or by ||, per a report from Matteo
-        Beccati.
-	* Bugfix : silence PHP error message on the pg_connect function, per a
-        report from Claude Castello.
+    * Bugfix : replace and by && and or by ||, per a report from Matteo
+      Beccati.
+    * Bugfix : silence PHP error message on the pg_connect function, per a
+      report from Claude Castello.
 
 2008-06-09  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : Toggle function on a checkbox had disabled the
-        checkbox's ability to check on and off.
+    * Bugfix : Toggle function on a checkbox had disabled the
+      checkbox's ability to check on and off.
 
 2008-06-08  Guillaume Lelarge <guillaume@lelarge.info>
-	* Display databases' name in red if blks_read>=blks_hit.
-	* Display database size with a graph.
-	* Display tablespace size with a graph.
-	* Display table size with a graph.
-	* Add "Non Idle Processes" Report.
-	* Add "Relations Bloat" Report.
-	* Add Stat IO reports.
-	* "Cache hit ratio" report is not interesting if stats_block_level
-        (or track_counts in 8.3) is disabled.
-	* Add a --all option to get a report for each database available on
-        the selected PostgreSQL server.
-	* Add a report to get index whose size is greater than the associated
-        table.
-	* Now, you don't need to be a superuser to use pgsnap.
+    * Display databases' name in red if blks_read>=blks_hit.
+    * Display database size with a graph.
+    * Display tablespace size with a graph.
+    * Display table size with a graph.
+    * Add "Non Idle Processes" Report.
+    * Add "Relations Bloat" Report.
+    * Add Stat IO reports.
+    * "Cache hit ratio" report is not interesting if stats_block_level
+      (or track_counts in 8.3) is disabled.
+    * Add a --all option to get a report for each database available on
+      the selected PostgreSQL server.
+    * Add a report to get index whose size is greater than the associated
+      table.
+    * Now, you don't need to be a superuser to use pgsnap.
 
 2008-06-03  Guillaume Lelarge <guillaume@lelarge.info>
-	* Some reports' titles are modified to get more consistent.
-	* Forgot to update manpage and --help message with the
-        --without-sysobjects addition.
+    * Some reports' titles are modified to get more consistent.
+    * Forgot to update manpage and --help message with the
+    --without-sysobjects addition.
 
 2008-06-02  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add a --without-sysobjects command line option to retrieve only
-        user objects.
+    * Add a --without-sysobjects command line option to retrieve only
+    user objects.
 
 2008-06-01  Guillaume Lelarge <guillaume@lelarge.info>
-	* Release 0.3.4.
+    * Release 0.3.4.
 
 2008-05-31  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : pg_config report was not available with 7.4 server release.
+    * Bugfix : pg_config report was not available with 7.4 server release.
 
 2008-05-30  Guillaume Lelarge <guillaume@lelarge.info>
-	* Fixes 8.0 compatibility.
-	* Adds 7.4 compatibility.
+    * Fixes 8.0 compatibility.
+    * Adds 7.4 compatibility.
 
 2008-05-29  Guillaume Lelarge <guillaume@lelarge.info>
-	* Fixes one more PHP notice message.
-	* Bugfix : Blocks read et Blocks hit informations were under Tuple
-        returned and Tuple fetched columns.
-	* Bugfix : Objects from schemas out of search_path weren't displayed.
-	* Bugfix : Check the availability of pg_connect() function.
+    * Fixes one more PHP notice message.
+    * Bugfix : Blocks read et Blocks hit informations were under Tuple
+    returned and Tuple fetched columns.
+    * Bugfix : Objects from schemas out of search_path weren't displayed.
+    * Bugfix : Check the availability of pg_connect() function.
 
 2008-05-27  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : default report for statistics tab should be the cache
-        hit ratio (old one, bgwriter, is not available in releases prior
-        to 8.3).
-	* Bugfix : on "Installed Products" report, pgsnap didn't understand
-        "unset" value, and logging_collector was used instead of
-        stats_start_collector for releases < 8.3.
-	* Bugfix : pg_config and pg_controldata reports were not available
-        when one used the Unix domain socket to connect.
-	* Release 0.3.3.
-	* Fixes PHP notice messages.
-	* Add GEQO in "Installed Products" report.
-	* Add links in "Installed Products" report.
-	* Add an "Exclusive Locks" report (without transactions locks).
-	* Bugfix : Fix DB name in Locks and "Exclusive Locks" reports.
+    * Bugfix : default report for statistics tab should be the cache
+    hit ratio (old one, bgwriter, is not available in releases prior
+    to 8.3).
+    * Bugfix : on "Installed Products" report, pgsnap didn't understand
+    "unset" value, and logging_collector was used instead of
+    stats_start_collector for releases < 8.3.
+    * Bugfix : pg_config and pg_controldata reports were not available
+    when one used the Unix domain socket to connect.
+    * Release 0.3.3.
+    * Fixes PHP notice messages.
+    * Add GEQO in "Installed Products" report.
+    * Add links in "Installed Products" report.
+    * Add an "Exclusive Locks" report (without transactions locks).
+    * Bugfix : Fix DB name in Locks and "Exclusive Locks" reports.
 
 2008-05-24  Guillaume Lelarge <guillaume@lelarge.info>
-	* onclick calls aren't useful with jquery (per a comment from
-        Pierre-Emmanuel Andre).
+    * onclick calls aren't useful with jquery (per a comment from
+    Pierre-Emmanuel Andre).
 
 2008-05-12  Guillaume Lelarge <guillaume@lelarge.info>
-	* Bugfix : fix -o option (per a patch from Pierre Chifflier).
-	* Bugfix : re-activate the "last log file" report, per a report from
-        Dimitri Fontaine.
-	* Bugfix : fix system/user checkboxes, per a report from Pierre
-        Chifflier.
-	* Release 0.3.2.
-	* pgsnap can now be used from any location on your system, per a
-        suggestion from Pierre Chifflier.
+    * Bugfix : fix -o option (per a patch from Pierre Chifflier).
+    * Bugfix : re-activate the "last log file" report, per a report from
+    Dimitri Fontaine.
+    * Bugfix : fix system/user checkboxes, per a report from Pierre
+    Chifflier.
+    * Release 0.3.2.
+    * pgsnap can now be used from any location on your system, per a
+    suggestion from Pierre Chifflier.
 
 2008-05-11  Guillaume Lelarge <guillaume@lelarge.info>
-	* Complete UI Review.
-	* Release 0.3.
-	* Bugfix : fix the output dir naming.
-	* Release 0.3.1.
+    * Complete UI Review.
+    * Release 0.3.
+    * Bugfix : fix the output dir naming.
+    * Release 0.3.1.
 
 2008-05-05  Guillaume Lelarge <guillaume@lelarge.info>
-	* Better handling of connection error.
-	* Review of the "Global Objects", "Activities" and "Statistics"
-        reports.
-	* Add pg_freespacemap support.
+    * Better handling of connection error.
+    * Review of the "Global Objects", "Activities" and "Statistics"
+    reports.
+    * Add pg_freespacemap support.
 
 2008-04-25  Guillaume Lelarge <guillaume@lelarge.info>
-	* Enable local connections via Unix socket, per a report from Pierre
-          Chifflier (aka pollux).
-	* Add man page, from pollux.
-	* Add -o command line option (output directory), per a patch from
-          Pierre Chifflier.
+    * Enable local connections via Unix socket, per a report from Pierre
+      Chifflier (aka pollux).
+    * Add man page, from pollux.
+    * Add -o command line option (output directory), per a patch from
+      Pierre Chifflier.
 
 2008-04-24  Guillaume Lelarge <guillaume@lelarge.info>
-	* Review of the "General" reports.
+    * Review of the "General" reports.
 
 2008-04-23  Guillaume Lelarge <guillaume@lelarge.info>
-	* Frames out.
+    * Frames out.
 
 2008-04-22  Guillaume Lelarge <guillaume@lelarge.info>
-	* Add "functions" report.
+    * Add "functions" report.
 
 2008-04-20  Guillaume Lelarge <guillaume@lelarge.info>
-	* New stylesheet, from Damien Clochard
-	* Add database primary options (autovac, stat collector, log collector,
-          pitr) on ver.php.
-	* Bugfix : for 'relation "index name" is not a btree index' message
-	* Show/hide user/system objects
-	* Release 0.2.
+    * New stylesheet, from Damien Clochard
+    * Add database primary options (autovac, stat collector, log collector,
+      pitr) on ver.php.
+    * Bugfix : for 'relation "index name" is not a btree index' message
+    * Show/hide user/system objects
+    * Release 0.2.
 
 2008-04-18  Guillaume Lelarge <guillaume@lelarge.info>
-	* Get cache hit ratio
+    * Get cache hit ratio
 
 2008-04-09  Guillaume Lelarge <guillaume@lelarge.info>
-	* Get last log file
-	* Bugfix : command usage was wrong (report from Olivier "dup" Delhomme)
-	* Bugfix : reports for pgPool and other tools are not always available
-	(report from Olivier "dup" Delhomme)
+    * Get last log file
+    * Bugfix : command usage was wrong (report from Olivier "dup" Delhomme)
+    * Bugfix : reports for pgPool and other tools are not always available
+    (report from Olivier "dup" Delhomme)
 
 2008-04-08  Guillaume Lelarge <guillaume@lelarge.info>
 
-	* Bugfix : last_vacuum/last_analyze columns are first available on 8.2
-	(report from Olivier "dup" Delhomme)
-	* Support for -W commandline option (per Olivier "dup" Delhomme)
-	* Support for .pgpass password file (suggested by Claude Castello)
-	* Support for pgstattuple contrib module
-	* Show/hide SQL statements for each report
-	* Bugfix : sequence relkind is 'S', not 's'
-	* Add some contrib modules to "Installed products" report
+    * Bugfix : last_vacuum/last_analyze columns are first available on 8.2
+    (report from Olivier "dup" Delhomme)
+    * Support for -W commandline option (per Olivier "dup" Delhomme)
+    * Support for .pgpass password file (suggested by Claude Castello)
+    * Support for pgstattuple contrib module
+    * Show/hide SQL statements for each report
+    * Bugfix : sequence relkind is 'S', not 's'
+    * Add some contrib modules to "Installed products" report
 
 2008-04-07  Guillaume Lelarge <guillaume@lelarge.info>
 
-	* First CVS import
-	* Check pg_buffercache availability
+    * First CVS import
+    * Check pg_buffercache availability

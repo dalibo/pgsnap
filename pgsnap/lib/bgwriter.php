@@ -29,8 +29,18 @@ $query = "SELECT
   buffers_checkpoint,
   buffers_clean,
   maxwritten_clean,
-  buffers_backend,
-  buffers_alloc
+  buffers_backend,";
+if ($g_version >= 91) {
+  $query .= "
+  buffers_backend_fsync,";
+}
+$query .= "
+  buffers_alloc";
+if ($g_version >= 91) {
+  $query .= ",
+  date_trunc('second', stats_reset) as stats_reset";
+}
+$query .= "
 FROM pg_stat_bgwriter";
 
 $rows = pg_query($connection, $query);
@@ -46,10 +56,25 @@ $buffer .= '<div class="tblBasic">
   <th class="colFirst">Checkpoints Timed Out</th>
   <th class="colMid">Checkpoints Requested</th>
   <th class="colMid">Buffers Freed by Checkpoint</th>
-  <th class="colMid">Buffers Cleaned by Checkpoint</th>
+  <th class="colMid">Buffers Cleaned by bgwriter</th>
   <th class="colMid">Maxwritten Before complete clean</th>
-  <th class="colMid">Buffers freed by backends</th>
-  <th class="colLast">Buffers allocated</th>
+  <th class="colMid">Buffers freed by backends</th>';
+if ($g_version >= 91) {
+  $buffer .= '
+  <th class="colMid">Fsync done by backends</th>
+';
+}
+if ($g_version >= 91) {
+  $buffer .= '
+  <th class="colMid">Buffers allocated</th>
+  <th class="colLast">Stats Reset</th>
+';
+} else {
+$buffer .= '
+  <th class="colLast">Buffers allocated</th>';
+}
+$buffer .= '
+
 </tr>
 ';
 
@@ -60,8 +85,18 @@ $buffer .= tr()."
   <td>".$row['buffers_checkpoint']."</td>
   <td>".$row['buffers_clean']."</td>
   <td>".$row['maxwritten_clean']."</td>
-  <td>".$row['buffers_backend']."</td>
-  <td>".$row['buffers_alloc']."</td>
+  <td>".$row['buffers_backend']."</td>";
+if ($g_version >= 91) {
+  $buffer .= "
+  <td>".$row['buffers_backend_fsync']."</td>";
+}
+$buffer .= "
+  <td>".$row['buffers_alloc']."</td>";
+if ($g_version >= 91) {
+  $buffer .= "
+  <td>".$row['stats_reset']."</td>";
+}
+$buffer .= "
 </tr>";
 }
 

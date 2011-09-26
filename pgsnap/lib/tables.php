@@ -58,14 +58,14 @@ if ($g_version < 84) {
   relfkeys,
   relrefs,";
 }
-else {
+elseif ($g_version >= 91) {
   $query .= "
-  relistemp,";
+  CASE WHEN relpersistence='t' THEN 'Temporary' ELSE 'Unknown' END AS relpersistence,";
 }
 $query .= "
   relhasoids,
   relhaspkey,";
-if ($g_version >= 90) {
+if ($g_version == 90) {
   $query .= "
   relhasexclusion,";
 }
@@ -142,6 +142,9 @@ $buffer .= '
   <th class="colMid">Unique Keys</th>
   <th class="colMid">Foreign Keys</th>
   <th class="colMid">Refs</th>';
+} elseif ($g_version >= 91) {
+$buffer .= '
+  <th class="colMid">Persistence</th>';
 } else {
 $buffer .= '
   <th class="colMid">Is Temp</th>';
@@ -149,7 +152,7 @@ $buffer .= '
 $buffer .= '
   <th class="colMid">Has OID?</th>
   <th class="colMid">Has Primary Key?</th>';
-if ($g_version >= 90) {
+if ($g_version == 90) {
   $buffer .= '
   <th class="colMid">Has Exclusion Constraint</th>';
 }
@@ -210,6 +213,10 @@ if ($g_version < 84) {
   <td>".$row['relfkeys']."</td>
   <td>".$row['relrefs']."</td>";
 }
+else if ($g_version >= 91) {
+  $buffer .= "
+  <td>".$row['relpersistence']."</td>";
+}
 else {
   $buffer .= "
   <td>".$image[$row['relistemp']]."</td>";
@@ -217,7 +224,7 @@ else {
 $buffer .= "
   <td>".$image[$row['relhasoids']]."</td>
   <td>".$image[$row['relhaspkey']]."</td>";
-if ($g_version >= 90) {
+if ($g_version == 90) {
   $buffer .= "
   <td>".$image[$row['relhasexclusion']]."</td>";
 }

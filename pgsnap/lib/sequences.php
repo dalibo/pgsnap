@@ -52,8 +52,10 @@ if ($g_version < 84) {
   relukeys,
   relfkeys,
   relrefs,";
-}
-else {
+} elseif ($g_version >= 91) {
+  $query .= "
+  CASE WHEN relpersistence='t' THEN 'Temporary' ELSE 'Unknown' END AS relpersistence,";
+} else {
   $query .= "
   relistemp,";
 }
@@ -127,6 +129,9 @@ $buffer .= '
   <th class="colMid">Unique Keys</th>
   <th class="colMid">Foreign Keys</th>
   <th class="colMid">Refs</th>';
+} elseif ($g_version >= 91) {
+$buffer .= '
+  <th class="colMid">Persistence</th>';
 } else {
 $buffer .= '
   <th class="colMid">Is Temp</th>';
@@ -180,8 +185,10 @@ if ($g_version < 84) {
   <td>".$row['relukeys']."</td>
   <td>".$row['relfkeys']."</td>
   <td>".$row['relrefs']."</td>";
-}
-else {
+} else if ($g_version >= 91) {
+  $buffer .= "
+  <td>".$row['relpersistence']."</td>";
+} else {
   $buffer .= "
   <td>".$image[$row['relistemp']]."</td>";
 }

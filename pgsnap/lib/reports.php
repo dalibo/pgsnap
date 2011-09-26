@@ -243,11 +243,17 @@ if ($g_version > '80') {
 }
 include 'lib/languages.php';
 include 'lib/functions.php';
+if ($g_version >= '91') {
+  include 'lib/extensions.php';
+}
 
 echo "Getting Current Activities Informations...\n";
 include 'lib/sessionsinfo.php';
 include 'lib/activities.php';
 include 'lib/nonidleprocesses.php';
+if ($g_version >= '91') {
+  include 'lib/replication.php';
+}
 if ($g_version >= '82') {
   include 'lib/cursors.php';
   include 'lib/preparedstatements.php';
@@ -273,6 +279,9 @@ if ((array_key_exists('stats_block_level', $g_settings)
   include 'lib/cachehitratio.php';
 }
 include 'lib/stat_databases.php';
+if ($g_version >= '91') {
+  include 'lib/stat_databases_conflicts.php';
+}
 include 'lib/stat_tables.php';
 include 'lib/statio_tables.php';
 if ($g_version >= '82') {

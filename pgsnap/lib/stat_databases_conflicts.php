@@ -19,31 +19,17 @@
 $buffer = $navigate_stats.'
 <div id="pgContentWrap">
 
-<h1>Statistical Databases</h1>
+<h1>Replication Conflicts on Databases</h1>
 ';
 
 $query = "SELECT
   datname,
-  numbackends,
-  xact_commit,
-  xact_rollback,
-  blks_read,
-  blks_hit";
-if ($g_version >= 83) {
-$query .= ",
-  tup_returned,
-  tup_fetched,
-  tup_inserted,
-  tup_updated,
-  tup_deleted";
-}
-if ($g_version >= 91) {
-$query .= ",
-  conflicts,
-  date_trunc('second', stats_reset) as stats_reset";
-}
-$query .= "
-FROM pg_stat_database
+  confl_tablespace,
+  confl_lock,
+  confl_snapshot,
+  confl_bufferpin,
+  confl_deadlock
+FROM pg_stat_database_conflicts
 ORDER BY datname";
 
 $rows = pg_query($connection, $query);
@@ -57,50 +43,22 @@ $buffer .= '<div class="tblBasic">
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
   <th class="colFirst">Database name</th>
-  <th class="colMid">Number of backends</th>
-  <th class="colMid">XACT commit</th>
-  <th class="colMid">XACT rollback</th>
-  <th class="colMid">Blocks read</th>
-  <th class="colMid">Blocks hit</th>';
-if ($g_version >= 83) {
-  $buffer .= '
-  <th class="colMid">Tuples returned</th>
-  <th class="colMid">Tuples fetched</th>
-  <th class="colMid">Tuples inserted</th>
-  <th class="colMid">Tuples updated</th>
-  <th class="colMid">Tuples deleted</th>';
-}
-if ($g_version >= 91) {
-  $buffer .= '
-  <th class="colMid">Conflicts</th>
-  <th class="colMid">Stats reset</th>';
-}
-$buffer .= '
+  <th class="colMid">Tablespace conflicts</th>
+  <th class="colMid">Lock conflicts</th>
+  <th class="colMid">Snapshot conflicts</th>
+  <th class="colMid">Bufferpin conflicts</th>
+  <th class="colMid">Deadlock conflicts</th>
 </tr>
 ';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td title=\"".$comments['databases'][$row['datname']]."\">".$row['datname']."</td>
-  <td>".$row['numbackends']."</td>
-  <td>".$row['xact_commit']."</td>
-  <td>".$row['xact_rollback']."</td>
-  <td>".$row['blks_read']."</td>
-  <td>".$row['blks_hit']."</td>";
-if ($g_version >= 83) {
-  $buffer .= "
-  <td>".$row['tup_returned']."</td>
-  <td>".$row['tup_fetched']."</td>
-  <td>".$row['tup_inserted']."</td>
-  <td>".$row['tup_updated']."</td>
-  <td>".$row['tup_deleted']."</td>";
-}
-if ($g_version >= 91) {
-  $buffer .= "
-  <td>".$row['conflicts']."</td>
-  <td>".$row['stats_reset']."</td>";
-}
-$buffer .= "
+  <td>".$row['confl_tablespace']."</td>
+  <td>".$row['confl_lock']."</td>
+  <td>".$row['confl_snapshot']."</td>
+  <td>".$row['confl_bufferpin']."</td>
+  <td>".$row['confl_deadlock']."</td>
 </tr>";
 }
 
@@ -113,7 +71,7 @@ $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <p>'.$query.'</p>
 </div>';
 
-$filename = $outputdir.'/stat_databases.html';
+$filename = $outputdir.'/stat_databases_conflicts.html';
 include 'lib/fileoperations.php';
 
 ?>

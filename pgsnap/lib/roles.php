@@ -29,7 +29,12 @@ $query = "SELECT rolname,
   rolcreatedb,
   rolcatupdate,
   rolcanlogin,
-  rolconnlimit,
+  rolconnlimit,";
+if ($g_version > 90) {
+  $query .= "
+  rolreplication,";
+}
+$query .= "
   rolvaliduntil,
   rolconfig
 FROM pg_roles
@@ -51,7 +56,12 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Create role?</th>
   <th class="colMid">Create DB?</th>
   <th class="colMid">Catalog update?</th>
-  <th class="colMid">Can login?</th>
+  <th class="colMid">Can login?</th>';
+if ($g_version > 90) {
+  $buffer .= '
+  <th class="colMid">Replication?</th>';
+}
+$buffer .= '
   <th class="colMid">Connection limits</th>
   <th class="colMid">Valid until</th>
   <th class="colLast">Configuration</th>
@@ -65,7 +75,12 @@ $buffer .= tr().'
   <td>'.$image[$row['rolcreaterole']].'</td>
   <td>'.$image[$row['rolcreatedb']].'</td>
   <td>'.$image[$row['rolcatupdate']].'</td>
-  <td>'.$image[$row['rolcanlogin']].'</td>
+  <td>'.$image[$row['rolcanlogin']].'</td>';
+if ($g_version > 90) {
+$buffer .= '
+  <td>'.$image[$row['rolreplication']].'</td>';
+}
+$buffer .= '
   <td>'.$row['rolconnlimit'].'</td>
   <td>'.$row['rolvaliduntil'].'</td>
   <td>'.$row['rolconfig'].'</td>

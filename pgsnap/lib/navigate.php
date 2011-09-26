@@ -159,7 +159,14 @@ if ($g_version > '80') {
 
 $navigate_dbobjects.= '
       <li><a href="functions.html">Functions</a></li>
-      <li class="last-child"><a href="languages.html">Languages</a></li>
+      <li class="last-child"><a href="languages.html">Languages</a></li>';
+
+if ($g_version >= '91') {
+  $navigate_dbobjects.= '
+      <li><a href="extensions.html">Extensions</a></li>';
+}
+
+$navigate_dbobjects.= '
     </ul>
   </div>
 </div>
@@ -168,8 +175,12 @@ $navigate_dbobjects.= '
 $navigate_activities = $navigate_header.'
     <ul>
       <li><a href="sessionsinfo.html">Sessions</a></li>
-      <li><a href="activities.html">Process</a></li>
+      <li><a href="activities.html">Processes</a></li>
       <li><a href="nonidleprocesses.html">Non Idle Processes</a></li>';
+if ($g_version >= '91') {
+  $navigate_activities .= '
+      <li><a href="replication.html">Replication processes</a></li>';
+}
 if ($g_version >= '82') {
   $navigate_activities .= '
       <li><a href="cursors.html">Cursors</a></li>
@@ -207,7 +218,12 @@ if ((array_key_exists('stats_block_level', $g_settings)
       <li><a href="cachehitratio.html">Cache hit ratio</a></li>';
 }
 $navigate_stats .= '
-      <li><a href="stat_databases.html">Databases</a></li>
+      <li><a href="stat_databases.html">Databases</a></li>';
+if ($g_version >= '91') {
+  $navigate_stats .= '
+      <li><a href="stat_databases_conflicts.html">Databases conflicts</a></li>';
+}
+$navigate_stats .= '
       <li><a href="stat_tables.html">Tables (Tuples)</a></li>
       <li><a href="statio_tables.html">Tables (IO)</a></li>';
 if ($g_version >= '82') {

@@ -29,6 +29,10 @@ $query = "SELECT
   usename,
   current_query,
   date_trunc('second', query_start) as query_start";
+if ($g_version > 90) {
+  $query .= ",
+  client_hostname";
+}
 if ($g_version > 80) {
   $query .= ",
   client_addr";
@@ -69,6 +73,10 @@ if ($g_version >= 90) {
   $buffer .= '
   <th class="colMid">Application name</th>';
 }
+if ($g_version > 90) {
+  $buffer .= '
+  <th class="colMid">Client hostname</th>';
+}
 if ($g_version > 80) {
   $buffer .= '
   <th class="colMid">Client</th>';
@@ -100,6 +108,10 @@ $buffer .= tr()."
 if ($g_version >= 90) {
   $buffer .= "
   <td>".$row['application_name']."</td>";
+}
+if ($g_version > 90) {
+  $buffer .= "
+  <td>".$row['client_hostname']."</td>";
 }
 if ($g_version > 80) {
   $buffer .= "

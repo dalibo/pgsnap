@@ -49,6 +49,13 @@ if ($g_version >= 82) {
   last_analyze,
   last_autoanalyze";
 }
+if ($g_version >= 91) {
+  $query .= ",
+  vacuum_count,
+  autovacuum_count,
+  analyze_count,
+  autoanalyze_count";
+}
 $query .= "
 FROM pg_stat_all_tables";
 if ($g_withoutsysobjects) {
@@ -92,6 +99,13 @@ $buffer .= '
   <th class="colMid">last_analyze</th>
   <th class="colLast">last_autoanalyze</th>';
 }
+if ($g_version >= 91) {
+$buffer .= '
+  <th class="colMid">vacuum_count</th>
+  <th class="colMid">autovacuum_count</th>
+  <th class="colMid">analyze_count</th>
+  <th class="colLast">autoanalyze_count</th>';
+}
 $buffer .= '
 </tr>
 ';
@@ -119,6 +133,13 @@ $buffer .= "
   <td>".$row['last_autovacuum']."</td>
   <td>".$row['last_analyze']."</td>
   <td>".$row['last_autoanalyze']."</td>";
+}
+if ($g_version >= 91) {
+$buffer .= "
+  <td>".$row['vacuum_count']."</td>
+  <td>".$row['autovacuum_count']."</td>
+  <td>".$row['analyze_count']."</td>
+  <td>".$row['autoanalyze_count']."</td>";
 }
 $buffer .= "
 </tr>";

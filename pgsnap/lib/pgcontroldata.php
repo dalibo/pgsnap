@@ -22,8 +22,11 @@ $buffer = $navigate_general.'
 <h1>pg_controldata</h1>
 ';
 
-if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')) {
+if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')
+  || strlen($PGHOST) == 0 || preg_match('/^\//', $PGHOST) == 1) {
+
   exec('LANG=C pg_controldata', $lines, $errorcode);
+
   if ($errorcode == 0) {
     $buffer .= '<div class="tblBasic">
 
