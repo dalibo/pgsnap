@@ -39,6 +39,7 @@ indexname
 JOIN pg_stat_user_tables AS tabstat ON idstat.relname = tabstat.relname
 WHERE idstat.idx_scan < 200
 AND indexdef !~* 'unique'
+AND pg_relation_size(idstat.indexrelid) > 1048576
 ORDER BY idstat.relname, indexrelname;";
 
 $rows = pg_query($connection, $query);
@@ -47,7 +48,8 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<div class="tblBasic">
+if (pg_num_rows($rows) > 0) {
+  $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
@@ -62,8 +64,8 @@ $buffer .= '<div class="tblBasic">
 </tr>
 ';
 
-while ($row = pg_fetch_array($rows)) {
-$buffer .= tr($row['table_name'])."
+  while ($row = pg_fetch_array($rows)) {
+    $buffer .= tr($row['table_name'])."
   <td title=\"".$comments['schemas'][$row['schema_name']]."\">".$row['schema_name']."</td>
   <td title=\"".$comments['relations'][$row['schema_name']][$row['table_name']]."\">".$row['table_name']."</td>
   <td title=\"".$comments['relations'][$row['schema_name']][$row['index_name']]."\">".$row['index_name']."</td>
@@ -73,10 +75,13 @@ $buffer .= tr($row['table_name'])."
   <td>".$row['num_writes']."</td>
   <td>".$row['definition']."</td>
 </tr>";
-}
-$buffer .= '</table>
+  }
+  $buffer .= '</table>
 </div>
 ';
+} else {
+  $buffer .= '<div class="warning">No index of more than 1 MB!</div>';
+}
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">

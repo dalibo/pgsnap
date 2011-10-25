@@ -36,7 +36,8 @@ FROM pg_class c
   JOIN pg_class i ON i.oid = x.indexrelid
   LEFT JOIN pg_namespace n ON n.oid = c.relnamespace
 WHERE c.relkind IN ('r', 't')
-  AND pg_relation_size(c.oid) < pg_relation_size(i.oid)";
+  AND pg_relation_size(c.oid) < pg_relation_size(i.oid)
+  AND pg_relation_size(c.oid) > 1048576";
 if ($g_withoutsysobjects) {
   $query .= "
   AND nspname <> 'pg_catalog'
@@ -53,7 +54,8 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= '<div class="tblBasic">
+if (pg_num_rows($rows) > 0) {
+  $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
@@ -65,18 +67,21 @@ $buffer .= '<div class="tblBasic">
 </tr>
 ';
 
-while ($row = pg_fetch_array($rows)) {
-$buffer .= tr($row['schemaname'])."
+  while ($row = pg_fetch_array($rows)) {
+    $buffer .= tr($row['schemaname'])."
   <td title=\"".$comments['schemas'][$row['schemaname']]."\">".$row['schemaname']."</td>
   <td title=\"".$comments['relations'][$row['schemaname']][$row['tablerelname']]."\">".$row['tablerelname']."</td>
   <td title=\"".$comments['relations'][$row['schemaname']][$row['indexrelname']]."\">".$row['indexrelname']."</td>
   <td>".$row['tablesize']."</td>
   <td>".$row['indexsize']."</td>
 </tr>";
-}
-$buffer .= '</table>
+  }
+  $buffer .= '</table>
 </div>
 ';
+} else {
+  $buffer .= '<div class="warning">No table of more than 1 MB!</div>';
+}
 
 $buffer .= '<button id="showthesource">Show SQL commands!</button>
 <div id="source">
