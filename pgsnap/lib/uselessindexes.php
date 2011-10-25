@@ -51,8 +51,8 @@ $buffer .= '<div class="tblBasic">
 
 <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
 <tr>
-  <th class="colFirst">Table name</th>
-  <th class="colMid">Schema name</th>
+  <th class="colFirst">Schema name</th>
+  <th class="colMid">Table name</th>
   <th class="colMid">Index name</th>
   <th class="colMid">Times Used</th>
   <th class="colMid">Table Size</th>
