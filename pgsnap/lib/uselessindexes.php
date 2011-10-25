@@ -59,7 +59,7 @@ if (pg_num_rows($rows) > 0) {
   <th class="colMid">Times Used</th>
   <th class="colMid">Table Size</th>
   <th class="colMid">Index Size</th>
-  <th class="colMid">Times Wrote</th>
+  <th class="colMid">Times Written</th>
   <th class="colLast">Definition</th>
 </tr>
 ';
