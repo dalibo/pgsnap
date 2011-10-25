@@ -1,6 +1,8 @@
 2011-10-25  Guillaume Lelarge <guillaume@lelarge.info>
     * Fix columns' title on the useless indexes report (per a report from
 	  Guillaume Smet)
+	* Drop the pgsnap link in the header (it's already available in the
+	  footer)
 
 2011-09-26  Guillaume Lelarge <guillaume@lelarge.info>
     * Complete support for 9.1.
