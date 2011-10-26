@@ -62,6 +62,10 @@ elseif ($g_version >= 91) {
   $query .= "
   CASE WHEN relpersistence='t' THEN 'Temporary' ELSE 'Unknown' END AS relpersistence,";
 }
+else {
+  $query .= "
+  relistemp,";
+}
 $query .= "
   relhasoids,
   relhaspkey,";

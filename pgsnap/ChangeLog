@@ -1,3 +1,6 @@
+2011-10-26  Guillaume Lelarge <guillaume@lelarge.info>
+    * Fix tables report on 8.4.
+
 2011-10-25  Guillaume Lelarge <guillaume@lelarge.info>
     * Fix columns' title on the useless indexes report (per a report from
       Guillaume Smet)
