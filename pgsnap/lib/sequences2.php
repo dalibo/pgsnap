@@ -65,7 +65,8 @@ if (pg_num_rows($rows) > 0)
   
   $buffer .= '<div class="tblBasic">
   
-  <table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+  <table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+  <thead>
   <tr>
     <th class="colFirst">Schema name</th>
     <th class="colMid">Sequence name</th>
@@ -83,6 +84,8 @@ if (pg_num_rows($rows) > 0)
     <th class="colMid">Is Cycled?</th>
     <th class="colLast">Is Called?</th>
   </tr>
+  </thead>
+  <tbody>
   ';
   
   while ($row = pg_fetch_array($rows)) {
@@ -104,7 +107,8 @@ if (pg_num_rows($rows) > 0)
     <td>".$image[$row['is_called']]."</td>
   </tr>";
   }
-  $buffer .= '</table>
+  $buffer .= '</tbody>
+  </table>
   </div>
   ';
 }

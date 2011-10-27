@@ -79,7 +79,8 @@ while (!$done) {
   if (pg_num_rows($rows) > 0) {
     $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Name</th>
   <th class="colMid">Actual setting</th>
@@ -88,6 +89,8 @@ while (!$done) {
   <th class="colMid">Source</th>
   <th class="colLast">Min/Max value</th>
 </tr>
+</thead>
+<tbody>
 ';
 
     while ($row = pg_fetch_array($rows)) {
@@ -115,7 +118,8 @@ while (!$done) {
       $buffer .= "</td>
 </tr>";
     }
-    $buffer .= '</table>
+    $buffer .= '</tbody>
+</table>
 </div>
 ';
   }

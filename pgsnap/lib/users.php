@@ -40,7 +40,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">User name</th>
   <th class="colMid">User ID</th>
@@ -49,7 +50,9 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Catalog update?</th>
   <th class="colMid">Valid until</th>
   <th class="colLast">Configuration</th>
-</tr>';
+</tr>
+</thead>
+<tbody>';
 
 $query = "SELECT usename,
   usesysid,
@@ -73,7 +76,8 @@ $buffer .= tr().'
   <td>'.$row['valuntil'].'</td>
 </tr>';
 }
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

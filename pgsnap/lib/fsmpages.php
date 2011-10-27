@@ -43,7 +43,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Tablespace</th>
   <th class="colMid">Database</th>
@@ -51,6 +52,8 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Block Number</th>
   <th class="colLast">Bytes</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -63,7 +66,8 @@ $buffer .= tr().'
 </tr>';
 }
 
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

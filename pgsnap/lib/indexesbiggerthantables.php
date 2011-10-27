@@ -57,7 +57,8 @@ if (!$rows) {
 if (pg_num_rows($rows) > 0) {
   $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Schema</th>
   <th class="colMid">Table</th>
@@ -65,6 +66,8 @@ if (pg_num_rows($rows) > 0) {
   <th class="colMid">Table Size</th>
   <th class="colLast">Index Size</th>
 </tr>
+</thead>
+<tbody>
 ';
 
   while ($row = pg_fetch_array($rows)) {
@@ -76,7 +79,8 @@ if (pg_num_rows($rows) > 0) {
   <td>".$row['indexsize']."</td>
 </tr>";
   }
-  $buffer .= '</table>
+  $buffer .= '</tbody>
+  </table>
 </div>
 ';
 } else {

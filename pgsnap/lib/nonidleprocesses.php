@@ -49,7 +49,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Age</th>
   <th class="colMid">PID</th>';
@@ -66,6 +67,8 @@ if ($g_version > 80) {
 $buffer .= '
   <th class="colLast">Query</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -87,7 +90,8 @@ $buffer .= "
 </tr>";
 }
 
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

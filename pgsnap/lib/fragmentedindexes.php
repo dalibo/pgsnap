@@ -48,7 +48,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Index Name</th>
   <th class="colMid">Version</th>
@@ -62,6 +63,8 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Average Leaf Density</th>
   <th class="colLast">Leaf Fragmentation</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -104,7 +107,8 @@ WHERE index_size>0";
   }
 }
 
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

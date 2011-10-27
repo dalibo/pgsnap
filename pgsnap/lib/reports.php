@@ -86,6 +86,8 @@ echo "Adding some HTML files...\n";
 // javascript
 copy($PGSNAP_ROOT_PATH.'external/jquery-1.2.3.js',
      $outputdir.'/jquery-1.2.3.js');
+copy($PGSNAP_ROOT_PATH.'external/jquery.tablesorter.js',
+     $outputdir.'/jquery.tablesorter.js');
 // css
 copy($PGSNAP_ROOT_PATH.'template/fixed.css', $outputdir.'/fixed.css');
 copy($PGSNAP_ROOT_PATH.'template/global.css', $outputdir.'/global.css');

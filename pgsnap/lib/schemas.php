@@ -43,12 +43,15 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst" width="20%">Schema Name</th>
   <th class="colMid" width="20%">Schema Owner</th>
   <th class="colLast" width="20%"><acronym X=\"Access Control List\">ACL</acronym></th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -59,7 +62,8 @@ $buffer .= tr()."
 </tr>";
 }
 
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

@@ -83,7 +83,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Schema</th>
   <th class="colMid">Table</th>
@@ -103,6 +104,8 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Wasted Index Bytes</th>
   <th class="colLast">Wasted Index Size</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -127,7 +130,8 @@ $buffer .= tr()."
 </tr>";
 }
 
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

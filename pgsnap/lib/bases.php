@@ -83,7 +83,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst" width="200">DB Owner</th>
   <th class="colMid" width="200">DB Name</th>
@@ -165,7 +166,8 @@ $buffer .= '
   <td><acronym X=\"Access Control List\">'.$row['datacl'].'</acronym></td>
 </tr>';
 }
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

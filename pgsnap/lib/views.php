@@ -96,7 +96,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Table name</th>
   <th class="colMid">Schema name</th>
@@ -149,6 +150,8 @@ if ($g_version > 80) {
 }
 $buffer .= '
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -204,7 +207,8 @@ if ($g_version > 80) {
 </tr>";
 }
 }
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

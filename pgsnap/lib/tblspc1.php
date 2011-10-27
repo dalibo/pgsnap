@@ -42,13 +42,16 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst" width="20%">Tablespace Owner</th>
   <th class="colMid" width="20%">Tablespace Name</th>
   <th class="colMid" width="20%">Object\'s type</th>
   <th class="colLast" width="20%">Count</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -59,7 +62,8 @@ while ($row = pg_fetch_array($rows)) {
   <td>".$row['total']."</td>
 </tr>";
 }
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

@@ -42,11 +42,14 @@ if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')
   if ($errorcode == 0) {
     $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst" width="30%">Variable</th>
   <th class="colLast" width="70%">Value</th>
 </tr>
+</thead>
+<tbody>
 ';
 
     for ($index = 0; $index < count($lignes); $index++) {
@@ -56,7 +59,8 @@ if (!strcmp($PGHOST, '127.0.0.1') || !strcmp($PGHOST, 'localhost')
   <td>'.$ligne[1].'</td>
 </tr>';
     }
-    $buffer .= '</table>
+    $buffer .= '</tbody>
+</table>
 </div>
 ';
   } else {

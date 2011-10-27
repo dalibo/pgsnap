@@ -53,7 +53,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<<thead>
 <tr>
   <th class="colFirst">Table Owner</th>
   <th class="colMid">Table name</th>
@@ -63,6 +64,8 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Referenced Table Name</th>
   <th class="colLast">Referenced Column Name</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -90,7 +93,8 @@ while ($row = pg_fetch_array($rows)) {
 // TODO def[1] et def[2] pas forcément défini
 }
 
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

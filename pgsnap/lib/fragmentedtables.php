@@ -48,7 +48,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Table Name</th>
   <th class="colMid">Table Length</th>
@@ -61,6 +62,8 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Free Space</th>
   <th class="colLast">Free Percent</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -101,7 +104,8 @@ WHERE table_len>0";
   }
 }
 
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

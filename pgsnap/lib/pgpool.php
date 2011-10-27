@@ -27,7 +27,7 @@ if (!$rows) {
   exit;
 }
 
-$buffer .= "<table>
+$buffer .= '<table id="myTable">
 <thead>
 <tr>
   <td>Item</td>
@@ -35,7 +35,7 @@ $buffer .= "<table>
   <td>Description</td>
 </tr>
 </thead>
-<tbody>\n";
+<tbody>\n';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."

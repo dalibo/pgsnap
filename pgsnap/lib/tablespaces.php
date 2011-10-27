@@ -54,7 +54,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst" width="20%">Tablespace Owner</th>
   <th class="colMid" width="20%">Tablespace Name</th>
@@ -78,6 +79,8 @@ if ($g_version >= 90) {
 $buffer .= '
   <th class="colLast" width="20%">ACL</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -116,7 +119,8 @@ while ($row = pg_fetch_array($rows)) {
     }
   }
 }
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

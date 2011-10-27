@@ -68,7 +68,8 @@ if (pg_num_rows($rows) > $g_settings['max_fsm_relations']*0.9
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Tablespace</th>
   <th class="colMid">Database</th>
@@ -78,6 +79,8 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Stored Pages</th>
   <th class="colLast">Next Page</th>
 </tr>
+</thead>
+<tbody>
 ';
 
 while ($row = pg_fetch_array($rows)) {
@@ -92,7 +95,8 @@ $buffer .= tr().'
 </tr>';
 }
 
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 

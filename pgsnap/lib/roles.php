@@ -48,7 +48,8 @@ if (!$rows) {
 
 $buffer .= '<div class="tblBasic">
 
-<table border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
+<thead>
 <tr>
   <th class="colFirst">Role name</th>
   <th class="colMid">Super user?</th>
@@ -65,7 +66,10 @@ $buffer .= '
   <th class="colMid">Connection limits</th>
   <th class="colMid">Valid until</th>
   <th class="colLast">Configuration</th>
-</tr>';
+</tr>
+</thead>
+<tbody>
+';
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr().'
@@ -86,7 +90,8 @@ $buffer .= '
   <td>'.$row['rolconfig'].'</td>
 </tr>';
 }
-$buffer .= '</table>
+$buffer .= '</tbody>
+</table>
 </div>
 ';
 
