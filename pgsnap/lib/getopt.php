@@ -103,18 +103,18 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
     case "-h":
     case "--help":
 ?>
-This is <?= $_SERVER['argv'][0]; ?> <?= $VERSION ?>.
+This is <?php echo $_SERVER['argv'][0]; ?> <?php echo $VERSION ?>.
 
 Usage:
-  <?= $_SERVER['argv'][0]; ?> [OPTIONS]... [DBNAME]
+  <?php echo $_SERVER['argv'][0]; ?> [OPTIONS]... [DBNAME]
 
 General options:
   -a, --all       build a report for all databases on the PostgreSQL server
   -d DBNAME       specify database name to connect to
-                  (default: "<?= $PGDATABASE ?>")
+                  (default: "<?php echo $PGDATABASE ?>")
   -o outputdir    specify output directory
                   (with -a, defaults to the current working directory)
-                  (without -a, defaults to: "<?= $outputdir ?>")
+                  (without -a, defaults to: "<?php echo $outputdir ?>")
   --with-old-libpq
                   disable the use of the parameter application_name
   -S, --without-sysobjects
@@ -126,9 +126,9 @@ General options:
 
 Connection options:
   -h HOSTNAME     database server host or socket directory
-                  (default: "<?= $PGHOST ?>")
-  -p PORT         database server port (default: "<?= $PGPORT ?>")
-  -U NAME         database user name (default: "<?= $PGUSER ?>")
+                  (default: "<?php echo $PGHOST ?>")
+  -p PORT         database server port (default: "<?php echo $PGPORT ?>")
+  -U NAME         database user name (default: "<?php echo $PGUSER ?>")
   -W              prompt for password
   -w              don't prompt for password
 
