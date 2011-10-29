@@ -2,6 +2,7 @@
     * Allow the use of -o and -a. The output directory will contain one
 	  directory per database.
 	* Fix the --help option.
+    * Add a "WAL files" report.
 
 2011-10-26  Guillaume Lelarge <guillaume@lelarge.info>
     * Fix tables report on 8.4.

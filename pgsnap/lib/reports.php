@@ -201,6 +201,9 @@ if ($g_version > '74') {
   include 'lib/tblspc1.php';
 }
 include 'lib/largeobjects.php';
+if ($g_superuser && $g_version > '80') {
+  include 'lib/xlog.php';
+}
 
 echo "Getting Database Informations...\n";
 include 'lib/schemas.php';

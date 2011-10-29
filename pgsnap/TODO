@@ -10,8 +10,6 @@ TODO
 
  * specific PostgreSQL
   * add a --server-only option, to get a view of all DB, no specific DB objects.
-  * add a XLOG report:
-    SELECT count(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ E'^[0-9A-F]{24}$';
 
  * specific orasnap
   * FK without indexes : owner, constraint name, column name
