@@ -17,7 +17,10 @@
  */
 
 
-if (strlen($outputdir) == 0 || $g_alldatabases) {
+if (strlen($outputdir) > 0 && $g_alldatabases) {
+  $outputdir = $outputdir.'/'.$PGDATABASE.'_snap_'.date('Ymd');
+}
+else if (strlen($outputdir) == 0 || $g_alldatabases) {
   $outputdir = $PGDATABASE.'_snap_'.date('Ymd');
 }
 
@@ -46,7 +49,7 @@ if (file_exists($outputdir)) {
     }
   }
 } else {
-  mkdir($outputdir);
+  mkdir($outputdir, 0700, true);
 }
 
 echo "Connecting to $PGDATABASE database...\n";

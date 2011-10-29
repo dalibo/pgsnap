@@ -83,9 +83,6 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
       break;
     case "-o":
     case "--output-dir":
-      if ($g_alldatabases) {
-        die("-a and -o parameters are mutually exclusive.\n");
-      }
       $outputdir = $_SERVER['argv'][++$i];
       break;
     case "-S":
@@ -94,9 +91,6 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
       break;
     case "-a":
     case "--all":
-      if (strlen($outputdir) > 0) {
-        die("-a and -o parameters are mutually exclusive.\n");
-      }
       $g_alldatabases = true;
       break;
     case "--delete-if-exists":
@@ -119,7 +113,8 @@ General options:
   -d DBNAME       specify database name to connect to
                   (default: "<?= $PGDATABASE ?>")
   -o outputdir    specify output directory
-                  (default: "<?= $outputdir ?>")
+                  (with -a, defaults to the current working directory)
+                  (without -a, defaults to: "<?= $outputdir ?>")
   --with-old-libpq
                   disable the use of the parameter application_name
   -S, --without-sysobjects

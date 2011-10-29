@@ -52,7 +52,9 @@ if ($g_alldatabases) {
 }
 
 // Building a report for each database in $databases
+$orig_outputdir = $outputdir;
 foreach ($databases as $PGDATABASE) {
+  $outputdir = $orig_outputdir;
   include 'lib/reports.php';
 }
 
