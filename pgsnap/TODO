@@ -10,6 +10,8 @@ TODO
 
  * specific PostgreSQL
   * add a --server-only option, to get a view of all DB, no specific DB objects.
+  * disabled triggers
+  * disabled rules
 
  * specific orasnap
   * FK without indexes : owner, constraint name, column name
