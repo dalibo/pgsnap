@@ -1,22 +1,22 @@
 TODO
 ====
 
- * 0.7?
+ * 0.8?
 
+  * add a --server-only option, to get a view of all DB, no specific DB objects.
+  * disabled triggers
+  * disabled rules
+  * FK without indexes : owner, constraint name, column name
+  * Tablespace : list default tablespace for each user
+  * Disabled constraints : owner, table, constraint, type, status
+
+ * 1.0?
+
+  * Recode in C
   * Split in two parts:
    * pgsnap will create a sort-of-dump of the catalogs and statistics views
      (this dump will be restored in a database on another server)
    * pgsnapweb is a PHP interface that will show the results
-
- * specific PostgreSQL
-  * add a --server-only option, to get a view of all DB, no specific DB objects.
-  * disabled triggers
-  * disabled rules
-
- * specific orasnap
-  * FK without indexes : owner, constraint name, column name
-  * Tablespace : list default tablespace for each user
-  * Disabled constraints : owner, table, constraint, type, status
 
  * HTML interface
   * jQuery support : sort in tables, filtering

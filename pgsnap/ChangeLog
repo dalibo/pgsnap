@@ -3,6 +3,7 @@
 	  directory per database.
 	* Fix the --help option.
     * Add a "WAL files" report.
+    * Release 0.7.0.
 
 2011-10-26  Guillaume Lelarge <guillaume@lelarge.info>
     * Fix tables report on 8.4.
