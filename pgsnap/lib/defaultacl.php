@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$buffer = $navigate_globalobjects.'
+$buffer = $navigate_dbobjects.'
 <div id="pgContentWrap">
 
 <h1>Default ACLs</h1>
