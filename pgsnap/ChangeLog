@@ -3,6 +3,8 @@
       (seconds and milliseconds aren't useful).
     * Default ACL report shows the global objects menu instead of the database
       objects menu.
+    * In the replication report, there was one more column in the body of the
+      table than in its header.
 
 2011-10-29  Guillaume Lelarge <guillaume@lelarge.info>
     * Allow the use of -o and -a. The output directory will contain one
