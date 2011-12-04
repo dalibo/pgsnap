@@ -32,9 +32,9 @@ $buffer = $navigate_general.'
 
 $query = "SELECT 'PostgreSQL' AS product, version() AS version";
 if ($g_version >= 81) {
-    $query .= ", pg_postmaster_start_time() AS starttime, ";
+    $query .= ", to_char(pg_postmaster_start_time(), 'YYYY-MM-DD HH24:MI') AS starttime, ";
     if ($g_version >= 84) {
-	    $query .= "pg_conf_load_time()";
+	    $query .= "to_char(pg_conf_load_time(), 'YYYY-MM-DD HH24:MI')";
     } else {
 	    $query .= "'unavailable'";
     }

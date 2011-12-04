@@ -1,3 +1,7 @@
+2011-12-04  Guillaume Lelarge <guillaume@lelarge.info>
+    * Format start and reload datetime to YYYY-MM-DD HH:MM
+	  (seconds and milliseconds aren't useful)
+
 2011-10-29  Guillaume Lelarge <guillaume@lelarge.info>
     * Allow the use of -o and -a. The output directory will contain one
 	  directory per database.
