@@ -23,8 +23,13 @@ $buffer = $navigate_activities.'
 ';
 
 
+if ($g_version > 91) {
+    $pid = 'pid';
+} else {
+    $pid = 'procpid';
+}
 $query = "SELECT
-  procpid,
+  $pid,
   usename,
   application_name,
   client_addr,
@@ -39,7 +44,7 @@ $query = "SELECT
   sync_priority,
   sync_state
 FROM pg_stat_replication
-ORDER BY application_name, procpid";
+ORDER BY application_name, $pid";
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -73,7 +78,7 @@ $buffer .= '<div class="tblBasic">
 
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
-  <td>".$row['procpid']."</td>
+  <td>".$row[$pid]."</td>
   <td title=\"".$comments['roles'][$row['usename']]."\">".$row['usename']."</td>
   <td>".$row['application_name']."</td>
   <td>".$row['client_addr']."</td>

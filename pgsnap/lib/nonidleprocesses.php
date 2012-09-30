@@ -23,9 +23,16 @@ $buffer = $navigate_activities.'
 ';
 
 
+if ($g_version > 91) {
+    $pid = 'pid';
+    $current_query = 'query';
+} else {
+    $pid = 'procpid';
+    $current_query = 'current_query';
+}
 $query = "SELECT
   extract(epoch FROM (now() - query_start))::numeric(10,2) AS age,
-  procpid,
+  $pid,
   usename,";
 if ($g_version > 80) {
   $query .= "
@@ -36,9 +43,9 @@ if ($g_version >= 90) {
   application_name,";
 }
 $query .= "
-  current_query
+  $current_query
 FROM pg_stat_activity
-WHERE current_query <> '<IDLE>'
+WHERE ".$current_query." <> '<IDLE>'
 ORDER BY 1";
 
 $rows = pg_query($connection, $query);
@@ -74,7 +81,7 @@ $buffer .= '
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>".$row['age']."</td>
-  <td>".$row['procpid']."</td>";
+  <td>".$row[$pid]."</td>";
 if ($g_version >= 90) {
   $buffer .= "
   <td>".$row['application_name']."</td>";
@@ -86,7 +93,7 @@ if ($g_version > 80) {
   <td>".$row['client_addr']."</td>";
 }
 $buffer .= "
-  <td>".$row['current_query']."</td>
+  <td>".$row[$current_query]."</td>
 </tr>";
 }
 

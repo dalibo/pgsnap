@@ -23,11 +23,18 @@ $buffer = $navigate_activities.'
 ';
 
 
+if ($g_version > 91) {
+    $pid = 'pid';
+    $current_query = 'query';
+} else {
+    $pid = 'procpid';
+    $current_query = 'current_query';
+}
 $query = "SELECT
   datname,
-  procpid,
+  $pid,
   usename,
-  current_query,
+  $current_query,
   date_trunc('second', query_start) as query_start";
 if ($g_version > 90) {
   $query .= ",
@@ -55,7 +62,7 @@ if ($g_version >= 90) {
 }
 $query .= "
 FROM pg_stat_activity
-ORDER BY datname, procpid";
+ORDER BY datname, $pid";
 
 $rows = pg_query($connection, $query);
 if (!$rows) {
@@ -107,7 +114,7 @@ $buffer .= '
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td title=\"".$comments['databases'][$row['datname']]."\">".$row['datname']."</td>
-  <td>".$row['procpid']."</td>";
+  <td>".$row[$pid]."</td>";
 if ($g_version >= 90) {
   $buffer .= "
   <td>".$row['application_name']."</td>";
@@ -136,7 +143,7 @@ if ($g_version >= 83) {
 }
 $buffer .= '
   <td>'.$row['query_start'].'</td>
-  <td>'.$row['current_query'].'</td>
+  <td>'.$row[$current_query].'</td>
 </tr>';
 }
 
