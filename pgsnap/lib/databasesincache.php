@@ -27,7 +27,7 @@ $query = "SELECT
   datname,
   pg_database_size(reldatabase) AS size,
   count(*) AS buffers
-FROM pg_buffercache, pg_database, pg_tablespace
+FROM pg_buffercache, pg_database
 WHERE reldatabase=pg_database.oid
 GROUP BY 1, 2, 3
 ORDER BY 1, 2, 3";
