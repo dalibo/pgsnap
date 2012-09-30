@@ -68,7 +68,12 @@ $query .= "
     WHEN p.provolatile = 's' THEN 'stable'
     WHEN p.provolatile = 'v' THEN 'volatile'
   END as volatility,
-  pg_get_userbyid(proowner) AS rolname,
+  pg_get_userbyid(proowner) AS rolname,";
+if ($g_version > 91) {
+  $query .= "
+  proleakproof,";
+}
+$query .= "
   l.lanname
 FROM pg_catalog.pg_proc p
      LEFT JOIN pg_catalog.pg_namespace n ON n.oid = p.pronamespace
@@ -106,7 +111,12 @@ if ($g_version > 80) {
   <th class="colMid">Args</th>';
 }
 $buffer .= '
-  <th class="colMid">Volatibility</th>
+  <th class="colMid">Volatibility</th>';
+if ($g_version > 91) {
+  $buffer .= '
+  <th class="colMid">Leakproof</th>';
+}
+$buffer .= '
   <th class="colLast">Language</th>
 </tr>
 </thead>
@@ -124,7 +134,12 @@ if ($g_version > 80) {
   <td>".$row['args']."</td>";
 }
 $buffer .= "
-  <td>".$row['volatility']."</td>
+  <td>".$row['volatility']."</td>";
+if ($g_version > 91) {
+  $buffer .= "
+  <td>".$image[$row['proleakproof']]."</td>";
+}
+$buffer .= "
   <td title=\"".$comments['languages'][$row['lanname']]."\">".$row['lanname']."</td>
 </tr>";
 }
