@@ -5,7 +5,8 @@
 	* Fix an integer overflow in the "Relation Bloat" report
 	* PID and current query of pg_stat_activity have been renamed in 9.2
     * Wal files report shows the activites menu instead of the global objects
-      menu.
+      menu
+	* Add number of all-visibles pages in the Tables report (new in 9.2)
 
 2011-12-04  Guillaume Lelarge <guillaume@lelarge.info>
     * Format start and reload datetime to YYYY-MM-DD HH:MM

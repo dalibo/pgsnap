@@ -43,7 +43,12 @@ if ($g_version > 74) {
 }
 $query .= "
   relpages,
-  reltuples,
+  reltuples,";
+if ($g_version > 91) {
+  $query .= "
+  relallvisible,";
+}
+$query .= "
   reltoastrelid,
   reltoastidxid,
   relhasindex,
@@ -132,7 +137,12 @@ if ($g_version > 74) {
   <th class="colMid">Tablespace name</th>';
 }
 $buffer .= '
-  <th class="colMid">Pages #</th>
+  <th class="colMid">Pages #</th>';
+if ($g_version > 91) {
+  $buffer .= '
+  <th class="colMid">All-visible Pages #</th>';
+}
+$buffer .= '
   <th class="colMid">Tuples #</th>
   <th class="colMid">OID Toast Table</th>
   <th class="colMid">OID Toast Index</th>
@@ -204,7 +214,12 @@ if ($g_version > 74) {
   <td>".$row['tablespace']."</td>";
 }
 $buffer .= "
-  <td>".$row['relpages']."</td>
+  <td>".$row['relpages']."</td>";
+if ($g_version > 91) {
+  $buffer .= "
+  <td>".$row['relallvisible']."</td>";
+}
+$buffer .= "
   <td>".$row['reltuples']."</td>
   <td>".$row['reltoastrelid']."</td>
   <td>".$row['reltoastidxid']."</td>
