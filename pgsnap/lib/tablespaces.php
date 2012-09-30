@@ -22,11 +22,16 @@ $buffer = $navigate_globalobjects.'
 <h1>Tablespaces</h1>
 ';
 
+if ($g_version >= 92) {
+    $spclocation = 'pg_tablespace_location()';
+} else {
+    $spclocation = 'spclocation';
+}
 $query = "SELECT spcname,
   pg_get_userbyid(spcowner) AS owner,
-  CASE WHEN length(spclocation) = 0
+  CASE WHEN length('.$spclocation.') = 0
        THEN (SELECT setting FROM pg_settings WHERE name='data_directory')
-       ELSE spclocation
+       ELSE '.$spclocation.'
   END AS spclocation,
   spcacl";
 if ($g_version >= 90) {
