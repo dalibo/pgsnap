@@ -1,8 +1,9 @@
 TODO
 ====
 
- * 0.8?
+ * 0.9?
 
+  * Replace openflash with flotr2
   * add a --server-only option, to get a view of all DB, no specific DB objects.
   * disabled triggers
   * disabled rules
