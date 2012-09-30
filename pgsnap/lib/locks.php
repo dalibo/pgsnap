@@ -57,7 +57,12 @@ if ($g_version > 80) {
 }
 $query .= "
  pid,
- mode,
+ mode,";
+if ($g_version > 91) {
+  $query .= "
+  fastpath,";
+}
+$query .= "
  granted
 FROM pg_locks
  LEFT JOIN pg_database ON pg_database.oid = database
@@ -105,7 +110,12 @@ if ($g_version > 80) {
 }
 $buffer .= '
   <th class="colMid">PID</th>
-  <th class="colMid">Mode</th>
+  <th class="colMid">Mode</th>';
+if ($g_version > 91) {
+  $buffer .= '
+  <th class="colMid">Fastpath</th>';
+}
+$buffer .= '
   <th class="colLast">Granted?</th>
 </tr>
 </thead>
@@ -154,7 +164,12 @@ if ($g_version > 80) {
 }
 $buffer .= "
   <td>".$row['pid']."</td>
-  <td>".$row['mode']."</td>
+  <td>".$row['mode']."</td>";
+if ($g_version > 91) {
+  $buffer .= "
+  <td>".$image[$row['fastpath']]."</td>";
+}
+$buffer .= "
   <td>".$image[$row['granted']]."</td>
 </tr>";
 }

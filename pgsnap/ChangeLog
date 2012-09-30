@@ -8,6 +8,7 @@
       menu
 	* Add number of all-visibles pages in the Tables report (new in 9.2)
 	* Add leakproof information in the Functions report (new in 9.2)
+	* Add fastpath information in the Locks report (new in 9.2)
 
 2011-12-04  Guillaume Lelarge <guillaume@lelarge.info>
     * Format start and reload datetime to YYYY-MM-DD HH:MM
