@@ -1,14 +1,18 @@
+2013-01-19  Guillaume Lelarge <guillaume@lelarge.info>
+    * Add a new option (--output-dir-mode) to specify the permission mode of
+      the report's new directory (per an idea from Michael Arlt)
+
 2012-09-30  Guillaume Lelarge <guillaume@lelarge.info>
     * pg_tablespace.spclocation has been dropped in 9.2. A new function
-	  fetches this information.
-	* Fix query for "Databases in cache" report
-	* Fix an integer overflow in the "Relation Bloat" report
-	* PID and current query of pg_stat_activity have been renamed in 9.2
+      fetches this information.
+    * Fix query for "Databases in cache" report
+    * Fix an integer overflow in the "Relation Bloat" report
+    * PID and current query of pg_stat_activity have been renamed in 9.2
     * Wal files report shows the activites menu instead of the global objects
       menu
-	* Add number of all-visibles pages in the Tables report (new in 9.2)
-	* Add leakproof information in the Functions report (new in 9.2)
-	* Add fastpath information in the Locks report (new in 9.2)
+    * Add number of all-visibles pages in the Tables report (new in 9.2)
+    * Add leakproof information in the Functions report (new in 9.2)
+    * Add fastpath information in the Locks report (new in 9.2)
     * Release 0.8.0.
 
 2011-12-04  Guillaume Lelarge <guillaume@lelarge.info>

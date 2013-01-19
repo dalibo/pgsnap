@@ -40,6 +40,7 @@ $g_alldatabases = false;
 $g_deleteifexists = false;
 $g_witholdlibpq = false;
 $outputdir = '';
+$outputdirmode = 700;
 $queriesinlogs = false;
 
 for ($i = 1; $i < $_SERVER["argc"]; $i++) {
@@ -85,6 +86,9 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
     case "--output-dir":
       $outputdir = $_SERVER['argv'][++$i];
       break;
+    case "--output-dir-mode":
+      $outputdirmode = $_SERVER['argv'][++$i];
+      break;
     case "-S":
     case "--without-sysobjects":
       $g_withoutsysobjects = true;
@@ -115,6 +119,8 @@ General options:
   -o outputdir    specify output directory
                   (with -a, defaults to the current working directory)
                   (without -a, defaults to: "<?php echo $outputdir ?>")
+  --output-dir-mode outputdirmode    specify output directory permissions mode
+                  (default: "<?php echo $outputdirmode ?>")
   --with-old-libpq
                   disable the use of the parameter application_name
   -S, --without-sysobjects

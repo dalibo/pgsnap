@@ -49,7 +49,9 @@ if (file_exists($outputdir)) {
     }
   }
 } else {
-  mkdir($outputdir, 0700, true);
+  echo "$outputdirmode\n";
+  //echo "mkdir($outputdir, $outputdirmode, true);";
+  mkdir($outputdir, octdec($outputdirmode), true);
 }
 
 echo "Connecting to $PGDATABASE database...\n";
