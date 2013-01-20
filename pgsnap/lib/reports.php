@@ -228,6 +228,7 @@ include 'lib/tableswithoutpkey.php';
 include 'lib/tableswith5+indexes.php';
 include 'lib/clusteredtables.php';
 include 'lib/fkconstraints.php';
+include 'lib/fkwithoutindexes.php';
 include 'lib/views.php';
 include 'lib/sequences.php';
 include 'lib/sequences2.php';
