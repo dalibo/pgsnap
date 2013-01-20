@@ -54,7 +54,7 @@ if (!$rows) {
 $buffer .= '<div class="tblBasic">
 
 <table id="myTable" border="0" cellpadding="0" cellspacing="0" class="tblBasicGrey">
-<<thead>
+<thead>
 <tr>
   <th class="colFirst">Table Owner</th>
   <th class="colMid">Table name</th>
@@ -71,7 +71,8 @@ $buffer .= '<div class="tblBasic">
 while ($row = pg_fetch_array($rows)) {
 //column, referenced table, referenced column
 //FOREIGN KEY (id_etat_surveillance) REFERENCES libelle_etat_surveillance(id_etat_surveillance) ON UPDATE RESTRICT ON DELETE RESTRICT
-  $pattern = '/FOREIGN KEY \((\w+)\) REFERENCES (\w+)\((\w+)\) (.*)/';
+  $pattern = '/FOREIGN KEY \((\w+)\) REFERENCES (\w+)\((\w+)\)/';
+             //FOREIGN KEY (categorie) REFERENCES categories(id)
   $replacement = '${1}|${2}|${3}';
   $tmp = preg_replace($pattern, $replacement, $row['condef']);
   $def = split("\|", $tmp);
