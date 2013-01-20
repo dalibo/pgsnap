@@ -57,8 +57,8 @@ $buffer .= '<div class="tblBasic">
 <thead>
 <tr>
   <th class="colFirst">Table Owner</th>
-  <th class="colMid">Table name</th>
   <th class="colMid">Schema name</th>
+  <th class="colMid">Table name</th>
   <th class="colMid">Constraint Name</th>
   <th class="colMid">Column Name</th>
   <th class="colMid">Referenced Table Name</th>
