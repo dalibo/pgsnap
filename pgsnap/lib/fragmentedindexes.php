@@ -79,7 +79,7 @@ while ($row = pg_fetch_array($rows)) {
   deleted_pages,
   avg_leaf_density,
   leaf_fragmentation
-FROM pgstatindex('".pg_escape_string($row['nspname'].'.'.$row['relname'])."')
+FROM pgstatindex('\"".$row['nspname'].'"."'.$row['relname']."\"')
 WHERE index_size>0";
 
   $rows_statindex = pg_query($connection, $query_statindex);

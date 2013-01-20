@@ -1,6 +1,8 @@
 2013-01-20  Guillaume Lelarge <guillaume@lelarge.info>
     * Fix two issues in the FK constraints report
     * New report: foreign key without indexes
+    * Fix the fragmented index report with uppercase name for indexes (per an
+      report from Michael Arlt)
 
 2013-01-19  Guillaume Lelarge <guillaume@lelarge.info>
     * Add a new option (--output-dir-mode) to specify the permission mode of
