@@ -1,4 +1,4 @@
-<?php
+2013php
 
 function tr($namespace = '') {
   global $odd;
