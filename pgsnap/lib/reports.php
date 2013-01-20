@@ -49,8 +49,6 @@ if (file_exists($outputdir)) {
     }
   }
 } else {
-  echo "$outputdirmode\n";
-  //echo "mkdir($outputdir, $outputdirmode, true);";
   mkdir($outputdir, octdec($outputdirmode), true);
 }
 
