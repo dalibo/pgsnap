@@ -208,3 +208,9 @@ a:hover                         { color:#000000; text-decoration: underline; }
 #docFooter a:visited             { color:#666; text-decoration: underline; }
 #docFooter a:active              { color:#666; text-decoration: underline; }
 #docFooter a:hover               { color:#000000; text-decoration: underline; }
+
+#graphcontainer {
+  width : 600px;
+  height: 384px;
+  margin: 8px auto;
+}

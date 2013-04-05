@@ -16,11 +16,6 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-$g_flashexists = file_exists('external/open-flash-chart.php')
-              && file_exists('external/open_flash_chart_object.php')
-              && file_exists('external/open-flash-chart.swf')
-              && file_exists('external/swfobject.js');
-
 if ($g_version > 80) {
   $query = "SELECT rolsuper AS superuser FROM pg_roles
 WHERE rolname='".pg_escape_string($PGUSER)."'";

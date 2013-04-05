@@ -60,7 +60,7 @@ $navigate_globalobjects = $navigate_header.'
     <ul>
       <li><a href="bases.html">Databases</a></li>';
 
-if ($g_flashexists && $g_version > '80') {
+if ($g_version > '80') {
   $navigate_globalobjects .= '
       <li><a href="graph_dbsize.html">Databases Size Graph</a></li>';
 }
@@ -85,7 +85,7 @@ if ($g_version >= '90') {
 if ($g_version > '74') {
   $navigate_globalobjects.= '
       <li><a href="tablespaces.html">Tablespaces</a></li>';
-  if ($g_superuser && $g_flashexists && $g_version > '80') {
+  if ($g_superuser && $g_version > '80') {
     $navigate_globalobjects .= '
       <li><a href="graph_tblspcsize.html">Tablespaces Size Graph</a></li>';
   }
@@ -115,7 +115,7 @@ if ($g_version >= '90') {
 $navigate_dbobjects.= '
       <li><a href="tables.html">Tables</a></li>';
 
-if ($g_flashexists && $g_version > '80') {
+if ($g_version > '80') {
   $navigate_dbobjects .= '
       <li><a href="graph_tablesize.html">Tables Size Graph</a></li>';
 }
@@ -140,7 +140,7 @@ $navigate_dbobjects .= '
       <li><a href="sequences2.html">Sequences - metadata</a></li>
       <li><a href="indexes.html">Indexes</a></li>';
 
-if ($g_flashexists && $g_version > '80') {
+if ($g_version > '80') {
   $navigate_dbobjects .= '
       <li><a href="graph_indexsize.html">Indexes Size Graph</a></li>';
 }

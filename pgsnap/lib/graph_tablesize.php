@@ -43,39 +43,66 @@ if (!$rows) {
 }
 
 if (pg_num_rows($rows) > 0) {
-  include_once( 'external/open-flash-chart.php' );
-
-  $bar = new bar_outline( 50, 6, '#99FF00', '#7030A0' );
-
-  $data = array();
-  $labels = array();
-
-  $max = 0;
+  $data = '';
+  $ticks = '';
+  $tablenames = '';
+  $tablecomments = '';
+  $i = 1;
   while ($row = pg_fetch_array($rows)) {
-    if ($max < $row['size']) {
-      $max = $row['size'];
-    }
-    $bar->add_data_tip($row['size'], $comments['relations'][$row['nspname']][$row['relname']]);
-    $labels[] = $row['relname'];
+    if (strlen($data)>0)
+      $data .= ",";
+    if (strlen($ticks)>0)
+      $ticks .= ",";
+    if (strlen($tablenames)>0)
+      $tablenames .= ",";
+    if (strlen($tablecomments)>0)
+      $tablecomments .= ",";
+    $data .= "[".$i.",".$row['size']."]";
+    $ticks .= "[".$i.",'".$row['relname']."']";
+    $tablenames .= "'".$row['nspname'].".".$row['relname']."'";
+    $tablecomments .= "'".$comments['relations'][$row['nspname']][$row['relname']]."'";
+    $i++;
   }
 
-  $g = new graph();
-  $g->title( 'Tables size in MB', '{font-size: 18px; color: #A0A0A0;}' );
-  $g->set_tool_tip( '#x_label#<br>#tip#<br>#val# MB' );
-  $g->set_x_labels( $labels );
-  $g->data_sets[] = $bar;
-  $g->set_x_label_style( 10, '#A0A0A0', 0, 1 );
-  $g->set_y_label_style( 10, '#A0A0A0' );
-  $g->x_axis_colour( '#A0A0A0', '#FFFFFF' );
-  $g->set_x_legend( 'Databases\' names', 12, '#A0A0A0' );
-  $g->y_axis_colour( '#A0A0A0', '#FFFFFF' );
-  $g->set_y_min( 0 );
-  $g->set_y_max( $max );
-  $g->y_label_steps( 10 );
-  $g->set_width( 800 );
-  $g->set_height( 500 );
-  $g->set_output_type('js');
-  $buffer .= $g->render();
+  $buffer .= '<div id="graphcontainer" width="600" height="400"></div>
+<script type="text/javascript">
+  (function () {
+    var data, graph;
+
+    data = ['.$data.'];
+    graph = Flotr.draw(document.getElementById(\'graphcontainer\'), [ data ],
+    {
+      HtmlText: false,
+      bars: {
+        show: true,
+        horizontal: false,
+        shadowSize: 0,
+        barWidth: 0.5
+      },
+      xaxis: {
+        ticks: ['.$ticks.'],
+        labelsAngle: 45
+      },
+      yaxis: {
+        min: 0,
+        autoscaleMargin: 1
+      },
+      mouse: {
+        track: true,
+        relative: true,
+        trackFormatter: function(point) {
+          var dbnames=['.$tablenames.'];
+          var dbcomments=['.$tablecomments.'];
+          return dbnames[Math.floor(point.x) - 1]
+                 + "<br/>"
+                 + point.y.toString() + "MB"
+                 + "<br/>"
+                 + dbcomments[Math.floor(point.x) - 1];
+        }
+      },
+    });
+    })();
+</script>';
 } else {
   $buffer .= '<div class="warning">No table of more than 1 MB!</div>';
 }

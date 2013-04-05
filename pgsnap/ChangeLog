@@ -1,3 +1,6 @@
+2013-04-05  Guillaume Lelarge <guillaume@lelarge.info>
+    * Replace openflash with flotr2
+
 2013-01-20  Guillaume Lelarge <guillaume@lelarge.info>
     * Fix two issues in the FK constraints report
     * New report: foreign key without indexes

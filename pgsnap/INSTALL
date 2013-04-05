@@ -5,15 +5,3 @@ To install pgsnap, you can untar the pgsnap tarball anywhere you want.
 
 You'll need the CLI release of PHP. For example, on Debian/Ubuntu, you should
 have : php5-pgsql and php5-cli.
-
-Flash graphics with Open Flash Chart
-------------------------------------
-
-You can have flash graphics for databases' size, tablespaces's size and
-tables's size. To activate the graphs, you need to download Open Flash Chart
-PHP library from:
-  http://teethgrinder.co.uk/open-flash-chart/
-
-Then, you have to extract four files: open_flash_chart_object.php,
-open-flash-chart.php, open-flash-chart.swf, and swfobject.js. pgsnap needs to
-find these files in the external directory.

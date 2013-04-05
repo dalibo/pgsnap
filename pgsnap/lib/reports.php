@@ -91,9 +91,12 @@ copy($PGSNAP_ROOT_PATH.'external/jquery-1.2.3.js',
      $outputdir.'/jquery-1.2.3.js');
 copy($PGSNAP_ROOT_PATH.'external/jquery.tablesorter.js',
      $outputdir.'/jquery.tablesorter.js');
+copy($PGSNAP_ROOT_PATH.'external/flotr2.min.js',
+     $outputdir.'/flotr2.js');
 // css
 copy($PGSNAP_ROOT_PATH.'template/fixed.css', $outputdir.'/fixed.css');
 copy($PGSNAP_ROOT_PATH.'template/global.css', $outputdir.'/global.css');
+copy($PGSNAP_ROOT_PATH.'template/graphs.css', $outputdir.'/graphs.css');
 copy($PGSNAP_ROOT_PATH.'template/layout.css', $outputdir.'/layout.css');
 copy($PGSNAP_ROOT_PATH.'template/text.css', $outputdir.'/text.css');
 copy($PGSNAP_ROOT_PATH.'template/navigation.css', $outputdir.'/navigation.css');
@@ -130,13 +133,6 @@ copy($PGSNAP_ROOT_PATH.'images/usr_tbl_btm.png', $outputdir.'/usr_tbl_btm.png');
 copy($PGSNAP_ROOT_PATH.'images/usr_tbl_top.png', $outputdir.'/usr_tbl_top.png');
 copy($PGSNAP_ROOT_PATH.'images/nav_lft.png', $outputdir.'/nav_lft.png');
 copy($PGSNAP_ROOT_PATH.'images/nav_rgt.png', $outputdir.'/nav_rgt.png');
-// flash stuff
-if (file_exists('external/open-flash-chart.swf')
-    && file_exists('external/swfobject.js')) {
-  mkdir($outputdir.'/js');
-  copy($PGSNAP_ROOT_PATH.'external/open-flash-chart.swf', $outputdir.'/open-flash-chart.swf');
-  copy($PGSNAP_ROOT_PATH.'external/swfobject.js', $outputdir.'/js/swfobject.js');
-}
 // image variables
 $image['f'] = '<img src="check-off.png" title="Off" alt="Off"/>';
 $image['t'] = '<img src="check-on.png" title="On" alt="On"/>';
@@ -175,7 +171,7 @@ if ($g_superuser && $g_version > '74'
 
 echo "Getting Global Informations...\n";
 include 'lib/bases.php';
-if ($g_flashexists && $g_version > '80') {
+if ($g_version > '80') {
   include 'lib/graph_dbsize.php';
 }
 if ($g_pgbuffercache) {
@@ -195,7 +191,7 @@ if ($g_version >= '90') {
 }
 if ($g_version > '74') {
   include 'lib/tablespaces.php';
-  if ($g_superuser && $g_flashexists && $g_version > '80') {
+  if ($g_superuser && $g_version > '80') {
     include 'lib/graph_tblspcsize.php';
   }
   include 'lib/tblspc1.php';
@@ -211,7 +207,7 @@ if ($g_version >= '90') {
   include 'lib/defaultacl.php';
 }
 include 'lib/tables.php';
-if ($g_flashexists && $g_version > '80') {
+if ($g_version > '80') {
   include 'lib/graph_tablesize.php';
 }
 if ($g_pgbuffercache) {
@@ -233,7 +229,7 @@ include 'lib/views.php';
 include 'lib/sequences.php';
 include 'lib/sequences2.php';
 include 'lib/indexes.php';
-if ($g_flashexists && $g_version > '80') {
+if ($g_version > '80') {
   include 'lib/graph_indexsize.php';
 }
 if ($g_version > '82') {
