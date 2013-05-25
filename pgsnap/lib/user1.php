@@ -19,7 +19,7 @@
 $buffer = $navigate_globalobjects.'
 <div id="pgContentWrap">
 
-<h1>Total Objects Per Tablespace</h1>
+<h1>Users\' objets</h1>
 ';
 
 $query = "SELECT pg_get_userbyid(relowner) AS rolname,
@@ -27,6 +27,7 @@ $query = "SELECT pg_get_userbyid(relowner) AS rolname,
        WHEN relkind='i' THEN 'index'
        WHEN relkind='S' THEN 'sequence'
        WHEN relkind='v' THEN 'view'
+       WHEN relkind='m' THEN 'materialized view'
        WHEN relkind='c' THEN 'composite type'
        WHEN relkind='t' THEN 'TOAST table'
        ELSE '<unkown>' END AS kind,

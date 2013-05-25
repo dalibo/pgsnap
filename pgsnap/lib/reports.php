@@ -226,6 +226,9 @@ include 'lib/clusteredtables.php';
 include 'lib/fkconstraints.php';
 include 'lib/fkwithoutindexes.php';
 include 'lib/views.php';
+if ($g_version > '92') {
+  include 'lib/materializedviews.php';
+}
 include 'lib/sequences.php';
 include 'lib/sequences2.php';
 include 'lib/indexes.php';

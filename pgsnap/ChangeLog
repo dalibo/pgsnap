@@ -1,3 +1,7 @@
+2013-05-25  Guillaume Lelarge <guillaume@lelarge.info>
+    * Add a materialized view report
+	* Few changes for materialized views
+
 2013-04-05  Guillaume Lelarge <guillaume@lelarge.info>
     * Replace openflash with flotr2
 

@@ -19,13 +19,14 @@
 $buffer = $navigate_globalobjects.'
 <div id="pgContentWrap">
 
-<h1>Total Objects Per Tablespace</h1>
+<h1>Users space allocated</h1>
 ';
 
 $query = "SELECT pg_get_userbyid(relowner) AS rolname,
   CASE WHEN relkind='r' THEN 'table'
        WHEN relkind='i' THEN 'index'
        WHEN relkind='S' THEN 'sequence'
+       WHEN relkind='m' THEN 'materialized view'
        WHEN relkind='t' THEN 'TOAST table'
        ELSE '<unkown>' END AS kind,";
 if ($g_version > 80) {

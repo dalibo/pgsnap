@@ -26,11 +26,11 @@ $buffer = $navigate_globalobjects.'
 $query = "SELECT
   pg_get_userbyid(spcowner) AS rolname,
   spcname,
-  CASE WHEN relkind='r' THEN 'Tables' ELSE 'Index' END AS kind,
+  CASE WHEN relkind='r' THEN 'Tables' WHEN relkind='i' THEN 'Index' ELSE 'Materialized views' END AS kind,
   count(*) AS total
 FROM pg_class, pg_tablespace
 WHERE pg_tablespace.oid=reltablespace
-  AND relkind IN ('r', 'i')
+  AND relkind IN ('r', 'i', 'm')
 GROUP BY 1, 2, 3
 ORDER BY 1, 2, 3;";
 
