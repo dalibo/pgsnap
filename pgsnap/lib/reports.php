@@ -248,6 +248,7 @@ if ($g_pgstatindex) {
 }
 if ($g_version > '80') {
   include 'lib/relationsbloat.php';
+  include 'lib/graph_relsize.php';
 }
 include 'lib/languages.php';
 include 'lib/functions.php';

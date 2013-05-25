@@ -167,7 +167,8 @@ if ($g_pgstatindex) {
 
 if ($g_version > '80') {
   $navigate_dbobjects.= '
-      <li><a href="relationsbloat.html">Relations Bloat</a></li>';
+      <li><a href="relationsbloat.html">Relations Bloat</a></li>
+      <li><a href="graph_relsize.html">Relations sizes</a></li>';
 }
 
 $navigate_dbobjects.= '
