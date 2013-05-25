@@ -31,7 +31,9 @@ $query = "SELECT
   nspname,
   relname AS tablename,
   conname,
-  pg_get_constraintdef(pg_constraint.oid, true) as condef
+  pg_get_constraintdef(pg_constraint.oid, true) as condef,
+  CASE confupdtype WHEN 'a' THEN 'no action' WHEN 'r' THEN 'restrict' WHEN 'c' THEN 'cascade' WHEN 'n' THEN 'set null' WHEN 'd' THEN 'set default' END as on_upd,
+  CASE confdeltype  WHEN 'a' THEN 'no action' WHEN 'r' THEN 'restrict' WHEN 'c' THEN 'cascade' WHEN 'n' THEN 'set null' WHEN 'd' THEN 'set default' END as on_del
 FROM pg_constraint, pg_class, pg_namespace
 WHERE conrelid=pg_class.oid
   AND relnamespace=pg_namespace.oid";
@@ -62,7 +64,9 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Constraint Name</th>
   <th class="colMid">Column Name</th>
   <th class="colMid">Referenced Table Name</th>
-  <th class="colLast">Referenced Column Name</th>
+  <th class="colMid">Referenced Column Name</th>
+  <th class="colMid">On Update</th>
+  <th class="colLast">On Delete</th>
 </tr>
 </thead>
 <tbody>
@@ -71,17 +75,11 @@ $buffer .= '<div class="tblBasic">
 while ($row = pg_fetch_array($rows)) {
 //column, referenced table, referenced column
 //FOREIGN KEY (id_etat_surveillance) REFERENCES libelle_etat_surveillance(id_etat_surveillance) ON UPDATE RESTRICT ON DELETE RESTRICT
-  $pattern = '/FOREIGN KEY \((\w+)\) REFERENCES (\w+)\((\w+)\)/';
+  $pattern = '/FOREIGN KEY \((.+)\) REFERENCES (.+)\((.+)\).*/';
              //FOREIGN KEY (categorie) REFERENCES categories(id)
   $replacement = '${1}|${2}|${3}';
   $tmp = preg_replace($pattern, $replacement, $row['condef']);
   $def = split("\|", $tmp);
-  if (count($def) == 1) {
-    $def[1] = '';
-    $def[2] = '';
-  } elseif (count($def) == 2) {
-    $def[2] = '';
-  }
   $buffer .= tr($row['nspname'])."
   <td title=\"".$comments['roles'][$row['tableowner']]."\">".$row['tableowner']."</td>
   <td title=\"".$comments['schemas'][$row['nspname']]."\">".$row['nspname']."</td>
@@ -90,8 +88,9 @@ while ($row = pg_fetch_array($rows)) {
   <td>".$def[0]."</td>
   <td>".$def[1]."</td>
   <td>".$def[2]."</td>
+  <td>".$row['on_upd']."</td>
+  <td>".$row['on_del']."</td>
 </tr>";
-// TODO def[1] et def[2] pas forcément défini
 }
 
 $buffer .= '</tbody>
