@@ -92,9 +92,15 @@ if ($g_version > '74') {
   $navigate_globalobjects.= '
       <li><a href="tblspc1.html">Tablespaces\' objects</a></li>';
 }
-$navigate_globalobjects.= '
+if ($g_superuser && $g_version >= '90') {
+  $navigate_globalobjects.= '
       <li><a href="largeobjects.html">Large
       Objects</a></li>';
+} elseif ($g_version < '90') {
+  $navigate_globalobjects.= '
+      <li><a href="largeobjects.html">Large
+      Objects</a></li>';
+}
 if ($g_version > '80') {
   $navigate_globalobjects.= '
       <li class="last-child"><a href="xlog.html">WAL files</a></li>';

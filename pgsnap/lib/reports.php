@@ -196,7 +196,11 @@ if ($g_version > '74') {
   }
   include 'lib/tblspc1.php';
 }
-include 'lib/largeobjects.php';
+if ($g_superuser && $g_version >= '90') {
+  include 'lib/largeobjects.php';
+} elseif ($g_version < '90') {
+  include 'lib/largeobjects.php';
+}
 if ($g_superuser && $g_version > '80') {
   include 'lib/xlog.php';
 }
