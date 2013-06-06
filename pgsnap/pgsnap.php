@@ -28,7 +28,9 @@ include 'lib/ui.php';
 
 if ($g_alldatabases) {
   // Fetching databases' names
-  $PGDATABASE = 'template1';
+  if (strlen($PGDATABASE) == 0) {
+    $PGDATABASE = 'template1';
+  }
   echo "Connecting...\n";
   include 'lib/connect.php';
 

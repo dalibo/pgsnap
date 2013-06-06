@@ -28,9 +28,6 @@ if (strlen("$PGUSER") == 0) {
 }
 
 $PGDATABASE = getenv('PGDATABASE');
-if (strlen("$PGDATABASE") == 0) {
-  $PGDATABASE = $PGUSER;
-}
 
 $PGPASSWORD = getenv('PGPASSWORD');
 $g_passwordrequired = false;
@@ -147,4 +144,7 @@ Connection options:
   }
 }
 
+if (!$g_alldatabases && strlen("$PGDATABASE") == 0) {
+  $PGDATABASE = $PGUSER;
+}
 ?>

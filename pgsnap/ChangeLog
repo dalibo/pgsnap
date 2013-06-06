@@ -1,3 +1,7 @@
+2013-06-06  Guillaume Lelarge <guillaume@lelarge.info>
+    * Allow giving a database name with the -a option (per request from Hervé
+      Werner)
+
 2013-06-05  Guillaume Lelarge <guillaume@lelarge.info>
     * Add a check for the Large Object report (fix from Gilles Darold)
 
