@@ -27,6 +27,8 @@ if (strlen("$PGUSER") == 0) {
   $PGUSER = getenv('USER');
 }
 
+$PGDATA = getenv('PGDATA');
+
 $PGDATABASE = getenv('PGDATABASE');
 
 $PGPASSWORD = getenv('PGPASSWORD');

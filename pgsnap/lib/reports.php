@@ -66,6 +66,18 @@ if ($row = pg_fetch_array($rows)) {
   $g_version = $tmp[0].$tmp[1];
 }
 
+$query = "SHOW data_directory";
+$rows = pg_query($connection, $query);
+if (!$rows) {
+  echo "An error occured.\n";
+  exit;
+}
+if ($row = pg_fetch_array($rows)) {
+  $g_datadirectory = $row['data_directory'];
+} else {
+  $g_datadirectory = $PG_DATA;
+}
+
 $query = 'SELECT rolsuper FROM pg_roles WHERE rolname=current_user';
 $rows = pg_query($connection, $query);
 if (!$rows) {

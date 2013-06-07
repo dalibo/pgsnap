@@ -1,3 +1,7 @@
+2013-06-07  Guillaume Lelarge <guillaume@lelarge.info>
+    * Add the data directory to pg_controldata tool (bug report from Hervé
+      Werner)
+
 2013-06-06  Guillaume Lelarge <guillaume@lelarge.info>
     * Allow giving a database name with the -a option (per request from Hervé
       Werner)
