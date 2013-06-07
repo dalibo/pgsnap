@@ -9,6 +9,7 @@ TODO
   * FK without indexes : owner, constraint name, column name
   * Tablespace : list default tablespace for each user
   * Disabled constraints : owner, table, constraint, type, status
+  * new report for pg_freespacemap
 
  * 1.0?
 
