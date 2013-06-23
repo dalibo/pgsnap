@@ -3,6 +3,8 @@ TODO
 
  * 0.9?
 
+  * fix manpage: report folder doesn't include the hour
+  * handle return code of the script
   * add a --server-only option, to get a view of all DB, no specific DB objects.
   * disabled triggers
   * disabled rules
