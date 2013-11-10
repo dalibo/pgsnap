@@ -44,7 +44,7 @@ $buffer .= '<div class="tblBasic">
 <thead>
 <tr>
   <th class="colFirst" width="20%">User</th>
-  <th class="colMid" width="20%">Database</th>
+  <th class="colMid" width="20%">Schema</th>
   <th class="colMid" width="20%">Objects\' Type</th>
   <th class="colLast" width="40%">ACL</th>
 </tr>
@@ -54,7 +54,7 @@ $buffer .= '<div class="tblBasic">
 while ($row = pg_fetch_array($rows)) {
 $buffer .= tr()."
   <td>".$row['rolname']."</td>
-  <td title=\"".$comments['databases'][$row['datname']]."\">".$row['datname']."</td>
+  <td>".$row['nspname']."</td>
   <td>".$row['defaclobjtype']."</td>
   <td>".$row['defaclacl']."</td>
 </tr>";

@@ -2,6 +2,7 @@
     * Check we got a database name before trying to get its comment (bug report
       from Hervé Werner)
     * Add missing options to --help message (bug report from Hervé Werner)
+    * Fix the ACL report (bug report from Hervé Werner)
 
 2013-06-07  Guillaume Lelarge <guillaume@lelarge.info>
     * Add the data directory to pg_controldata tool (bug report from Hervé
