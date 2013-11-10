@@ -115,19 +115,20 @@ General options:
   -a, --all       build a report for all databases on the PostgreSQL server
   -d DBNAME       specify database name to connect to
                   (default: "<?php echo $PGDATABASE ?>")
+  --delete-if-exists
+                  delete output directory if it already exists
   -o outputdir    specify output directory
                   (with -a, defaults to the current working directory)
                   (without -a, defaults to: "<?php echo $outputdir ?>")
   --output-dir-mode outputdirmode    specify output directory permissions mode
                   (default: "<?php echo $outputdirmode ?>")
+  --query-in-logs allow logging queries in PostgreSQL log files
   --with-old-libpq
                   disable the use of the parameter application_name
   -S, --without-sysobjects
                   get report without system objects informations
-  --delete-if-exists
-                  delete output directory if it already exists
-  --help          show this help, then exit
-  --version       output version information, then exit
+  -?, --help          show this help, then exit
+  -v, --version   output version information, then exit
 
 Connection options:
   -h HOSTNAME     database server host or socket directory
