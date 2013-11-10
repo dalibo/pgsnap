@@ -51,8 +51,15 @@ $buffer .= '<div class="tblBasic">
 ';
 
 while ($row = pg_fetch_array($rows)) {
-$buffer .= tr()."
-  <td title=\"".$comments['databases'][$row['datname']]."\">".$row['datname']."</td>
+  $buffer .= tr();
+  if (strlen($row['datname']) == 0) {
+    $buffer .= "
+  <td>".$row['datname']."</td>";
+  } else {
+    $buffer .= "
+  <td title=\"".$comments['databases'][$row['datname']]."\">".$row['datname']."</td>";
+  }
+$buffer .= "
   <td>".$row['rolname']."</td>
   <td>".$row['setconfig']."</td>
 </tr>";
