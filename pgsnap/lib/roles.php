@@ -35,9 +35,22 @@ if ($g_version > 90) {
   rolreplication,";
 }
 $query .= "
-  rolvaliduntil,
-  rolconfig
-FROM pg_roles
+  rolvaliduntil,";
+if ($g_version > 84) {
+  $query .= "
+  s.setconfig AS rolconfig,";
+} else {
+  $query .= "
+  rolconfig,";
+}
+$query .= "
+  rolpassword IS NOT NULL AS haspassword
+FROM pg_authid";
+if ($g_version > 84) {
+  $query .= "
+LEFT JOIN pg_db_role_setting s ON pg_authid.oid = s.setrole AND s.setdatabase = 0::oid";
+}
+$query .= "
 ORDER BY rolname";
 
 $rows = pg_query($connection, $query);
@@ -63,6 +76,7 @@ if ($g_version > 90) {
   <th class="colMid">Replication?</th>';
 }
 $buffer .= '
+  <th class="colMid">Has password?</th>
   <th class="colMid">Connection limits</th>
   <th class="colMid">Valid until</th>
   <th class="colLast">Configuration</th>
@@ -85,6 +99,7 @@ $buffer .= '
   <td>'.$image[$row['rolreplication']].'</td>';
 }
 $buffer .= '
+  <td>'.$image[$row['haspassword']].'</td>
   <td>'.$row['rolconnlimit'].'</td>
   <td>'.$row['rolvaliduntil'].'</td>
   <td>'.$row['rolconfig'].'</td>

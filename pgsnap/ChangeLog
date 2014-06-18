@@ -1,3 +1,6 @@
+2014-06-18  Guillaume Lelarge <guillaume@lelarge.info>
+    * Add "Has password?" column to the roles report (#3)
+
 2013-11-10  Guillaume Lelarge <guillaume@lelarge.info>
     * Check we got a database name before trying to get its comment (bug report
       from Hervé Werner)
