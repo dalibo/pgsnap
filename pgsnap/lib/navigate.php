@@ -30,6 +30,18 @@ $navigate_general = $navigate_header.'
       <li><a href="pgcontroldata.html">pg_controldata</a></li>
       <li><a href="param.html">General configuration</a></li>
       <li><a href="nondefaultparam.html">Non Default configuration</a></li>';
+if ($g_files['pg_hba.conf']) {
+  $navigate_general .= '
+	  <li><a href="contents_pghba.html">Contents of pg_hba.conf</a></li>';
+}
+if ($g_files['pg_ident.conf']) {
+  $navigate_general .= '
+	  <li><a href="contents_pgident.html">Contents of pg_ident.conf</a></li>';
+}
+if ($g_files['recovery.conf']) {
+  $navigate_general .= '
+	  <li><a href="contents_recovery.html">Contents of recovery.conf</a></li>';
+}
 
 if ($g_version > '80' && $g_version < '84') {
   $navigate_general .= '

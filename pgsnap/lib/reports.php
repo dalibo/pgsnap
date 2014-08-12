@@ -176,6 +176,15 @@ include 'lib/nondefaultparam.php';
 if ($g_version > '80' && $g_version < '84') {
   include 'lib/paramautovac.php';
 }
+if ($g_files['pg_hba.conf']) {
+  include 'lib/contents_pghba.php';
+}
+if ($g_files['pg_ident.conf']) {
+  include 'lib/contents_pgident.php';
+}
+if ($g_files['recovery.conf']) {
+  include 'lib/contents_recovery.php';
+}
 if ($g_superuser && $g_version > '74'
    && (!strcmp($g_settings['log_destination'], 'stderr')
          || !strcmp($g_settings['log_destination'], 'csvlog'))

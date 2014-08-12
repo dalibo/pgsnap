@@ -96,4 +96,26 @@ while ($row = pg_fetch_array($rows)) {
   $g_settings[$row['name']] = $row['setting'];
 }
 
+$query = "SELECT pg_ls_dir AS file FROM pg_ls_dir('.')";
+$g_files['postgresql.conf'] = false;
+$g_files['pg_hba.conf'] = false;
+$g_files['pg_ident.conf'] = false;
+$g_files['recovery.conf'] = false;
+
+$rows = pg_query($connection, $query);
+if (!$rows) {
+  echo "An error occured.\n";
+  exit;
+}
+while ($row = pg_fetch_array($rows)) {
+  if (!strcmp($row['file'], "postgresql.conf"))
+	  $g_files['postgresql.conf'] = true;
+  if (!strcmp($row['file'], "pg_hba.conf"))
+	  $g_files['pg_hba.conf'] = true;
+  if (!strcmp($row['file'], "pg_ident.conf"))
+	  $g_files['pg_ident.conf'] = true;
+  if (!strcmp($row['file'], "recovery.conf"))
+	  $g_files['recovery.conf'] = true;
+}
+
 ?>

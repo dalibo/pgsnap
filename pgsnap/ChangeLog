@@ -1,4 +1,6 @@
 2014-08-12  Guillaume Lelarge <guillaume@lelarge.info>
+    * Add a new report "Contents of files" (files supported are pg_hba.conf,
+      pg_ident.conf, and recovery.conf)
     * Handle the new pg_stat_archiver statistic catalog
     * Handle the new pg_replication_slots system catalog
     * Handle the new n_mod_since_analyze column of pg_stat_all_tables
