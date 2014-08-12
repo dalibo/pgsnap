@@ -42,6 +42,10 @@ if ($g_version >= 83) {
   n_live_tup,
   n_dead_tup";
 }
+if ($g_version >= 94) {
+  $query .= ",
+  n_mod_since_analyze";
+}
 if ($g_version >= 82) {
   $query .= ",
   last_vacuum,
@@ -93,6 +97,10 @@ if ($g_version >= 83) {
   <th class="colMid">n_live_tup</th>
   <th class="colMid">n_dead_tup</th>';
 }
+if ($g_version >= 94) {
+  $buffer .= '
+  <th class="colMid">n_mod_since_analyze</th>';
+}
 if ($g_version >= 82) {
 $buffer .= '
   <th class="colMid">last_vacuum</th>
@@ -129,6 +137,10 @@ if ($g_version >= 83) {
   <td>".$row['n_tup_hot_upd']."</td>
   <td>".$row['n_live_tup']."</td>
   <td>".$row['n_dead_tup']."</td>";
+}
+if ($g_version >= 94) {
+  $buffer .= "
+  <td>".$row['n_mod_since_analyze']."</td>";
 }
 if ($g_version >= 82) {
 $buffer .= "
