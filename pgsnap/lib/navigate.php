@@ -271,6 +271,10 @@ if ($g_version >= '84') {
   $navigate_stats .= '
       <li><a href="stat_functions.html">Functions (Runs)</a></li>';
 }
+if ($g_version >= '94') {
+  $navigate_stats .= '
+      <li><a href="stat_archiver.html">Archiver</a></li>';
+}
 $navigate_stats .= '
     </ul>
   </div>

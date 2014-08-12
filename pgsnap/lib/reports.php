@@ -336,6 +336,9 @@ include 'lib/statio_sequences.php';
 if ($g_version >= '84') {
   include 'lib/stat_functions.php';
 }
+if ($g_version >= '94') {
+  include 'lib/stat_archiver.php';
+}
 
 echo "Getting Tools Informations...\n";
 if ($g_pgpool) {
