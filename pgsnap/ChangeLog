@@ -1,3 +1,10 @@
+2014-08-12  Guillaume Lelarge <guillaume@lelarge.info>
+    * Handle the new pg_stat_archiver statistic catalog
+    * Handle the new pg_replication_slots system catalog
+    * Handle the new n_mod_since_analyze column of pg_stat_all_tables
+    * Handle the new backend_xmin column of pg_stat_replication
+    * The reltoastidxid column doesn't exist anymore since 9.4
+
 2014-06-18  Guillaume Lelarge <guillaume@lelarge.info>
     * Add "Has password?" column to the roles report (#3)
 
