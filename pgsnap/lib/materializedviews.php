@@ -35,6 +35,9 @@ $query = "SELECT
 if ($g_version < 94) {
   $query .= "
   reltoastidxid,";
+} else {
+  $query .= "
+  relreplident,";
 }
 $query .= "
   relhasindex,
@@ -78,8 +81,15 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Tablespace name</th>
   <th class="colMid">Pages #</th>
   <th class="colMid">Tuples #</th>
-  <th class="colMid">OID Toast Table</th>
-  <th class="colMid">OID Toast Index</th>
+  <th class="colMid">OID Toast Table</th>';
+if ($g_version < 94) {
+  $buffer .= '
+  <th class="colMid">OID Toast Index</th>';
+} else {
+  $buffer .= '
+  <th class="colMid">Replica identity</th>';
+}
+$buffer .= '
   <th class="colMid">Has index?</th>
   <th class="colMid">Is shared?</th>
   <th class="colMid">Is populated?</th>
@@ -113,6 +123,9 @@ $buffer .= tr($row['schema'])."
 if ($g_version < 94) {
   $buffer .= "
   <td>".$row['reltoastidxid']."</td>";
+} else {
+  $query .= "
+  <td>".$replident[$row['relreplident']]."</td>";
 }
 $buffer .= "
   <td>".$image[$row['relhasindex']]."</td>

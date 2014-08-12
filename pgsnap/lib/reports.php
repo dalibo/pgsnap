@@ -155,6 +155,11 @@ $kind['r'] = 'HEAP Table';
 $kind['t'] = 'TOAST Table';
 $kind['i'] = 'Index';
 $kind['S'] = 'Sequence';
+// replident variables
+$replident['d'] = 'default';
+$replident['n'] = 'nothing';
+$replident['f'] = 'all';
+$replident['i'] = 'index';
 
 echo "Getting Misc informations...\n";
 include 'lib/getmodules.php';
