@@ -1,4 +1,4 @@
-.TH PGSNAP "1" "Feb 2010" "pgsnap 0.5.0" "User Commands"
+.TH PGSNAP "1" "Sep 2012" "pgsnap 0.8.0" "User Commands"
 .SH NAME
 pgsnap \- PostgreSQL report tool
 .SH DESCRIPTION
@@ -15,22 +15,31 @@ build a report for all databases on the PostgreSQL server
 specify database name to connect to
 (default: your login name)
 .TP
+\fB\-\-delete\-if\-exists\fR
+delete output directory if it already exists
+.TP
 \fB\-o\fR outputdir
 specify directory name where the reports
 will be created (default: the database name
 followed by 'snap_', followed by the date
 and time)
 .TP
+\fB\-\-output-dir-mode\fR outputdirmode
+specify output directory permissions mode (default: "700")
+.TP
+\fB\-\-query\-in\-logs\fR
+allow logging queries in PostgreSQL log files
+.TP
+\fB\-\-with\-old\-libpq\fR
+disable the use of the parameter application_name
+.TP
 \fB\-S, \-\-without\-sysobjects\fR
 all reports will display informations on user objects only
 .TP
-\fB\-S, \-\-delete\-if\-exists\fR
-delete output directory if it already exists
-.TP
-\fB\-\-help\fR
+\fB\-?, \-\-help\fR
 show this help, then exit
 .TP
-\fB\-\-version\fR
+\fB\-v, \-\-version\fR
 output version information, then exit
 .SS "Connection options:"
 .TP
@@ -46,6 +55,9 @@ database user name (default: your login name)
 .TP
 \fB\-W\fR
 prompt for password
+.TP
+\fB\-w\fR
+don't prompt for password
 
 .SH AUTHOR and CREDITS
 pgsnap is written and maintained by Guillaume Lelarge
@@ -57,7 +69,7 @@ The pgsnap website:
 .B http://pgsnap.projects.postgresql.org/
 .hy
 .PP
-This manpage was written by Pierre Chifflier
+This manpage was written by Pierre Chifflier, and updated by Guillaume Lelarge
 .nh
 <chifflier@debian.org>
 
