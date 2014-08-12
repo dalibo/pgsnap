@@ -105,6 +105,10 @@ if ($g_version > '80') {
   $navigate_globalobjects.= '
       <li class="last-child"><a href="xlog.html">WAL files</a></li>';
 }
+if ($g_version >= '94') {
+  $navigate_globalobjects.= '
+      <li class="last-child"><a href="replslots.html">Replication slots</a></li>';
+}
 $navigate_globalobjects.= '
     </ul>
   </div>

@@ -221,6 +221,12 @@ if ($g_superuser && $g_version >= '90') {
 if ($g_superuser && $g_version > '80') {
   include 'lib/xlog.php';
 }
+echo "before\n";
+if ($g_version >= '94') {
+echo "during\n";
+  include 'lib/replslots.php';
+}
+echo "after\n";
 
 echo "Getting Database Informations...\n";
 include 'lib/schemas.php';
