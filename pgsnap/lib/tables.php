@@ -49,8 +49,12 @@ if ($g_version > 91) {
   relallvisible,";
 }
 $query .= "
-  reltoastrelid,
-  reltoastidxid,
+  reltoastrelid,";
+if ($g_version < 94) {
+  $query .= "
+  reltoastidxid,";
+}
+$query .= "
   relhasindex,
   relisshared,
   relkind,
@@ -221,8 +225,12 @@ if ($g_version > 91) {
 }
 $buffer .= "
   <td>".$row['reltuples']."</td>
-  <td>".$row['reltoastrelid']."</td>
-  <td>".$row['reltoastidxid']."</td>
+  <td>".$row['reltoastrelid']."</td>";
+if ($g_version < 94) {
+  $buffer .= "
+  <td>".$row['reltoastidxid']."</td>";
+}
+$buffer .= "
   <td>".$image[$row['relhasindex']]."</td>
   <td>".$image[$row['relisshared']]."</td>
   <td>".$kind[$row['relkind']]."</td>

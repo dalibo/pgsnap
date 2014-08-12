@@ -31,8 +31,12 @@ $query = "SELECT
   (select spcname from pg_tablespace where oid=reltablespace) as tablespace,
   relpages,
   reltuples,
-  reltoastrelid,
-  reltoastidxid,
+  reltoastrelid,";
+if ($g_version < 94) {
+  $query .= "
+  reltoastidxid,";
+}
+$query .= "
   relhasindex,
   relisshared,
   relispopulated,
@@ -105,8 +109,12 @@ $buffer .= tr($row['schema'])."
   <td>".$row['tablespace']."</td>
   <td>".$row['relpages']."</td>
   <td>".$row['reltuples']."</td>
-  <td>".$row['reltoastrelid']."</td>
-  <td>".$row['reltoastidxid']."</td>
+  <td>".$row['reltoastrelid']."</td>";
+if ($g_version < 94) {
+  $buffer .= "
+  <td>".$row['reltoastidxid']."</td>";
+}
+$buffer .= "
   <td>".$image[$row['relhasindex']]."</td>
   <td>".$image[$row['relisshared']]."</td>
   <td>".$image[$row['relispopulated']]."</td>

@@ -39,8 +39,12 @@ if ($g_version > 74) {
 $query .= "
   relpages,
   reltuples,
-  reltoastrelid,
-  reltoastidxid,
+  reltoastrelid,";
+if ($g_version < 94) {
+  $query .= "
+  reltoastidxid,";
+}
+$query .= "
   relhasindex,
   relisshared,
   relkind,
@@ -181,8 +185,12 @@ if ($g_version > 74) {
 $buffer .= "
   <td>".$row['relpages']."</td>
   <td>".$row['reltuples']."</td>
-  <td>".$row['reltoastrelid']."</td>
-  <td>".$row['reltoastidxid']."</td>
+  <td>".$row['reltoastrelid']."</td>";
+if ($g_version < 94) {
+  $buffer .= "
+  <td>".$row['reltoastidxid']."</td>";
+}
+$buffer .= "
   <td>".$image[$row['relhasindex']]."</td>
   <td>".$image[$row['relisshared']]."</td>
   <td>".$kind[$row['relkind']]."</td>
