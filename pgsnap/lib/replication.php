@@ -35,7 +35,12 @@ $query = "SELECT
   client_addr,
   client_hostname,
   client_port,
-  date_trunc('second', backend_start) as backend_start,
+  date_trunc('second', backend_start) as backend_start,";
+if ($g_version > 93) {
+    $query .= '
+  backend_xmin,';
+}
+$query .= "
   state,
   sent_location,
   write_location,
@@ -63,7 +68,12 @@ $buffer .= '<div class="tblBasic">
   <th class="colMid">Client address</th>
   <th class="colMid">Client hostname</th>
   <th class="colMid">Client port</th>
-  <th class="colMid">Backend start</th>
+  <th class="colMid">Backend start</th>';
+if ($g_version > 93) {
+    $buffer .= '
+  <th class="colMid">Backend xmin</th>';
+}
+$buffer .= '
   <th class="colMid">State</th>
   <th class="colMid">Sent location</th>
   <th class="colMid">Write location</th>
@@ -84,7 +94,12 @@ $buffer .= tr()."
   <td>".$row['client_addr']."</td>
   <td>".$row['client_hostname']."</td>
   <td>".$row['client_port']."</td>
-  <td>".$row['backend_start']."</td>
+  <td>".$row['backend_start']."</td>";
+if ($g_version > 93) {
+    $buffer .= "
+  <td>".$row['backend_xmin']."</td>";
+}
+$buffer .= "
   <td>".$row['state']."</td>
   <td>".$row['sent_location']."</td>
   <td>".$row['write_location']."</td>
