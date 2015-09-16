@@ -186,6 +186,7 @@ if ($g_files['recovery.conf']) {
   include 'lib/contents_recovery.php';
 }
 if ($g_superuser && $g_version > '74'
+   && (! $g_withoutlastlog)
    && (!strcmp($g_settings['log_destination'], 'stderr')
          || !strcmp($g_settings['log_destination'], 'csvlog'))
    && ((array_key_exists('redirect_stderr', $g_settings)

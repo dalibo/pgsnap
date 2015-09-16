@@ -37,6 +37,7 @@ $g_nopassword = false;
 $g_withoutsysobjects = false;
 $g_alldatabases = false;
 $g_deleteifexists = false;
+$g_withollastlog = false;
 $g_witholdlibpq = false;
 $outputdir = '';
 $outputdirmode = 700;
@@ -91,6 +92,9 @@ for ($i = 1; $i < $_SERVER["argc"]; $i++) {
     case "-S":
     case "--without-sysobjects":
       $g_withoutsysobjects = true;
+      break;
+    case "--without-lastlog":
+      $g_withoutlastlog = true;
       break;
     case "-a":
     case "--all":
