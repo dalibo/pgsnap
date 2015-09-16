@@ -26,8 +26,12 @@ $query = "SELECT rolname,
   rolsuper,
   rolinherit,
   rolcreaterole,
-  rolcreatedb,
-  rolcatupdate,
+  rolcreatedb,";
+if ($g_version < 95) {
+  $query .= "
+  rolcatupdate,";
+}
+$query .= "
   rolcanlogin,
   rolconnlimit,";
 if ($g_version > 90) {
@@ -91,8 +95,12 @@ $buffer .= tr().'
   <td>'.$image[$row['rolsuper']].'</td>
   <td>'.$image[$row['rolinherit']].'</td>
   <td>'.$image[$row['rolcreaterole']].'</td>
-  <td>'.$image[$row['rolcreatedb']].'</td>
-  <td>'.$image[$row['rolcatupdate']].'</td>
+  <td>'.$image[$row['rolcreatedb']].'</td>';
+if ($g_version < 95) {
+$buffer .= '
+  <td>'.$image[$row['rolcatupdate']].'</td>';
+}
+$buffer .= '
   <td>'.$image[$row['rolcanlogin']].'</td>';
 if ($g_version > 90) {
 $buffer .= '
