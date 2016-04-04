@@ -1,3 +1,6 @@
+2016-04-04  Guillaume Lelarge <guillaume@lelarge.info>
+    * Release 0.10.0.
+
 2015-09-16  Julien Rouhaud <julien.rouhaud@free.fr>
     * Add a --without-lastlog option
     * The rolcatupdate column doesn't exist anymore since 9.5
