@@ -1,7 +1,7 @@
 TODO
 ====
 
- * 0.10?
+ * 0.11?
 
   * handle return code of the script
   * add a --server-only option, to get a view of all DB, no specific DB objects.
